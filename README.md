@@ -12,3 +12,6 @@ git clone https://github.com/noboRu5525/Azure-hackathon.git
 
 http://localhost:5001/test
 でAPI接続確認できた
+# モジュール
+必要なモジュールがあったら**requirements.txt**に追記する
+その後**docker compose up --build**する
