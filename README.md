@@ -22,7 +22,7 @@ http://localhost/test
 
 # フロントエンド
 基本的には
-Azure-hackathon/app/azureapp/**templates**
+"Azure-hackathon/app/azureapp/**templates/**"
 と
-Azure-hackathon/app/azureapp/static/**css**
+"Azure-hackathon/app/azureapp/static/**css**"
 の中のファイルを弄ることになるかと
