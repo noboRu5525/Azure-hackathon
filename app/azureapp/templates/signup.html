@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block login %}
+<button type="button" class="btn btn-outline-dark me-1 float-end" onclick="location.href='/login'">ログイン</button>
+{% endblock %}
+{% block signup %}
+<button type="button" class="btn btn-outline-dark me-1 float-end" onclick="location.href='/signup'">サインアップ</button>
+{% endblock %}
+
+{% block content %}
+    <html><body><h1>登録画面</h1>
+		        <form action="/check_signup" method="POST">
+				    ユーザー名: <br/>
+				        <input type="text" name="user" maxlength="10"><br>
+					    パスワード: <br>
+					        <input type="password" name="pw" minlength="5"><br>
+						    <input type="submit" value="登録">
+						        </form>
+	<p><a href="/">→戻る</a></p>
+
+{% endblock %}

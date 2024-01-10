@@ -1,9 +1,39 @@
 version: '3'
 services:
-  web:
-    build: .
-    ports:
-      - "5001:5000"
+  app:
+    build: ./app
     volumes:
-      - ./app:/app
+      - ./app/azureapp:/app
+      - socket:/tmp
     tty: true
+    links:
+      - db
+    command: uwsgi --ini /app/app.ini
+    env_file:
+      - .env
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: hackathon78864
+      MYSQL_USER: hackathon
+      MYSQL_PASSWORD: hackathonmysql7749 
+      TZ: 'Asia/Tokyo'
+    ports:
+      - "3307:3306"
+    restart: always
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./db/db:/var/lib/mysql
+
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./web/nginx.conf:/etc/nginx/conf.d/default.conf
+      - socket:/tmp
+
+volumes:
+  socket:

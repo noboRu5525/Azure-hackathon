@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block logout %}
+<button type="button" class="btn btn-outline-dark me-1 float-end" onclick="location.href='/logout'">Logout</button>
+{% endblock %}
+{% block content %}
+<div>
+	<h2>{{ username }}さん　こんにちは</h2>
+</div>
+{% endblock %}
