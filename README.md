@@ -8,7 +8,8 @@ git clone https://github.com/noboRu5525/Azure-hackathon.git
 
 ## 起動
 
-```docker compose up --build
+```
+docker compose up --build
 ```
 すると起動する
 
