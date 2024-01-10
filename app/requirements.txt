@@ -1,0 +1,4 @@
+flask
+openai
+uWSGI==2.0.19.1
+mysql-connector-python

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block login %}
+<button type="button" class="btn btn-outline-dark me-1 float-end" onclick="location.href='/login'">ログイン</button>
+{% endblock %}
+{% block signup %}
+<button type="button" class="btn btn-outline-dark me-1 float-end" onclick="location.href='/signup'">サインアップ</button>
+{% endblock %}
+
+{% block content %}
+	<h1>アカウント</h1>
+	<ul>
+	{% for account in accounts %}
+	<li>{{ account }}<li>
+	{% endfor %}
+	</ul>
+{% endblock %}

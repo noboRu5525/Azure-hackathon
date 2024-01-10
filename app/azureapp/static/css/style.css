@@ -1,0 +1,23 @@
+header{
+	background-color: gold;
+}
+
+h1 a {
+	text-decoration: none;
+	color: black;
+}
+
+
+h1 a:hover {
+	color: black;
+}
+
+ul {
+	  list-style: none;
+  }
+
+@media(max-width: 992px){
+	html {
+		font-size: 2.0rem;
+	}
+}
