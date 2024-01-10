@@ -23,7 +23,7 @@ http://localhost/test
 その後**docker compose up --build**する
 
 ## バックエンド
-基本的には**"Azure-hackathon/app/azureapp/app.py"**を書いて実装　ファイル分けした方が可読性アップ
+基本的には"Azure-hackathon/app/azureapp/app.py"を書いて実装　ファイル分けした方が可読性アップ
 
 ## フロントエンド
 基本的には
@@ -32,3 +32,5 @@ http://localhost/test
 "Azure-hackathon/app/azureapp/static/**css**"
 の中のファイルを弄ることになるかと
 
+layout.htmlがベースとなるものでそれ以外はベースに組み込まれる形になっている
+不要なら削除してOK！
