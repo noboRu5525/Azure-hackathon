@@ -4452,3 +4452,108 @@ uWSGI running as root, you can use --uid/--gid/--chroot options
 *** uWSGI is running in multiple interpreter mode ***
 gracefully (RE)spawned uWSGI master process (pid: 1)
 spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Wed Jan 10 23:58:51 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 23:58:27
+os: Linux-6.5.11-linuxkit #1 SMP PREEMPT Mon Dec  4 11:30:00 UTC 2023
+nodename: 3b6502857de3
+machine: aarch64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 16 2021, 10:16:06)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xaaaade401fc0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0xaaaade401fc0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 192.168.65.1 () {56 vars in 1024 bytes} [Thu Jan 11 00:07:18 2024] GET / => generated 2192 bytes in 34 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 192.168.65.1 () {52 vars in 870 bytes} [Thu Jan 11 00:07:18 2024] GET /static/js/script.js => generated 207 bytes in 8 msecs (HTTP/1.1 404) 2 headers in 87 bytes (2 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 192.168.65.1 () {52 vars in 886 bytes} [Thu Jan 11 00:07:18 2024] GET /static/css/style.css => generated 208 bytes in 13 msecs via sendfile() (HTTP/1.1 200) 7 headers in 279 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 192.168.65.1 () {52 vars in 914 bytes} [Thu Jan 11 00:07:19 2024] GET /favicon.ico => generated 207 bytes in 0 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 192.168.65.1 () {54 vars in 995 bytes} [Thu Jan 11 00:07:30 2024] GET /test => generated 153 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 192.168.65.1 () {56 vars in 1037 bytes} [Thu Jan 11 00:07:47 2024] GET /login => generated 2028 bytes in 7 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 192.168.65.1 () {52 vars in 875 bytes} [Thu Jan 11 00:07:47 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 192.168.65.1 () {56 vars in 1003 bytes} [Thu Jan 11 00:07:47 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 192.168.65.1 () {64 vars in 1231 bytes} [Thu Jan 11 00:07:54 2024] POST /check_login => generated 113 bytes in 68 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 192.168.65.1 () {56 vars in 1038 bytes} [Thu Jan 11 00:07:58 2024] GET / => generated 2192 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 192.168.65.1 () {52 vars in 870 bytes} [Thu Jan 11 00:07:58 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 12/12] 192.168.65.1 () {56 vars in 998 bytes} [Thu Jan 11 00:07:58 2024] GET /static/css/style.css => generated 0 bytes in 3 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 192.168.65.1 () {56 vars in 1039 bytes} [Thu Jan 11 00:08:00 2024] GET /signup => generated 2051 bytes in 8 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 192.168.65.1 () {52 vars in 876 bytes} [Thu Jan 11 00:08:00 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 192.168.65.1 () {56 vars in 1004 bytes} [Thu Jan 11 00:08:00 2024] GET /static/css/style.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 16/16] 192.168.65.1 () {64 vars in 1234 bytes} [Thu Jan 11 00:08:02 2024] POST /check_signup => generated 199 bytes in 27 msecs (HTTP/1.1 302) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 17/17] 192.168.65.1 () {58 vars in 1074 bytes} [Thu Jan 11 00:08:02 2024] GET /login => generated 2028 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 18/18] 192.168.65.1 () {52 vars in 875 bytes} [Thu Jan 11 00:08:02 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 19/19] 192.168.65.1 () {56 vars in 1003 bytes} [Thu Jan 11 00:08:02 2024] GET /static/css/style.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 20/20] 192.168.65.1 () {56 vars in 1042 bytes} [Thu Jan 11 00:08:06 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 21/21] 192.168.65.1 () {52 vars in 875 bytes} [Thu Jan 11 00:08:06 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 22/22] 192.168.65.1 () {56 vars in 1003 bytes} [Thu Jan 11 00:08:06 2024] GET /static/css/style.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 23/23] 192.168.65.1 () {64 vars in 1231 bytes} [Thu Jan 11 00:08:12 2024] POST /check_login => generated 197 bytes in 17 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 24/24] 192.168.65.1 () {60 vars in 1152 bytes} [Thu Jan 11 00:08:12 2024] GET /home => generated 1590 bytes in 6 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 25/25] 192.168.65.1 () {54 vars in 955 bytes} [Thu Jan 11 00:08:12 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 26/26] 192.168.65.1 () {58 vars in 1083 bytes} [Thu Jan 11 00:08:12 2024] GET /static/css/style.css => generated 0 bytes in 1 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 27/27] 192.168.65.1 () {56 vars in 1076 bytes} [Thu Jan 11 00:08:22 2024] GET /test => generated 153 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu Jan 11 00:08:37 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 23:58:27
+os: Linux-6.5.11-linuxkit #1 SMP PREEMPT Mon Dec  4 11:30:00 UTC 2023
+nodename: 3b6502857de3
+machine: aarch64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 8
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 16 2021, 10:16:06)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xaaaae51eef10
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0xaaaae51eef10 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
