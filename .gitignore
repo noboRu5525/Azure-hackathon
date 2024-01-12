@@ -1,1 +1,9 @@
 .env
+# データベースファイル
+db/db/mysql.sock
+
+# ログファイル
+app/azureapp/uwsgi.log
+
+# node_modules
+node_modules/
