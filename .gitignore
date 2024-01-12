@@ -1,6 +1,6 @@
 .env
 # データベースファイル
-db/db/
+db/db/mysql.sock
 
 # ログファイル
 app/azureapp/uwsgi.log
