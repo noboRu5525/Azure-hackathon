@@ -4452,3 +4452,2279 @@ uWSGI running as root, you can use --uid/--gid/--chroot options
 *** uWSGI is running in multiple interpreter mode ***
 gracefully (RE)spawned uWSGI master process (pid: 1)
 spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Wed Jan 10 16:02:17 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: 0ae39d36ea8f
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x564597708fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x564597708fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.18.0.1 () {54 vars in 987 bytes} [Wed Jan 10 16:05:00 2024] GET / => generated 2192 bytes in 54 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.18.0.1 () {52 vars in 864 bytes} [Wed Jan 10 16:05:00 2024] GET /static/js/script.js => generated 207 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.18.0.1 () {52 vars in 880 bytes} [Wed Jan 10 16:05:00 2024] GET /static/css/style.css => generated 231 bytes in 30 msecs via sendfile() (HTTP/1.1 200) 7 headers in 279 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.18.0.1 () {52 vars in 908 bytes} [Wed Jan 10 16:05:02 2024] GET /favicon.ico => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.18.0.1 () {54 vars in 989 bytes} [Wed Jan 10 16:05:13 2024] GET /test => generated 64 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.18.0.1 () {56 vars in 1033 bytes} [Wed Jan 10 16:05:19 2024] GET /signup => generated 2051 bytes in 17 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.18.0.1 () {52 vars in 870 bytes} [Wed Jan 10 16:05:19 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.18.0.1 () {56 vars in 998 bytes} [Wed Jan 10 16:05:19 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.18.0.1 () {64 vars in 1228 bytes} [Wed Jan 10 16:05:41 2024] POST /check_signup => generated 199 bytes in 220 msecs (HTTP/1.1 302) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.18.0.1 () {58 vars in 1068 bytes} [Wed Jan 10 16:05:41 2024] GET /login => generated 2028 bytes in 18 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 172.18.0.1 () {52 vars in 869 bytes} [Wed Jan 10 16:05:41 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 12/12] 172.18.0.1 () {56 vars in 997 bytes} [Wed Jan 10 16:05:41 2024] GET /static/css/style.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 172.18.0.1 () {64 vars in 1225 bytes} [Wed Jan 10 16:05:54 2024] POST /check_login => generated 197 bytes in 16 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 172.18.0.1 () {60 vars in 1146 bytes} [Wed Jan 10 16:05:54 2024] GET /home => generated 1590 bytes in 16 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 172.18.0.1 () {54 vars in 949 bytes} [Wed Jan 10 16:05:54 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 16/16] 172.18.0.1 () {58 vars in 1077 bytes} [Wed Jan 10 16:05:54 2024] GET /static/css/style.css => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 17/17] 172.18.0.1 () {58 vars in 1118 bytes} [Wed Jan 10 16:06:01 2024] GET /logout => generated 88 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 183 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 18/18] 172.18.0.1 () {56 vars in 1037 bytes} [Wed Jan 10 16:06:03 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 19/19] 172.18.0.1 () {52 vars in 869 bytes} [Wed Jan 10 16:06:03 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 20/20] 172.18.0.1 () {56 vars in 997 bytes} [Wed Jan 10 16:06:03 2024] GET /static/css/style.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 21/21] 172.18.0.1 () {64 vars in 1223 bytes} [Wed Jan 10 16:06:52 2024] POST /check_login => generated 113 bytes in 21 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 22/22] 172.18.0.1 () {56 vars in 1032 bytes} [Wed Jan 10 16:06:54 2024] GET / => generated 2192 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 23/23] 172.18.0.1 () {52 vars in 864 bytes} [Wed Jan 10 16:06:54 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 24/24] 172.18.0.1 () {56 vars in 992 bytes} [Wed Jan 10 16:06:54 2024] GET /static/css/style.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 25/25] 172.18.0.1 () {54 vars in 991 bytes} [Wed Jan 10 16:07:02 2024] GET /admin => generated 1890 bytes in 34 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 26/26] 172.18.0.1 () {52 vars in 869 bytes} [Wed Jan 10 16:07:02 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 27/27] 172.18.0.1 () {56 vars in 997 bytes} [Wed Jan 10 16:07:02 2024] GET /static/css/style.css => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 28/28] 172.18.0.1 () {56 vars in 1036 bytes} [Wed Jan 10 16:07:39 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 29/29] 172.18.0.1 () {52 vars in 869 bytes} [Wed Jan 10 16:07:39 2024] GET /static/js/script.js => generated 207 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 30/30] 172.18.0.1 () {56 vars in 997 bytes} [Wed Jan 10 16:07:39 2024] GET /static/css/style.css => generated 0 bytes in 24 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 31/31] 172.18.0.1 () {56 vars in 1038 bytes} [Wed Jan 10 16:07:41 2024] GET /signup => generated 2051 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 32/32] 172.18.0.1 () {52 vars in 870 bytes} [Wed Jan 10 16:07:41 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 33/33] 172.18.0.1 () {56 vars in 998 bytes} [Wed Jan 10 16:07:41 2024] GET /static/css/style.css => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 34/34] 172.18.0.1 () {56 vars in 1037 bytes} [Wed Jan 10 16:07:42 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 35/35] 172.18.0.1 () {52 vars in 869 bytes} [Wed Jan 10 16:07:42 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 36/36] 172.18.0.1 () {56 vars in 997 bytes} [Wed Jan 10 16:07:42 2024] GET /static/css/style.css => generated 0 bytes in 19 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 37/37] 172.18.0.1 () {54 vars in 1012 bytes} [Wed Jan 10 16:09:04 2024] GET /logout => generated 88 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 38/38] 172.18.0.1 () {54 vars in 1009 bytes} [Wed Jan 10 16:09:05 2024] GET /home => generated 110 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Wed Jan 10 16:44:39 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: 0ae39d36ea8f
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x556675108f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu Jan 11 01:33:05 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: 0ae39d36ea8f
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5654457c6fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 6 seconds on interpreter 0x5654457c6fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu Jan 11 02:20:41 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: 0ae39d36ea8f
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x561c89178f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu Jan 11 02:22:07 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: 34c00c074d11
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55947f167fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 5 seconds on interpreter 0x55947f167fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.18.0.1 () {54 vars in 987 bytes} [Thu Jan 11 02:22:21 2024] GET / => generated 2192 bytes in 88 msecs (HTTP/1.1 200) 2 headers in 81 bytes (2 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.18.0.1 () {52 vars in 880 bytes} [Thu Jan 11 02:22:21 2024] GET /static/css/style.css => generated 231 bytes in 35 msecs via sendfile() (HTTP/1.1 200) 7 headers in 279 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.18.0.1 () {52 vars in 864 bytes} [Thu Jan 11 02:22:21 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.18.0.1 () {52 vars in 908 bytes} [Thu Jan 11 02:22:22 2024] GET /favicon.ico => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.18.0.1 () {56 vars in 1033 bytes} [Thu Jan 11 02:22:26 2024] GET /signup => generated 2051 bytes in 19 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.18.0.1 () {52 vars in 870 bytes} [Thu Jan 11 02:22:26 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.18.0.1 () {56 vars in 998 bytes} [Thu Jan 11 02:22:26 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.18.0.1 () {56 vars in 1039 bytes} [Thu Jan 11 02:22:31 2024] GET /signup => generated 2051 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.18.0.1 () {52 vars in 870 bytes} [Thu Jan 11 02:22:31 2024] GET /static/js/script.js => generated 207 bytes in 9 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.18.0.1 () {56 vars in 998 bytes} [Thu Jan 11 02:22:31 2024] GET /static/css/style.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 172.18.0.1 () {56 vars in 1037 bytes} [Thu Jan 11 02:22:32 2024] GET /login => generated 2028 bytes in 18 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 12/12] 172.18.0.1 () {52 vars in 869 bytes} [Thu Jan 11 02:22:32 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 172.18.0.1 () {56 vars in 997 bytes} [Thu Jan 11 02:22:32 2024] GET /static/css/style.css => generated 0 bytes in 21 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 172.18.0.1 () {64 vars in 1225 bytes} [Thu Jan 11 02:22:44 2024] POST /check_login => generated 113 bytes in 131 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 172.18.0.1 () {56 vars in 1032 bytes} [Thu Jan 11 02:22:48 2024] GET / => generated 2192 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 16/16] 172.18.0.1 () {52 vars in 864 bytes} [Thu Jan 11 02:22:48 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 17/17] 172.18.0.1 () {56 vars in 992 bytes} [Thu Jan 11 02:22:48 2024] GET /static/css/style.css => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 18/18] 172.18.0.1 () {56 vars in 1031 bytes} [Thu Jan 11 02:23:44 2024] GET /login => generated 2028 bytes in 6 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 19/19] 172.18.0.1 () {52 vars in 869 bytes} [Thu Jan 11 02:23:44 2024] GET /static/js/script.js => generated 207 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 20/20] 172.18.0.1 () {56 vars in 997 bytes} [Thu Jan 11 02:23:44 2024] GET /static/css/style.css => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 21/21] 172.18.0.1 () {64 vars in 1225 bytes} [Thu Jan 11 02:23:52 2024] POST /check_login => generated 197 bytes in 20 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 22/22] 172.18.0.1 () {60 vars in 1146 bytes} [Thu Jan 11 02:23:52 2024] GET /home => generated 1590 bytes in 19 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 23/23] 172.18.0.1 () {54 vars in 949 bytes} [Thu Jan 11 02:23:52 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 24/24] 172.18.0.1 () {58 vars in 1077 bytes} [Thu Jan 11 02:23:52 2024] GET /static/css/style.css => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 25/25] 172.18.0.1 () {56 vars in 1080 bytes} [Thu Jan 11 03:02:29 2024] GET /home/test => generated 207 bytes in 7 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 26/26] 172.18.0.1 () {56 vars in 1070 bytes} [Thu Jan 11 03:02:35 2024] GET /test => generated 64 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 27/27] 172.18.0.1 () {56 vars in 1062 bytes} [Thu Jan 11 03:10:23 2024] GET / => generated 2192 bytes in 8 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 28/28] 172.18.0.1 () {54 vars in 945 bytes} [Thu Jan 11 03:10:23 2024] GET /static/js/script.js => generated 207 bytes in 11 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 29/29] 172.18.0.1 () {58 vars in 1073 bytes} [Thu Jan 11 03:10:23 2024] GET /static/css/style.css => generated 0 bytes in 22 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 30/30] 172.18.0.1 () {58 vars in 1112 bytes} [Thu Jan 11 03:10:27 2024] GET /login => generated 2028 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 31/31] 172.18.0.1 () {54 vars in 950 bytes} [Thu Jan 11 03:10:27 2024] GET /static/js/script.js => generated 207 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 32/32] 172.18.0.1 () {58 vars in 1078 bytes} [Thu Jan 11 03:10:27 2024] GET /static/css/style.css => generated 0 bytes in 21 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 33/33] 172.18.0.1 () {66 vars in 1306 bytes} [Thu Jan 11 03:10:40 2024] POST /check_login => generated 113 bytes in 74 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 34/34] 172.18.0.1 () {58 vars in 1113 bytes} [Thu Jan 11 03:10:44 2024] GET / => generated 2192 bytes in 4 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 35/35] 172.18.0.1 () {54 vars in 945 bytes} [Thu Jan 11 03:10:44 2024] GET /static/js/script.js => generated 207 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 36/36] 172.18.0.1 () {58 vars in 1073 bytes} [Thu Jan 11 03:10:44 2024] GET /static/css/style.css => generated 0 bytes in 18 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 37/37] 172.18.0.1 () {58 vars in 1114 bytes} [Thu Jan 11 03:10:45 2024] GET /signup => generated 2051 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 38/38] 172.18.0.1 () {54 vars in 951 bytes} [Thu Jan 11 03:10:45 2024] GET /static/js/script.js => generated 207 bytes in 36 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 39/39] 172.18.0.1 () {58 vars in 1079 bytes} [Thu Jan 11 03:10:45 2024] GET /static/css/style.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 40/40] 172.18.0.1 () {66 vars in 1309 bytes} [Thu Jan 11 03:10:57 2024] POST /check_signup => generated 155 bytes in 17 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 41/41] 172.18.0.1 () {58 vars in 1114 bytes} [Thu Jan 11 03:11:01 2024] GET / => generated 2192 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 42/42] 172.18.0.1 () {54 vars in 945 bytes} [Thu Jan 11 03:11:01 2024] GET /static/js/script.js => generated 207 bytes in 9 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 43/43] 172.18.0.1 () {58 vars in 1073 bytes} [Thu Jan 11 03:11:01 2024] GET /static/css/style.css => generated 0 bytes in 22 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 44/44] 172.18.0.1 () {58 vars in 1112 bytes} [Thu Jan 11 03:11:03 2024] GET /login => generated 2028 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 45/45] 172.18.0.1 () {54 vars in 950 bytes} [Thu Jan 11 03:11:03 2024] GET /static/js/script.js => generated 207 bytes in 8 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 46/46] 172.18.0.1 () {58 vars in 1078 bytes} [Thu Jan 11 03:11:03 2024] GET /static/css/style.css => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 47/47] 172.18.0.1 () {66 vars in 1306 bytes} [Thu Jan 11 03:11:20 2024] POST /check_login => generated 197 bytes in 20 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 48/48] 172.18.0.1 () {60 vars in 1146 bytes} [Thu Jan 11 03:11:20 2024] GET /home => generated 1590 bytes in 2 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 49/49] 172.18.0.1 () {54 vars in 949 bytes} [Thu Jan 11 03:11:20 2024] GET /static/js/script.js => generated 207 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 50/50] 172.18.0.1 () {58 vars in 1077 bytes} [Thu Jan 11 03:11:20 2024] GET /static/css/style.css => generated 0 bytes in 18 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+...brutally killing workers...
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu Jan 11 03:34:40 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: 6c6aef94e7a9
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x562314b0bfb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 7 seconds on interpreter 0x562314b0bfb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.19.0.1 () {56 vars in 1062 bytes} [Thu Jan 11 03:35:04 2024] GET / => generated 2192 bytes in 51 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.19.0.1 () {54 vars in 945 bytes} [Thu Jan 11 03:35:05 2024] GET /static/js/script.js => generated 207 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.19.0.1 () {58 vars in 1073 bytes} [Thu Jan 11 03:35:05 2024] GET /static/css/style.css => generated 0 bytes in 27 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.19.0.1 () {58 vars in 1114 bytes} [Thu Jan 11 03:35:08 2024] GET /signup => generated 2051 bytes in 18 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.19.0.1 () {54 vars in 951 bytes} [Thu Jan 11 03:35:08 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.19.0.1 () {58 vars in 1079 bytes} [Thu Jan 11 03:35:08 2024] GET /static/css/style.css => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.19.0.1 () {66 vars in 1309 bytes} [Thu Jan 11 03:35:19 2024] POST /check_signup => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.19.0.1 () {66 vars in 1309 bytes} [Thu Jan 11 03:35:27 2024] POST /check_signup => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu Jan 11 04:04:51 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: 6c6aef94e7a9
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu Jan 11 04:05:13 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: 75b4d06a054f
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5603f6ba0fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 5 seconds on interpreter 0x5603f6ba0fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.20.0.1 () {56 vars in 1062 bytes} [Thu Jan 11 04:05:40 2024] GET / => generated 2192 bytes in 55 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.20.0.1 () {54 vars in 945 bytes} [Thu Jan 11 04:05:40 2024] GET /static/js/script.js => generated 207 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.20.0.1 () {58 vars in 1073 bytes} [Thu Jan 11 04:05:40 2024] GET /static/css/style.css => generated 0 bytes in 25 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.20.0.1 () {58 vars in 1114 bytes} [Thu Jan 11 04:05:43 2024] GET /signup => generated 2051 bytes in 22 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.20.0.1 () {54 vars in 951 bytes} [Thu Jan 11 04:05:43 2024] GET /static/js/script.js => generated 207 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.20.0.1 () {58 vars in 1079 bytes} [Thu Jan 11 04:05:43 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.20.0.1 () {66 vars in 1309 bytes} [Thu Jan 11 04:05:50 2024] POST /check_signup => generated 155 bytes in 74 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.20.0.1 () {58 vars in 1118 bytes} [Thu Jan 11 04:05:58 2024] GET /login => generated 2028 bytes in 13 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.20.0.1 () {54 vars in 950 bytes} [Thu Jan 11 04:05:58 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.20.0.1 () {58 vars in 1078 bytes} [Thu Jan 11 04:05:58 2024] GET /static/css/style.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 172.20.0.1 () {66 vars in 1306 bytes} [Thu Jan 11 04:06:09 2024] POST /check_login => generated 197 bytes in 17 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 12/12] 172.20.0.1 () {60 vars in 1146 bytes} [Thu Jan 11 04:06:09 2024] GET /home => generated 1590 bytes in 17 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 172.20.0.1 () {54 vars in 949 bytes} [Thu Jan 11 04:06:09 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 172.20.0.1 () {58 vars in 1077 bytes} [Thu Jan 11 04:06:09 2024] GET /static/css/style.css => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 172.20.0.1 () {60 vars in 1124 bytes} [Thu Jan 11 04:06:15 2024] GET / => generated 2192 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 16/16] 172.20.0.1 () {58 vars in 1007 bytes} [Thu Jan 11 04:06:16 2024] GET /static/js/script.js => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 17/17] 172.20.0.1 () {62 vars in 1135 bytes} [Thu Jan 11 04:06:16 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 18/18] 172.20.0.1 () {56 vars in 1070 bytes} [Thu Jan 11 04:06:18 2024] GET /test => generated 263 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 19/19] 172.20.0.1 () {60 vars in 1124 bytes} [Thu Jan 11 04:06:22 2024] GET / => generated 2192 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 20/20] 172.20.0.1 () {58 vars in 1007 bytes} [Thu Jan 11 04:06:22 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 21/21] 172.20.0.1 () {62 vars in 1135 bytes} [Thu Jan 11 04:06:22 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 22/22] 172.20.0.1 () {38 vars in 473 bytes} [Thu Jan 11 04:29:13 2024] GET / => generated 2192 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+...brutally killing workers...
+*** Starting uWSGI 2.0.19.1 (64bit) on [Thu Jan 11 10:11:22 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55a3c5690fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x55a3c5690fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {58 vars in 1093 bytes} [Thu Jan 11 10:11:27 2024] GET / => generated 2192 bytes in 30 msecs (HTTP/1.1 200) 2 headers in 81 bytes (2 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {54 vars in 945 bytes} [Thu Jan 11 10:11:27 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {58 vars in 1073 bytes} [Thu Jan 11 10:11:27 2024] GET /static/css/style.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {58 vars in 1112 bytes} [Thu Jan 11 10:38:38 2024] GET /login => generated 2028 bytes in 9 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {54 vars in 950 bytes} [Thu Jan 11 10:38:38 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {58 vars in 1078 bytes} [Thu Jan 11 10:38:38 2024] GET /static/css/style.css => generated 0 bytes in 6 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {66 vars in 1306 bytes} [Thu Jan 11 10:38:49 2024] POST /check_login => generated 197 bytes in 38 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.21.0.1 () {60 vars in 1146 bytes} [Thu Jan 11 10:38:49 2024] GET /home => generated 1590 bytes in 6 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.21.0.1 () {54 vars in 949 bytes} [Thu Jan 11 10:38:49 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.21.0.1 () {58 vars in 1077 bytes} [Thu Jan 11 10:38:49 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 172.21.0.1 () {58 vars in 1114 bytes} [Thu Jan 11 10:38:54 2024] GET /home => generated 1590 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 12/12] 172.21.0.1 () {54 vars in 949 bytes} [Thu Jan 11 10:38:54 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 172.21.0.1 () {58 vars in 1077 bytes} [Thu Jan 11 10:38:54 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 172.21.0.1 () {58 vars in 1118 bytes} [Thu Jan 11 10:39:01 2024] GET /logout => generated 88 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 183 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 172.21.0.1 () {58 vars in 1043 bytes} [Thu Jan 11 10:39:05 2024] GET / => generated 2192 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 16/16] 172.21.0.1 () {56 vars in 926 bytes} [Thu Jan 11 10:39:05 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 17/17] 172.21.0.1 () {60 vars in 1054 bytes} [Thu Jan 11 10:39:05 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 18/18] 172.21.0.1 () {54 vars in 989 bytes} [Thu Jan 11 10:39:07 2024] GET /test => generated 201 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 19/19] 172.21.0.1 () {54 vars in 1012 bytes} [Thu Jan 11 10:55:06 2024] GET /logout => generated 88 bytes in 3 msecs (HTTP/1.1 200) 2 headers in 79 bytes (2 switches on core 0)
+[pid: 9|app: 0|req: 20/20] 172.21.0.1 () {54 vars in 1008 bytes} [Thu Jan 11 10:55:07 2024] GET /home => generated 110 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 03:51:50 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55b070a0cfb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 5 seconds on interpreter 0x55b070a0cfb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {54 vars in 987 bytes} [Fri Jan 12 03:53:52 2024] GET / => generated 2192 bytes in 22 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {52 vars in 864 bytes} [Fri Jan 12 03:53:52 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {56 vars in 992 bytes} [Fri Jan 12 03:53:52 2024] GET /static/css/style.css => generated 0 bytes in 18 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {52 vars in 908 bytes} [Fri Jan 12 03:53:53 2024] GET /favicon.ico => generated 207 bytes in 0 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {56 vars in 1033 bytes} [Fri Jan 12 03:53:57 2024] GET /signup => generated 2051 bytes in 6 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {52 vars in 870 bytes} [Fri Jan 12 03:53:57 2024] GET /static/js/script.js => generated 207 bytes in 3 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {56 vars in 998 bytes} [Fri Jan 12 03:53:57 2024] GET /static/css/style.css => generated 0 bytes in 8 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.21.0.1 () {64 vars in 1226 bytes} [Fri Jan 12 03:54:03 2024] POST /check_signup => generated 199 bytes in 97 msecs (HTTP/1.1 302) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.21.0.1 () {58 vars in 1068 bytes} [Fri Jan 12 03:54:03 2024] GET /login => generated 2028 bytes in 9 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 03:54:03 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 03:54:03 2024] GET /static/css/style.css => generated 0 bytes in 7 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[2024-01-12 03:54:04,973] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 12/12] 172.21.0.1 () {64 vars in 1223 bytes} [Fri Jan 12 03:54:04 2024] POST /check_login => generated 265 bytes in 14 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 172.21.0.1 () {56 vars in 1036 bytes} [Fri Jan 12 03:54:15 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 03:54:15 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 03:54:15 2024] GET /static/css/style.css => generated 0 bytes in 8 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[2024-01-12 03:54:23,105] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 16/16] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 03:54:23 2024] POST /check_login => generated 265 bytes in 8 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2024-01-12 03:54:45,207] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 17/17] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 03:54:45 2024] POST /check_login => generated 265 bytes in 7 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+...brutally killing workers...
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 03:55:49 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55e118031fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55e118031fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[2024-01-12 03:56:09,694] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 03:56:09 2024] POST /check_login => generated 265 bytes in 23 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2024-01-12 04:01:19,555] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:01:19 2024] POST /check_login => generated 265 bytes in 9 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:08:46 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5555a480cf00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x5555a480cf00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:09:03 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x556cc21bcfb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x556cc21bcfb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {54 vars in 989 bytes} [Fri Jan 12 04:09:16 2024] GET /test => generated 94 bytes in 3 msecs (HTTP/1.1 200) 2 headers in 79 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {52 vars in 912 bytes} [Fri Jan 12 04:09:16 2024] GET /favicon.ico => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {54 vars in 981 bytes} [Fri Jan 12 04:09:19 2024] GET / => generated 2192 bytes in 12 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {52 vars in 864 bytes} [Fri Jan 12 04:09:19 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {56 vars in 992 bytes} [Fri Jan 12 04:09:19 2024] GET /static/css/style.css => generated 0 bytes in 9 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {56 vars in 1031 bytes} [Fri Jan 12 04:09:23 2024] GET /login => generated 2028 bytes in 7 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 04:09:23 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 04:09:23 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[2024-01-12 04:09:31,983] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 9/9] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:09:31 2024] POST /check_login => generated 265 bytes in 18 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:19:53 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55a1eff86f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55a1eff86f00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:22:06 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55cb840b5fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 163, in start_tls
+    sock = ssl_context.wrap_socket(
+  File "/usr/local/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+socket.timeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 67, in map_httpcore_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 268, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 251, in handle_request
+    response = connection.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 99, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 76, in handle_request
+    stream = self._connect(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 880, in _request
+    response = self._client.send(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 915, in send
+    response = self._send_handling_auth(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 943, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 980, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 1016, in _send_single_request
+    response = transport.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 84, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 163, in start_tls
+    sock = ssl_context.wrap_socket(
+  File "/usr/local/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+socket.timeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 67, in map_httpcore_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 268, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 251, in handle_request
+    response = connection.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 99, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 76, in handle_request
+    stream = self._connect(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 880, in _request
+    response = self._client.send(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 915, in send
+    response = self._send_handling_auth(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 943, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 980, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 1016, in _send_single_request
+    response = transport.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 84, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 163, in start_tls
+    sock = ssl_context.wrap_socket(
+  File "/usr/local/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+socket.timeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 67, in map_httpcore_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 268, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 251, in handle_request
+    response = connection.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 99, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 76, in handle_request
+    stream = self._connect(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 880, in _request
+    response = self._client.send(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 915, in send
+    response = self._send_handling_auth(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 943, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 980, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 1016, in _send_single_request
+    response = transport.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 84, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/./app.py", line 20, in <module>
+    response = client.chat.completions.create(
+  File "/usr/local/lib/python3.9/site-packages/openai/_utils/_utils.py", line 271, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/openai/resources/chat/completions.py", line 643, in create
+    return self._post(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 1091, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 852, in request
+    return self._request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 887, in _request
+    return self._retry_request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 961, in _retry_request
+    return self._request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 887, in _request
+    return self._retry_request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 961, in _retry_request
+    return self._request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 896, in _request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+unable to load app 0 (mountpoint='') (callable not found or import error)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 163, in start_tls
+    sock = ssl_context.wrap_socket(
+  File "/usr/local/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+socket.timeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 67, in map_httpcore_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 268, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 251, in handle_request
+    response = connection.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 99, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 76, in handle_request
+    stream = self._connect(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 880, in _request
+    response = self._client.send(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 915, in send
+    response = self._send_handling_auth(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 943, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 980, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 1016, in _send_single_request
+    response = transport.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 84, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 163, in start_tls
+    sock = ssl_context.wrap_socket(
+  File "/usr/local/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+socket.timeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 67, in map_httpcore_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 268, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 251, in handle_request
+    response = connection.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 99, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 76, in handle_request
+    stream = self._connect(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 880, in _request
+    response = self._client.send(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 915, in send
+    response = self._send_handling_auth(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 943, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 980, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 1016, in _send_single_request
+    response = transport.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 84, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 10, in map_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 163, in start_tls
+    sock = ssl_context.wrap_socket(
+  File "/usr/local/lib/python3.9/ssl.py", line 500, in wrap_socket
+    return self.sslsocket_class._create(
+  File "/usr/local/lib/python3.9/ssl.py", line 1040, in _create
+    self.do_handshake()
+  File "/usr/local/lib/python3.9/ssl.py", line 1309, in do_handshake
+    self._sslobj.do_handshake()
+socket.timeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 67, in map_httpcore_exceptions
+    yield
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 268, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py", line 251, in handle_request
+    response = connection.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 99, in handle_request
+    raise exc
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 76, in handle_request
+    stream = self._connect(request)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_sync/connection.py", line 156, in _connect
+    stream = stream.start_tls(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_backends/sync.py", line 168, in start_tls
+    raise exc
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 880, in _request
+    response = self._client.send(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 915, in send
+    response = self._send_handling_auth(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 943, in _send_handling_auth
+    response = self._send_handling_redirects(
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 980, in _send_handling_redirects
+    response = self._send_single_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_client.py", line 1016, in _send_single_request
+    response = transport.handle_request(request)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 231, in handle_request
+    resp = self._pool.handle_request(req)
+  File "/usr/local/lib/python3.9/contextlib.py", line 137, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/usr/local/lib/python3.9/site-packages/httpx/_transports/default.py", line 84, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectTimeout: _ssl.c:1112: The handshake operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/app.py", line 20, in <module>
+    response = client.chat.completions.create(
+  File "/usr/local/lib/python3.9/site-packages/openai/_utils/_utils.py", line 271, in wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/openai/resources/chat/completions.py", line 643, in create
+    return self._post(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 1091, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 852, in request
+    return self._request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 887, in _request
+    return self._retry_request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 961, in _retry_request
+    return self._request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 887, in _request
+    return self._retry_request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 961, in _retry_request
+    return self._request(
+  File "/usr/local/lib/python3.9/site-packages/openai/_base_client.py", line 896, in _request
+    raise APITimeoutError(request=request) from err
+openai.APITimeoutError: Request timed out.
+unable to load app 0 (mountpoint='') (callable not found or import error)
+*** no app loaded. going in full dynamic mode ***
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+--- no python application found, check your startup logs for errors ---
+[pid: 9|app: -1|req: -1/1] 172.21.0.1 () {54 vars in 981 bytes} [Fri Jan 12 04:22:43 2024] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+--- no python application found, check your startup logs for errors ---
+[pid: 9|app: -1|req: -1/2] 172.21.0.1 () {52 vars in 908 bytes} [Fri Jan 12 04:22:43 2024] GET /favicon.ico => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:24:33 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55e650aeef00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55e650aeef00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:24:47 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x56401907dfb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x56401907dfb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {54 vars in 981 bytes} [Fri Jan 12 04:24:56 2024] GET / => generated 2192 bytes in 22 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {52 vars in 864 bytes} [Fri Jan 12 04:24:56 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {56 vars in 992 bytes} [Fri Jan 12 04:24:56 2024] GET /static/css/style.css => generated 0 bytes in 11 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {52 vars in 908 bytes} [Fri Jan 12 04:24:56 2024] GET /favicon.ico => generated 207 bytes in 0 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {56 vars in 1031 bytes} [Fri Jan 12 04:24:59 2024] GET /login => generated 2028 bytes in 6 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 04:24:59 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 04:24:59 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[2024-01-12 04:25:06,707] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 8/8] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:25:06 2024] POST /check_login => generated 265 bytes in 43 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.21.0.1 () {56 vars in 1038 bytes} [Fri Jan 12 04:26:59 2024] GET /signup => generated 2051 bytes in 4 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.21.0.1 () {52 vars in 870 bytes} [Fri Jan 12 04:26:59 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 172.21.0.1 () {56 vars in 998 bytes} [Fri Jan 12 04:26:59 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 12/12] 172.21.0.1 () {64 vars in 1228 bytes} [Fri Jan 12 04:27:07 2024] POST /check_signup => generated 199 bytes in 160 msecs (HTTP/1.1 302) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 172.21.0.1 () {58 vars in 1068 bytes} [Fri Jan 12 04:27:07 2024] GET /login => generated 2028 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 04:27:07 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 04:27:07 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[2024-01-12 04:27:14,501] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 16/16] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:27:14 2024] POST /check_login => generated 265 bytes in 7 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2024-01-12 04:31:38,178] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE name = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 17/17] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:31:38 2024] POST /check_login => generated 265 bytes in 8 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2024-01-12 04:31:44,422] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE name = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 18/18] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:31:44 2024] POST /check_login => generated 265 bytes in 7 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:31:50 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x563d8ecf6f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x563d8ecf6f00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:32:04 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x558477d43fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x558477d43fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {54 vars in 981 bytes} [Fri Jan 12 04:32:17 2024] GET / => generated 2192 bytes in 18 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {52 vars in 864 bytes} [Fri Jan 12 04:32:17 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {56 vars in 992 bytes} [Fri Jan 12 04:32:17 2024] GET /static/css/style.css => generated 0 bytes in 9 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {56 vars in 1031 bytes} [Fri Jan 12 04:32:19 2024] GET /login => generated 2028 bytes in 6 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 04:32:19 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 04:32:19 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[2024-01-12 04:32:25,426] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE name = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:32:25 2024] POST /check_login => generated 265 bytes in 18 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2024-01-12 04:33:28,066] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur = conn.cursor()
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 8/8] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:33:28 2024] POST /check_login => generated 265 bytes in 8 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2024-01-12 04:34:58,099] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur = conn.cursor()
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 9/9] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:34:58 2024] POST /check_login => generated 265 bytes in 8 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2024-01-12 04:35:05,318] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur = conn.cursor()
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 10/10] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:35:05 2024] POST /check_login => generated 265 bytes in 7 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[2024-01-12 04:36:58,729] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('select * from account')
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 11/11] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:36:58 2024] POST /check_login => generated 265 bytes in 7 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:37:06 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5596e513bf00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x5596e513bf00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:37:22 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5614e64effb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x5614e64effb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {54 vars in 981 bytes} [Fri Jan 12 04:37:32 2024] GET / => generated 2192 bytes in 17 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {52 vars in 864 bytes} [Fri Jan 12 04:37:32 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {56 vars in 992 bytes} [Fri Jan 12 04:37:32 2024] GET /static/css/style.css => generated 0 bytes in 9 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {56 vars in 1031 bytes} [Fri Jan 12 04:37:34 2024] GET /login => generated 2028 bytes in 5 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 04:37:34 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 04:37:34 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:37:40 2024] POST /check_login => generated 197 bytes in 19 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.21.0.1 () {60 vars in 1146 bytes} [Fri Jan 12 04:37:40 2024] GET /home => generated 1590 bytes in 4 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 04:37:40 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 04:37:40 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 172.21.0.1 () {58 vars in 1118 bytes} [Fri Jan 12 04:45:53 2024] GET /logout => generated 88 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 183 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 12/12] 172.21.0.1 () {56 vars in 1037 bytes} [Fri Jan 12 04:45:55 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 04:45:55 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 04:45:55 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 04:46:00 2024] POST /check_login => generated 197 bytes in 7 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 16/16] 172.21.0.1 () {60 vars in 1146 bytes} [Fri Jan 12 04:46:00 2024] GET /home => generated 1590 bytes in 0 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 17/17] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 04:46:00 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 18/18] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 04:46:00 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:46:08 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55c08cb3af00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55c08cb3af00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:46:22 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55728df1cfb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55728df1cfb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {60 vars in 1124 bytes} [Fri Jan 12 04:46:31 2024] GET / => generated 2192 bytes in 16 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {58 vars in 1007 bytes} [Fri Jan 12 04:46:31 2024] GET /static/js/script.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {62 vars in 1135 bytes} [Fri Jan 12 04:46:31 2024] GET /static/css/style.css => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {58 vars in 1112 bytes} [Fri Jan 12 04:46:34 2024] GET /login => generated 2028 bytes in 6 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {54 vars in 950 bytes} [Fri Jan 12 04:46:34 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {58 vars in 1078 bytes} [Fri Jan 12 04:46:34 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[2024-01-12 04:46:38,793] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 123, in try_login
+    cur.execute('SELECT id, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {66 vars in 1306 bytes} [Fri Jan 12 04:46:38 2024] POST /check_login => generated 265 bytes in 18 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:53:51 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x556e3eb03f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x556e3eb03f00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 04:54:04 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55b563af6fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55b563af6fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {56 vars in 1062 bytes} [Fri Jan 12 04:54:08 2024] GET / => generated 2192 bytes in 14 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {54 vars in 945 bytes} [Fri Jan 12 04:54:08 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {58 vars in 1073 bytes} [Fri Jan 12 04:54:08 2024] GET /static/css/style.css => generated 0 bytes in 8 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {58 vars in 1112 bytes} [Fri Jan 12 04:54:10 2024] GET /login => generated 2028 bytes in 6 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {54 vars in 950 bytes} [Fri Jan 12 04:54:10 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {58 vars in 1078 bytes} [Fri Jan 12 04:54:10 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[2024-01-12 04:54:15,822] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 639, in cmd_query
+    self._cmysql.query(
+_mysql_connector.MySQLInterfaceError: Unknown column 'id' in 'field list'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 75, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 124, in try_login
+    cur.execute('SELECT id, username, password FROM account WHERE username = %s', (user,))
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/cursor_cext.py", line 330, in execute
+    result = self._cnx.cmd_query(
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/opentelemetry/context_propagation.py", line 77, in wrapper
+    return method(cnx, *args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 647, in cmd_query
+    raise get_mysql_exception(
+mysql.connector.errors.ProgrammingError: 1054 (42S22): Unknown column 'id' in 'field list'
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {66 vars in 1306 bytes} [Fri Jan 12 04:54:15 2024] POST /check_login => generated 265 bytes in 18 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 05:04:14 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x563478de1f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x563478de1f00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 05:04:28 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55f49a7bbfb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55f49a7bbfb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {60 vars in 1124 bytes} [Fri Jan 12 05:04:55 2024] GET / => generated 2192 bytes in 14 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {58 vars in 1007 bytes} [Fri Jan 12 05:04:55 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {62 vars in 1135 bytes} [Fri Jan 12 05:04:55 2024] GET /static/css/style.css => generated 0 bytes in 9 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {58 vars in 1112 bytes} [Fri Jan 12 05:04:57 2024] GET /login => generated 2028 bytes in 6 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {54 vars in 950 bytes} [Fri Jan 12 05:04:57 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {58 vars in 1078 bytes} [Fri Jan 12 05:04:57 2024] GET /static/css/style.css => generated 0 bytes in 6 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {66 vars in 1306 bytes} [Fri Jan 12 05:05:04 2024] POST /check_login => generated 197 bytes in 19 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.21.0.1 () {60 vars in 1146 bytes} [Fri Jan 12 05:05:04 2024] GET /home => generated 1590 bytes in 4 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 05:05:04 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 05:05:04 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 06:30:05 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55a8eb2d1f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55a8eb2d1f00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 12, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Fri Jan 12 06:30:31 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: fdcbf67113dc
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55c7bdba3fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x55c7bdba3fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 9, cores: 1)
+[pid: 9|app: 0|req: 1/1] 172.21.0.1 () {60 vars in 1124 bytes} [Fri Jan 12 06:30:38 2024] GET / => generated 2192 bytes in 16 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 2/2] 172.21.0.1 () {58 vars in 1007 bytes} [Fri Jan 12 06:30:38 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 3/3] 172.21.0.1 () {62 vars in 1135 bytes} [Fri Jan 12 06:30:38 2024] GET /static/css/style.css => generated 0 bytes in 10 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 4/4] 172.21.0.1 () {58 vars in 1114 bytes} [Fri Jan 12 06:30:44 2024] GET /signup => generated 2051 bytes in 7 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 5/5] 172.21.0.1 () {54 vars in 951 bytes} [Fri Jan 12 06:30:44 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 6/6] 172.21.0.1 () {58 vars in 1079 bytes} [Fri Jan 12 06:30:44 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 7/7] 172.21.0.1 () {66 vars in 1309 bytes} [Fri Jan 12 06:30:51 2024] POST /check_signup => generated 155 bytes in 27 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 8/8] 172.21.0.1 () {58 vars in 1114 bytes} [Fri Jan 12 06:30:54 2024] GET / => generated 2192 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 9/9] 172.21.0.1 () {54 vars in 945 bytes} [Fri Jan 12 06:30:54 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 10/10] 172.21.0.1 () {58 vars in 1073 bytes} [Fri Jan 12 06:30:54 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 11/11] 172.21.0.1 () {58 vars in 1112 bytes} [Fri Jan 12 06:30:57 2024] GET /login => generated 2028 bytes in 6 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 12/12] 172.21.0.1 () {54 vars in 950 bytes} [Fri Jan 12 06:30:57 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 13/13] 172.21.0.1 () {58 vars in 1078 bytes} [Fri Jan 12 06:30:57 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 14/14] 172.21.0.1 () {66 vars in 1306 bytes} [Fri Jan 12 06:31:03 2024] POST /check_login => generated 197 bytes in 6 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 15/15] 172.21.0.1 () {60 vars in 1146 bytes} [Fri Jan 12 06:31:03 2024] GET /home => generated 1590 bytes in 5 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 16/16] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 06:31:03 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 17/17] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 06:31:03 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 18/18] 172.21.0.1 () {56 vars in 1078 bytes} [Fri Jan 12 06:31:20 2024] GET /set_goal => generated 153 bytes in 2 msecs (HTTP/1.1 405) 3 headers in 118 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 19/19] 172.21.0.1 () {60 vars in 1124 bytes} [Fri Jan 12 06:31:25 2024] GET / => generated 2192 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 20/20] 172.21.0.1 () {58 vars in 1007 bytes} [Fri Jan 12 06:31:25 2024] GET /static/js/script.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 21/21] 172.21.0.1 () {62 vars in 1135 bytes} [Fri Jan 12 06:31:25 2024] GET /static/css/style.css => generated 0 bytes in 7 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 22/22] 172.21.0.1 () {58 vars in 1110 bytes} [Fri Jan 12 06:31:27 2024] GET /home => generated 1590 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 23/23] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 06:31:27 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 24/24] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 06:31:27 2024] GET /static/css/style.css => generated 0 bytes in 5 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 25/25] 172.21.0.1 () {58 vars in 1114 bytes} [Fri Jan 12 06:31:28 2024] GET /home => generated 1590 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 26/26] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 06:31:28 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 27/27] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 06:31:28 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 28/28] 172.21.0.1 () {58 vars in 1114 bytes} [Fri Jan 12 06:31:29 2024] GET /home => generated 1590 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 29/29] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 06:31:29 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 30/30] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 06:31:29 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 31/31] 172.21.0.1 () {58 vars in 1114 bytes} [Fri Jan 12 06:31:29 2024] GET /home => generated 1590 bytes in 4 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 32/32] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 06:31:29 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 33/33] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 06:31:29 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 34/34] 172.21.0.1 () {58 vars in 1114 bytes} [Fri Jan 12 06:31:29 2024] GET /home => generated 1590 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 35/35] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 06:31:29 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 36/36] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 06:31:29 2024] GET /static/css/style.css => generated 0 bytes in 3 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 37/37] 172.21.0.1 () {58 vars in 1114 bytes} [Fri Jan 12 06:31:29 2024] GET /home => generated 1590 bytes in 1 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 38/38] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 06:31:29 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 39/39] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 06:31:29 2024] GET /static/css/style.css => generated 0 bytes in 3 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 40/40] 172.21.0.1 () {58 vars in 1118 bytes} [Fri Jan 12 06:31:31 2024] GET /logout => generated 88 bytes in 1 msecs (HTTP/1.1 200) 4 headers in 183 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 41/41] 172.21.0.1 () {56 vars in 1037 bytes} [Fri Jan 12 06:31:32 2024] GET /login => generated 2028 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 42/42] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 06:31:32 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 43/43] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 06:31:32 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 44/44] 172.21.0.1 () {56 vars in 1034 bytes} [Fri Jan 12 06:31:33 2024] GET /home => generated 110 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 45/45] 172.21.0.1 () {56 vars in 1025 bytes} [Fri Jan 12 06:31:34 2024] GET / => generated 2192 bytes in 0 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 46/46] 172.21.0.1 () {52 vars in 864 bytes} [Fri Jan 12 06:31:34 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 47/47] 172.21.0.1 () {56 vars in 992 bytes} [Fri Jan 12 06:31:34 2024] GET /static/css/style.css => generated 0 bytes in 3 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 48/48] 172.21.0.1 () {56 vars in 1031 bytes} [Fri Jan 12 06:31:36 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 49/49] 172.21.0.1 () {52 vars in 869 bytes} [Fri Jan 12 06:31:36 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 50/50] 172.21.0.1 () {56 vars in 997 bytes} [Fri Jan 12 06:31:36 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 9|app: 0|req: 51/51] 172.21.0.1 () {64 vars in 1225 bytes} [Fri Jan 12 06:31:42 2024] POST /check_login => generated 197 bytes in 9 msecs (HTTP/1.1 302) 5 headers in 212 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 52/52] 172.21.0.1 () {60 vars in 1146 bytes} [Fri Jan 12 06:31:42 2024] GET /home => generated 1590 bytes in 0 msecs (HTTP/1.1 200) 3 headers in 95 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 53/53] 172.21.0.1 () {54 vars in 949 bytes} [Fri Jan 12 06:31:42 2024] GET /static/js/script.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 9|app: 0|req: 54/54] 172.21.0.1 () {58 vars in 1077 bytes} [Fri Jan 12 06:31:42 2024] GET /static/css/style.css => generated 0 bytes in 4 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
