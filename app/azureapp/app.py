@@ -1,6 +1,6 @@
 import os
 from openai import AzureOpenAI
-from flask import Flask,render_template, request, redirect, url_for, session
+from flask import Flask,render_template, request, redirect, url_for, session, jsonify
 import mysql.connector
 from datetime import timedelta, datetime
 import json
@@ -132,6 +132,10 @@ def try_login(user,password):
     session['login'] = user
     return True
 
+# セッションからユーザーIDを取得
+def get_user_id_from_session():
+    return session.get('user_id')
+
 def try_signup(user,password):
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
@@ -171,6 +175,94 @@ def home():
         <p><a href="/">→ログインする</a></p>
         """
     return render_template('home.html', username=get_user())
+
+#目標設定
+@app.route('/set_goal', methods=['POST'])
+def set_goal():
+    user_id = get_user_id_from_session()  # セッションからユーザーIDを取得
+    objective = request.form['objective']
+    current_state = request.form['current_state']
+    deadline = datetime.strptime(request.form['deadline'], '%Y-%m-%d').date()
+    category = request.form['category']
+    
+    # データベースに接続して新しい目標を保存
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    cur.execute(
+        'INSERT INTO goals (user_id, objective, current_state, deadline, category) VALUES (%s, %s, %s, %s, %s)',
+        (user_id, objective, current_state, deadline, category)
+    )
+    goal_id = cur.lastrowid  # INSERTされたレコードのIDを取得
+    conn.commit()
+    
+    # 現在の日付を取得して残り日数を計算
+    today = datetime.today().date()
+    remaining_days = (deadline - today).days
+
+    # 残り日数をdeadlinesテーブルに保存
+    cur.execute(
+        'INSERT INTO deadlines (goal_id, remaining_days) VALUES (%s, %s)',
+        (goal_id, remaining_days)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return jsonify({'status': 'success'}), 200
+
+#目標のリスト生成
+@app.route('/get_goals', methods=['GET'])
+def get_goals():
+    user_id = get_user_id_from_session()  # ユーザー認証が必要です
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM goals WHERE user_id = %s', (user_id,))
+    goals = cur.fetchall()
+    cur.close()
+    conn.close()
+    return jsonify(goals)
+
+
+#目標削除
+@app.route('/delete_goal/<int:goal_id>', methods=['DELETE'])
+def delete_goal(goal_id):
+    # ユーザー認証の確認
+    user_id = get_user_id_from_session()
+    if user_id is None:
+        return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
+
+    # データベース接続
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+
+    # ユーザーIDとgoal_idが一致するタスクを確認
+    cur.execute('SELECT id FROM goals WHERE id = %s AND user_id = %s', (goal_id, user_id))
+    goal = cur.fetchone()
+    if goal is None:
+        cur.close()
+        conn.close()
+        return jsonify({'status': 'error', 'message': 'Goal not found'}), 404
+
+    # タスクの削除
+    cur.execute('DELETE FROM goals WHERE id = %s', (goal_id,))
+    conn.commit()
+    
+    cur.close()
+    conn.close()
+    return jsonify({'status': 'success', 'message': 'Goal deleted successfully'}), 200
+
+#カレンダーに目標を追加するための処理
+@app.route('/get_goals_for_calendar', methods=['GET'])
+def get_goals_for_calendar():
+    user_id = get_user_id_from_session()
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor(dictionary=True)
+    cur.execute('SELECT id, objective AS title, deadline AS start FROM goals WHERE user_id = %s', (user_id,))
+    events = cur.fetchall()
+    cur.close()
+    conn.close()
+    return jsonify(events)
+
 
 #Azure APIキー接続確認
 @app.route('/test')
