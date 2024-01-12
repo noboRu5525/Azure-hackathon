@@ -1,0 +1,166 @@
+
+.navbar {
+    background-color: #171717 /* ナビバーの背景色を変更 */
+    
+}
+
+#sidebarCollapse {
+border: none; /* ボタンの境界線を削除 */
+outline: none; /* アウトラインを削除 */
+}
+
+#sidebarCollapse .bi-list {
+font-size: 1.5rem; /* アイコンのサイズを大きくする */
+}
+
+.navbar-brand {
+font-size: 1.4rem; /* タイトルのフォントサイズ */
+font-weight: bold; /* タイトルのフォントを太くする */
+}
+
+.btn-primary {
+background-color: #007bff; /* ボタンの背景色 */
+border-color: #007bff; /* ボタンの境界線の色 */
+}
+
+.bi-person-circle {
+font-size: 2rem; /* アイコンのサイズを大きくする */
+color: #333; /* アイコンの色 */
+}
+
+.bi-person-circle {
+font-size: 2em; /* 2 times the default size */
+}
+
+#sidebar {
+min-width: 250px;
+max-width: 250px;
+transition: all 0.3s;
+background: #463939;
+color: #333;
+}
+
+#sidebar.active {
+margin-left: -250px;
+}
+
+
+
+#sidebar ul.components {
+padding: 20px 0;
+
+}
+
+#sidebar ul p {
+color: #fff;
+padding: 10px;
+}
+
+#sidebar ul li a {
+padding: 10px;
+font-size: 1.1em;
+display: block;
+color: #333;
+}
+
+#sidebar ul li a:hover {
+color: #7386D5;
+background: #fff;
+text-decoration: none;
+}
+
+#content {
+width: 100%;
+padding: 20px;
+min-height: 100vh;
+transition: all 0.3s;
+}
+#sidebarCollapse .bi {
+font-size: 24px; /* 任意のサイズ */
+}
+/*modal*/
+/* Custom CSS for left sliding modal */
+.modal.left .modal-dialog {
+position: fixed;
+margin: auto;
+width: 320px;
+height: 100%;
+left: 0;
+top: 0;
+transition: transform 0.3s ease-out;
+}
+.modal.left.fade .modal-dialog {
+left: -320px; /* Adjust width */
+transition: transform 0.3s ease-out;
+}
+.modal.left.fade.in .modal-dialog {
+left: 0;
+}
+/* Optional: Adjust modal backdrop */
+.modal-backdrop {
+z-index: 1040;
+}
+.modal.left .modal-content {
+height: 100%;
+overflow-y: auto;
+}
+card {
+background-color: var(--color-white);
+padding: var(--card-padding);
+border-radius: var(--card-border-radius);
+margin-top: 1rem;
+box-shadow: var(--box-shadow);
+transition: all 0.3s ease;
+}
+
+.card:hover {
+box-shadow:color(from color srgb r g b)
+}
+
+/* コンテナー全体に適用するスタイル */
+/* General styling for the container */
+.container-fluid {
+padding: 10px;
+}
+
+/* Styling for all rows */
+.row {
+
+}
+
+
+
+
+/* Specific styling for different column types */
+.table {
+min-width: 300px;
+max-width: 600px;
+padding: ;
+}
+.
+.calender{
+
+
+}
+
+
+/* レスポンシブデザイン：画面が小さい場合のカラムのスタック */
+@media (max-width: 576px) {
+.row > div {
+    margin-right: 0;
+    margin-bottom: 10px; /* カラムがスタックされた時の間隔 */
+    width: auto; /* スタックされたときは幅を自動に戻す */
+}
+
+.row > :last-child {
+    margin-bottom: 0; /* 最後のカラムの下マージンを削除 */
+}
+}
+
+
+@media (max-width: 768px) {
+#sidebar { margin-left: -250px; }
+#sidebar.active { margin-left: 0; }
+#content { width: 100%; }
+}
+

@@ -7,3 +7,25 @@ app/azureapp/uwsgi.log
 
 # node_modules
 node_modules/
+
+# Python コンパイル済みファイル
+__pycache__/
+*.pyc
+
+# アプリケーションログファイル
+app/azureapp/uwsgi.log
+
+# データベースファイル
+db/db/
+
+# その他のバイナリファイル、ログファイル等
+*.log
+*.db
+*.sql
+*.ibt
+binlog.*
+ib_buffer_pool
+ibdata1
+ibtmp1
+*.ibd
+undo_*
