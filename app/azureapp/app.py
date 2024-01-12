@@ -176,6 +176,11 @@ def home():
         """
     return render_template('home.html', username=get_user())
 
+#Create Newボタンを押したときの処理
+@app.route('/goal')
+def goal():
+    return render_template('goal.html')
+
 #目標設定
 @app.route('/set_goal', methods=['POST'])
 def set_goal():
