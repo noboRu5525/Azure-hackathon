@@ -4,7 +4,7 @@ from flask import Flask,render_template, request, redirect, url_for, session, js
 import mysql.connector
 from datetime import timedelta, datetime
 import json
-from task_generation import make_task
+from task_generation import task
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -17,6 +17,7 @@ client = AzureOpenAI(
   api_key=os.getenv("AZURE_OPENAI_KEY"),  
   api_version="2023-05-15"
 )
+
 
 #データベース接続情報
 config = {
@@ -33,7 +34,7 @@ def formatting(text_data):
             model="GPT35TURBO16K",  # model = "deployment_name".
             messages=[
                 {"role": "system", "content": "ユーザーから与えられた条件の文章構成に修正する"},
-                {"role": "user", "content": f"{text_data} \n この文章の計画の部分を改行せずに以下の形式に修正してください。 \n ⚪︎日目-⚪︎日目：タスク -詳細1。 -詳細2。・・・ \n具体例は次のような感じです: 1日目-3日目：Pythonの基礎学習 - Pythonの文法、データ型、制御構造などの基本的な概念を学習します。 - Pythonの開発環境のセットアップを行います。"}
+                {"role": "user", "content": f"{text_data} \n この文章の計画の部分を以下の形式に修正してください。 \n ⚪︎日目-⚪︎日目：タスク -詳細1。 -詳細2。・・・ \n具体例は次のような感じです: 1日目-3日目：Pythonの基礎学習 - Pythonの文法、データ型、制御構造などの基本的な概念を学習します。 - Pythonの開発環境のセットアップを行います。"}
             ]
         )
     return response.choices[0].message.content
@@ -280,8 +281,6 @@ def openai():
     languages = data.get('languages', [])
     tools = data.get('tools', [])
 
-    #データベースにユーザーが入力した内容を登録
-
     # 各機能を「」で区切って結合
     functions_str = ' \n・'.join(functions)
     languages_str = '、'.join(languages)
@@ -297,31 +296,25 @@ def openai():
     )
     res = response.choices[0].message.content
 
-    make_task_data = make_task(res)
-
-    if not make_task_data:
-        res = formatting(res)
-        make_task_data = make_task(res)
-
     #タスク生成回数カウンター
     count = 0
-    """
+
     while(count <=  5):
         #生成された文章からタスクに分割する
-        if make_task(res):
-            make_task_data = make_task(res)
+        if task(res):
+            task_data = task(res)
             count = 5
         else:
             res = formatting(res)
             count += 1
-    """
 
-    if not make_task_data:
-        return jsonify({'message': 'タスクを生成できませんでした'})
+    if not task_data:
+        task_data = "タスクを生成できませんでした"
+        
     
 
-    return jsonify(make_task_data)
-
+    return jsonify({'message': task_data })
+    #return res
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

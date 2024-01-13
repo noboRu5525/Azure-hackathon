@@ -4,7 +4,7 @@ from flask import Flask,render_template, request, redirect, url_for, session, js
 import mysql.connector
 from datetime import timedelta, datetime
 import json
-from task_generation import make_task
+from task_generation import task
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -17,6 +17,7 @@ client = AzureOpenAI(
   api_key=os.getenv("AZURE_OPENAI_KEY"),  
   api_version="2023-05-15"
 )
+
 
 #データベース接続情報
 config = {
@@ -33,10 +34,11 @@ def formatting(text_data):
             model="GPT35TURBO16K",  # model = "deployment_name".
             messages=[
                 {"role": "system", "content": "ユーザーから与えられた条件の文章構成に修正する"},
-                {"role": "user", "content": f"{text_data} \n この文章の計画の部分を改行せずに以下の形式に修正してください。 \n ⚪︎日目-⚪︎日目：タスク -詳細1。 -詳細2。・・・ \n具体例は次のような感じです: 1日目-3日目：Pythonの基礎学習 - Pythonの文法、データ型、制御構造などの基本的な概念を学習します。 - Pythonの開発環境のセットアップを行います。"}
+                {"role": "user", "content": "以下は、80日間の開発期間を最大限に活用するためのタスクと計画の提案です。 Day 1-5: - Pythonの基礎学習 - カメラでの画像の撮影と処理についての調査と学習 Day 6-7: - Firebaseの基礎学習とアカウントの設定 Day 8-10: - FirebaseのAuthentication機能の学習と実装 - ユーザーの登録とログイン機能を作成 Day 11-14: - FirebaseのCloud Firestoreを利用したデータベースの設計と学習 - 食材のデータベースを作成し、データの追加と照会の実装 Day 15-20: - カメラで撮影した画像をもとに食材を検出する機能の調査と学習 - OpenCVやTensorFlowなどのライブラリを使用して画像処理を実装 Day 21-30: - レシピ生成機能の開発のために、食材データベースからレシピを参照する機能の実装 - レシピの提案方法についての考察と実装方法の検討 Day 31-40: - 食材の相性判定についての調査と学習 - 食材の相性を考慮してレシピを提案する機能の実装 Day 41-45: - HTML、CSS、JavaScriptを用いたWebアプリケーションのフロントエンドの学習 - ユーザーインターフェース（UI）の設計と実装 Day 46-60: - Flaskなどのフレームワークを使用したバックエンドの設計と実装 - データベースとの連携やAPIの作成 Day 61-70: - システムのテストとバグ修正 - ユーザーフィードバックを受けての機能の改善と追加 Day 71-80: - ドキュメンテーションの作成（ユーザーマニュアル、開発者ドキュメントなど） - アプリケーションのデプロイとサポート この計画では、異なる言語やツールの学習や実装タスクを段階的に進めることにより、より効率的な目標達成を図っています。また、余裕をもって80日間の期間を設定しており、詳細なタスクの分割を行っているため、スケジュールの調整や進捗管理がしやすくなっています。 \n この文章の計画の部分を以下の形式に修正してください。 \n ⚪︎日目-⚪︎日目：タスク -詳細1。 -詳細2。・・・ \n具体例は次のような感じです: 1日目-3日目：Pythonの基礎学習 - Pythonの文法、データ型、制御構造などの基本的な概念を学習します。 - Pythonの開発環境のセットアップを行います。"}
             ]
         )
-    return response.choices[0].message.content
+        return response.choices[0].message.content
+    return text_data
 
 #アカウント情報取得
 def get_account():
@@ -272,6 +274,7 @@ def get_goals_for_calendar():
 @app.route('/openai', methods=['POST'])
 def openai():
     data = request.json
+    print("Hello_word")
     # 受け取ったデータを変数に代入
     category = data.get('category', '')
     systemName = data.get('systemName', '')
@@ -279,8 +282,6 @@ def openai():
     functions = data.get('functions', [])
     languages = data.get('languages', [])
     tools = data.get('tools', [])
-
-    #データベースにユーザーが入力した内容を登録
 
     # 各機能を「」で区切って結合
     functions_str = ' \n・'.join(functions)
@@ -297,31 +298,16 @@ def openai():
     )
     res = response.choices[0].message.content
 
-    make_task_data = make_task(res)
+    #生成された文章からタスクに分割する
+    if task(res):
+        task_data = task(res)
+    else:
 
-    if not make_task_data:
-        res = formatting(res)
-        make_task_data = make_task(res)
-
-    #タスク生成回数カウンター
-    count = 0
-    """
-    while(count <=  5):
-        #生成された文章からタスクに分割する
-        if make_task(res):
-            make_task_data = make_task(res)
-            count = 5
-        else:
-            res = formatting(res)
-            count += 1
-    """
-
-    if not make_task_data:
-        return jsonify({'message': 'タスクを生成できませんでした'})
+        
     
 
-    return jsonify(make_task_data)
-
+    return jsonify({'message': task_data })
+    #return res
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

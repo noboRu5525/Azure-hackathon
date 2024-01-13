@@ -280,8 +280,6 @@ def openai():
     languages = data.get('languages', [])
     tools = data.get('tools', [])
 
-    #データベースにユーザーが入力した内容を登録
-
     # 各機能を「」で区切って結合
     functions_str = ' \n・'.join(functions)
     languages_str = '、'.join(languages)

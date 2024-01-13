@@ -38,7 +38,7 @@ ul {
     left: 45%;
     width: 50%;
     height: 90%;
-    background-color: #F0F4FA;
+    background-color: #ffffff;
     border-radius: 20px 20px 20px 20px;
     border: 1px solid rgba(52, 52, 52, 0.381);
 }
@@ -161,16 +161,14 @@ ul {
 }
 
 .no-border-input {
+    margin-top: 4px;
+    margin-left: 3px;
+    border: none;           /* 枠線を消す */
+    outline: none;          /* フォーカス時のアウトラインを消す */
     background-color: transparent; /* 背景色を透明にする */
     /* その他のスタイル */
     font-size: 16px;        /* フォントサイズ */
     color: #333;            /* テキストカラー */
     padding: 5px 10px;      
-    border: 1px solid rgba(52, 52, 52, 0.381);
-    border-radius: 20px 20px 20px 20px;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    padding-right: 8%;
-    padding-left: 3%;
+    width: 90%;
 }

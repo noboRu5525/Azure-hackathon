@@ -4,7 +4,6 @@ from flask import Flask,render_template, request, redirect, url_for, session, js
 import mysql.connector
 from datetime import timedelta, datetime
 import json
-from task_generation import make_task
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -18,6 +17,7 @@ client = AzureOpenAI(
   api_version="2023-05-15"
 )
 
+
 #データベース接続情報
 config = {
         'user': 'root',
@@ -26,17 +26,6 @@ config = {
         'port': '3306',
         'database': 'records',
         }
-
-#生成AIの作成した文章をさらに整える
-def formatting(text_data):
-    response = client.chat.completions.create(
-            model="GPT35TURBO16K",  # model = "deployment_name".
-            messages=[
-                {"role": "system", "content": "ユーザーから与えられた条件の文章構成に修正する"},
-                {"role": "user", "content": f"{text_data} \n この文章の計画の部分を改行せずに以下の形式に修正してください。 \n ⚪︎日目-⚪︎日目：タスク -詳細1。 -詳細2。・・・ \n具体例は次のような感じです: 1日目-3日目：Pythonの基礎学習 - Pythonの文法、データ型、制御構造などの基本的な概念を学習します。 - Pythonの開発環境のセットアップを行います。"}
-            ]
-        )
-    return response.choices[0].message.content
 
 #アカウント情報取得
 def get_account():
@@ -272,56 +261,22 @@ def get_goals_for_calendar():
 @app.route('/openai', methods=['POST'])
 def openai():
     data = request.json
-    # 受け取ったデータを変数に代入
-    category = data.get('category', '')
-    systemName = data.get('systemName', '')
-    makeDay = data.get('makeDay', '')
-    functions = data.get('functions', [])
-    languages = data.get('languages', [])
-    tools = data.get('tools', [])
-
-    #データベースにユーザーが入力した内容を登録
-
-    # 各機能を「」で区切って結合
-    functions_str = ' \n・'.join(functions)
-    languages_str = '、'.join(languages)
-    tools_str = '、'.join(tools)
+    print("Hello_word")
+    # それぞれのデータに分割
 
     # Azure Open AIでタスク生成
     response = client.chat.completions.create(
-        model="GPT35TURBO16K", # model = "deployment_name".
+        model="GPT35TURBO", # model = "deployment_name".
         messages=[
             {"role": "system", "content": "You provide support in planning based on the user's goals."},
-            {"role": "user", "content": f"・制作したいもの：{systemName}\n・具体的な機能: {functions_str}\n・制作日数：{makeDay}日（1週間を7日とする）\n・使用する言語：{languages_str} \n・使用ツール：{tools_str} \n 個人開発をしているのですが、目標を効率的に達成するためのタスクとその計画を考えて欲しいです。目標を効率よく達成するための学習計画を作成してください。また計画は、日単位の活動を作成してください。計画では、使用する具体的なプログラム言語やツール（APIなど）を詳細に記載してください。また、使用したことのある言語の学習は計画に入れないでください。また、個人開発であるため余裕を持った計画を立てて欲しいです。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述してください。"},
+            {"role": "user", "content": f"・制作したいもの：{systemName}\n・具体的な機能: カメラで撮影した画像をもとに冷蔵庫の中にある食材を検出して管理、データベースに搭載されている食材からレシピを生成、相性の良い食材を考えて、買うべき食材を提案する\n・制作日数：80日（1週間を7日とする）\n・使用する言語：Python、HTML、CSS、JavaScript \n・使用ツール：Firebases \n・使用したことのある言語：Python・使用したことのある言語：Python、HTML、CSS \n 個人開発をしているのですが、目標を効率的に達成するためのタスクとその計画を考えて欲しいです。目標を効率よく達成するための学習計画を作成してください。また計画は、日単位の活動を作成してください。計画では、使用する具体的なプログラム言語やツール（APIなど）を詳細に記載してください。また、使用したことのある言語の学習は計画に入れないでください。また、個人開発であるため余裕を持った計画を立てて欲しいです。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述してください。""},
         ]
     )
     res = response.choices[0].message.content
-
-    make_task_data = make_task(res)
-
-    if not make_task_data:
-        res = formatting(res)
-        make_task_data = make_task(res)
-
-    #タスク生成回数カウンター
-    count = 0
-    """
-    while(count <=  5):
-        #生成された文章からタスクに分割する
-        if make_task(res):
-            make_task_data = make_task(res)
-            count = 5
-        else:
-            res = formatting(res)
-            count += 1
-    """
-
-    if not make_task_data:
-        return jsonify({'message': 'タスクを生成できませんでした'})
     
 
-    return jsonify(make_task_data)
-
+    return jsonify({'message': data})
+    #return res
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
