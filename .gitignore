@@ -29,3 +29,4 @@ ibdata1
 ibtmp1
 *.ibd
 undo_*app/azureapp/uwsgi.log
+app/azureapp/uwsgi.log
