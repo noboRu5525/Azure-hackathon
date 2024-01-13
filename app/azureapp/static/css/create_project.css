@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* サイズ計算をより予測しやすくするためのプロパティ */
+}
+
+h1 a:hover {
+	color: black;
+}
+
+ul {
+	  list-style: none;
+  }
+
+@media(max-width: 992px){
+	html {
+		font-size: 2.0rem;
+	}
+}

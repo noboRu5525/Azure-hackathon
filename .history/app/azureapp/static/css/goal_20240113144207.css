@@ -150,12 +150,3 @@ ul {
     color: #F7F5F5;
     font-size: 20px;
 }
-
-.create_button{
-    width: auto;
-    height: 50px;
-    margin-top: 40px;
-    margin-left: 70%;
-    background-color: #326BDB;
-    color: #F0F4FA;
-}
