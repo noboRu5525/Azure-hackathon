@@ -156,7 +156,11 @@
                           </label><br>
                 </div>
               </form>
-              <button class="create_button">プロジェクトを作成</button>
+              <form id="projectForm" action="/create_project" method="post">
+                <!-- フォーム要素 -->
+                <button type="submit" class="create_button">プロジェクトを作成</button>
+              </form>
+            
         </div> 
     </div>
     <script>
@@ -315,7 +319,38 @@
     });
   </script>
 
-
-
+  <script>
+    document.getElementById('projectForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // フォームのデフォルト送信を防止
+  
+      const data = {
+          systemName: document.querySelector('.system-name .text-input').value,
+          makeDay: document.querySelector('.make-day .text-input').value,
+          features: Array.from(document.querySelectorAll('.custom .text-input2')).map(input => input.value)
+      };
+  
+      // Ajaxを使用してJSONデータを送信
+      fetch(this.action, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json', // リクエストの内容がJSONであることを伝える
+              'Accept': 'application/json', // サーバーにJSONを期待することを伝える
+          },
+          body: JSON.stringify(data) // オブジェクトをJSON文字列に変換
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+          }
+          return response.json();
+      })
+      .then(data => {
+          window.location.href = '/home'; // 送信が成功したら、ホームページにリダイレクトする
+      })
+      .catch(error => {
+          console.error('Error:', error);
+      });
+  });
+  </script>  
 </body>
 </html>

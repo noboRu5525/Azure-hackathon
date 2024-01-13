@@ -1,6 +1,6 @@
 import os
 from openai import AzureOpenAI
-from flask import Flask,render_template, request, redirect, url_for, session, jsonify
+from flask import Flask,render_template, request, redirect, url_for, session, jsonify, current_app
 import mysql.connector
 from datetime import timedelta, datetime
 import json
@@ -117,32 +117,38 @@ def is_login():
         return True
     return False
 
-def try_login(user,password):
+def try_login(username, password):
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    cur.execute('select * from account')
-    rows = cur.fetchall()
+    cur.execute('SELECT id, password FROM account WHERE name = %s', (username,))
+    account = cur.fetchone()
     cur.close()
     conn.close()
-    rows_dict = {rows[i][0]: rows[i][1] for i in range(len(rows))}
-    if not user in rows_dict:
-        return False
-    if rows_dict[user] != password:
-        return False
-    session['login'] = user
-    return True
+    if account and account[1] == password:
+        session['user_id'] = account[0]  # ユーザーIDをセッションに保存
+        return True
+    return False
 
 # セッションからユーザーIDを取得
 def get_user_id_from_session():
     return session.get('user_id')
 
-def try_signup(user,password):
+def try_signup(username, password):
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    cur.execute('INSERT INTO account VALUES (%s, %s)',(user,password))
+    # ユーザー名が既に存在するかどうかをチェック
+    cur.execute('SELECT id FROM account WHERE name = %s', (username,))
+    if cur.fetchone():
+        cur.close()
+        conn.close()
+        return False  # 既に存在するユーザー名
+    # 新しいアカウントを作成
+    cur.execute('INSERT INTO account (name, password) VALUES (%s, %s)', (username, password))
+    user_id = cur.lastrowid  # 新しいユーザーIDを取得
     conn.commit()
     cur.close()
     conn.close()
+    session['user_id'] = user_id  # ユーザーIDをセッションに保存
     return True
 
 def try_logout():
@@ -174,7 +180,7 @@ def home():
         <h1>ログインしてください</h1>
         <p><a href="/">→ログインする</a></p>
         """
-    return render_template('home.html', username=get_user())
+    return render_template('home.html', username=get_user(), projects=projects())
 
 #Create Newボタンを押したときの処理
 @app.route('/goal')
@@ -182,50 +188,64 @@ def goal():
     return render_template('goal.html')
 
 #目標設定
-@app.route('/set_goal', methods=['POST'])
-def set_goal():
-    user_id = get_user_id_from_session()  # セッションからユーザーIDを取得
-    objective = request.form['objective']
-    current_state = request.form['current_state']
-    deadline = datetime.strptime(request.form['deadline'], '%Y-%m-%d').date()
-    category = request.form['category']
-    
-    # データベースに接続して新しい目標を保存
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-    cur.execute(
-        'INSERT INTO goals (user_id, objective, current_state, deadline, category) VALUES (%s, %s, %s, %s, %s)',
-        (user_id, objective, current_state, deadline, category)
-    )
-    goal_id = cur.lastrowid  # INSERTされたレコードのIDを取得
-    conn.commit()
-    
-    # 現在の日付を取得して残り日数を計算
-    today = datetime.today().date()
-    remaining_days = (deadline - today).days
+@app.route('/create_project', methods=['POST'])
+def create_project():
+    try:
+        # セッションからユーザーIDを取得
+        user_id = get_user_id_from_session()
+        if not user_id:
+            current_app.logger.error('User not logged in')
+            return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
 
-    # 残り日数をdeadlinesテーブルに保存
-    cur.execute(
-        'INSERT INTO deadlines (goal_id, remaining_days) VALUES (%s, %s)',
-        (goal_id, remaining_days)
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
+        # JSONデータを取得
+        data = request.get_json()
+        if not data:
+            current_app.logger.error('No JSON data sent')
+            return jsonify({'status': 'error', 'message': 'No JSON data sent'}), 400
 
-    return jsonify({'status': 'success'}), 200
+        # JSONデータから各フィールドを取得
+        system_name = data.get('systemName')
+        days_to_make = data.get('makeDay')
+        features = data.get('features')
+        print(features)
+        features = str(features)
+        print(features)
+        
+        # 必須フィールドの存在を確認
+        if not all([system_name, days_to_make, features]):
+            current_app.logger.error('Missing data for required fields')
+            return jsonify({'status': 'error', 'message': 'Missing data for required fields'}), 400
+        
+        # リストデータをJSON文字列に変換してデータベースに保存
+        features_json = json.dumps(data.get('features'))
+        
+        # データベースに接続してプロジェクト情報を挿入
+        conn = mysql.connector.connect(**config)
+        cur = conn.cursor()
+        cur.execute('INSERT INTO projects (user_id, system_name, days_to_make, features) VALUES (%s, %s, %s, %s)', 
+                    (user_id, system_name, days_to_make, features_json))
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        current_app.logger.info('Project created successfully')
+        return jsonify({'status': 'success'}), 200
+    except Exception as e:
+        current_app.logger.error(f'Error creating project: {e}')
+        # 例外が発生した場合は、エラーメッセージを返す
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
 
 #目標のリスト生成
-@app.route('/get_goals', methods=['GET'])
-def get_goals():
-    user_id = get_user_id_from_session()  # ユーザー認証が必要です
+def projects():
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    cur.execute('SELECT * FROM goals WHERE user_id = %s', (user_id,))
-    goals = cur.fetchall()
+    cur.execute('SELECT id, system_name FROM projects WHERE user_id = %s', (session.get('user_id'),))
+    project_list = cur.fetchall()
     cur.close()
     conn.close()
-    return jsonify(goals)
+    return project_list
+
 
 
 #目標削除
