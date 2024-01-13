@@ -4,6 +4,7 @@ from flask import Flask,render_template, request, redirect, url_for, session, js
 import mysql.connector
 from datetime import timedelta, datetime
 import json
+from task_generation import make_task, make_task2, make_task3
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -17,19 +18,6 @@ client = AzureOpenAI(
   api_version="2023-05-15"
 )
 
-response = client.chat.completions.create(
-    model="GPT35TURBO", # model = "deployment_name".
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-        {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
-    ]
-)
-
-res = response.choices[0].message.content
-
-
 #データベース接続情報
 config = {
         'user': 'root',
@@ -38,6 +26,38 @@ config = {
         'port': '3306',
         'database': 'records',
         }
+
+#生成AIの作成した文章をさらに整える
+def formatting(text_data, text_lang):
+    # Decide which messages to use based on the language
+    if text_lang == "英語でテキスト生成してください":
+        messages = [
+            {"role": "system", "content": "Modify the text structure as per user's condition"},
+            {"role": "user", "content": f"{text_data}\nPlease modify the plan part of this text so that it does not break into a new line. Use the following format:\n 〇 day-〇 : Task - Detail 1. - Detail 2. ...\n\nAn example would be like this:\nDay 1-3: Learning Python Basics - Learn the basic concepts of Python syntax, data types, and control structures. - Set up the Python development environment."}
+        ]
+    else:
+        messages = [
+            {"role": "system", "content": "ユーザーから与えられた条件の文章構成に修正する"},
+            {"role": "user", "content": f"{text_data} \n この文章の計画の部分を改行しないように以下の形式に修正してください。 \n 〇日目-〇日目：タスク -詳細1。 -詳細2。・・・ \n具体例は次のような感じです: 1日目-3日目：Pythonの基礎学習 - Pythonの文法、データ型、制御構造などの基本的な概念を学習します。 - Pythonの開発環境のセットアップを行います。"}
+        ]
+    # Call the function with the prepared messages
+    response = client.chat.completions.create(
+        model="GPT35TURBO16K",
+        messages=messages
+    )
+    return response.choices[0].message.content
+
+def advice(text):
+    messages = [
+            {"role": "system", "content": "Modify the text structure as per user's condition"},
+            {"role": "user", "content": f"{text} \n Please advise me on this task."}
+        ]
+    # Call the function with the prepared messages
+    response = client.chat.completions.create(
+        model="GPT35TURBO16K",
+        messages=messages
+    )
+    return response.choices[0].message.content
 
 #アカウント情報取得
 def get_account():
@@ -180,6 +200,11 @@ def home():
         <h1>ログインしてください</h1>
         <p><a href="/">→ログインする</a></p>
         """
+    a=projects()
+    print(a)
+    if len(a) == 0 :
+        return redirect('/goal')
+        
     return render_template('home.html', username=get_user(), projects=projects())
 
 #Create Newボタンを押したときの処理
@@ -190,111 +215,258 @@ def goal():
 #目標設定
 @app.route('/create_project', methods=['POST'])
 def create_project():
+    # セッションからユーザーIDを取得
+    user_id = get_user_id_from_session()
+    if not user_id:
+        current_app.logger.error('User not logged in')
+        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
+
+    # JSONデータを取得
+    data = request.get_json()
+    if not data:
+        current_app.logger.error('No JSON data sent')
+        return jsonify({'status': 'error', 'message': 'No JSON data sent'}), 400
+
+    # JSONデータから各フィールドを取得
+    language = data.get('language', '')
+    category = data.get('category', '')
+    systemName = data.get('systemName', '')
+    makeDay = data.get('makeDay', '')
+    features = data.get('functions', [])
+    languages = data.get('languages', [])
+    tools = data.get('tools', [])
+    
+    if(language == "English"):
+        text_lang = "英語でテキスト生成してください"
+    else:
+        text_lang = ""
+
+    # 必須フィールドの存在を確認
+    if not all([category, systemName, makeDay, features, languages, tools]):
+        current_app.logger.error('Missing data for required fields')
+        return jsonify({'status': 'error', 'message': 'Missing data for required fields'}), 400
+        
+    # リストデータをJSON文字列に変換してデータベースに保存
+    #features_json = json.dumps(data.get('features'))
+    #languages_json = json.dumps(languages)
+    #tools_json = json.dumps(tools)
+    print(type(features))
+    print(languages)
+    print(tools)
+    
+    features_json = str(features)
+    languages_json = str(languages)
+    tools_json = str(tools)
+    
+    print(type(features_json))
+    print(languages_json)
+    print(tools_json)
+    
+    startdate = datetime.now()
+        
+    # データベースに接続してプロジェクト情報を挿入
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    cur.execute('INSERT INTO projects (user_id, startdate, systemName, makeDay, features, languages, tools) VALUES (%s, %s, %s, %s, %s, %s, %s)', (user_id, startdate, systemName, makeDay, features_json, languages_json, tools_json)) 
+    conn.commit()
+    cur.close()
+    conn.close()
+        
+    # 各機能を「」で区切って結合
+    functions_str = ' \n・'.join(features)
+    languages_str = '、'.join(languages)
+    tools_str = '、'.join(tools)
+    
+     # Azure Open AIでタスク生成
+    response = client.chat.completions.create(
+        model="GPT35TURBO16K", # model = "deployment_name".
+        messages=[
+            {"role": "system", "content": "You provide support in planning based on the user's goals."},
+            {"role": "user", "content": f"・制作したいもの：{systemName}\n・具体的な機能: {functions_str}\n・制作日数：{makeDay}日（1週間を7日とする）\n・使用する言語：{languages_str} \n・使用ツール：{tools_str} \n 個人開発をしているのですが、目標を効率的に達成するためのタスクとその計画を考えて欲しいです。目標を効率よく達成するための学習計画を{text_lang}作成してください。また計画は、日単位の活動を作成してください。計画では、使用する具体的なプログラム言語やツール（APIなど）を詳細に記載してください。また、使用したことのある言語の学習は計画に入れないでください。また、個人開発であるため余裕を持った計画を立てて欲しいです。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述してください。{text_lang}"},
+        ]
+    )
+    res = response.choices[0].message.content
+
+    make_task_data = make_task(res)
+
+    if not make_task_data:
+            res = formatting(res, text_lang)
+            make_task_data = make_task(res)
+            if not make_task_data:
+                make_task_data = make_task2(res)
+                if not make_task_data:
+                    make_task_data = make_task3(res)
+                
+        
+    # 日数、タスク、その詳細に分ける
+    print(make_task_data)
+    
+    # セッションからユーザーIDを取得（ユーザーがログインしていることが前提）
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
+
+    # POSTデータを取得（JSON形式のデータが送信されることを前提）
+    data = make_task_data
+    # データベースに接続
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+
     try:
-        # セッションからユーザーIDを取得
-        user_id = get_user_id_from_session()
-        if not user_id:
-            current_app.logger.error('User not logged in')
-            return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
+        # データベースに学習プランを挿入
+        cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
+        plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
 
-        # JSONデータを取得
-        data = request.get_json()
-        if not data:
-            current_app.logger.error('No JSON data sent')
-            return jsonify({'status': 'error', 'message': 'No JSON data sent'}), 400
+        # 各タスクとその詳細をデータベースに挿入
+        for days_range, tasks in data.items():
+            for task_name, details in tasks.items():
+                cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
+                            (plan_id, days_range, task_name))
+                task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
 
-        # JSONデータから各フィールドを取得
-        system_name = data.get('systemName')
-        days_to_make = data.get('makeDay')
-        features = data.get('features')
-        print(features)
-        features = str(features)
-        print(features)
-        
-        # 必須フィールドの存在を確認
-        if not all([system_name, days_to_make, features]):
-            current_app.logger.error('Missing data for required fields')
-            return jsonify({'status': 'error', 'message': 'Missing data for required fields'}), 400
-        
-        # リストデータをJSON文字列に変換してデータベースに保存
-        features_json = json.dumps(data.get('features'))
-        
-        # データベースに接続してプロジェクト情報を挿入
+                for detail in details:
+                    cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
+                                (task_id, detail))
+
+        # 変更をコミット
+        conn.commit()
+    except mysql.connector.Error as err:
+        # エラーが発生した場合はロールバック
+        conn.rollback()
+        print(f"An error occurred: {err}")
+        return jsonify({'status': 'error', 'message': 'Database error'}), 500
+    finally:
+        # カーソルとコネクションを閉じる
+        cur.close()
+        conn.close()
+
+
+                
+    #タスク生成回数カウンター
+    count = 0
+    """
+    while(count <=  5):
+        #生成された文章からタスクに分割する
+        if make_task(res):
+            make_task_data = make_task(res)
+            count = 5
+        else:
+            res = formatting(res)
+            count += 1
+    """
+    if not make_task_data:
+        # タスクを生成できなかった場合のレスポンス
+        return jsonify({'status': 'error', 'message': 'タスクを生成できませんでした', 'redirect': False})
+    else:
+        # タスク生成が成功した場合のレスポンス
+        return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
+    
+    
+    
+    
+
+#生成AIが生成したタスクを登録
+@app.route('/create_plan', methods=['POST'])
+def create_plan():
+    # セッションからユーザーIDを取得（ユーザーがログインしていることが前提）
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
+
+    # POSTデータを取得（JSON形式のデータが送信されることを前提）
+    data = request.get_json()
+    
+    # データベースに接続
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    
+    try:
+        # データベースに学習プランを挿入
+        cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
+        plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
+
+        # 各タスクとその詳細をデータベースに挿入
+        for task in data:
+            days_range = task['日数']
+            task_name = task['タスク']
+            cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
+                        (plan_id, days_range, task_name))
+            task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
+            
+            for detail in task['詳細']:
+                cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
+                            (task_id, detail))
+
+        # 変更をコミット
+        conn.commit()
+
+        return jsonify({'status': 'success', 'plan_id': plan_id})
+    except Exception as e:
+        # エラーが発生した場合はロールバック
+        conn.rollback()
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+    finally:
+        # データベースの接続を閉じる
+        cur.close()
+        conn.close()
+
+
+    if not make_task_data:
+        return jsonify({'message': 'タスクを生成できませんでした'})
+    
+
+    return jsonify(make_task_data)
+
+    
+# 目標のリスト生成
+def projects():
+    try:
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
-        cur.execute('INSERT INTO projects (user_id, system_name, days_to_make, features) VALUES (%s, %s, %s, %s)', 
-                    (user_id, system_name, days_to_make, features_json))
-        conn.commit()
+        cur.execute('SELECT id, systemName FROM projects WHERE user_id = %s', (session.get('user_id'),))
+        project_list = cur.fetchall()
         cur.close()
         conn.close()
-        
-        current_app.logger.info('Project created successfully')
-        return jsonify({'status': 'success'}), 200
-    except Exception as e:
-        current_app.logger.error(f'Error creating project: {e}')
-        # 例外が発生した場合は、エラーメッセージを返す
-        return jsonify({'status': 'error', 'message': str(e)}), 500
+        return project_list
+    except:
+        return []
 
+@app.route('/send_card_detail', methods=['POST'])
+def send_card_detail():
+    data = request.json
+    card_detail = data.get('text')
+    advice_txet = advice(card_detail)
+    # card_detail を処理
+    return jsonify({'status': 'success', 'text': advice_txet})
+@app.route('/get_ai_response', methods=['POST'])
+def get_ai_response():
+    data = request.json
+    user_input = data.get('text')
+    # ここでAI応答を生成
+    response = client.chat.completions.create(
+        model="GPT35TURBO16K", # model = "deployment_name".
+        messages=[
+            {"role": "system", "content": "ユーザーの手助けをする"},
+            {"role": "user", "content": f"{user_input}"},
+        ]
+    )
+    ai_response = response.choices[0].message.content
+    return jsonify({'response': ai_response})
 
-#目標のリスト生成
-def projects():
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-    cur.execute('SELECT id, system_name FROM projects WHERE user_id = %s', (session.get('user_id'),))
-    project_list = cur.fetchall()
-    cur.close()
-    conn.close()
-    return project_list
-
-
-
-#目標削除
-@app.route('/delete_goal/<int:goal_id>', methods=['DELETE'])
-def delete_goal(goal_id):
-    # ユーザー認証の確認
-    user_id = get_user_id_from_session()
-    if user_id is None:
-        return jsonify({'status': 'error', 'message': 'Authentication required'}), 401
-
-    # データベース接続
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-
-    # ユーザーIDとgoal_idが一致するタスクを確認
-    cur.execute('SELECT id FROM goals WHERE id = %s AND user_id = %s', (goal_id, user_id))
-    goal = cur.fetchone()
-    if goal is None:
-        cur.close()
-        conn.close()
-        return jsonify({'status': 'error', 'message': 'Goal not found'}), 404
-
-    # タスクの削除
-    cur.execute('DELETE FROM goals WHERE id = %s', (goal_id,))
-    conn.commit()
-    
-    cur.close()
-    conn.close()
-    return jsonify({'status': 'success', 'message': 'Goal deleted successfully'}), 200
-
-#カレンダーに目標を追加するための処理
-@app.route('/get_goals_for_calendar', methods=['GET'])
-def get_goals_for_calendar():
-    user_id = get_user_id_from_session()
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor(dictionary=True)
-    cur.execute('SELECT id, objective AS title, deadline AS start FROM goals WHERE user_id = %s', (user_id,))
-    events = cur.fetchall()
-    cur.close()
-    conn.close()
-    return jsonify(events)
-
-
-#Azure APIキー接続確認
-@app.route('/openai')
-def openai():
-    
-    return res
+@app.route('/get_ai_response_eng', methods=['POST'])
+def get_ai_response_eng():
+    data = request.json
+    user_input = data.get('text')
+    # ここでAI応答を生成
+    response = client.chat.completions.create(
+        model="GPT35TURBO16K", # model = "deployment_name".
+        messages=[
+            {"role": "system", "content": "ユーザーの手助けをする"},
+            {"role": "user", "content": f"{user_input}"},
+        ]
+    )
+    ai_response = response.choices[0].message.content
+    return jsonify({'response': ai_response})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
-

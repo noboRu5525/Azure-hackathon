@@ -164,3 +164,6 @@ padding: ;
 #content { width: 100%; }
 }
 
+#advice-button{
+    background-color: #007BFF;
+}

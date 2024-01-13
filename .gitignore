@@ -28,4 +28,5 @@ ib_buffer_pool
 ibdata1
 ibtmp1
 *.ibd
-undo_*
+undo_*app/azureapp/uwsgi.log
+app/azureapp/uwsgi.log

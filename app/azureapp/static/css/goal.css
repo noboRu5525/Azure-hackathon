@@ -3,21 +3,17 @@
     padding: 0;
     box-sizing: border-box; /* サイズ計算をより予測しやすくするためのプロパティ */
 }
-
 h1 a:hover {
-	color: black;
+    color: black;
 }
-
 ul {
-	  list-style: none;
+      list-style: none;
   }
-
 @media(max-width: 992px){
-	html {
-		font-size: 2.0rem;
-	}
+    html {
+        font-size: 2.0rem;
+    }
 }
-
 .model_window_space{
     width: 90%;
     height: 90%;
@@ -32,20 +28,18 @@ ul {
     max-height: 90%; /* ここは必要に応じて調整してください */
     overflow-y: auto;
 }
-
 .ai_chat_space{
     position: absolute;
     left: 45%;
     width: 50%;
     height: 90%;
-    background-color: #F0F4FA;
+    background-color: #FFFFFF;
     border-radius: 20px 20px 20px 20px;
     border: 1px solid rgba(52, 52, 52, 0.381);
 }
-
 .input_text_space{
     position: absolute;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     width: 88%;
     height: 40px;
     bottom: 3%;
@@ -53,35 +47,28 @@ ul {
     left: 6%;
     border: 1px solid rgba(52, 52, 52, 0.381);
 }
-
 .model_window_space h3{
     font-size: 18px;
 }
-
 .title{
     margin-left: 10px;
     margin-top: 10px;
 }
-
 .text-input {
     width: 300px; /* 入力フィールドの長さを300ピクセルに設定 */
     height: 35px;
 }
-
 .text-input2 {
     width: 42%; /* 入力フィールドの長さを300ピクセルに設定 */
     height: 70px;
 }
-
 .tipe{
     width: 100%;
 }
-
 .input_space{
     display: flex;
     flex-wrap: wrap;
 }
-
 .add-button {
     width: 30px;
     height: 30px;
@@ -90,50 +77,39 @@ ul {
     background-color: #326BDB;
     color: #F7F5F5;
 }
-
 .confirm{
     width: 50px;
     height: 30px;
     margin-left: 10px;
 }
-
 .text-input{
     margin-bottom: 10px;
 }
-
 .text-input2{
     margin-bottom: 14px;
 }
-
 .use_lang{
     display: flex;
     flex-wrap: wrap;
 }
-
 .lang{
     margin: 15px;
 }
-
 .text{
     display: flex;
 }
-
 .text p{
     margin: 14px;
 }
-
 .ai_chat_space .input_text_space, .ai_chat_space form {
     overflow-y: auto; /* 内容が高さを超える場合にスクロールバーを表示 */
   }
-
 .title{
     margin-top: 15px;
 }
-
 .use_lang_space{
     margin-top: 30px;
 }
-
 .text_push{
     color: black;
     background-color: black;
@@ -145,12 +121,10 @@ ul {
     top: 6px;
     border-radius: 20px 20px 20px 20px;
 }
-
 .text_push h1{
     color: #F7F5F5;
     font-size: 20px;
 }
-
 .create_button{
     width: auto;
     height: 50px;
@@ -159,3 +133,42 @@ ul {
     background-color: #326BDB;
     color: #F0F4FA;
 }
+.no-border-input {
+    background-color: transparent; /* 背景色を透明にする */
+    /* その他のスタイル */
+    font-size: 16px;        /* フォントサイズ */
+    color: #333;            /* テキストカラー */
+    padding: 5px 10px;
+    border: 1px solid rgba(52, 52, 52, 0.381);
+    border-radius: 20px 20px 20px 20px;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    padding-right: 8%;
+    padding-left: 3%;
+}
+.ai_chat_space{
+    padding: 25px;
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+.user-message {
+    /* ユーザーのメッセージに適用されるスタイル */
+    background-color: #F0F4FA; /* 好きな色を選択してください */
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+  }
+.ai-message {
+    background-color: #FFFFFF;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+  }
+  #chat-area {
+    max-height: 100%; /* ここで最大の高さを指定 */
+    overflow-y: auto; /* 縦方向のスクロールを有効にする */
+    margin-bottom: 10px; /* 入力エリアとの間に余白を持たせる */
+  }

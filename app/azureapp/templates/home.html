@@ -19,147 +19,234 @@
 </head>
 
 <body>
-    <!-- Navbar -->
+  <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <button type="button" id="sidebarCollapse" class="btn btn-light">
-            <i class="bi bi-list"></i>
-        </button>
-        <a class="navbar-brand text-center href="#">タイトル</a>
-        <button type="button" class="btn btn-primary" onclick="location.href='/goal'">Create new</button>
-        <i class="bi bi-person-circle"></i>
-        <!-- Other navbar content can go here -->
-    </div>
+  <div class="container-fluid">
+      <button type="button" id="sidebarCollapse" class="btn btn-light">
+          <i class="bi bi-list"></i>
+      </button>
+      <a class="navbar-brand text-center href='#'">タイトル</a>
+      <button type="button" class="btn btn-primary" onclick="location.href='/goal'">Create new</button>
+      <button class="btn btn-primary ml-auto">ログアウト</button>
+      <!-- Other navbar content can go here -->
+  </div>
 </nav>
-
 <div class="wrapper d-flex">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="bg-light">
-        <div class="sidebar-header">
-        </div>
-        <ul class="list-unstyled components">
-            <li class="active">
-                <a href="#homeSubmenu" data-toggle="" aria-expanded="false"><i class="fas fa-home"></i> Home</a>
-            </li>
-            <li>
-                <a href="#"><i class="fas fa-briefcase"></i> About</a>
-            </li>
-            <li>
-                <a href="#"><i class="fas fa-copy"></i> Services</a>
-            </li>
-            <li>
-                <a href="#"><i class="fas fa-image"></i> Portfolio</a>
-            </li>
-            <li>
-                <a href="#"><i class="fas fa-question"></i> FAQ</a>
-            </li>
-            <li>
-                <a href="#"><i class="fas fa-paper-plane"></i> Contact</a>
-            </li>
-        </ul>
-    </nav>
-
+  <!-- Sidebar -->
+  <nav id="sidebar" class="bg-light">
+      <div class="sidebar-header">
+      </div>
+      <ul class="list-unstyled components">
+          <li class="active">
+              <a href="#homeSubmenu" data-toggle="" aria-expanded="false"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li>
+              <a href="#"><i class="fas fa-briefcase"></i> About</a>
+          </li>
+          <li>
+              <a href="#"><i class="fas fa-copy"></i> Services</a>
+          </li>
+          <li>
+              <a href="#"><i class="fas fa-image"></i> Portfolio</a>
+          </li>
+          <li>
+              <a href="#"><i class="fas fa-question"></i> FAQ</a>
+          </li>
+          <li>
+              <a href="#"><i class="fas fa-paper-plane"></i> Contact</a>
+          </li>
+      </ul>
+  </nav>
 <main>
-    <!-- Page Content -->
-    
-    <div class="container-fluid">
-        <div class="row ">
-            <body>
-                <div class="py-5">
-                    <div class="row hidden-md-up">
-                      <div class="col-md-4">
-                        <div class="card">
+  <!-- Page Content -->
+  <div class="dropdown">
+      <!-- 切り替えボタン -->
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ドロップダウン
+      </button>
+      <!-- ドロップダウンメニュー -->
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="#">プロジェクト1</a></li>
+          <li><a class="dropdown-item" href="#">プロジェクト2</a></li>
+          <li><a class="dropdown-item" href="#">プロジェクト3</a></li>
+      </ul>
+  </div>
+  <div class="container-fluid">
+      <div class="row ">
+          <div class="py-5 ">
+              <div class="row hidden-md-up d-flex ">
+                  <div class="col-md-4">
+                      <div class="card">
                           <div class="card-block">
-                            <h4 class="card-title">Card title</h4>
-                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-                            <a href="#" class="card-link">link</a>
-                            <a href="#" class="card-link">Second link</a>
+                              <h4 class="card-title">Task name</h4>
+                              <h6 class="card-subtitle text-muted">Task Detail</h6>
+                              <p class="card-text p-y-1">Task Detail goes here.</p>
+                              <a href="#" class="card-link" data-toggle="modal" data-target="#detailModal">Detail</a>
+                              <a href="#" class="card-link" data-toggle="modal" data-target="#changeDeadlineModal">Change</a>
+                              <a href="#" class="btn btn-light" role="button">完了</a>
                           </div>
-                        </div>
                       </div>
-                      <div class="col-md-4">
-                        <div class="card">
-                          <div class="card-block">
-                            <h4 class="card-title">Card title</h4>
-                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-                            <a href="#" class="card-link">link</a>
-                            <a href="#" class="card-link">Second link</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="card">
-                          <div class="card-block">
-                            <h4 class="card-title">Card title</h4>
-                            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-                            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-                            <a href="#" class="card-link">link</a>
-                            <a href="#" class="card-link">Second link</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
-                </div>
-                <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-                <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
-                <div class="row">
-                    <!-- 均等に分割する場合 -->
-                    
-                    <!-- プロジェクトのテーブル -->
-                    <table class="table col-md col-md-4">
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Project name</th>
-                            <th scope="col">Per</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {% for project in projects %}
-                          <tr>
-                            <th scope="row">{{ loop.index }}</th>
-                            <td>{{ project[1] }}</td>
-                            <td>NA</td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                    </table>
-                    
-                    <!-- 特定のカラム（ここではカレンダー）に最大幅を与える場合 -->
-                    <div class="col-md-8" id="calendar">
-                </div>
-            </div>
-            
-    </div>
-    </div>
-    </main>
-        <!-- モーダル -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">モーダルタイトル</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ここにコンテンツを追加します。
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                        <button type="button" class="btn btn-primary">保存</button>
-                    </div>
-                </div>
-            </div>
+                  <div class="col-md-4">
+                      <div class="card">
+                          <div class="card-block">
+                              <h4 class="card-title">Task name</h4>
+                              <h6 class="card-subtitle text-muted">Task Detail</h6>
+                              <p class="card-text p-y-1">Task Detail goes here.</p>
+                              <a href="#" class="card-link" data-toggle="modal" data-target="#detailModal">Detail</a>
+                              <a href="#" class="card-link" data-toggle="modal" data-target="#changeDeadlineModal">Change</a>
+                              <a href="#" class="btn btn-light" role="button">完了</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="card">
+                          <div class="card-block">
+                              <h4 class="card-title">Task name</h4>
+                              <h6 class="card-subtitle text-muted">Task Detail</h6>
+                              <p class="card-text p-y-1">Task Detail goes here</p>
+                              <a href="#" class="card-link" data-toggle="modal" data-target="#detailModal">Detail</a>
+                              <a href="#" class="card-link" data-toggle="modal" data-target="#changeDeadlineModal">Change</a>
+                              <a href="#" class="btn btn-light" role="button">完了</a>
+                          </div>
+                      </div>
+                      <!--another content goes here-->
+                  </div>
+              </div>
+          </div>
+      </div>
+              <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+              <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+              <div class="row">
+                  <!-- 均等に分割する場合 -->
+                  <table class="table col-md col-md-4">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Project name</th>
+                          <th scope="col">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for project in projects %}
+                        <tr>
+                          <th scope="row">{{ loop.index }}</th>
+                          <td>{{ project[1] }}</td>
+                          <td>NA</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                  <!-- 特定のカラム（ここではカレンダー）に最大幅を与える場合 -->
+                  <div class="col-md-8" id="calendar">
+              </div>
+          </div>
+      </div>
+  </div>
+      </main>
+      <!-- モーダル -->
+      <!-- モーダル -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">モーダル完了</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      ここにコンテンツを追加します。
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                      <button type="button" class="btn btn-primary">保存</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+              <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+              <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+<!--カードのモーダル(detail)-->
+<!-- モーダル -->
+<!-- Modalの中身 -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="detailModalLabel">Card Detail</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-                <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-                <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
-		            <script src="../static/js/script.js"></script>
+        <div class="modal-body">
+            <!-- ここにカードの詳細内容を入れる -->
+            <p id="card-detail-text">Some quick example text to build on the Task name.</p>
+            <div class="advice-text" style="display: none;">
+              <h2 >Advice</h2>
+            </div>
+            <div id="flask-response-text"></div>
+        </div>
+        <div class="modal-footer">
+            <!-- Adviceボタンの追加 -->
+            <button type="button" class="btn btn-light" id="advice-button" data-bs-toggle="modal">One Point Advice</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+<!-- 期限変更用モーダル -->
+<div class="modal fade" id="changeDeadlineModal" tabindex="-1" role="dialog" aria-labelledby="changeDeadlineModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changeDeadlineModalLabel">Change Deadline</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- 日付選択フィールド -->
+        <form>
+          <div class="form-group">
+            <label for="new-deadline">New Deadline</label>
+            <input type="date" class="form-control" id="new-deadline">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-primary" id="save-changes">変更する</button>
+      </div>
+    </div>
+  </div>
+</div>
+              <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+              <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+          <script src="../static/js/script.js"></script>
+          <script>
+            document.getElementById('advice-button').addEventListener('click', function() {
+                var cardDetailText = document.getElementById('card-detail-text').textContent;
+                fetch('/send_card_detail', {
+                    method: 'POST',
+                    body: JSON.stringify({ 'text': cardDetailText }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Flaskからのレスポンスを表示するための要素を取得
+                    var responseTextElement = document.getElementById('flask-response-text');
+                    // レスポンスのテキストを要素に設定
+                    responseTextElement.textContent = data.text;
+                })// ここでFlaskからのレスポンスを扱う
+                .catch(error => console.error('Error:', error));
+            });
+            </script>
 </body>
 </html>
