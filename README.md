@@ -1,36 +1,83 @@
-# Azure-hackathon
-## はじめに
-任意ディレクトリにて
-```
+# **Manual**
+
+Application Name: Taskman
+Release Date: January 15, 2024
+
+### **Purpose of the Manual**
+
+The purpose of this manual is to ensure that users can successfully launch and verify the operation of the application.
+
+### **Overview of the Application**
+
+Taskman is an application where AI automatically generates and manages tasks.
+
+### **Technologies Used**
+
+- Docker
+- Flask
+- Azure OpenAI
+- MySQL
+- Nginx
+- JavaScript
+- CSS
+
+### **Preparations Before Starting**
+
+Installation of Docker
+
+### **Required Tools**
+
+Docker
+
+### **Initial Setup and Installation Procedure**
+
+In any desired directory, execute the following command to download:
+
+```bash
+bashCopy code
 git clone https://github.com/noboRu5525/Azure-hackathon.git
-```
-でダウンロード
-
-## 起動
 
 ```
-docker compose up --build
+
+### **Basic Operation (Launching)**
+
+Navigate to the cloned directory:
+
+```jsx
+jsxCopy code
+cd Azure-hackathon
+
 ```
 
-起動後**http://localhost/**
-にアクセス
+Insert your Azure OpenAI **API key** and **endpoint** information into the .env file, and place it in the same directory as the docker-compose.yml file:
 
-http://localhost/test
-でAPI接続確認できた
+```markdown
+markdownCopy code
+AZURE_OPENAI_KEY=******************
+AZURE_OPENAI_ENDPOINT=**************
 
-## モジュール
-必要なモジュールがあったら**requirements.txt**に追記する
-その後**docker compose up --build**する
+```
 
-## バックエンド
-基本的には"Azure-hackathon/app/azureapp/app.py"を書いて実装　ファイル分けした方が可読性アップ
+Launch the application with:
 
-## フロントエンド
-基本的には
-"Azure-hackathon/app/azureapp/**templates/**"
-と
-"Azure-hackathon/app/azureapp/static/**css**"
-の中のファイルを弄ることになるかと
+```jsx
+jsxCopy code
+docker-compose up --build
 
-layout.htmlがベースとなるものでそれ以外はベースに組み込まれる形になっている
-不要なら削除してOK！
+```
+
+After launching, connect to **[http://localhost](http://localhost/)** in your browser.
+
+### **Extension**
+
+When extending the functionality and using external libraries, add them to **requirements.txt**. Afterwards, rebuild the application with:
+
+```css
+cssCopy code
+docker-compose up --build
+
+```
+
+This manual is designed to guide users through the setup and basic use of the Taskman application, ensuring a smooth and successful experience.
+docker-compose up --build
+This manual is designed to guide users through the setup and basic use of the Taskman application, ensuring a smooth and successful experience.
