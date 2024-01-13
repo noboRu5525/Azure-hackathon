@@ -272,7 +272,6 @@ def get_goals_for_calendar():
 #Azure APIキー接続確認
 @app.route('/openai')
 def openai():
-    
     return res
 
 if __name__ == '__main__':
