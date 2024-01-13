@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* サイズ計算をより予測しやすくするためのプロパティ */
+}
+
+h1 a:hover {
+	color: black;
+}
+
+ul {
+	  list-style: none;
+  }
+
+@media(max-width: 992px){
+	html {
+		font-size: 2.0rem;
+	}
+}
+
+.model_window_space{
+    width: 90%;
+    height: 90%;
+    /*display: flex;
+    flex-wrap: wrap;*/
+    position: fixed;
+    background-color: #F7F5F5;
+    top: 5%;
+    left: 5%;
+    padding: 20px;
+    border-radius: 20px 20px 20px 20px;
+    max-height: 90%; /* ここは必要に応じて調整してください */
+    overflow-y: auto;
+}
+
+.ai_chat_space{
+    position: absolute;
+    left: 45%;
+    width: 50%;
+    height: 90%;
+    background-color: #F0F4FA;
+    border-radius: 20px 20px 20px 20px;
+    border: 1px solid rgba(52, 52, 52, 0.381);
+}
+
+.input_text_space{
+    position: absolute;
+    background-color: #ffffff;
+    width: 88%;
+    height: 40px;
+    bottom: 3%;
+    border-radius: 20px 20px 20px 20px;
+    left: 6%;
+    border: 1px solid rgba(52, 52, 52, 0.381);
+}
+
+.model_window_space h3{
+    font-size: 18px;
+}
+
+.title{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.text-input {
+    width: 300px; /* 入力フィールドの長さを300ピクセルに設定 */
+    height: 35px;
+}
+
+.text-input2 {
+    width: 42%; /* 入力フィールドの長さを300ピクセルに設定 */
+    height: 70px;
+}
+
+.tipe{
+    width: 100%;
+}
+
+.input_space{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.add-button {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #326BDB;
+    color: #F7F5F5;
+}
+
+.confirm{
+    width: 50px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.text-input{
+    margin-bottom: 10px;
+}
+
+.text-input2{
+    margin-bottom: 14px;
+}
+
+.use_lang{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lang{
+    margin: 15px;
+}
+
+.text{
+    display: flex;
+}
+
+.text p{
+    margin: 14px;
+}
+
+.ai_chat_space .input_text_space, .ai_chat_space form {
+    overflow-y: auto; /* 内容が高さを超える場合にスクロールバーを表示 */
+  }
+
+.title{
+    margin-top: 15px;
+}
+
+.use_lang_space{
+    margin-top: 30px;
+}
+
+.text_push{
+    color: black;
+    background-color: black;
+    width: 27px;
+    height: 27px;
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+    top: 6px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.text_push h1{
+    color: #F7F5F5;
+    font-size: 20px;
+}
+
+.create_button{
+    width: auto;
+    height: 50px;
+    margin-top: 40px;
+    margin-left: 70%;
+    background-color: #326BDB;
+}

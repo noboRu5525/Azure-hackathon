@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+	<title>toDo</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script type="text/javascript" src="/static/js/script.js"></script>
+	<link rel="stylesheet" href="../static/css/goal.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3213171877715325"
+		     crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="model_window_space">
+        <div class="ai_chat_space" id="chat-ai" style="display: none;">
+            <div class="input_text_space">
+                <button class="text_push"><h1>↑</h1></button>
+            </div>
+        </div>
+        <form class="Category">
+            <h3 class="title">＜カテゴリー＞</h3>
+            <label>
+              <input type="radio" name="options" value="option1">一般タスク:
+            </label><br>
+            <label>
+              <input type="radio" name="options" value="option2">資格・試験:
+            </label><br>
+            <label>
+              <input type="radio" name="options" value="option3">プログラム開発:
+            </label><br>
+        </form>
+        <!--一般タスク用項目-->
+        <div class="task" id="category1">
+
+        </div>
+        <!--資格・試験用項目-->
+        <div class="qualification" id="category2" style="display: none;">
+
+        </div>
+        <!--プログラム開発用項目-->
+        <div class="development" id="category3" style="display: none;">
+            <form class="system-name">
+                <h3 class="title">＜作成したいシステム名＞</h3>
+                <div class="input_space">
+                    <input type="text" id="customText" name="customText" class="text-input"><br>
+                    <input type="submit" value="確定" class="confirm">
+                </div>
+            </form>
+            <form class="make-day">
+                <h3 class="title">＜作成日数＞</h3>
+                <div class="input_space">
+                    <input type="text" id="customText" name="customText" class="text-input"><br>
+                    <input type="submit" value="確定" class="confirm">
+                </div>
+            </form>
+            <form class="custom">
+                <div class="text">
+                    <h3 class="title">＜具体的な機能＞</h3><p>※最低3つ以上必要です</p>
+                </div>
+                <div class="input_space" id="inputSpace">
+                    <div class="tipe" id="functionFields">
+                        <input type="text" id="functionText1" name="customText" class="text-input2"><br>
+                        <input type="text" id="functionText2" name="customText" class="text-input2"><br>
+                        <input type="text" id="functionText3" name="customText" class="text-input2"><br>
+                    </div>
+                    <button type="button" id="addButton" class="add-button">+</button>
+                    <input type="submit" value="確定" class="confirm">
+                </div>
+            </form>
+            <form class="use_lang_space">
+                <h3 class="title">＜使用する言語＞</h3>
+                <div class="use_lang">
+                    <label>
+                        <input type="checkbox" name="option1" value="Python" class="lang">Python
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option2" value="Java" class="lang">Java
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option3" value="C_Cpp" class="lang">C / C++
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option4" value="CSharp" class="lang">C#
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option5" value="Swift" class="lang">Swift
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option6" value="PHP" class="lang">PHP
+                      </label><br>
+                      <label>
+                          <input type="checkbox" name="option1" value="Ruby" class="lang">Ruby
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option2" value="HTMI/CSS" class="lang">HTML / CSS
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option3" value="javascript" class="lang">javascript
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option4" value="Kotlin" class="lang">Kotlin
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option5" value="GO言語" class="lang">GO言語
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option6" value="R" class="lang">R言語
+                        </label><br>
+                        <label>
+                            <input type="checkbox" name="option6" value="R" class="lang">SQL言語
+                          </label><br>
+                </div>
+                <input type="submit" value="送信">
+              </form>
+              <form>
+                <h3 class="title">＜使用するツール・プラットフォーム＞</h3>
+                <div class="use_lang">
+                    <label>
+                        <input type="checkbox" name="option1" value="Python" class="lang">Azure
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option2" value="Java" class="lang">GCP
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option3" value="AWS" class="lang">AWS
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option4" value="Firebase" class="lang">Firebase
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option5" value="GitHub" class="lang">GitHub
+                      </label><br>
+                      <label>
+                        <input type="checkbox" name="option6" value="Docker" class="lang">Docker
+                      </label><br>
+                      <label>
+                          <input type="checkbox" name="option1" value="GitLab" class="lang">GitLab
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option2" value="Postman" class="lang">Postman
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option3" value="Swagger" class="lang">Swagger
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option4" value="DigitalOcean" class="lang">DigitalOcean
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option5" value="Heroku" class="lang">Heroku
+                        </label><br>
+                        <label>
+                          <input type="checkbox" name="option6" value="Oracle Cloud" class="lang">Oracle Cloud
+                        </label><br>
+                        <label>
+                            <input type="checkbox" name="option6" value="MySQL" class="lang">MySQL
+                          </label><br>
+                </div>
+                <input type="submit" value="送信">
+              </form>
+        </div> 
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // ラジオボタンの選択を監視する
+            document.querySelectorAll('form.Category input[type="radio"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    // すべてのカテゴリー関連のdivを非表示にする
+                    document.getElementById('category1').style.display = 'none';
+                    document.getElementById('category2').style.display = 'none';
+                    document.getElementById('category3').style.display = 'none';
+                    document.getElementById('chat-ai').style.display = 'none';
+        
+                    // 選択されたラジオボタンに応じて適切なdivを表示する
+                    switch (this.value) {
+                        case 'option1':
+                            document.getElementById('category1').style.display = '';
+                            break;
+                        case 'option2':
+                            document.getElementById('category2').style.display = '';
+                            break;
+                        case 'option3':
+                            document.getElementById('category3').style.display = '';
+                            document.getElementById('chat-ai').style.display = '';
+                            break;
+                    }
+                });
+            });
+        });
+    </script>
+        
+        
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const maxFields = 10;
+            const addButton = document.getElementById('addButton');
+            const functionFields = document.getElementById('functionFields');
+
+            addButton.addEventListener('click', function() {
+                const totalInputs = functionFields.querySelectorAll('input').length;
+                
+                if (totalInputs < maxFields) {
+                    const newInput = document.createElement('input');
+                    newInput.type = 'text';
+                    newInput.name = 'customText';
+                    newInput.className = 'text-input2';
+                    functionFields.appendChild(newInput);
+                    functionFields.appendChild(document.createElement('br'));
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
