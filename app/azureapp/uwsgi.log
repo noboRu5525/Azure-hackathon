@@ -13928,3 +13928,1021 @@ uWSGI running as root, you can use --uid/--gid/--chroot options
 *** uWSGI is running in multiple interpreter mode ***
 gracefully (RE)spawned uWSGI master process (pid: 1)
 spawned uWSGI worker 1 (pid: 8, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 03:39:10 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55ec0858bfb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55ec0858bfb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.18.0.1 () {54 vars in 981 bytes} [Sun Jan 14 03:39:50 2024] GET / => generated 15449 bytes in 33 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/2] 172.18.0.1 () {52 vars in 874 bytes} [Sun Jan 14 03:39:50 2024] GET /assets/js/color-modes.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 3/3] 172.18.0.1 () {56 vars in 1011 bytes} [Sun Jan 14 03:39:50 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 35 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 4/4] 172.18.0.1 () {56 vars in 993 bytes} [Sun Jan 14 03:39:50 2024] GET /static/css/style1.css => generated 0 bytes in 11 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 5/5] 172.18.0.1 () {52 vars in 862 bytes} [Sun Jan 14 03:39:50 2024] GET /product.css => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 6/6] 172.18.0.1 () {52 vars in 902 bytes} [Sun Jan 14 03:39:50 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 7/7] 172.18.0.1 () {52 vars in 908 bytes} [Sun Jan 14 03:39:50 2024] GET /favicon.ico => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 8/8] 172.18.0.1 () {56 vars in 1031 bytes} [Sun Jan 14 03:40:01 2024] GET /login => generated 2028 bytes in 30 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 9/9] 172.18.0.1 () {56 vars in 982 bytes} [Sun Jan 14 03:40:01 2024] GET /static/js/script.js => generated 0 bytes in 163 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 10/10] 172.18.0.1 () {56 vars in 997 bytes} [Sun Jan 14 03:40:01 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 11/11] 172.18.0.1 () {64 vars in 1225 bytes} [Sun Jan 14 03:40:09 2024] POST /check_login => generated 197 bytes in 117 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 12/12] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 03:40:10 2024] GET /home => generated 110 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 13/13] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 03:40:15 2024] GET / => generated 15449 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 14/14] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 03:40:15 2024] GET /assets/js/color-modes.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 15/15] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 03:40:15 2024] GET /static/css/style1.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 16/16] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 03:40:15 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 18 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 17/17] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 03:40:15 2024] GET /product.css => generated 207 bytes in 3 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 18/18] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 03:40:15 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 19/19] 172.18.0.1 () {60 vars in 1129 bytes} [Sun Jan 14 03:40:16 2024] GET /admin => generated 1755 bytes in 33 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 20/20] 172.18.0.1 () {62 vars in 1120 bytes} [Sun Jan 14 03:40:16 2024] GET /static/js/script.js => generated 0 bytes in 11 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 21/21] 172.18.0.1 () {62 vars in 1135 bytes} [Sun Jan 14 03:40:16 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 22/22] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 03:40:31 2024] POST /check_login => generated 197 bytes in 15 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 23/23] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 03:40:31 2024] GET /home => generated 110 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 24/24] 172.18.0.1 () {58 vars in 1101 bytes} [Sun Jan 14 03:43:27 2024] GET / => generated 15449 bytes in 5 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 25/25] 172.18.0.1 () {54 vars in 950 bytes} [Sun Jan 14 03:43:27 2024] GET /assets/js/color-modes.js => generated 207 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 26/26] 172.18.0.1 () {58 vars in 1087 bytes} [Sun Jan 14 03:43:27 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 27/27] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 03:43:27 2024] GET /static/css/style1.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 28/28] 172.18.0.1 () {54 vars in 938 bytes} [Sun Jan 14 03:43:27 2024] GET /product.css => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 29/29] 172.18.0.1 () {54 vars in 978 bytes} [Sun Jan 14 03:43:27 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 30/30] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 03:43:29 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 31/31] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 03:43:30 2024] GET /static/css/style.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 32/32] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 03:43:30 2024] GET /static/js/script.js => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 33/33] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 03:43:35 2024] POST /check_login => generated 197 bytes in 16 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 34/34] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 03:43:35 2024] GET /home => generated 110 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 35/35] 172.18.0.1 () {58 vars in 1101 bytes} [Sun Jan 14 03:49:17 2024] GET / => generated 15449 bytes in 3 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 36/36] 172.18.0.1 () {54 vars in 950 bytes} [Sun Jan 14 03:49:17 2024] GET /assets/js/color-modes.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 37/37] 172.18.0.1 () {58 vars in 1087 bytes} [Sun Jan 14 03:49:17 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 38/38] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 03:49:17 2024] GET /static/css/style1.css => generated 0 bytes in 9 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 39/39] 172.18.0.1 () {54 vars in 938 bytes} [Sun Jan 14 03:49:17 2024] GET /product.css => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 40/40] 172.18.0.1 () {54 vars in 978 bytes} [Sun Jan 14 03:49:17 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 41/41] 172.18.0.1 () {58 vars in 1109 bytes} [Sun Jan 14 03:49:21 2024] GET /signup => generated 2051 bytes in 18 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 42/42] 172.18.0.1 () {58 vars in 1059 bytes} [Sun Jan 14 03:49:21 2024] GET /static/js/script.js => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 43/43] 172.18.0.1 () {58 vars in 1074 bytes} [Sun Jan 14 03:49:21 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 44/44] 172.18.0.1 () {66 vars in 1304 bytes} [Sun Jan 14 03:49:27 2024] POST /check_signup => generated 199 bytes in 42 msecs (HTTP/1.1 302) 5 headers in 208 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 45/45] 172.18.0.1 () {60 vars in 1144 bytes} [Sun Jan 14 03:49:27 2024] GET /login => generated 2028 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 46/46] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 03:49:27 2024] GET /static/js/script.js => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 47/47] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 03:49:27 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 48/48] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 03:49:33 2024] POST /check_login => generated 197 bytes in 15 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 49/49] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 03:49:33 2024] GET /home => generated 110 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 50/50] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 03:49:38 2024] GET / => generated 15449 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 51/51] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 03:49:38 2024] GET /static/css/style1.css => generated 0 bytes in 10 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 52/52] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 03:49:38 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 53/53] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 03:49:38 2024] GET /assets/js/color-modes.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 54/54] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 03:49:38 2024] GET /product.css => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 55/55] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 03:49:38 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 56/56] 172.18.0.1 () {60 vars in 1129 bytes} [Sun Jan 14 03:49:38 2024] GET /admin => generated 1804 bytes in 15 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 57/57] 172.18.0.1 () {62 vars in 1120 bytes} [Sun Jan 14 03:49:38 2024] GET /static/js/script.js => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 58/58] 172.18.0.1 () {62 vars in 1135 bytes} [Sun Jan 14 03:49:38 2024] GET /static/css/style.css => generated 0 bytes in 10 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 03:54:15 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x559483b21f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x559483b21f00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 8, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 03:54:32 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55d817039fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55d817039fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 03:55:03 2024] GET / => generated 15449 bytes in 48 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/2] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 03:55:04 2024] GET /assets/js/color-modes.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 3/3] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 03:55:04 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 22 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 4/4] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 03:55:04 2024] GET /static/css/style1.css => generated 0 bytes in 11 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 5/5] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 03:55:04 2024] GET /product.css => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 6/6] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 03:55:04 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 7/7] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 03:55:05 2024] GET /login => generated 2028 bytes in 29 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 8/8] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 03:55:06 2024] GET /static/css/style.css => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 9/9] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 03:55:06 2024] GET /static/js/script.js => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 10/10] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 03:55:11 2024] POST /check_login => generated 197 bytes in 54 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[(1, 'huhuhu'), (2, 'huhuhu'), (3, 'huhuhu'), (4, 'huhuhu'), (5, 'huhuhu'), (6, 'huhuhu'), (7, 'huhuhu'), (8, 'huhuhu'), (9, 'huhuhu'), (10, '食材管理アプリ'), (11, '食材管理アプリ'), (12, '食材管理アプリ'), (13, '食材管理アプリ'), (14, '食材管理アプリ'), (15, '食材管理アプリ'), (16, '食材管理アプリ'), (17, '食材管理アプリ'), (18, '食材管理アプリ'), (19, '食材管理アプリ'), (20, '食材管理アプリ'), (21, '食材管理アプリ'), (22, '食材管理アプリ'), (23, '食材管理アプリ'), (24, '食材管理アプリ'), (25, '食材管理アプリ'), (26, '食材管理アプリ'), (27, '食材管理アプリ'), (28, '食材管理アプリ')]
+[2024-01-14 03:55:11,667] ERROR in app: Exception on /home [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 208, in home
+    return render_template('home.html', username=get_user(), projects=projects())
+  File "/app/./app.py", line 180, in get_user
+    return session['login']
+  File "/usr/local/lib/python3.9/site-packages/flask/sessions.py", line 79, in __getitem__
+    return super().__getitem__(key)
+KeyError: 'login'
+[pid: 7|app: 0|req: 11/11] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 03:55:11 2024] GET /home => generated 265 bytes in 218 msecs (HTTP/1.1 500) 3 headers in 113 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 03:55:20 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x5603fc595f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x5603fc595f00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 8, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 03:55:55 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x555ac0d39fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x555ac0d39fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 03:56:11 2024] GET / => generated 15449 bytes in 55 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/2] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 03:56:11 2024] GET /assets/js/color-modes.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 3/3] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 03:56:11 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 37 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 4/4] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 03:56:11 2024] GET /static/css/style1.css => generated 0 bytes in 20 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 5/5] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 03:56:11 2024] GET /product.css => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 6/6] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 03:56:11 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 7/7] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 03:56:13 2024] GET /login => generated 2028 bytes in 45 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 8/8] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 03:56:13 2024] GET /static/css/style.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 9/9] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 03:56:13 2024] GET /static/js/script.js => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[2024-01-14 03:56:20,183] ERROR in app: Exception on /check_login [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 308, in _open_connection
+    self._cmysql.connect(**cnx_kwargs)
+_mysql_connector.MySQLInterfaceError: Can't connect to MySQL server on 'db:3306' (111)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 95, in check_login
+    if try_login(user, pw) == False:
+  File "/app/./app.py", line 141, in try_login
+    conn = mysql.connector.connect(**config)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/pooling.py", line 293, in connect
+    return CMySQLConnection(*args, **kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 129, in __init__
+    self.connect(**kwargs)
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/abstracts.py", line 1237, in connect
+    self._open_connection()
+  File "/usr/local/lib/python3.9/site-packages/mysql/connector/connection_cext.py", line 313, in _open_connection
+    raise get_mysql_exception(
+mysql.connector.errors.DatabaseError: 2003 (HY000): Can't connect to MySQL server on 'db:3306' (111)
+[pid: 7|app: 0|req: 10/10] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 03:56:20 2024] POST /check_login => generated 265 bytes in 36 msecs (HTTP/1.1 500) 2 headers in 99 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 11/11] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 04:03:22 2024] GET / => generated 15449 bytes in 5 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 12/12] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 04:03:22 2024] GET /assets/js/color-modes.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 13/13] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 04:03:22 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 14/14] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 04:03:22 2024] GET /static/css/style1.css => generated 0 bytes in 11 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 15/15] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 04:03:22 2024] GET /product.css => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 16/16] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 04:03:22 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[]
+[pid: 7|app: 0|req: 17/17] 172.18.0.1 () {60 vars in 1127 bytes} [Sun Jan 14 04:03:26 2024] GET /home => generated 197 bytes in 39 msecs (HTTP/1.1 302) 4 headers in 114 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 18/18] 172.18.0.1 () {60 vars in 1127 bytes} [Sun Jan 14 04:03:26 2024] GET /goal => generated 30494 bytes in 23 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 19/19] 172.18.0.1 () {62 vars in 1119 bytes} [Sun Jan 14 04:03:26 2024] GET /static/js/script.js => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 20/20] 172.18.0.1 () {62 vars in 1133 bytes} [Sun Jan 14 04:03:26 2024] GET /static/css/goal.css => generated 3873 bytes in 12 msecs via sendfile() (HTTP/1.1 200) 7 headers in 278 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 21/21] 172.18.0.1 () {60 vars in 1044 bytes} [Sun Jan 14 04:03:42 2024] POST /get_ai_response => generated 50 bytes in 1307 msecs (HTTP/1.1 200) 2 headers in 71 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 22/22] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 04:04:28 2024] GET / => generated 15449 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 23/23] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 04:04:28 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 18 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 24/24] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 04:04:28 2024] GET /assets/js/color-modes.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 25/25] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 04:04:28 2024] GET /static/css/style1.css => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 26/26] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 04:04:28 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 27/27] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 04:04:28 2024] GET /product.css => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 28/28] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 04:04:31 2024] GET /login => generated 2028 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 29/29] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 04:04:31 2024] GET /static/js/script.js => generated 0 bytes in 19 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 30/30] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 04:04:31 2024] GET /static/css/style.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 31/31] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 04:04:36 2024] POST /check_login => generated 113 bytes in 30 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 32/32] 172.18.0.1 () {58 vars in 1108 bytes} [Sun Jan 14 04:04:40 2024] GET / => generated 15449 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 33/33] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 04:04:40 2024] GET /static/css/style1.css => generated 0 bytes in 19 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 34/34] 172.18.0.1 () {58 vars in 1087 bytes} [Sun Jan 14 04:04:40 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 10 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 35/35] 172.18.0.1 () {54 vars in 950 bytes} [Sun Jan 14 04:04:40 2024] GET /assets/js/color-modes.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 36/36] 172.18.0.1 () {54 vars in 938 bytes} [Sun Jan 14 04:04:40 2024] GET /product.css => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 37/37] 172.18.0.1 () {54 vars in 978 bytes} [Sun Jan 14 04:04:40 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 38/38] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 04:04:42 2024] GET /login => generated 2028 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 39/39] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 04:04:42 2024] GET /static/css/style.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 40/40] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 04:04:42 2024] GET /static/js/script.js => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 41/41] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 04:04:46 2024] POST /check_login => generated 197 bytes in 14 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[]
+[pid: 7|app: 0|req: 42/42] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 04:04:46 2024] GET /home => generated 197 bytes in 15 msecs (HTTP/1.1 302) 4 headers in 114 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 43/43] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 04:04:46 2024] GET /goal => generated 30494 bytes in 2 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 44/44] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 04:04:46 2024] GET /static/js/script.js => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 45/45] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 04:04:46 2024] GET /static/css/goal.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 181 bytes (0 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 04:07:45 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x564e9c2bbf00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x564e9c2bbf00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 10, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 04:08:20 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x557ca142bfb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x557ca142bfb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.18.0.1 () {56 vars in 1057 bytes} [Sun Jan 14 04:08:30 2024] GET / => generated 15449 bytes in 37 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/2] 172.18.0.1 () {54 vars in 950 bytes} [Sun Jan 14 04:08:30 2024] GET /assets/js/color-modes.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 3/3] 172.18.0.1 () {58 vars in 1087 bytes} [Sun Jan 14 04:08:30 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 31 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 4/4] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 04:08:30 2024] GET /static/css/style1.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 5/5] 172.18.0.1 () {54 vars in 978 bytes} [Sun Jan 14 04:08:31 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 6/6] 172.18.0.1 () {54 vars in 938 bytes} [Sun Jan 14 04:08:31 2024] GET /product.css => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 7/7] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 04:08:33 2024] GET /login => generated 2028 bytes in 32 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 8/8] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 04:08:33 2024] GET /static/css/style.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 9/9] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 04:08:33 2024] GET /static/js/script.js => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 10/10] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 04:08:37 2024] POST /check_login => generated 197 bytes in 54 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[]
+[pid: 7|app: 0|req: 11/11] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 04:08:38 2024] GET /home => generated 197 bytes in 23 msecs (HTTP/1.1 302) 4 headers in 114 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 12/12] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 04:08:38 2024] GET /goal => generated 30494 bytes in 26 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 13/13] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 04:08:38 2024] GET /static/js/script.js => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 14/14] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 04:08:38 2024] GET /static/css/goal.css => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 181 bytes (0 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 04:17:28 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55fff7039f00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55fff7039f00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 8, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 04:17:46 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x556da6ab7fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x556da6ab7fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 04:17:54 2024] GET / => generated 15449 bytes in 42 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/2] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 04:17:54 2024] GET /assets/js/color-modes.js => generated 207 bytes in 8 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 3/3] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 04:17:54 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 22 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 4/4] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 04:17:54 2024] GET /static/css/style1.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 5/5] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 04:17:54 2024] GET /product.css => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 6/6] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 04:17:54 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 7/7] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 04:18:00 2024] GET /login => generated 2028 bytes in 32 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 8/8] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 04:18:00 2024] GET /static/css/style.css => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 9/9] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 04:18:00 2024] GET /static/js/script.js => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 10/10] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 04:18:16 2024] POST /check_login => generated 197 bytes in 55 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[]
+[pid: 7|app: 0|req: 11/11] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 04:18:16 2024] GET /home => generated 197 bytes in 23 msecs (HTTP/1.1 302) 4 headers in 114 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 12/12] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 04:18:16 2024] GET /goal => generated 30494 bytes in 24 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 13/13] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 04:18:17 2024] GET /static/js/script.js => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 14/14] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 04:18:17 2024] GET /static/css/goal.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 181 bytes (0 switches on core 0)
+<class 'list'>
+['Python', 'HTMI/CSS', 'javascript']
+['Python', 'HTMI/CSS', 'javascript', 'Azure', 'GitHub', 'Docker']
+<class 'str'>
+['Python', 'HTMI/CSS', 'javascript']
+['Python', 'HTMI/CSS', 'javascript', 'Azure', 'GitHub', 'Docker']
+こちらは90日の個人開発の学習計画の提案です：
+
+1日目から7日目まで（1週間）
+- Pythonの基本文法とデータ構造の学習（例：変数、条件分岐、ループ、リストなど）
+- HTML/CSSの基礎の学習（例：タグ、スタイル、レイアウトなど）
+
+8日目から14日目まで（2週間）
+- JavaScriptの基礎の学習（例：変数、関数、イベントハンドリングなど）
+- フロントエンド開発のためのHTML/CSSの応用（例：フォーム作成、画像表示など）
+
+15日目から21日目まで（3週間）
+- PythonのフレームワークであるFlaskの学習（例：ルーティング、テンプレートエンジン、データベース操作など）
+- バックエンド開発のためのPythonの実践（例：データベースの設計、APIの作成など）
+
+22日目から28日目まで（4週間）
+- Azureを使った画像認識の学習（例：Azure Cognitive ServicesのCustom Vision APIの使い方）
+- サーバーサイドとの連携のためにJavaScriptのAjaxの学習（例：非同期通信、データの送受信方法など）
+
+29日目から35日目まで（5週間）
+- Dockerの基礎の学習（例：コンテナの作成、イメージの管理など）
+- GitHubを使ったバージョン管理の学習（例：リポジトリの作成、コミット、プルリクエストなど）
+
+36日目から90日目まで（6週間〜13週間）
+- プロジェクトの実装とデバッグ（例：フロントエンドの画面作成、バックエンドのAPI開発、画像認識の実装など）
+- プロジェクトのテストと修正（例：ユーザーテスト、バグ修正、パフォーマンスの最適化など）
+- ドキュメンテーションの作成（例：ユーザーマニュアル、APIドキュメントなど）
+
+この計画では、学習と実装のバランスを取りながら、90日の制作期間を最大限に活用しています。また、PythonとHTML/CSSについては既に使用経験があるとのことなので、学習計画には含めていません。
+
+重要なポイントは、週ごとに具体的な学習目標とタスクを設定し、計画を柔軟に調整することです。また、自身の進捗状況を確認しながら、必要な場合は学習時間の調整やタスクの再設定を行うようにしましょう。
+1日目-7日目：PythonとHTML/CSSの基礎学習
+- Pythonの基本文法とデータ構造の学習
+- HTML/CSSの基礎的な要素とスタイリングの学習
+
+8日目-14日目：JavaScriptとフロントエンドの応用
+- JavaScriptの基本的な構文と機能の学習
+- フロントエンド開発のためのHTML/CSS応用法の学習
+
+15日目-21日目：Flaskとバックエンドの実践
+- Flaskフレームワークの学習
+- バックエンド開発のためのPython実践の学習
+
+22日目-28日目：AzureとJavaScriptのAjaxの学習
+- Azureを使用した画像認識の学習
+- JavaScriptのAjaxを使ったサーバーサイドとの連携の学習
+
+29日目-35日目：DockerとGitHubを使った学習
+- Dockerの基本的な概念と使い方の学習
+- GitHubを使ったバージョン管理の学習
+
+36日目-90日目：プロジェクトの実装、テスト、ドキュメンテーションの作成
+- プロジェクトの実装とデバッグ
+- プロジェクトのテストと修正
+- ドキュメンテーションの作成
+{'1日目-7日目': {'PythonとHTML/CSSの基礎学習': ['Pythonの基本文法とデータ構造の学習', 'HTML/CSSの基礎的な要素とスタイリングの学習']}, '8日目-14日目': {'JavaScriptとフロントエンドの応用': ['JavaScriptの基本的な構文と機能の学習', 'フロントエンド開発のためのHTML/CSS応用法の学習']}, '15日目-21日目': {'Flaskとバックエンドの実践': ['Flaskフレームワークの学習', 'バックエンド開発のためのPython実践の学習']}, '22日目-28日目': {'AzureとJavaScriptのAjaxの学習': ['Azureを使用した画像認識の学習', 'JavaScriptのAjaxを使ったサーバーサイドとの連携の学習']}, '29日目-35日目': {'DockerとGitHubを使った学習': ['Dockerの基本的な概念と使い方の学習', 'GitHubを使ったバージョン管理の学習']}, '36日目-90日目': {'プロジェクトの実装、テスト、ドキュメンテーションの作成': ['プロジェクトの実装とデバッグ', 'プロジェクトのテストと修正', 'ドキュメンテーションの作成']}}
+[pid: 7|app: 0|req: 15/15] 172.18.0.1 () {60 vars in 1044 bytes} [Sun Jan 14 04:25:01 2024] POST /create_project => generated 2003 bytes in 16825 msecs (HTTP/1.1 200) 3 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 16/16] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 04:25:18 2024] GET /static/css/goal.css => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 181 bytes (0 switches on core 0)
+[(1, '食材管理アプリ')]
+[2024-01-14 04:25:18,724] ERROR in app: Exception on /home [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 1455, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 869, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 867, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.9/site-packages/flask/app.py", line 852, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/./app.py", line 208, in home
+    return render_template('home.html', username=get_user(), projects=projects())
+  File "/app/./app.py", line 180, in get_user
+    return session['login']
+  File "/usr/local/lib/python3.9/site-packages/flask/sessions.py", line 79, in __getitem__
+    return super().__getitem__(key)
+KeyError: 'login'
+[pid: 7|app: 0|req: 17/17] 172.18.0.1 () {56 vars in 1084 bytes} [Sun Jan 14 04:25:18 2024] GET /home => generated 265 bytes in 52 msecs (HTTP/1.1 500) 3 headers in 113 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 04:29:02 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55589631df00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55589631df00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 10, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 04:29:18 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55b5c4447fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55b5c4447fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.18.0.1 () {56 vars in 1057 bytes} [Sun Jan 14 04:29:23 2024] GET / => generated 15449 bytes in 35 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/2] 172.18.0.1 () {54 vars in 950 bytes} [Sun Jan 14 04:29:23 2024] GET /assets/js/color-modes.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 3/3] 172.18.0.1 () {58 vars in 1087 bytes} [Sun Jan 14 04:29:23 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 32 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 4/4] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 04:29:23 2024] GET /static/css/style1.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 5/5] 172.18.0.1 () {54 vars in 978 bytes} [Sun Jan 14 04:29:23 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 6/6] 172.18.0.1 () {54 vars in 938 bytes} [Sun Jan 14 04:29:23 2024] GET /product.css => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 7/7] 172.18.0.1 () {44 vars in 769 bytes} [Sun Jan 14 04:29:23 2024] GET /static/css/bootstrap.min.css.map => generated 207 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 8/8] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 04:29:28 2024] GET /login => generated 2028 bytes in 29 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 9/9] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 04:29:28 2024] GET /static/js/script.js => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 10/10] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 04:29:28 2024] GET /static/css/style.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 11/11] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 04:29:34 2024] POST /check_login => generated 197 bytes in 54 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 12/12] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 04:29:34 2024] GET /home => generated 110 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 80 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /app
+closing all non-uwsgi socket fds > 2 (max_fd = 1048576)...
+found fd 3 mapped to socket 0 (/tmp/uwsgi.sock)
+running /usr/local/bin/uwsgi
+[uWSGI] getting INI configuration from /app/app.ini
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 04:35:05 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55cece63ef00
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55cece63ef00 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 8, cores: 1)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 04:36:12 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x56181cfb4fb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x56181cfb4fb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 04:36:19 2024] GET / => generated 15449 bytes in 35 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 2/2] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 04:36:19 2024] GET /assets/js/color-modes.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 3/3] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 04:36:19 2024] GET /static/css/style1.css => generated 0 bytes in 22 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 4/4] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 04:36:19 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 13 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 5/5] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 04:36:19 2024] GET /product.css => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 6/6] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 04:36:19 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 1 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 7/7] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 04:36:21 2024] GET /login => generated 2028 bytes in 33 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 8/8] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 04:36:21 2024] GET /static/js/script.js => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 9/9] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 04:36:21 2024] GET /static/css/style.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 10/10] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 04:36:26 2024] POST /check_login => generated 197 bytes in 60 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[(1, '食材管理アプリ')]
+[pid: 7|app: 0|req: 11/11] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 04:36:26 2024] GET /home => generated 11897 bytes in 57 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 12/12] 172.18.0.1 () {58 vars in 1075 bytes} [Sun Jan 14 04:36:26 2024] GET /static/css/style2.css => generated 3133 bytes in 19 msecs via sendfile() (HTTP/1.1 200) 7 headers in 282 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 13/13] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 04:36:26 2024] GET /static/js/script.js => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 14/14] 172.18.0.1 () {58 vars in 1109 bytes} [Sun Jan 14 04:36:51 2024] GET /goal => generated 30494 bytes in 42 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 15/15] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 04:36:51 2024] GET /static/css/goal.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 181 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 16/16] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 04:36:51 2024] GET /static/js/script.js => generated 0 bytes in 15 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+<class 'list'>
+['javascript', 'GO言語', 'R']
+['javascript', 'GO言語', 'R', 'GitHub', 'Docker']
+<class 'str'>
+['javascript', 'GO言語', 'R']
+['javascript', 'GO言語', 'R', 'GitHub', 'Docker']
+以下に目標を効率的に達成するための学習計画を提案いたします。90日間の開発期間を最大限に活用し、具体的な日単位の活動を設定いたします。
+
+1日目〜5日目:
+- JavaScriptの基礎学習と開発環境の準備
+- JavaScriptの文法やデータ構造、関数の使い方を学習する
+- JavaScriptの開発環境（IDE）をインストールし、基本的なコーディングを行う
+
+6日目〜12日目:
+- Go言語の基礎学習と開発環境の準備
+- Go言語の文法やパッケージ、並行処理の使い方を学習する
+- Go言語の開発環境（IDE）をインストールし、基本的なコーディングを行う
+
+13日目〜20日目:
+- 冷蔵庫の中身を画像から判定する機能の開発
+- JavaScriptやGo言語を使用して、画像処理や機械学習アルゴリズムを実装する
+- 既存の画像認識APIやライブラリを調査し、必要に応じて導入する
+
+21日目〜26日目:
+- R言語の基礎学習と開発環境の準備
+- データ分析や機械学習の基礎を学習し、データの処理や予測モデルの構築方法を理解する
+- R言語の開発環境（IDE）をインストールし、基本的なコーディングを行う
+
+27日目〜40日目:
+- 食材管理アプリのフロントエンドの開発
+- JavaScriptを使用して、ユーザーインターフェースの実装やデザインを行う
+- 必要な機能（冷蔵庫の中身一覧、賞味期限の管理、買い物リストの作成など）を実装する
+
+41日目〜55日目:
+- 食材管理アプリのバックエンドの開発
+- Go言語を使用して、データベースとの連携やAPIの実装を行う
+- 冷蔵庫の中身を画像から判定する機能と連携させる
+
+56日目〜70日目:
+- データの分析とモデルの構築
+- R言語を使用して、冷蔵庫の中身や賞味期限のデータを分析し、予測モデルを構築する
+- 必要に応じて改善や精度向上のための調整を行う
+
+71日目〜80日目:
+- バグ修正とユーザーフィードバックの反映
+- テストを実施し、バグの修正や機能の改善を行う
+- ユーザーフィードバックを収集し、必要な修正や新機能の追加を行う
+
+81日目〜90日目:
+- 最終調整とリリース準備
+- アプリのパフォーマンスを最適化し、セキュリティ対策を行う
+- リリースに向けたドキュメント作成やプレスリリースの準備を行う
+
+このようなスケジュールで開発を進めることで、目標の食材管理アプリを制作することができます。ただし、個人開発であるため余裕を持った計画を立てていることを念頭に置いてください。また、具体的なプログラム言語やツールの使用に関しては、個別の要件や環境によって変更が必要な場合がありますので、柔軟に対応してください。
+1日目〜5日目：
+- JavaScriptの基礎学習と開発環境の準備
+- JavaScriptの文法やデータ構造、関数の使い方を学習する
+- JavaScriptの開発環境（IDE）をインストールし、基本的なコーディングを行う
+
+6日目〜12日目：
+- Go言語の基礎学習と開発環境の準備
+- Go言語の文法やパッケージ、並行処理の使い方を学習する
+- Go言語の開発環境（IDE）をインストールし、基本的なコーディングを行う
+
+13日目〜20日目：
+- 冷蔵庫の中身を画像から判定する機能の開発
+- JavaScriptやGo言語を使用して、画像処理や機械学習アルゴリズムを実装する
+- 既存の画像認識APIやライブラリを調査し、必要に応じて導入する
+
+21日目〜26日目：
+- R言語の基礎学習と開発環境の準備
+- データ分析や機械学習の基礎を学習し、データの処理や予測モデルの構築方法を理解する
+- R言語の開発環境（IDE）をインストールし、基本的なコーディングを行う
+
+27日目〜40日目：
+- 食材管理アプリのフロントエンドの開発
+- JavaScriptを使用して、ユーザーインターフェースの実装やデザインを行う
+- 必要な機能（冷蔵庫の中身一覧、賞味期限の管理、買い物リストの作成など）を実装する
+
+41日目〜55日目：
+- 食材管理アプリのバックエンドの開発
+- Go言語を使用して、データベースとの連携やAPIの実装を行う
+- 冷蔵庫の中身を画像から判定する機能と連携させる
+
+56日目〜70日目：
+- データの分析とモデルの構築
+- R言語を使用して、冷蔵庫の中身や賞味期限のデータを分析し、予測モデルを構築する
+- 必要に応じて改善や精度向上のための調整を行う
+
+71日目〜80日目：
+- バグ修正とユーザーフィードバックの反映
+- テストを実施し、バグの修正や機能の改善を行う
+- ユーザーフィードバックを収集し、必要な修正や新機能の追加を行う
+
+81日目〜90日目：
+- 最終調整とリリース準備
+- アプリのパフォーマンスを最適化し、セキュリティ対策を行う
+- リリースに向けたドキュメント作成やプレスリリースの準備を行う
+{}
+[pid: 7|app: 0|req: 17/17] 172.18.0.1 () {60 vars in 1044 bytes} [Sun Jan 14 04:37:27 2024] POST /create_project => generated 133 bytes in 30378 msecs (HTTP/1.1 200) 3 headers in 86 bytes (1 switches on core 0)
+<class 'list'>
+['javascript', 'GO言語', 'R']
+['javascript', 'GO言語', 'R', 'GitHub', 'Docker']
+<class 'str'>
+['javascript', 'GO言語', 'R']
+['javascript', 'GO言語', 'R', 'GitHub', 'Docker']
+目標: 食材管理アプリを個人開発する
+
+制作日数: 90日
+
+使用する言語: JavaScript、Go言語、R
+
+使用するツール: GitHub、Docker
+
+学習計画:
+
+Day 1-3:
+- JavaScriptの基本概念を学習する
+- JavaScriptのデータ型、変数、関数、制御構造などを理解する
+- JavaScriptでの画像処理について学習する
+
+Day 4-7:
+- Go言語の基本概念を学習する
+- Go言語のデータ型、変数、関数、制御構造などを理解する
+- Go言語での画像処理について学習する
+
+Day 8-10:
+- Rの基本概念を学習する
+- Rのデータ型、変数、関数、制御構造などを理解する
+- Rでの画像処理について学習する
+
+Day 11-15:
+- JavaScriptでの画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する
+- 選定したライブラリのドキュメントを読み、基本的な使い方を学習する
+
+Day 16-20:
+- Go言語での画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する
+- 選定したライブラリのドキュメントを読み、基本的な使い方を学習する
+
+Day 21-25:
+- Rでの画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する
+- 選定したライブラリのドキュメントを読み、基本的な使い方を学習する
+
+Day 26-35:
+- 冷蔵庫の中身を画像から判定する機能の開発に取り組む
+- JavaScriptと選定した画像認識ライブラリを使用して、画像から冷蔵庫の中身を判定する仕組みを作成する
+
+Day 36-45:
+- 判定された冷蔵庫の中身をデータベースに保存する機能の開発に取り組む
+- Go言語を使用して、データベースとの連携を行い、冷蔵庫の中身のデータを保存する仕組みを作成する
+
+Day 46-55:
+- 冷蔵庫の中身を画像から判定する機能とデータベースとの連携を組み合わせ、食材管理アプリの基本的な機能を実装する
+- アプリのユーザーインターフェースを設計し、ユーザーが食材を追加、削除、確認できる機能を実装する
+
+Day 56-90:
+- アプリのテストを実施し、バグの修正や改善を行う
+- アプリのデプロイを行い、実際に利用できる状態にする
+- GitHubを使用して、個人開発のプロジェクトをリポジトリとして管理する
+- Dockerを使用して、アプリのデプロイと環境の管理を行う
+
+このように計画を立てることで、各言語やツールの基本的な学習から始め、画像認識のライブラリの選定、具体的な機能の実装、テスト、デプロイまで段階的に進めることができます。また、制作日数を最大限に活用し、余裕を持った計画を立てています。
+1日目-3日目：JavaScriptの基礎学習 
+- JavaScriptの基本概念を学習する
+- JavaScriptのデータ型、変数、関数、制御構造などを理解する
+- JavaScriptでの画像処理について学習する
+
+4日目-7日目：Go言語の基礎学習
+- Go言語の基本概念を学習する
+- Go言語のデータ型、変数、関数、制御構造などを理解する
+- Go言語での画像処理について学習する
+
+8日目-10日目：Rの基礎学習
+- Rの基本概念を学習する
+- Rのデータ型、変数、関数、制御構造などを理解する
+- Rでの画像処理について学習する
+
+11日目-15日目：画像認識ライブラリの選定と学習
+- JavaScriptでの画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する
+- 選定したライブラリのドキュメントを読み、基本的な使い方を学習する
+
+16日目-20日目：画像認識ライブラリの選定と学習
+- Go言語での画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する
+- 選定したライブラリのドキュメントを読み、基本的な使い方を学習する
+
+21日目-25日目：画像認識ライブラリの選定と学習
+- Rでの画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する
+- 選定したライブラリのドキュメントを読み、基本的な使い方を学習する
+
+26日目-35日目：冷蔵庫の中身の画像判定機能の開発
+- JavaScriptと選定した画像認識ライブラリを使用して、画像から冷蔵庫の中身を判定する仕組みを作成する
+
+36日目-45日目：データベースへの保存機能の開発
+- Go言語を使用して、データベースとの連携を行い、冷蔵庫の中身のデータを保存する仕組みを作成する
+
+46日目-55日目：食材管理アプリの基本的な機能の実装
+- 冷蔵庫の中身を画像から判定する機能とデータベースとの連携を組み合わせ、食材管理アプリの基本的な機能を実装する
+- アプリのユーザーインターフェースを設計し、ユーザーが食材を追加、削除、確認できる機能を実装する
+
+56日目-90日目：バグ修正とデプロイ準備
+- アプリのテストを実施し、バグの修正や改善を行う
+- アプリのデプロイを行い、実際に利用できる状態にする
+- GitHubを使用して、個人開発のプロジェクトをリポジトリとして管理する
+- Dockerを使用して、アプリのデプロイと環境の管理を行う
+{'1日目-3日目': {'JavaScriptの基礎学習 ': ['JavaScriptの基本概念を学習する', 'JavaScriptのデータ型、変数、関数、制御構造などを理解する', 'JavaScriptでの画像処理について学習する']}, '4日目-7日目': {'Go言語の基礎学習': ['Go言語の基本概念を学習する', 'Go言語のデータ型、変数、関数、制御構造などを理解する', 'Go言語での画像処理について学習する']}, '8日目-10日目': {'Rの基礎学習': ['Rの基本概念を学習する', 'Rのデータ型、変数、関数、制御構造などを理解する', 'Rでの画像処理について学習する']}, '11日目-15日目': {'画像認識ライブラリの選定と学習': ['JavaScriptでの画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する', '選定したライブラリのドキュメントを読み、基本的な使い方を学習する']}, '16日目-20日目': {'画像認識ライブラリの選定と学習': ['Go言語での画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する', '選定したライブラリのドキュメントを読み、基本的な使い方を学習する']}, '21日目-25日目': {'画像認識ライブラリの選定と学習': ['Rでの画像認識ライブラリの探索と比較を行い、最適なライブラリを選定する', '選定したライブラリのドキュメントを読み、基本的な使い方を学習する']}, '26日目-35日目': {'冷蔵庫の中身の画像判定機能の開発': ['JavaScriptと選定した画像認識ライブラリを使用して、画像から冷蔵庫の中身を判定する仕組みを作成する']}, '36日目-45日目': {'データベースへの保存機能の開発': ['Go言語を使用して、データベースとの連携を行い、冷蔵庫の中身のデータを保存する仕組みを作成する']}, '46日目-55日目': {'食材管理アプリの基本的な機能の実装': ['冷蔵庫の中身を画像から判定する機能とデータベースとの連携を組み合わせ、食材管理アプリの基本的な機能を実装する', 'アプリのユーザーインターフェースを設計し、ユーザーが食材を追加、削除、確認できる機能を実装する']}, '56日目-90日目': {'バグ修正とデプロイ準備': ['アプリのテストを実施し、バグの修正や改善を行う', 'アプリのデプロイを行い、実際に利用できる状態にする', 'GitHubを使用して、個人開発のプロジェクトをリポジトリとして管理する', 'Dockerを使用して、アプリのデプロイと環境の管理を行う']}}
+[pid: 7|app: 0|req: 18/18] 172.18.0.1 () {60 vars in 1044 bytes} [Sun Jan 14 04:39:23 2024] POST /create_project => generated 5161 bytes in 23156 msecs (HTTP/1.1 200) 3 headers in 87 bytes (1 switches on core 0)
+[(1, '食材管理アプリ'), (2, '食材管理アプリ'), (3, '食材管理アプリ')]
+[pid: 7|app: 0|req: 19/19] 172.18.0.1 () {56 vars in 1084 bytes} [Sun Jan 14 04:39:46 2024] GET /home => generated 12353 bytes in 34 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 20/20] 172.18.0.1 () {58 vars in 1075 bytes} [Sun Jan 14 04:39:47 2024] GET /static/css/style2.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 185 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 21/21] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 04:39:47 2024] GET /static/js/script.js => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
