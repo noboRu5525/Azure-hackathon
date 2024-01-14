@@ -100,8 +100,8 @@ def check_login():
         return redirect('/')
     if try_login(user, pw) == False:
         return """
-        <h1>ユーザー名かパスワードの間違い</h1>
-        <p><a href="/">→戻る</a></p>
+        <h1>Wrong username or password</h1>
+        <p><a href="/">→Return</a></p>
         """
     return redirect("/home")
 
@@ -120,13 +120,13 @@ def check_signup():
         return redirect('/')
     if user_checker(user) == False:
         return """
-        <h1>同じユーザー名が存在します。違うユーザー名にしてください。</h1>
-        <p><a href="/">→戻る</a></p>
+        <h1>Same username exists. Please use a different username.</h1>
+        <p><a href="/">→Reruen</a></p>
         """
     if try_signup(user, pw) == False:
         return """
-        <h1>ユーザー名かパスワードかメールアドレスが不正です</h1>
-        <p><a href="/login">→戻る</a></p>
+        <h1>Invalid username, password, or email address</h1>
+        <p><a href="/login">→Return</a></p>
         """
     return redirect('/login')
 
@@ -134,8 +134,45 @@ def check_signup():
 def logout_page():
     try_logout()
     return """
-    <h1>ログアウトしました</h1>
-    <p><a href="/login">→戻る</a></p>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>ログアウト</title>
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+                background-color: #f0f0f0;
+                text-align: center;
+                padding-top: 50px;
+            }
+
+            h1 {
+                color: #333;
+                font-size: 24px;
+            }
+
+            p {
+                margin-top: 20px;
+                font-size: 18px;
+            }
+
+            a {
+                text-decoration: none;
+                color: #007bff;
+                font-weight: bold;
+            }
+
+            a:hover {
+                color: #0056b3;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>ログアウトしました</h1>
+        <p><a href="/login">→戻る</a></p>
+    </body>
+    </html>
     """
 
 def is_login():
@@ -203,8 +240,8 @@ def user_checker(user):
 def home():
     if not is_login():
         return """
-        <h1>ログインしてください</h1>
-        <p><a href="/">→ログインする</a></p>
+        <h1>Please login</h1>
+        <p><a href="/">→Log in</a></p>
         """
 
     user_id = session.get('user_id')
@@ -530,7 +567,7 @@ def get_projects():
     cursor = conn.cursor()
 
     try:
-        cursor.execute("SELECT id, startDate, systemName, makeDay FROM projects")
+        cursor.execute("SELECT id, startDate, systemName, makeDay FROM projects where user_id = %s", (session.get('user_id'),) )
         projects_data = cursor.fetchall()
         projects_list = []
         for projectId, startDate, systemName, makeDay in projects_data:

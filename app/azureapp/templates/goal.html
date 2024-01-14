@@ -49,14 +49,12 @@
             <h3 class="title">＜作成したいシステム名＞</h3>
             <div class="input_space">
                 <input type="text" id="customText" name="customText" class="text-input"><br>
-                <input type="submit" value="確定" class="confirm">
             </div>
         </form>
         <form class="make-day">
             <h3 class="title">＜作成日数＞</h3>
             <div class="input_space">
                 <input type="text" id="customText" name="customText" class="text-input"><br>
-                <input type="submit" value="確定" class="confirm">
             </div>
         </form>
         <form class="custom">
@@ -70,7 +68,6 @@
                     <input type="text" id="functionText3" name="customText" class="text-input2"><br>
                 </div>
                 <button type="button" id="addButton" class="add-button">+</button>
-                <input type="submit" value="確定" class="confirm">
             </div>
         </form>
         <form class="use_lang_space">
@@ -204,14 +201,12 @@
             <h3 class="title">＜Name of the system you want to create＞</h3>
             <div class="input_space">
                 <input type="text" id="customText" name="customText" class="text-input"><br>
-                <input type="submit" value="確定" class="confirm">
             </div>
         </form>
         <form class="make-day">
             <h3 class="title">＜Creation days＞</h3>
             <div class="input_space">
                 <input type="text" id="customText" name="customText" class="text-input"><br>
-                <input type="submit" value="確定" class="confirm">
             </div>
         </form>
         <form class="custom">
@@ -225,7 +220,6 @@
                     <input type="text" id="functionText3" name="customText" class="text-input2"><br>
                 </div>
                 <button type="button" id="addButton" class="add-button">+</button>
-                <input type="submit" value="確定" class="confirm">
             </div>
         </form>
         <form class="use_lang_space">
@@ -323,6 +317,9 @@
     </div>
 </div>
 </div>
+<div id="loading" style="display:none;">
+  <div class="loader"></div>
+</div>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       // ラジオボタンの選択を監視する
@@ -403,148 +400,159 @@
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const createButton = document.querySelector('.create_button');
-
-        createButton.addEventListener('click', function() {
-            // カテゴリーの値を取得
-            const category = document.querySelector('form.Category input[type="radio"]:checked')?.value;
-
-            // システム名を取得
-            const systemName = document.querySelector('.system-name .text-input')?.value;
-
-            // 作成日数を取得
-            const makeDay = document.querySelector('.make-day .text-input')?.value;
-
-            // 具体的な機能を取得
-            const functions = [];
-            document.querySelectorAll('.custom .text-input2').forEach(function(input) {
-                functions.push(input.value);
-            });
-
-            // 使用する言語を取得
-            const languages = [];
-            document.querySelectorAll('.use_lang_space .lang:checked').forEach(function(checkbox) {
-                languages.push(checkbox.value);
-            });
-
-            // 使用するツール・プラットフォームを取得
-            const tools = [];
-            document.querySelectorAll('.use_lang .lang:checked').forEach(function(checkbox) {
-                tools.push(checkbox.value);
-            });
-
-            // コンソールに出力（デバッグ用）
-            console.log('カテゴリー:', category);
-            console.log('システム名:', systemName);
-            console.log('作成日数:', makeDay);
-            console.log('具体的な機能:', functions);
-            console.log('使用する言語:', languages);
-            console.log('使用するツール・プラットフォーム:', tools);
-            // 送信するデータを準備
-            const data = {
-                'language':"Japanese",
-                'category': category,
-                'systemName': systemName,
-                'makeDay': makeDay,
-                'functions': functions,
-                'languages': languages,
-                'tools': tools
-            };
-
-            // AJAXを使ってサーバーにデータを送信
-            fetch('/create_project', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-          })
-          .then(response => response.json())
-          .then(data => {
+      document.addEventListener('DOMContentLoaded', function() {
+          const createButton = document.querySelector('.create_button');
+  
+          createButton.addEventListener('click', function() {
+              // カテゴリーの値を取得
+              const category = document.querySelector('form.Category input[type="radio"]:checked')?.value;
+  
+              // システム名を取得
+              const systemName = document.querySelector('.system-name .text-input')?.value;
+  
+              // 作成日数を取得
+              const makeDay = document.querySelector('.make-day .text-input')?.value;
+  
+              // 具体的な機能を取得
+              const functions = [];
+              document.querySelectorAll('.custom .text-input2').forEach(function(input) {
+                  functions.push(input.value);
+              });
+  
+              // 使用する言語を取得
+              const languages = [];
+              document.querySelectorAll('.use_lang_space .lang:checked').forEach(function(checkbox) {
+                  languages.push(checkbox.value);
+              });
+  
+              // 使用するツール・プラットフォームを取得
+              const tools = [];
+              document.querySelectorAll('.use_lang .lang:checked').forEach(function(checkbox) {
+                  tools.push(checkbox.value);
+              });
+  
+              // コンソールに出力（デバッグ用）
+              console.log('カテゴリー:', category);
+              console.log('システム名:', systemName);
+              console.log('作成日数:', makeDay);
+              console.log('具体的な機能:', functions);
+              console.log('使用する言語:', languages);
+              console.log('使用するツール・プラットフォーム:', tools);
+              // 送信するデータを準備
+              const data = {
+                  'language':"Japanese",
+                  'category': category,
+                  'systemName': systemName,
+                  'makeDay': makeDay,
+                  'functions': functions,
+                  'languages': languages,
+                  'tools': tools
+              };
+  
+              loading.style.display = 'flex';
+  
+              // AJAXを使ってサーバーにデータを送信
+              fetch('/create_project', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+              // ローディング画面を非表示
+              loading.style.display = 'none';
+  
+              // レスポンスの処理
               console.log('Response:', data);
-              if (data.redirect
-        ) {
-        // リダイレクトが必要な場合、指定されたURLにリダイレクト
-        window.location.href = data.redirect_url;
-            } else {
-              alert('プロジェクトを作成できませんでした。もう一度作成して見てください' );
-            }
+              if (data.redirect) {
+                  window.location.href = data.redirect_url;
+              } else {
+                  alert('プロジェクトを作成できませんでした。もう一度作成して見てください');
+              }
+          })
+          .catch((error) => {
+          loading.style.display = 'none';
+          console.error('Error:', error);
+        });
+      });
+  });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const createButtonEng = document.querySelector('#English .create_button');
+        createButtonEng.addEventListener('click', function() {
+            // 英語版のカテゴリーの値を取得
+            const categoryEng = document.querySelector('#English .CategoryEng input[type="radio"]:checked')?.value;
+            // 英語版のシステム名を取得
+            const systemNameEng = document.querySelector('#English .system-name .text-input')?.value;
+            // 英語版の作成日数を取得
+            const makeDayEng = document.querySelector('#English .make-day .text-input')?.value;
+            // 英語版の具体的な機能を取得
+            const functionsEng = [];
+            document.querySelectorAll('#English .custom .text-input2').forEach(function(input) {
+                functionsEng.push(input.value);
+            });
+            // 英語版で使用する言語を取得
+            const languagesEng = [];
+            document
+    .querySelectorAll('#English .use_lang_space .lang:checked').forEach(function(checkbox) {
+    languagesEng.push(checkbox.value);
+    });
+        // 英語版で使用するツール・プラットフォームを取得
+        const toolsEng = [];
+        document.querySelectorAll('#English .use_lang .lang:checked').forEach(function(checkbox) {
+            toolsEng.push(checkbox.value);
+        });
+        // コンソールに出力（デバッグ用）
+        console.log('Category:', categoryEng);
+        console.log('System Name:', systemNameEng);
+        console.log('Creation Days:', makeDayEng);
+        console.log('Specific Functions:', functionsEng);
+        console.log('Languages Used:', languagesEng);
+        console.log('Tools/Platforms Used:', toolsEng);
+        // 送信するデータを準備
+        const dataEng = {
+            'language':"English",
+            'category': categoryEng,
+            'systemName': systemNameEng,
+            'makeDay': makeDayEng,
+            'functions': functionsEng,
+            'languages': languagesEng,
+            'tools': toolsEng
+        };
+  
+        loading.style.display = 'flex';
+        
+        // AJAXを使ってサーバーにデータを送信
+        fetch('/create_project', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataEng)
+        })
+        .then(response => response.json())
+        .then(data => {
+          // ローディング画面を非表示
+          loading.style.display = 'none';
+            console.log('Response:', data);
+            if (data.redirect
+          ) {
+          // リダイレクトが必要な場合、指定されたURLにリダイレクト
+          window.location.href = data.redirect_url;
+        } else {
+                alert('Could not create project. Please try creating it again' );
+              }
         })
         .catch((error) => {
-        console.error('Error:', error);
-      });
+          loading.style.display = 'none';
+            console.error('Error:', error);
+        });
     });
-});
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      const createButtonEng = document.querySelector('#English .create_button');
-      createButtonEng.addEventListener('click', function() {
-          // 英語版のカテゴリーの値を取得
-          const categoryEng = document.querySelector('#English .CategoryEng input[type="radio"]:checked')?.value;
-          // 英語版のシステム名を取得
-          const systemNameEng = document.querySelector('#English .system-name .text-input')?.value;
-          // 英語版の作成日数を取得
-          const makeDayEng = document.querySelector('#English .make-day .text-input')?.value;
-          // 英語版の具体的な機能を取得
-          const functionsEng = [];
-          document.querySelectorAll('#English .custom .text-input2').forEach(function(input) {
-              functionsEng.push(input.value);
-          });
-          // 英語版で使用する言語を取得
-          const languagesEng = [];
-          document
-  .querySelectorAll('#English .use_lang_space .lang:checked').forEach(function(checkbox) {
-  languagesEng.push(checkbox.value);
-  });
-      // 英語版で使用するツール・プラットフォームを取得
-      const toolsEng = [];
-      document.querySelectorAll('#English .use_lang .lang:checked').forEach(function(checkbox) {
-          toolsEng.push(checkbox.value);
-      });
-      // コンソールに出力（デバッグ用）
-      console.log('Category:', categoryEng);
-      console.log('System Name:', systemNameEng);
-      console.log('Creation Days:', makeDayEng);
-      console.log('Specific Functions:', functionsEng);
-      console.log('Languages Used:', languagesEng);
-      console.log('Tools/Platforms Used:', toolsEng);
-      // 送信するデータを準備
-      const dataEng = {
-          'language':"English",
-          'category': categoryEng,
-          'systemName': systemNameEng,
-          'makeDay': makeDayEng,
-          'functions': functionsEng,
-          'languages': languagesEng,
-          'tools': toolsEng
-      };
-      // AJAXを使ってサーバーにデータを送信
-      fetch('/create_project', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(dataEng)
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log('Response:', data);
-          if (data.redirect
-        ) {
-        // リダイレクトが必要な場合、指定されたURLにリダイレクト
-        window.location.href = data.redirect_url;
-      } else {
-              alert('Could not create project. Please try creating it again' );
-            }
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-      });
-  });
-  });
-</script>
+    });
+  </script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
