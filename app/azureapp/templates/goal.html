@@ -601,28 +601,24 @@
     });
   </script>
   
-  <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
-    // 言語切り替えボタンの要素を取得（両方の要素を取得）
     const switchLangButtons = document.querySelectorAll('.language-switch button');
-    // 各ボタンのクリックイベントを監視
     switchLangButtons.forEach(function(button) {
         button.addEventListener('click', function() {
-            // 日本語と英語の要素を取得
             const japaneseContent = document.getElementById('Japanese');
             const englishContent = document.getElementById('English');
-            // 表示・非表示の切り替え
-            if (japaneseContent.style.display === 'none' || japaneseContent.style.display === '') {
-              japaneseContent.style.display = 'block';
-              englishContent.style.display = 'none';
-          } else {
-              japaneseContent.style.display = 'none';
-              englishContent.style.display = 'block';
-          }
+            if (englishContent.style.display === 'none') {
+                englishContent.style.display = 'block';
+                japaneseContent.style.display = 'block';
+            } else {
+                englishContent.style.display = 'none';
+                japaneseContent.style.display = 'block';
+            }
         });
     });
-  });
-  </script>
+});
+</script>
   <script>
     document.getElementById('send-button').addEventListener('click', function() {
       var userInput = document.getElementById('user-input').value;

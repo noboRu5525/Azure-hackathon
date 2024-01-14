@@ -14946,3 +14946,162 @@ Day 56-90:
 [pid: 7|app: 0|req: 19/19] 172.18.0.1 () {56 vars in 1084 bytes} [Sun Jan 14 04:39:46 2024] GET /home => generated 12353 bytes in 34 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
 [pid: 7|app: 0|req: 20/20] 172.18.0.1 () {58 vars in 1075 bytes} [Sun Jan 14 04:39:47 2024] GET /static/css/style2.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 185 bytes (0 switches on core 0)
 [pid: 7|app: 0|req: 21/21] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 04:39:47 2024] GET /static/js/script.js => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+*** Starting uWSGI 2.0.19.1 (64bit) on [Sun Jan 14 05:08:22 2024] ***
+compiled with version: 10.2.1 20210110 on 10 January 2024 16:01:57
+os: Linux-5.15.133.1-microsoft-standard-WSL2 #1 SMP Thu Oct 5 21:02:42 UTC 2023
+nodename: f9e19e7aa6a8
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 12
+current working directory: /app
+detected binary path: /usr/local/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your memory page size is 4096 bytes
+detected max file descriptor number: 1048576
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to UNIX address /tmp/uwsgi.sock fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.9.7 (default, Oct 13 2021, 09:00:49)  [GCC 10.2.1 20210110]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x55bcedceafb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 145840 bytes (142 KB) for 1 cores
+*** Operational MODE: single process ***
+WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x55bcedceafb0 pid: 1 (default app)
+mountpoint  already configured. skip.
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 1)
+spawned uWSGI worker 1 (pid: 7, cores: 1)
+[pid: 7|app: 0|req: 1/1] 172.18.0.1 () {60 vars in 1119 bytes} [Sun Jan 14 05:08:33 2024] GET / => generated 15449 bytes in 87 msecs (HTTP/1.1 200) 2 headers in 82 bytes (2 switches on core 0)
+[pid: 7|app: 0|req: 2/2] 172.18.0.1 () {58 vars in 1012 bytes} [Sun Jan 14 05:08:33 2024] GET /assets/js/color-modes.js => generated 207 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 3/3] 172.18.0.1 () {62 vars in 1149 bytes} [Sun Jan 14 05:08:33 2024] GET /static/css/bootstrap.min.css => generated 0 bytes in 25 msecs (HTTP/1.1 304) 4 headers in 194 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 4/4] 172.18.0.1 () {62 vars in 1131 bytes} [Sun Jan 14 05:08:33 2024] GET /static/css/style1.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 5/5] 172.18.0.1 () {58 vars in 1000 bytes} [Sun Jan 14 05:08:33 2024] GET /product.css => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 6/6] 172.18.0.1 () {58 vars in 1040 bytes} [Sun Jan 14 05:08:33 2024] GET /assets/dist/js/bootstrap.bundle.min.js => generated 207 bytes in 2 msecs (HTTP/1.1 404) 2 headers in 87 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 7/7] 172.18.0.1 () {58 vars in 1107 bytes} [Sun Jan 14 05:08:35 2024] GET /login => generated 2028 bytes in 39 msecs (HTTP/1.1 200) 2 headers in 81 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 8/8] 172.18.0.1 () {58 vars in 1058 bytes} [Sun Jan 14 05:08:35 2024] GET /static/js/script.js => generated 0 bytes in 25 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 9/9] 172.18.0.1 () {58 vars in 1073 bytes} [Sun Jan 14 05:08:35 2024] GET /static/css/style.css => generated 0 bytes in 26 msecs (HTTP/1.1 304) 4 headers in 183 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 10/10] 172.18.0.1 () {66 vars in 1301 bytes} [Sun Jan 14 05:08:41 2024] POST /check_login => generated 197 bytes in 64 msecs (HTTP/1.1 302) 5 headers in 207 bytes (1 switches on core 0)
+[(1, '食材管理アプリ'), (2, '食材管理アプリ'), (3, '食材管理アプリ')]
+[pid: 7|app: 0|req: 11/11] 172.18.0.1 () {60 vars in 1141 bytes} [Sun Jan 14 05:08:41 2024] GET /home => generated 12353 bytes in 54 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 12/12] 172.18.0.1 () {58 vars in 1075 bytes} [Sun Jan 14 05:08:41 2024] GET /static/css/style2.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 185 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 13/13] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 05:08:41 2024] GET /static/js/script.js => generated 0 bytes in 17 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 14/14] 172.18.0.1 () {58 vars in 1109 bytes} [Sun Jan 14 05:08:48 2024] GET /goal => generated 30220 bytes in 26 msecs (HTTP/1.1 200) 2 headers in 82 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 15/15] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 05:08:48 2024] GET /static/js/script.js => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 16/16] 172.18.0.1 () {58 vars in 1069 bytes} [Sun Jan 14 05:08:48 2024] GET /static/css/goal.css => generated 0 bytes in 14 msecs (HTTP/1.1 304) 4 headers in 181 bytes (0 switches on core 0)
+<class 'list'>
+['Python', 'HTMI/CSS', 'javascript', 'R']
+['Python', 'HTMI/CSS', 'javascript', 'R', 'GitHub', 'Docker', 'MySQL']
+<class 'str'>
+['Python', 'HTMI/CSS', 'javascript', 'R']
+['Python', 'HTMI/CSS', 'javascript', 'R', 'GitHub', 'Docker', 'MySQL']
+Title: Efficient Learning Plan for Developing a Food Management App
+
+Goal:
+To develop a food management app with the specific feature of identifying the contents of the refrigerator through image recognition.
+
+Duration: 90 days (1 week = 7 days)
+
+Languages and Tools:
+- Python
+- HTML/CSS
+- JavaScript
+- R
+- GitHub
+- Docker
+- MySQL
+
+Learning Plan:
+
+Week 1:
+- Research and familiarize yourself with the basics of Python and its image recognition libraries.
+- Learn how to set up a development environment using Python.
+
+Week 2-3:
+- Dive deeper into Python and explore image recognition libraries such as OpenCV and TensorFlow.
+- Implement simple image recognition tasks using sample images.
+
+Week 4:
+- Start learning HTML/CSS and JavaScript for frontend development.
+- Create a basic user interface for the app.
+
+Week 5-6:
+- Integrate the image recognition functionality with the frontend using JavaScript.
+- Test the integration and make necessary improvements.
+
+Week 7-8:
+- Explore R and its capabilities in statistical analysis and data visualization.
+- Study how R can be used for analyzing and reporting the data collected by the app.
+
+Week 9-10:
+- Begin integrating R scripts with the app to provide data analysis features.
+- Test and refine the data analysis functionalities.
+
+Week 11-12:
+- Set up a MySQL database to store the app's data.
+- Learn how to interact with the database using Python.
+
+Week 13-14:
+- Implement database functionality within the app to store and retrieve user data.
+- Test the database integration and make necessary improvements.
+
+Week 15:
+- Set up a GitHub repository to manage version control for the project.
+- Learn how to use Git commands for tracking changes and collaborating with others.
+
+Week 16-17:
+- Containerize the app using Docker for easier deployment and scalability.
+- Learn Docker concepts and how to create Docker files.
+
+Week 18-19:
+- Implement authentication and user management features for the app.
+- Test the functionality and ensure data security.
+
+Week 20-21:
+- Perform thorough testing and identify and fix any potential issues or bugs.
+- Optimize the app's performance for better user experience.
+
+Week 22-23:
+- Create documentation for the app, including installation guides and user manuals.
+- Prepare for deployment.
+
+Week 24:
+- Finalize any remaining tasks and perform a final round of testing.
+- Prepare for the app's launch.
+
+Please note that this plan allows for flexibility and includes some buffer time in case of unexpected delays or additional learning requirements.
+Day 1-3: Learning Python Basics - Learn the basic concepts of Python syntax, data types, and control structures. - Set up the Python development environment.
+Day 4-6: Familiarizing with Image Recognition Libraries - Research and explore different image recognition libraries such as OpenCV and TensorFlow. - Understand the capabilities and features of each library.
+Day 7-11: Implementing Simple Image Recognition Tasks - Practice implementing image recognition tasks using sample images. - Experiment with different algorithms and techniques to improve accuracy.
+Day 12-15: Learning HTML/CSS and JavaScript for Frontend Development - Study the basics of HTML/CSS and JavaScript. - Understand the role of each language in creating a user interface.
+Day 16-18: Creating a Basic User Interface - Design and develop a basic user interface for the app using HTML/CSS and JavaScript. - Ensure a smooth and intuitive user experience.
+Day 19-23: Integrating Image Recognition Functionality with Frontend - Integrate the image recognition functionality developed in Python with the frontend using JavaScript. - Test the integration and resolve any compatibility issues.
+Day 24-28: Exploring R for Statistical Analysis and Data Visualization - Learn the basics of R and its capabilities in statistical analysis and data visualization. - Understand how R can be used to analyze and report data collected by the app.
+Day 29-33: Integrating R Scripts for Data Analysis - Start integrating R scripts with the app to provide data analysis features. - Test and refine the data analysis functionalities to ensure accuracy.
+Day 34-38: Setting up a MySQL Database - Learn how to set up and interact with a MySQL database using Python. - Design the database schema for storing app data efficiently.
+Day 39-43: Implementing Database Functionality - Develop the backend functionality to store and retrieve user data from the MySQL database. - Test the database integration and resolve any issues.
+Day 44-47: Setting up a GitHub Repository - Create a GitHub repository and set up version control for the project. - Learn and practice using Git commands for tracking changes and collaborating with others.
+Day 48-52: Containerizing the App using Docker - Study Docker concepts and how to create Docker files. - Containerize the app for easier deployment, scalability, and management.
+Day 53-57: Implementing Authentication and User Management Features - Develop the necessary features for user authentication and management. - Ensure data security and privacy.
+Day 58-62: Testing and Bug Fixing - Conduct thorough testing of the app's functionality. - Identify and fix any bugs or issues that arise. 
+Day 63-67: Performance Optimization - Analyze and identify areas of the app that can be optimized for better performance. - Implement optimizations to enhance the user experience.
+Day 68-71: Documentation - Create comprehensive documentation for the app. - Include installation guides, user manuals, and any other relevant information.
+Day 72-75: Final Testing and Refinement - Perform a final round of testing to ensure all features work as intended. - Make any necessary refinements or improvements based on feedback.
+Day 76-79: Preparing for Deployment - Prepare the app for deployment in a production environment. - Perform any necessary configurations or setup.
+Day 80-84: Finalizing Tasks and Launch Preparation - Complete any remaining tasks or features. - Prepare for the official launch of the app.
+Day 85-90: Buffer Time and Final Adjustments - Allow some buffer time for unexpected delays or additional learning requirements. - Make final adjustments and improvements based on feedback or user testing.
+{'Day 1-3': {'Learning Python Basics': ['Learn the basic concepts of Python syntax, data types, and control structures.', 'Set up the Python development environment.']}, 'Day 4-6': {'Familiarizing with Image Recognition Libraries': ['Research and explore different image recognition libraries such as OpenCV and TensorFlow.', 'Understand the capabilities and features of each library.']}, 'Day 7-11': {'Implementing Simple Image Recognition Tasks': ['Practice implementing image recognition tasks using sample images.', 'Experiment with different algorithms and techniques to improve accuracy.']}, 'Day 12-15': {'Learning HTML/CSS and JavaScript for Frontend Development': ['Study the basics of HTML/CSS and JavaScript.', 'Understand the role of each language in creating a user interface.']}, 'Day 16-18': {'Creating a Basic User Interface': ['Design and develop a basic user interface for the app using HTML/CSS and JavaScript.', 'Ensure a smooth and intuitive user experience.']}, 'Day 19-23': {'Integrating Image Recognition Functionality with Frontend': ['Integrate the image recognition functionality developed in Python with the frontend using JavaScript.', 'Test the integration and resolve any compatibility issues.']}, 'Day 24-28': {'Exploring R for Statistical Analysis and Data Visualization': ['Learn the basics of R and its capabilities in statistical analysis and data visualization.', 'Understand how R can be used to analyze and report data collected by the app.']}, 'Day 29-33': {'Integrating R Scripts for Data Analysis': ['Start integrating R scripts with the app to provide data analysis features.', 'Test and refine the data analysis functionalities to ensure accuracy.']}, 'Day 34-38': {'Setting up a MySQL Database': ['Learn how to set up and interact with a MySQL database using Python.', 'Design the database schema for storing app data efficiently.']}, 'Day 39-43': {'Implementing Database Functionality': ['Develop the backend functionality to store and retrieve user data from the MySQL database.', 'Test the database integration and resolve any issues.']}, 'Day 44-47': {'Setting up a GitHub Repository': ['Create a GitHub repository and set up version control for the project.', 'Learn and practice using Git commands for tracking changes and collaborating with others.']}, 'Day 48-52': {'Containerizing the App using Docker': ['Study Docker concepts and how to create Docker files.', 'Containerize the app for easier deployment, scalability, and management.']}, 'Day 53-57': {'Implementing Authentication and User Management Features': ['Develop the necessary features for user authentication and management.', 'Ensure data security and privacy.']}, 'Day 58-62': {'Testing and Bug Fixing': ["Conduct thorough testing of the app's functionality.", 'Identify and fix any bugs or issues that arise.']}, 'Day 63-67': {'Performance Optimization': ['Analyze and identify areas of the app that can be optimized for better performance.', 'Implement optimizations to enhance the user experience.']}, 'Day 68-71': {'Documentation': ['Create comprehensive documentation for the app.', 'Include installation guides, user manuals, and any other relevant information.']}, 'Day 72-75': {'Final Testing and Refinement': ['Perform a final round of testing to ensure all features work as intended.', 'Make any necessary refinements or improvements based on feedback.']}, 'Day 76-79': {'Preparing for Deployment': ['Prepare the app for deployment in a production environment.', 'Perform any necessary configurations or setup.']}, 'Day 80-84': {'Finalizing Tasks and Launch Preparation': ['Complete any remaining tasks or features.', 'Prepare for the official launch of the app.']}, 'Day 85-90': {'Buffer Time and Final Adjustments': ['Allow some buffer time for unexpected delays or additional learning requirements.', 'Make final adjustments and improvements based on feedback or user testing.']}}
+[pid: 7|app: 0|req: 17/17] 172.18.0.1 () {60 vars in 1044 bytes} [Sun Jan 14 05:09:35 2024] POST /create_project => generated 3900 bytes in 13413 msecs (HTTP/1.1 200) 3 headers in 87 bytes (1 switches on core 0)
+[(1, '食材管理アプリ'), (2, '食材管理アプリ'), (3, '食材管理アプリ'), (4, '食材管理アプリ')]
+[pid: 7|app: 0|req: 18/18] 172.18.0.1 () {56 vars in 1084 bytes} [Sun Jan 14 05:09:48 2024] GET /home => generated 12581 bytes in 36 msecs (HTTP/1.1 200) 3 headers in 96 bytes (1 switches on core 0)
+[pid: 7|app: 0|req: 19/19] 172.18.0.1 () {58 vars in 1075 bytes} [Sun Jan 14 05:09:48 2024] GET /static/css/style2.css => generated 0 bytes in 16 msecs (HTTP/1.1 304) 4 headers in 185 bytes (0 switches on core 0)
+[pid: 7|app: 0|req: 20/20] 172.18.0.1 () {58 vars in 1057 bytes} [Sun Jan 14 05:09:48 2024] GET /static/js/script.js => generated 0 bytes in 12 msecs (HTTP/1.1 304) 4 headers in 184 bytes (0 switches on core 0)
