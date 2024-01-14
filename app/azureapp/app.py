@@ -1,10 +1,10 @@
 import os
 from openai import AzureOpenAI
 from flask import Flask,render_template, request, redirect, url_for, session, jsonify, current_app
-import mysql.connector
+import mysql.connector, random
 from datetime import timedelta, datetime
 import json
-from task_generation import make_task, make_task2, make_task3
+from task_generation import make_task, make_task2, make_task3, extract_languages_from_ai_response, extract_all_languages
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -26,6 +26,12 @@ config = {
         'port': '3306',
         'database': 'records',
         }
+
+def convert_days_range_to_dates(days_range, start_date):
+    start_day, end_day = [int(day) for day in days_range.replace('日目', '').split('-')]
+    start_date = start_date + timedelta(days=start_day - 1)
+    end_date = start_date + timedelta(days=end_day - 1)
+    return start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d')
 
 #生成AIの作成した文章をさらに整える
 def formatting(text_data, text_lang):
@@ -49,8 +55,8 @@ def formatting(text_data, text_lang):
 
 def advice(text):
     messages = [
-            {"role": "system", "content": "Modify the text structure as per user's condition"},
-            {"role": "user", "content": f"{text} \n Please advise me on this task."}
+            {"role": "system", "content": "タスクについてアドバイスをしてください"},
+            {"role": "user", "content": f"{text} \n このタスクはどのように取り組むべきでしょうか？"}
         ]
     # Call the function with the prepared messages
     response = client.chat.completions.create(
@@ -200,17 +206,56 @@ def home():
         <h1>ログインしてください</h1>
         <p><a href="/">→ログインする</a></p>
         """
-    a=projects()
-    print(a)
-    if len(a) == 0 :
-        return redirect('/goal')
-        
-    return render_template('home.html', username=get_user(), projects=projects())
+
+    user_id = session.get('user_id')
+
+    # データベースに接続して、ユーザーに関連するタスクとその詳細を取得
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT t.id, t.days_range, t.task_name, td.detail
+        FROM tasks t
+        JOIN task_details td ON t.id = td.task_id
+        JOIN learning_plans lp ON t.plan_id = lp.id
+        WHERE lp.user_id = %s
+    ''', (user_id,))
+    raw_tasks = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    # タスクデータを整理
+    tasks = {}
+    for task_id, days_range, task_name, detail in raw_tasks:
+        if task_id not in tasks:
+            tasks[task_id] = {
+                'task_id': task_id,
+                'days_range': days_range,
+                'task_name': task_name,
+                'details': []
+            }
+        tasks[task_id]['details'].append(detail)
+    
+    return render_template('home.html', username=get_user(), projects=projects(), tasks=tasks.values())
 
 #Create Newボタンを押したときの処理
 @app.route('/goal')
 def goal():
     return render_template('goal.html')
+
+#プロジェクトを押したときの処理
+@app.route('/projects')
+def projects():
+    return render_template('projects.html')
+
+#FAQを押したときの処理
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+#Contactを押したときの処理
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 #目標設定
 @app.route('/create_project', methods=['POST'])
@@ -438,6 +483,7 @@ def send_card_detail():
     advice_txet = advice(card_detail)
     # card_detail を処理
     return jsonify({'status': 'success', 'text': advice_txet})
+
 @app.route('/get_ai_response', methods=['POST'])
 def get_ai_response():
     data = request.json
@@ -467,6 +513,144 @@ def get_ai_response_eng():
     )
     ai_response = response.choices[0].message.content
     return jsonify({'response': ai_response})
+
+#プロジェクトごとに色を割り当てる
+def id_to_color(project_id):
+    # プロジェクトのIDを基に一貫した色を生成するロジック
+    # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
+    hash_value = hash(str(project_id))
+    # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
+    color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
+    return color_code
+
+#プロジェクト名
+@app.route('/get_projects')
+def get_projects():
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute("SELECT id, startDate, systemName, makeDay FROM projects")
+        projects_data = cursor.fetchall()
+        projects_list = []
+        for projectId, startDate, systemName, makeDay in projects_data:
+            color = id_to_color(projectId)  # IDに基づいて色を生成
+            end_date = startDate + timedelta(days=makeDay)
+            projects_list.append({
+                "id": projectId,
+                "title": systemName,
+                "start": startDate.strftime('%Y-%m-%d'),
+                "end": end_date.strftime('%Y-%m-%d'),
+                "allDay": True,
+                "color": color,
+            })
+        return jsonify(projects_list)
+    except Exception as e:
+        print(e)
+        return str(e)
+    finally:
+        cursor.close()
+        conn.close()
+        
+@app.route('/delete_task/<int:task_id>', methods=['POST'])
+def delete_task(task_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': 'ログインが必要です。'}), 403
+
+    # データベースに接続
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    
+    try:
+        # ユーザーIDとタスクIDを確認してタスクが存在するかを検証
+        cur.execute('''
+            SELECT t.id FROM tasks t
+            JOIN learning_plans lp ON t.plan_id = lp.id
+            WHERE t.id = %s AND lp.user_id = %s
+        ''', (task_id, user_id))
+        task = cur.fetchone()
+
+        if not task:
+            return jsonify({'status': 'error', 'message': 'タスクが見つかりません。'}), 404
+
+        # タスクを削除
+        cur.execute('DELETE FROM tasks WHERE id = %s', (task_id,))
+        conn.commit()
+
+        return jsonify({'status': 'success', 'message': 'タスクが削除されました。'})
+    except mysql.connector.Error as err:
+        conn.rollback()
+        print(f"Error: {err}")
+        return jsonify({'status': 'error', 'message': '内部エラーが発生しました。'}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+@app.route('/auto_select_language', methods=['POST'])
+def auto_select_language():
+    # リクエストからJSONデータを取得
+    data = request.get_json()
+
+    # データが正しく受け取れたかどうかをチェック
+    if not data or 'functions' not in data:
+        return jsonify({'status': 'error', 'message': '無効なデータ'}), 400
+
+    # 機能のリストを変数に格納
+    functions = data['functions']
+
+    print(functions)
+
+    response = client.chat.completions.create(
+        model="GPT35TURBO16K", # model = "deployment_name".
+        messages=[
+            {"role": "system", "content": "適切なプログラム言語を考案する"},
+            {"role": "user", "content": f"{functions}\n上記の機能を実装するために最適なプログラム言語を、Python, Java, C/C++, C#, Swift, PHP, Ruby, HTML/CSS, Javascript, Kotlin, GO, R, SQLの中から選んでください。複数の言語が必要な場合は組み合わせを提案してください。同じ役割である言語はどちらか1つだけ選択するようにしてください"},
+        ]
+    )
+    ai_response = response.choices[0].message.content
+
+    # AIの応答から使用言語を抽出
+    use_lang = extract_languages_from_ai_response(ai_response)
+
+    # 応答から言語が見つからない場合は、全ての言語を抽出
+    if not use_lang:
+        use_lang = extract_all_languages(ai_response)
+        if not use_lang:
+            return jsonify({'message': '使用言語を生成できませんでした'})
+    
+    # 使用言語のリストをJSONで返す
+    return jsonify({'languages': use_lang})
+
+#タスクの取得
+    @app.route('/get_tasks')
+    def get_tasks():
+        conn = mysql.connector.connect(**config)
+        cursor = conn.cursor()
+
+        try:
+            cursor.execute("SELECT id, days_range, task_name FROM tasks")
+            tasks_data = cursor.fetchall()
+            tasks_list = []
+            for taskId, daysRange, taskName in tasks_data:
+                start_date, end_date = daysRange.split(' to ')
+                tasks_list.append({
+                    "id": taskId,
+                    "title": taskName,
+                    "start": start_date,
+                    "end": end_date,
+                    "allDay": True
+                })
+            print(tasks_list)
+            print(type(tasks_list))
+            return jsonify(tasks_list)
+        except Exception as e:
+            print(e)
+            return str(e)
+        finally:
+            cursor.close()
+            conn.close()
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

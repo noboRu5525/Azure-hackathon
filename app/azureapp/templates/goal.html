@@ -74,7 +74,10 @@
             </div>
         </form>
         <form class="use_lang_space">
-            <h3 class="title">＜使用する言語＞</h3>
+            <div class="po">
+              <h3 class="title">＜使用する言語＞</h3>
+              <button class="create_button2">自動選択する</button>
+            </div>
             <div class="use_lang">
                 <label>
                     <input type="checkbox" name="option1" value="Python" class="lang">Python
@@ -83,10 +86,10 @@
                     <input type="checkbox" name="option2" value="Java" class="lang">Java
                   </label><br>
                   <label>
-                    <input type="checkbox" name="option3" value="C_Cpp" class="lang">C / C++
+                    <input type="checkbox" name="option3" value="C/C++" class="lang">C / C++
                   </label><br>
                   <label>
-                    <input type="checkbox" name="option4" value="CSharp" class="lang">C#
+                    <input type="checkbox" name="option4" value="C#" class="lang">C#
                   </label><br>
                   <label>
                     <input type="checkbox" name="option5" value="Swift" class="lang">Swift
@@ -107,13 +110,13 @@
                       <input type="checkbox" name="option4" value="Kotlin" class="lang">Kotlin
                     </label><br>
                     <label>
-                      <input type="checkbox" name="option5" value="GO言語" class="lang">GO言語
+                      <input type="checkbox" name="option5" value="GO" class="lang">GO言語
                     </label><br>
                     <label>
                       <input type="checkbox" name="option6" value="R" class="lang">R言語
                     </label><br>
                     <label>
-                        <input type="checkbox" name="option6" value="R" class="lang">SQL言語
+                        <input type="checkbox" name="option6" value="SQL" class="lang">SQL言語
                       </label><br>
             </div>
           </form>
@@ -164,7 +167,7 @@
           <button class="create_button">プロジェクトを作成</button>
     </div>
     <!--英語用に切り替える-->
-  <div class="model_window_space" id="English" style="display: none;">
+  <div class="model_window_space" id="English">
     <div class="language-switch">
         <button id="switch-lang">English / 日本語</button>
     </div>
@@ -226,7 +229,10 @@
             </div>
         </form>
         <form class="use_lang_space">
-            <h3 class="title">＜Language used＞</h3>
+            <div class="po">
+              <h3 class="title">＜Language used＞</h3>
+              <button class="create_button2">Automatically select</button>
+            </div>
             <div class="use_lang">
                 <label>
                     <input type="checkbox" name="option1" value="Python" class="lang">Python
@@ -235,10 +241,10 @@
                     <input type="checkbox" name="option2" value="Java" class="lang">Java
                   </label><br>
                   <label>
-                    <input type="checkbox" name="option3" value="C_Cpp" class="lang">C / C++
+                    <input type="checkbox" name="option3" value="C/C++" class="lang">C / C++
                   </label><br>
                   <label>
-                    <input type="checkbox" name="option4" value="CSharp" class="lang">C#
+                    <input type="checkbox" name="option4" value="C#" class="lang">C#
                   </label><br>
                   <label>
                     <input type="checkbox" name="option5" value="Swift" class="lang">Swift
@@ -259,13 +265,13 @@
                       <input type="checkbox" name="option4" value="Kotlin" class="lang">Kotlin
                     </label><br>
                     <label>
-                      <input type="checkbox" name="option5" value="GO言語" class="lang">GO
+                      <input type="checkbox" name="option5" value="GO" class="lang">GO
                     </label><br>
                     <label>
-                      <input type="checkbox" name="option6" value="R" class="lang">R言語
+                      <input type="checkbox" name="option6" value="R" class="lang">R
                     </label><br>
                     <label>
-                        <input type="checkbox" name="option6" value="R" class="lang">SQL
+                        <input type="checkbox" name="option6" value="SQL" class="lang">SQL
                       </label><br>
             </div>
           </form>
@@ -331,9 +337,11 @@
               switch (this.value) {
                   case 'option1':
                       document.getElementById('category1').style.display = '';
+                      alert('現在作成中です。現在は、プログラム開発のみ利用できます。');
                       break;
                   case 'option2':
                       document.getElementById('category2').style.display = '';
+                      alert('現在作成中です。現在は、プログラム開発のみ利用できます。');
                       break;
                   case 'option3':
                       document.getElementById('category3').style.display = '';
@@ -356,9 +364,11 @@
               switch (this.value) {
                   case 'option1':
                       document.querySelector('#English .task').style.display = '';
+                      alert('Currently under construction. Only program development is available now.');
                       break;
                   case 'option2':
                       document.querySelector('#English .qualification').style.display = '';
+                      alert('Currently under construction. Only program development is available now.');
                       break;
                   case 'option3':
                       document.querySelector('#English .development').style.display = '';
@@ -457,10 +467,9 @@
         ) {
         // リダイレクトが必要な場合、指定されたURLにリダイレクト
         window.location.href = data.redirect_url;
-        } else {
-        // エラーメッセージの処理
-        console.error('Error:', data.message);
-        }
+            } else {
+              alert('プロジェクトを作成できませんでした。もう一度作成して見てください' );
+            }
         })
         .catch((error) => {
         console.error('Error:', error);
@@ -468,7 +477,6 @@
     });
 });
 </script>
-
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       const createButtonEng = document.querySelector('#English .create_button');
@@ -527,10 +535,9 @@
         ) {
         // リダイレクトが必要な場合、指定されたURLにリダイレクト
         window.location.href = data.redirect_url;
-        } else {
-        // エラーメッセージの処理
-        console.error('Error:', data.message);
-        }
+      } else {
+              alert('Could not create project. Please try creating it again' );
+            }
       })
       .catch((error) => {
           console.error('Error:', error);
@@ -684,5 +691,97 @@ chatArea.appendChild(userDiv);
 }
 });
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // "自動選択する"ボタンのクリックイベントを監視
+    const autoSelectButton = document.querySelector('.create_button2');
+    autoSelectButton.addEventListener('click', function(event) {
+        event.preventDefault(); // フォームの自動送信を防止
+
+        // 機能の入力欄からデータを取得
+        const functions = [];
+        document.querySelectorAll('.custom .text-input2').forEach(function(input) {
+            if(input.value.trim() !== '') {
+                functions.push(input.value.trim());
+            }
+        });
+
+        // データをJSON形式に整形
+        const data = {
+            'functions': functions
+        };
+
+        // FlaskのエンドポイントにデータをPOSTリクエストで送信
+        fetch('/auto_select_language', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // 応答に基づいてチェックボックスを自動選択
+            const langCheckboxes = document.querySelectorAll('.use_lang .lang');
+            langCheckboxes.forEach(checkbox => {
+                // チェックボックスの値が応答に含まれる言語のリストにあればチェックする
+                if(data.languages.includes(checkbox.value)) {
+                    checkbox.checked = true;
+                } else {
+                    checkbox.checked = false;
+                }
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 英語版の "自動選択する" ボタンのクリックイベントを監視
+    const autoSelectButtonEng = document.querySelector('#English .create_button2');
+    autoSelectButtonEng.addEventListener('click', function(event) {
+        event.preventDefault(); // フォームの自動送信を防止
+
+        // 英語版の機能の入力欄からデータを取得
+        const functionsEng = [];
+        document.querySelectorAll('#English .custom .text-input2').forEach(function(input) {
+            if(input.value.trim() !== '') {
+                functionsEng.push(input.value.trim());
+            }
+        });
+
+        // データをJSON形式に整形
+        const dataEng = {
+            'functions': functionsEng
+        };
+
+        // FlaskのエンドポイントにデータをPOSTリクエストで送信
+        fetch('/auto_select_language', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataEng)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // 応答に基づいて英語版のチェックボックスを自動選択
+            const langCheckboxesEng = document.querySelectorAll('#English .use_lang .lang');
+            langCheckboxesEng.forEach(checkbox => {
+                // チェックボックスの値が応答に含まれる言語のリストにあればチェックする
+                if(data.languages.includes(checkbox.value)) {
+                    checkbox.checked = true;
+                } else {
+                    checkbox.checked = false;
+                }
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    });
+});
+</script>
+
 </body>
 </html>

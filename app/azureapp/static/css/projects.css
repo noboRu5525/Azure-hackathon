@@ -1,0 +1,46 @@
+body {
+    font-family: 'Arial', sans-serif;
+    color: white; /* テキストの色を白に設定 */
+    height: 100vh; /* ビューポートの高さに合わせる */
+    display: flex; /* Flexboxを使用 */
+    align-items: center; /* 縦方向の中央揃え */
+    justify-content: center; /* 横方向の中央揃え */
+}
+
+/* カードスタイル */
+.container-fluid{
+
+}
+.col-md-6 {
+    background-color: #f8f9fa; /* カードの背景色 */
+    border: 1px solid #e0e0e0; /* カードの境界線 */
+    border-radius: 5px; /* カードの角の丸み */
+    padding: 20px; /* カード内の余白 */
+    margin-bottom: 20px; /* カード間の間隔 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* カードの影 */
+    height:50vh
+}
+.col-md-12 {
+    background-color: #f8f9fa; /* カードの背景色 */
+    border: 1px solid #e0e0e0; /* カードの境界線 */
+    border-radius: 5px; /* カードの角の丸み */
+    padding: 20px; /* カード内の余白 */
+    margin-bottom: 20px; /* カード間の間隔 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* カードの影 */
+    height:30vh
+    style="display: flex; flex-direction: column;
+    border-left: 1px solid #000000; /* 左側に黒の1ピクセルの境界線 */
+    border-right: 1px solid #000000; /* 右側に黒の1ピクセルの境界線 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* ボックスに影を追加 */
+    padding: 20px;
+}
+.col-md-12 {
+    border-left: 1px solid #000000; /* 左側に黒の1ピクセルの境界線 */
+    border-right: 1px solid #000000; /* 右側に黒の1ピクセルの境界線 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* ボックスに影を追加 */
+    padding: 20px;
+}
+
+/* テーブルスタイリング - Bootstrapのデフォルトスタイルを使用 */
+
+/* その他のスタイリング（必要に応じて追加） */

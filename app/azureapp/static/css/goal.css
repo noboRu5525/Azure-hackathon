@@ -172,3 +172,16 @@ ul {
     overflow-y: auto; /* 縦方向のスクロールを有効にする */
     margin-bottom: 10px; /* 入力エリアとの間に余白を持たせる */
   }
+.use_lang_space{
+    position: relative;
+}
+.create_button2{
+    position: absolute;
+    width: auto;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 20%;
+    background-color: #202421;
+    border-radius: 20px 20px 20px 20px;
+    color: #F0F4FA;
+}

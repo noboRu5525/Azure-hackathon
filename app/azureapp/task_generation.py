@@ -45,7 +45,6 @@ def make_task2(text_data):
     if not tasks:
         return False
     return tasks
-
 def make_task3(text_data):
     # 正規表現パターンの更新
     date_pattern = r"(\d+日目から\d+日目):\s*(.+?)\n(- .+?)(?=\n\d+日目から\d+日目|\Z)"
@@ -57,6 +56,25 @@ def make_task3(text_data):
         details = [detail.strip()[2:].strip() for detail in detail_text.split("\n") if detail.strip()]
         tasks[date] = {task: details}
     return tasks
+def extract_languages_from_ai_response(ai_response):
+    # プログラム言語のリスト
+    languages = ['Python', 'Java', 'C/C++', 'C#', 'Swift', 'PHP', 'Ruby', 'HTML/CSS', 'Javascript', 'Kotlin', 'GO', 'R', 'SQL']
+    # 最後の文を取得
+    last_sentence = ai_response.strip().split('\n')[-1]
+    # リストに格納する言語を抽出
+    extracted_languages = [lang for lang in languages if lang in last_sentence]
+    return extracted_languages
+def extract_all_languages(text):
+    # 定義されたプログラム言語リスト
+    languages_list = [
+        'Python', 'Java', 'C/C\+\+', 'C#', 'Swift', 'PHP', 'Ruby',
+        'HTML/CSS', 'Javascript', 'Kotlin', 'GO', 'R', 'SQL'
+    ]
+    # 特殊文字をエスケープ
+    escaped_languages_list = [re.escape(language) for language in languages_list]
+    # 正規表現でテキスト内の言語を検出
+    detected_languages = re.findall('|'.join(escaped_languages_list), text)
+    return detected_languages
 """
 #テスト用
 text_data =

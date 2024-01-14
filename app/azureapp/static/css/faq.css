@@ -1,0 +1,25 @@
+.faq-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card-header button {
+    width: 100%;
+    text-align: left;
+    color: #007bff; /* 質問のテキストの色 */
+    font-weight: bold;
+}
+
+.card-header button:hover {
+    text-decoration: none;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+.col-md-12 {
+    border-left: 1px solid #000000; /* 左側に黒の1ピクセルの境界線 */
+    border-right: 1px solid #000000; /* 右側に黒の1ピクセルの境界線 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* ボックスに影を追加 */
+    padding: 20px;
+}

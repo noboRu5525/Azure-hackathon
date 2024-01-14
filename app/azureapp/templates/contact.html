@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/contact.css" rel="stylesheet">
+</head>
+<body>
+    <main>
+    <section class="contact-section">
+        <div class="container align-item-center">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-heading">
+                        <h2 class="contact-title">CONTACT US</h2>
+                    </div>
+                    <div>
+                        <div class="form-group">
+                            <select class="form-control" id="interest">
+                                <option value="">Select An Mail Address</option>
+                                <option value="c1241707@st.kanazawa-it.ac.jp">Product Manager</option>
+                                <option value="frontend@example.com">Frontend Engineer</option>
+                                <option value="backend@example.com">Backend Engineer</option>
+                                <option value="engineer@example.com">Prompt Engineer</option>
+                            </select>
+                        </div>
+                            <div class="form-group">
+                                <textarea class="form-control" id="message" placeholder="Message" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                        <script>
+                            document.getElementById("myForm").onsubmit = function(event) {
+                                event.preventDefault();
+                                
+                                var email = document.getElementById("email").value;
+                                var message = document.getElementById("message").value;
+                                
+                                if(email && message) {
+                                    var mailtoLink = 'mailto:' + email + '?body=' + encodeURIComponent(message);
+                                    window.location.href = mailtoLink;
+                                } else {
+                                    alert("Please select an email address and enter a message.");
+                                }
+                            };
+                        </script>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact-heading">
+                        <h2 class="contact-title">CONTACT DETAILS</h2>
+                    </div>
+                    <div class="contact-details">
+                        <p><strong>Email:</strong> michelle@example.com</p>
+                        <p><strong>Address:</strong>Kanazawa Institute of Technology</strong><br>
+                            7-1 Ogigaoka, Nonochi, Nonoichi, Ishikawa 921-8501</p>
+                            <p><strong>About Ours:</strong>At the Kanazawa Institutes of Technology, within the School of Engineering, students pursuing a major in Computer Science are actively engaged in a variety of project activities. These projects are voluntarily undertaken by the students themselves as a part of their academic journey. These initiatives not only enhance their theoretical knowledge but also provide practical hands-on experience in the field of Computer Science. It's a testament to their passion and commitment to exploring and applying their skills in real-world scenarios, contributing to the advancement of technology and innovation. </p>    
+                       
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </section>
+                            <!-- オプションのJavaScript -->
+                            <!-- 最初にjQuery、次にPopper.js、次にBootstrap JS -->
+                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                        
+</main>                            
+</body>
+</html>
+                        
