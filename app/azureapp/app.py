@@ -133,7 +133,7 @@ def logout_page():
     """
 
 def is_login():
-    if 'login'  in session:
+    if 'user_id'  in session:
         return True
     return False
 
@@ -172,12 +172,12 @@ def try_signup(username, password):
     return True
 
 def try_logout():
-    session.pop('login', None)
+    session.pop('user_id', None)
     return True
 
 def get_user():
     if is_login():
-        return session['login']
+        return session['user_id']
     return 'not login'
 
 def user_checker(user):
