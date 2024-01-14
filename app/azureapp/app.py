@@ -56,7 +56,7 @@ def formatting(text_data, text_lang):
 def advice(text):
     messages = [
             {"role": "system", "content": "タスクについてアドバイスをしてください"},
-            {"role": "user", "content": f"{text} \n このタスクはどのように取り組むべきでしょうか？"}
+            {"role": "user", "content": f"{text} \n このタスクはどのように取り組むべきでしょうか？英語で答えてください。"}
         ]
     # Call the function with the prepared messages
     response = client.chat.completions.create(
@@ -169,8 +169,8 @@ def logout_page():
         </style>
     </head>
     <body>
-        <h1>ログアウトしました</h1>
-        <p><a href="/login">→戻る</a></p>
+        <h1>Logged out</h1>
+        <p><a href="/login">→return</a></p>
     </body>
     </html>
     """
