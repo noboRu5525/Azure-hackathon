@@ -10,6 +10,15 @@ app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
 app.permanent_session_lifetime = timedelta(minutes=180)
 
+#デバックモード追加
+# 環境変数 FLASK_ENV を取得し、設定に適用する
+flask_env = os.environ.get('FLASK_ENV')
+if flask_env == "development":
+    app.config['DEBUG'] = True
+    # その他の開発環境特有の設定
+else:
+    app.config['DEBUG'] = False
+
 
 #APIキー
 client = AzureOpenAI(
