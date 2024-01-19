@@ -271,8 +271,12 @@ def home():
                 'details': []
             }
         tasks[task_id]['details'].append(detail)
-    
-    return render_template('home.html', username=get_user(), projects=projects(), tasks=tasks.values())
+
+    # get_projects 関数の呼び出し
+    project_response = get_projects()
+    projects = json.loads(project_response.data)
+
+    return render_template('home.html', username=get_user(), projects=projects, tasks=tasks.values())
 
 #Create Newボタンを押したときの処理
 @app.route('/goal')
@@ -560,7 +564,7 @@ def id_to_color(project_id):
     color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
     return color_code
 
-#プロジェクト名
+#プロジェクト名をカレンダーに反映させる
 @app.route('/get_projects')
 def get_projects():
     conn = mysql.connector.connect(**config)
