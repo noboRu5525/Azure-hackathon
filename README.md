@@ -34,7 +34,6 @@ Docker
 In any desired directory, execute the following command to download:
 
 ```bash
-bashCopy code
 git clone https://github.com/noboRu5525/Azure-hackathon.git
 
 ```
@@ -44,7 +43,6 @@ git clone https://github.com/noboRu5525/Azure-hackathon.git
 Navigate to the cloned directory:
 
 ```jsx
-jsxCopy code
 cd Azure-hackathon
 
 ```
@@ -52,7 +50,6 @@ cd Azure-hackathon
 Insert your Azure OpenAI **API key** and **endpoint** information into the .env file, and place it in the same directory as the docker-compose.yml file:
 
 ```markdown
-markdownCopy code
 AZURE_OPENAI_KEY=******************
 AZURE_OPENAI_ENDPOINT=**************
 
