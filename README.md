@@ -61,7 +61,6 @@ AZURE_OPENAI_ENDPOINT=**************
 Launch the application with:
 
 ```jsx
-jsxCopy code
 docker-compose up --build
 
 ```
@@ -73,7 +72,6 @@ After launching, connect to **[http://localhost](http://localhost/)** in your br
 When extending the functionality and using external libraries, add them to **requirements.txt**. Afterwards, rebuild the application with:
 
 ```css
-cssCopy code
 docker-compose up --build
 
 ```
