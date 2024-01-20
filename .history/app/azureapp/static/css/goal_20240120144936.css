@@ -59,14 +59,9 @@ ul {
     height: 35px;
 }
 
-.input_space .text-input {
-    width: 120px; /* 入力フィールドの長さを300ピクセルに設定 */
-    height: 28px;
-    margin-left: 30px;
-}
-
-#make_day{
-    margin-left: 30px;
+.input_space.text-input {
+    width: 300px; /* 入力フィールドの長さを300ピクセルに設定 */
+    height: 35px;
 }
 
 .text-input2 {

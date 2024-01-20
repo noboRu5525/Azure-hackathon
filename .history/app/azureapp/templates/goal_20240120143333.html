@@ -59,28 +59,21 @@
           <div id="colorPicker">
             <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
             <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #E8E87D;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #9FE897;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #48E6E3;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #16C0F1;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #61A5FF;" onclick="selectColor(this)"></div>
+            <div class="color-choice" style="background-color: #FFE48A;" onclick="setColor('#FFE48A')"></div>
+            <div class="color-choice" style="background-color: #E8E87D;" onclick="setColor('#E8E87D')"></div>
+            <div class="color-choice" style="background-color: #9FE897;" onclick="setColor('#9FE897')"></div>
+            <div class="color-choice" style="background-color: #48E6E3;" onclick="setColor('#48E6E3')"></div>
+            <div class="color-choice" style="background-color: #16C0F1;" onclick="setColor('#16C0F1')"></div>
+            <div class="color-choice" style="background-color: #61A5FF;" onclick="setColor('#61A5FF')"></div>
             
           </div>
         </form>
-        <div class="day_block">
-          <!--プロジェクトの開始日を選択-->
-          <form class="start_day">
-            <h3 class="title">＜開始日＞</h3>
-            <input type="date" id="start_date" name="start_date">
-          </form>
-          <form class="make-day">
-              <h3 class="title" id="make_day">＜作成日数＞</h3>
-              <div class="input_space">
-                  <input type="text" id="customText" name="customText" class="text-input"><br>
-              </div>
-          </form>
-        </div>
+        <form class="make-day">
+            <h3 class="title">＜作成日数＞</h3>
+            <div class="input_space">
+                <input type="text" id="customText" name="customText" class="text-input"><br>
+            </div>
+        </form>
         <form class="custom">
             <div class="text">
                 <h3 class="title">＜具体的な機能＞</h3><p>※最低3つ以上必要です</p>
@@ -227,33 +220,12 @@
                 <input type="text" id="customText" name="customText" class="text-input"><br>
             </div>
         </form>
-        <form>
-          <h3 class="title">＜Color＞</h3>
-          <div id="colorPicker">
-            <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #E8E87D;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #9FE897;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #48E6E3;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #16C0F1;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #61A5FF;" onclick="selectColor(this)"></div>
-            
-          </div>
+        <form class="make-day">
+            <h3 class="title">＜Creation days＞</h3>
+            <div class="input_space">
+                <input type="text" id="customText" name="customText" class="text-input"><br>
+            </div>
         </form>
-        <div class="day_block">
-          <!--プロジェクトの開始日を選択-->
-          <form class="start_day">
-            <h3 class="title">＜Start Day＞</h3>
-            <input type="date" id="start_date" name="start_date">
-          </form>
-          <form class="make-day">
-              <h3 class="title" id="make_day">＜Create Day＞</h3>
-              <div class="input_space">
-                  <input type="text" id="customText" name="customText" class="text-input"><br>
-              </div>
-          </form>
-        </div>
         <form class="custom">
             <div class="text">
                 <h3 class="title">＜Specific functions＞</h3><p>※At least 3 required</p>
@@ -509,24 +481,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
     </script>
 
     <script>
-      // 選択されたカラーを保存する変数
-      let selectedColor = null;
-
-      // カラー選択時の処理
-      function selectColor(element) {
-        // すべての色選択肢から 'selected' クラスを削除
-        document.querySelectorAll('.color-choice').forEach(function(choice) {
-          choice.classList.remove('selected');
-        });
-        
-        // クリックされた要素に 'selected' クラスを追加
-        element.classList.add('selected');
-
-        // 計算されたスタイルから背景色を取得して変数に保存
-        selectedColor = window.getComputedStyle(element).backgroundColor;
-      }
-    
-
       document.addEventListener('DOMContentLoaded', function() {
           const createButton = document.querySelector('.create_button');
           const loadingDiv = document.querySelector('.loading');
@@ -558,8 +512,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
               document.querySelectorAll('.use_lang .lang:checked').forEach(function(checkbox) {
                   tools.push(checkbox.value);
               });
-
-              const startDate = document.querySelector('#start_date').value;
   
               // コンソールに出力（デバッグ用）
               console.log('カテゴリー:', category);
@@ -568,8 +520,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
               console.log('具体的な機能:', functions);
               console.log('使用する言語:', languages);
               console.log('使用するツール・プラットフォーム:', tools);
-              console.log('選択されたカラー:', selectedColor);
-              console.log('開始日:', startDate);
               // 送信するデータを準備
               const data = {
                   'language':"Japanese",
@@ -578,9 +528,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
                   'makeDay': makeDay,
                   'functions': functions,
                   'languages': languages,
-                  'tools': tools,
-                  'selectedColor': selectedColor, // 追加
-                  'startDate': startDate, // 追加
+                  'tools': tools
               };
   
               loadingDiv.style.display = 'flex';
@@ -614,30 +562,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
   });
   </script>
   <script>
-    // 英語版の選択されたカラーを保存する変数
-    let selectedColorEng = null;
-
-    // 英語版のカラー選択時の処理
-    function selectColorEng(element) {
-      // すべての色選択肢から 'selected' クラスを削除
-      document.querySelectorAll('#English .color-choice').forEach(function(choice) {
-        choice.classList.remove('selected');
-      });
-      
-      // クリックされた要素に 'selected' クラスを追加
-      element.classList.add('selected');
-
-      // 計算されたスタイルから背景色を取得して変数に保存
-      selectedColorEng = window.getComputedStyle(element).backgroundColor;
-    }
-
-    // 英語版のカラーピッカーのdivにクリックイベントをバインド
-    document.querySelectorAll('#English .color-choice').forEach(function(choice) {
-      choice.addEventListener('click', function() {
-        selectColorEng(this);
-      });
-    });
-    
     document.addEventListener('DOMContentLoaded', function() {
         const loadingDiv = document.querySelector('.loading');
         const createButtonEng = document.querySelector('#English .create_button');
@@ -664,7 +588,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         document.querySelectorAll('#English .use_lang .lang:checked').forEach(function(checkbox) {
             toolsEng.push(checkbox.value);
         });
-        const startDateEng = document.querySelector('#English #start_date').value;
         // コンソールに出力（デバッグ用）
         console.log('Category:', categoryEng);
         console.log('System Name:', systemNameEng);
@@ -672,8 +595,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         console.log('Specific Functions:', functionsEng);
         console.log('Languages Used:', languagesEng);
         console.log('Tools/Platforms Used:', toolsEng);
-        console.log('Selected Color (English):', selectedColorEng);
-        console.log('Start Date (English):', startDateEng);
         // 送信するデータを準備
         const dataEng = {
             'language':"English",
@@ -682,9 +603,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
             'makeDay': makeDayEng,
             'functions': functionsEng,
             'languages': languagesEng,
-            'tools': toolsEng,
-            'selectedColor': selectedColorEng, // 追加
-            'startDate': startDateEng, // 追加
+            'tools': toolsEng
         };
   
         loadingDiv.style.display = 'flex';
@@ -954,5 +873,18 @@ chatArea.appendChild(userDiv);
     });
 });
 </script>
+
+<script>
+  function selectColor(element) {
+    // すべての色の選択肢から 'selected' クラスを削除
+    document.querySelectorAll('.color-choice').forEach(function(choice) {
+      choice.classList.remove('selected');
+    });
+    
+    // クリックされた要素に 'selected' クラスを追加
+    element.classList.add('selected');
+  }
+  </script>
+
 </body>
 </html>

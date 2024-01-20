@@ -614,30 +614,21 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
   });
   </script>
   <script>
-    // 英語版の選択されたカラーを保存する変数
-    let selectedColorEng = null;
+    // 選択されたカラーを保存する変数
 
-    // 英語版のカラー選択時の処理
-    function selectColorEng(element) {
-      // すべての色選択肢から 'selected' クラスを削除
-      document.querySelectorAll('#English .color-choice').forEach(function(choice) {
-        choice.classList.remove('selected');
-      });
-      
-      // クリックされた要素に 'selected' クラスを追加
-      element.classList.add('selected');
-
-      // 計算されたスタイルから背景色を取得して変数に保存
-      selectedColorEng = window.getComputedStyle(element).backgroundColor;
-    }
-
-    // 英語版のカラーピッカーのdivにクリックイベントをバインド
-    document.querySelectorAll('#English .color-choice').forEach(function(choice) {
-      choice.addEventListener('click', function() {
-        selectColorEng(this);
-      });
+  // カラー選択時の処理
+  function selectColor(element) {
+    // すべての色選択肢から 'selected' クラスを削除
+    document.querySelectorAll('.color-choice').forEach(function(choice) {
+      choice.classList.remove('selected');
     });
     
+    // クリックされた要素に 'selected' クラスを追加
+    element.classList.add('selected');
+
+    // 計算されたスタイルから背景色を取得して変数に保存
+    selectedColor = window.getComputedStyle(element).backgroundColor;
+  }
     document.addEventListener('DOMContentLoaded', function() {
         const loadingDiv = document.querySelector('.loading');
         const createButtonEng = document.querySelector('#English .create_button');
@@ -664,7 +655,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         document.querySelectorAll('#English .use_lang .lang:checked').forEach(function(checkbox) {
             toolsEng.push(checkbox.value);
         });
-        const startDateEng = document.querySelector('#English #start_date').value;
+        const startDate = document.querySelector('#start_date').value;
         // コンソールに出力（デバッグ用）
         console.log('Category:', categoryEng);
         console.log('System Name:', systemNameEng);
@@ -672,8 +663,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         console.log('Specific Functions:', functionsEng);
         console.log('Languages Used:', languagesEng);
         console.log('Tools/Platforms Used:', toolsEng);
-        console.log('Selected Color (English):', selectedColorEng);
-        console.log('Start Date (English):', startDateEng);
         // 送信するデータを準備
         const dataEng = {
             'language':"English",
@@ -683,8 +672,8 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
             'functions': functionsEng,
             'languages': languagesEng,
             'tools': toolsEng,
-            'selectedColor': selectedColorEng, // 追加
-            'startDate': startDateEng, // 追加
+            'selectedColor': selectedColor, // 追加
+            'startDate': startDate, // 追加
         };
   
         loadingDiv.style.display = 'flex';

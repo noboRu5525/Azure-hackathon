@@ -61,12 +61,7 @@ ul {
 
 .input_space .text-input {
     width: 120px; /* 入力フィールドの長さを300ピクセルに設定 */
-    height: 28px;
-    margin-left: 30px;
-}
-
-#make_day{
-    margin-left: 30px;
+    height: 27px;
 }
 
 .text-input2 {
