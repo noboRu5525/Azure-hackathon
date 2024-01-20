@@ -382,7 +382,7 @@
     <p id="advice"></p>
   </div>
 </div>
-<div class="loading_container_eng" style="display: none; white-space: pre-wrap;">
+<div class="loading_container" style="display: none;">
   <div class='loading'>
     <div class='loading__square'></div>
     <div class='loading__square'></div>
@@ -473,7 +473,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
 "Self-compassion helps manage stress."
   ];
   function showRandomTip() {
-  const adviceElement = document.getElementById("advice_eng");
+  const adviceElement = document.getElementById("advice");
   const randomIndex = Math.floor(Math.random() * tips_eng.length);
   const newText = tips_eng[randomIndex];
 
@@ -711,7 +711,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
     });
     
     document.addEventListener('DOMContentLoaded', function() {
-        const loadingDiv = document.querySelector('.loading_container_eng');
+        const loadingDiv = document.querySelector('.loading_container');
         const createButtonEng = document.querySelector('#English .create_button');
         createButtonEng.addEventListener('click', function() {
             // 英語版のカテゴリーの値を取得
