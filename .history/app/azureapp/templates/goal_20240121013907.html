@@ -68,27 +68,17 @@
         <input type="date" id="test_date" name="test_date">
       </form>
       <form class="current_situation">
-        <h3 class="title" data-lang-key="title">＜現状スキル＞</h3>
+        <h3 class="title" data-lang-key="title">＜カテゴリー＞</h3>
         <label>
-            <input type="radio" name="options" value="option1"> <span data-lang-key="option1">一度も試験を受けたことがない</span>
+            <input type="radio" name="options" value="option1"> <span data-lang-key="option1">一般タスク</span>
         </label><br>
         <label>
-          <input type="radio" name="options" value="option2">試験を受けたことはないが、ある程度知識がある
+          <input type="radio" name="options" value="option2">資格・試験:
         </label><br>
         <label>
-          <input type="radio" name="options" value="option3">試験を受けたことがある
+          <input type="radio" name="options" value="option3">プログラム開発:
         </label><br>
-        <div id="scoreInput" style="display: none;">
-          <label for="currentScore">現状スコア:</label>
-          <input type="text" id="currentScore" name="currentScore">
-        </div>
     </form>
-    <form class="make-day">
-      <h3 class="title" id="make_day">＜目標スコア＞</h3>
-      <div class="input_space">
-          <input type="text" id="customText" name="customText" class="text-input"><br>
-      </div>
-  </form>
     </div>
 
 
@@ -437,22 +427,6 @@
     <p id="advice_eng"></p>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  // ラジオボタンの選択状態を監視
-  document.querySelectorAll('.current_situation input[type="radio"]').forEach(function(radio) {
-    radio.addEventListener('change', function() {
-      // 'option3'が選択された場合に入力欄を表示
-      if (this.value === 'option3') {
-        document.getElementById('scoreInput').style.display = '';
-      } else {
-        document.getElementById('scoreInput').style.display = 'none';
-      }
-    });
-  });
-});
-</script>
 
 <script>
   const tips = [
