@@ -370,7 +370,7 @@
   const maxLength = Math.max(currentChars.length, newChars.length);
 
   adviceElement.innerHTML = newChars.map((char, index) => 
-    `<span class="flip" style="animation-delay: ${index * 0.05}s;">${currentChars[index] || ''}</span>`
+    `<span class="flip" style="animation-delay: ${index * 0.1}s;">${currentChars[index] || ''}</span>`
   ).join('');
 
   // 半回転する前に新しい文字に置き換え

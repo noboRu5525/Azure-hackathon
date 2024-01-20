@@ -357,33 +357,25 @@
     "ストレスは逃げるのではなく、向き合うことで管理できます。",
     "自分自身に対して優しいことは、ストレス管理に役立ちます。"
   ];
-  function showRandomTip() {
+
+function showRandomTip() {
   const adviceElement = document.getElementById("advice");
   const randomIndex = Math.floor(Math.random() * tips.length);
-  const newText = tips[randomIndex];
+  const text = tips[randomIndex];
+  
+  // 文字列を1文字ずつのspan要素に分割
+  adviceElement.innerHTML = text.split('').map(char => `<span class="flip">${char}</span>`).join('');
 
-  // 現在のテキストを取得
-  const currentChars = adviceElement.innerText.split('');
-
-  // 新しいテキストを1文字ずつのspan要素に分割し、アニメーションを適用
-  const newChars = newText.split('');
-  const maxLength = Math.max(currentChars.length, newChars.length);
-
-  adviceElement.innerHTML = newChars.map((char, index) => 
-    `<span class="flip" style="animation-delay: ${index * 0.05}s;">${currentChars[index] || ''}</span>`
-  ).join('');
-
-  // 半回転する前に新しい文字に置き換え
+  // 各文字にアニメーション遅延を適用
   const chars = adviceElement.querySelectorAll('.flip');
   chars.forEach((char, index) => {
-    setTimeout(() => {
-      char.innerText = newChars[index] || '';
-    }, index * 0.1 * 1000); // アニメーション遅延の前に置き換え
+    char.style.animationDelay = `${index * 0.05}s`; // 0.05秒ごとに遅延
   });
 }
 
 showRandomTip();
 setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
+
 </script>
 
 <script>

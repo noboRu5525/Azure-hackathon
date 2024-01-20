@@ -7,7 +7,6 @@
 	<script type="text/javascript" src="/static/js/script.js"></script>
 	<link rel="stylesheet" href="../static/css/goal.css">
   <link rel="stylesheet" href="../static/css/loading.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3213171877715325"
@@ -319,24 +318,21 @@
     </div>
 </div>
 </div>
-<div class="loading_container">
-  <div class='loading'>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-  </div>
-  <div class="adv">
-    <p id="advice"></p>
-  </div>
+<div class='loading'>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <p id="advice"></p>
 </div>
 
 <script>
-  const tips = [
-  "深呼吸をすることで、集中力が高まり、ストレスが減少します。",
+  // Pythonで作成したリストをJavaScriptに転送
+const tips = [
+"深呼吸をすることで、集中力が高まり、ストレスが減少します。",
     "タイマーを設定して、短時間集中することで効率的な作業が可能になります。",
     "睡眠は集中力を高め、ストレスを減らすのに不可欠です。十分な睡眠をとりましょう。",
     "瞑想やヨガは、集中力を高めるのに効果的な方法です。",
@@ -356,34 +352,21 @@
     "目標を視覚化することで、達成へのモチベーションが高まります。",
     "ストレスは逃げるのではなく、向き合うことで管理できます。",
     "自分自身に対して優しいことは、ストレス管理に役立ちます。"
-  ];
-  function showRandomTip() {
-  const adviceElement = document.getElementById("advice");
-  const randomIndex = Math.floor(Math.random() * tips.length);
-  const newText = tips[randomIndex];
+];
 
-  // 現在のテキストを取得
-  const currentChars = adviceElement.innerText.split('');
-
-  // 新しいテキストを1文字ずつのspan要素に分割し、アニメーションを適用
-  const newChars = newText.split('');
-  const maxLength = Math.max(currentChars.length, newChars.length);
-
-  adviceElement.innerHTML = newChars.map((char, index) => 
-    `<span class="flip" style="animation-delay: ${index * 0.05}s;">${currentChars[index] || ''}</span>`
-  ).join('');
-
-  // 半回転する前に新しい文字に置き換え
-  const chars = adviceElement.querySelectorAll('.flip');
-  chars.forEach((char, index) => {
-    setTimeout(() => {
-      char.innerText = newChars[index] || '';
-    }, index * 0.1 * 1000); // アニメーション遅延の前に置き換え
-  });
+function showRandomTip() {
+    // ランダムなインデックスを生成
+    const randomIndex = Math.floor(Math.random() * tips.length);
+    // 選ばれた一文をadvice要素に表示
+    document.getElementById("advice").innerText = tips[randomIndex];
 }
 
+// 最初に一文を表示
 showRandomTip();
-setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
+
+// 10秒ごとに切り替え
+setInterval(showRandomTip, 10000);
+
 </script>
 
 <script>

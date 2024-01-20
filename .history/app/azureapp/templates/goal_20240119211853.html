@@ -7,7 +7,6 @@
 	<script type="text/javascript" src="/static/js/script.js"></script>
 	<link rel="stylesheet" href="../static/css/goal.css">
   <link rel="stylesheet" href="../static/css/loading.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3213171877715325"
@@ -319,72 +318,16 @@
     </div>
 </div>
 </div>
-<div class="loading_container">
-  <div class='loading'>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-    <div class='loading__square'></div>
-  </div>
-  <div class="adv">
-    <p id="advice"></p>
-  </div>
+<div class='loading'>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div class='loading__square'></div>
+  <div id="advice">ここにアドバイスが表示されます</div>
 </div>
-
-<script>
-  const tips = [
-  "深呼吸をすることで、集中力が高まり、ストレスが減少します。",
-    "タイマーを設定して、短時間集中することで効率的な作業が可能になります。",
-    "睡眠は集中力を高め、ストレスを減らすのに不可欠です。十分な睡眠をとりましょう。",
-    "瞑想やヨガは、集中力を高めるのに効果的な方法です。",
-    "短い休憩を取ることで、長時間の作業における集中力が保たれます。",
-    "目標を細分化することで、時間管理がしやすくなります。",
-    "ストレスを感じたときは、自然の中で時間を過ごすことが助けになります。",
-    "音楽を聴くことで、集中力を高めることができます。",
-    "優先順位をつけることで、時間を効率的に使えます。",
-    "良い姿勢を保つことで、集中力が向上します。",
-    "仕事の前に短い運動をすると、集中力が高まります。",
-    "ストレスを感じたら、書き出してみると良いでしょう。",
-    "1日の終わりに次の日の計画を立てると、時間管理が楽になります。",
-    "良い食事は、エネルギーレベルを保ち、集中力を高めます。",
-    "仕事と休息のバランスを取ることが重要です。",
-    "デジタルデトックスを行うと、集中力が向上します。",
-    "自分のリズムを知ることで、時間管理がしやすくなります。",
-    "目標を視覚化することで、達成へのモチベーションが高まります。",
-    "ストレスは逃げるのではなく、向き合うことで管理できます。",
-    "自分自身に対して優しいことは、ストレス管理に役立ちます。"
-  ];
-  function showRandomTip() {
-  const adviceElement = document.getElementById("advice");
-  const randomIndex = Math.floor(Math.random() * tips.length);
-  const newText = tips[randomIndex];
-
-  // 現在のテキストを取得
-  const currentChars = adviceElement.innerText.split('');
-
-  // 新しいテキストを1文字ずつのspan要素に分割し、アニメーションを適用
-  const newChars = newText.split('');
-  const maxLength = Math.max(currentChars.length, newChars.length);
-
-  adviceElement.innerHTML = newChars.map((char, index) => 
-    `<span class="flip" style="animation-delay: ${index * 0.05}s;">${currentChars[index] || ''}</span>`
-  ).join('');
-
-  // 半回転する前に新しい文字に置き換え
-  const chars = adviceElement.querySelectorAll('.flip');
-  chars.forEach((char, index) => {
-    setTimeout(() => {
-      char.innerText = newChars[index] || '';
-    }, index * 0.1 * 1000); // アニメーション遅延の前に置き換え
-  });
-}
-
-showRandomTip();
-setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
-</script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
