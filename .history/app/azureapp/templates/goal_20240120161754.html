@@ -45,7 +45,7 @@
     <!--資格・試験用項目-->
     <div class="qualification" id="category2" style="display: none;">
       <form class="qualification_name">
-        <h3 class="title">＜資格名＞</h3>
+        <h3 class="title">＜作成したいシステム名＞</h3>
             <div class="input_space">
               <input type="text" id="qualificat_name" name="qualificat_name" class="text-input"><br>
             </div>
@@ -453,7 +453,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
                       break;
                   case 'option2':
                       document.getElementById('category2').style.display = '';
-                      document.getElementById('chat-ai').style.display = '';
+                      alert('現在作成中です。現在は、プログラム開発のみ利用できます。');
                       break;
                   case 'option3':
                       document.getElementById('category3').style.display = '';
@@ -480,7 +480,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
                       break;
                   case 'option2':
                       document.querySelector('#English .qualification').style.display = '';
-                      document.querySelector('#English #chat-ai-eng').style.display = '';
+                      alert('Currently under construction. Only program development is available now.');
                       break;
                   case 'option3':
                       document.querySelector('#English .development').style.display = '';
