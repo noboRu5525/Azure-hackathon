@@ -166,8 +166,8 @@ body {
   width: 96px;
   height: 96px;
   transform: rotate(45deg);
-  top: 32%; /* 画面の垂直方向の中央に配置 */
-left: 45%; /* 画面の水平方向の中央に配置 */
+  top: 50%; /* 画面の垂直方向の中央に配置 */
+left: 50%; /* 画面の水平方向の中央に配置 */
 margin-top: 100px;
 display: flex; /* フレックスコンテナに設定 */
 justify-content: center; /* 水平方向の中央揃え */
@@ -229,7 +229,7 @@ align-items: center; /* 垂直方向の中央揃え */
 .loading_container{
   width: 100%;
   height: 100%;
-  background-color: rgba(240, 248, 255, 0.876);
+  background-color: aliceblue;
 z-index: 3;
 }
 
