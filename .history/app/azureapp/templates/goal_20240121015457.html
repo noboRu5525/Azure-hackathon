@@ -47,7 +47,7 @@
       <form class="qualification_name">
         <h3 class="title">＜資格名＞</h3>
             <div class="input_space">
-              <input type="text" id="qualificat_name" name="qualificat_name" class="text-input2_1"><br>
+              <input type="text" id="qualificat_name" name="qualificat_name" class="text-input3"><br>
             </div>
       </form>
       <form>
@@ -84,12 +84,11 @@
         </div>
     </form>
     <form class="make-day">
-      <h3 class="title">＜目標スコア＞</h3>
+      <h3 class="title" id="make_day">＜目標スコア＞</h3>
       <div class="input_space">
-        <input type="text" id="goalScore" name="goalScore" class="text-input2_1"><br>
-        <button type="button" id="passScoreButton">合格点</button> <!-- type="button" を追加 -->
+          <input type="text" id="customText" name="customText" class="text-input"><br>
       </div>
-    </form>
+  </form>
     </div>
 
 
@@ -1083,36 +1082,6 @@ chatArea.appendChild(userDiv);
         .catch(error => console.error('Error:', error));
     });
 });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('passScoreButton').addEventListener('click', function() {
-    // 試験名の入力値を取得
-    var qualificationName = document.getElementById('qualificat_name').value;
-
-    // 送信するデータを準備
-    var data = {
-      'qualificationName': qualificationName
-    };
-
-    // AJAXを使ってサーバーにデータを送信
-    fetch('/get_pass_score', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      // 応答を処理（例：合格点を表示）
-      alert('合格点: ' + data.passScore);
-    })
-    .catch(error => console.error('Error:', error));
-  });
-});
-
 </script>
 </body>
 </html>

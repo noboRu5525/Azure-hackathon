@@ -1084,35 +1084,5 @@ chatArea.appendChild(userDiv);
     });
 });
 </script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('passScoreButton').addEventListener('click', function() {
-    // 試験名の入力値を取得
-    var qualificationName = document.getElementById('qualificat_name').value;
-
-    // 送信するデータを準備
-    var data = {
-      'qualificationName': qualificationName
-    };
-
-    // AJAXを使ってサーバーにデータを送信
-    fetch('/get_pass_score', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      // 応答を処理（例：合格点を表示）
-      alert('合格点: ' + data.passScore);
-    })
-    .catch(error => console.error('Error:', error));
-  });
-});
-
-</script>
 </body>
 </html>

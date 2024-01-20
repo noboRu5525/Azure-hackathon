@@ -721,14 +721,13 @@ def test():
 @app.route('/get_pass_score', methods=['POST'])
 def get_pass_score():
     data = request.get_json()
-
     qualification_name = data.get('qualificationName')
     
     response = client.chat.completions.create(
-        model="GPT4", # model = "deployment_name".
+        model="GPT35TURBO", # model = "deployment_name".
         messages=[
             {"role": "system", "content": "適切なプログラム言語を考案する"},
-            {"role": "user", "content": f"{qualification_name}\の合格点数を教えてください。\n 以下の形式で答えてください\n 合格点:〇〇点 \n 具体例→合格点:700点"},
+            {"role": "user", "content": f"{qualification_name}\の合格点数を教えてください。出力は整数でお願いします。"},
         ]
     )
     pass_score  = response.choices[0].message.content
