@@ -57,7 +57,7 @@ def formatting(text_data, text_lang):
         ]
     # Call the function with the prepared messages
     response = client.chat.completions.create(
-        model="GPT35TURBO",
+        model="GPT35TURBO16K",
         messages=messages
     )
     return response.choices[0].message.content
@@ -69,7 +69,7 @@ def advice(text):
         ]
     # Call the function with the prepared messages
     response = client.chat.completions.create(
-        model="GPT35TURBO",
+        model="GPT35TURBO16K",
         messages=messages
     )
     return response.choices[0].message.content
@@ -374,7 +374,7 @@ def create_project():
     
      # Azure Open AIでタスク生成
     response = client.chat.completions.create(
-        model="GPT35TURBO", # model = "deployment_name".
+        model="GPT35TURBO16K", # model = "deployment_name".
         messages=[
             {"role": "system", "content": "You provide support in planning based on the user's goals."},
             {"role": "user", "content": f"・制作したいもの：{systemName}\n・具体的な機能: {functions_str}\n・制作日数：{makeDay}日（1週間を7日とする）\n・使用する言語：{languages_str} \n・使用ツール：{tools_str} \n 個人開発をしているのですが、目標を効率的に達成するためのタスクとその計画を考えて欲しいです。目標を効率よく達成するための学習計画を{text_lang}作成してください。また計画は、日単位の活動を作成してください。計画では、使用する具体的なプログラム言語やツール（APIなど）を詳細に記載してください。また、使用したことのある言語の学習は計画に入れないでください。また、個人開発であるため余裕を持った計画を立てて欲しいです。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述してください。{text_lang}"},
@@ -652,7 +652,7 @@ def auto_select_language():
     print(functions)
 
     response = client.chat.completions.create(
-        model="GPT35TURBO", # model = "deployment_name".
+        model="GPT35TURBO16K", # model = "deployment_name".
         messages=[
             {"role": "system", "content": "適切なプログラム言語を考案する"},
             {"role": "user", "content": f"{functions}\n上記の機能を実装するために最適なプログラム言語を、Python, Java, C/C++, C#, Swift, PHP, Ruby, HTML/CSS, Javascript, Kotlin, GO, R, SQLの中から選んでください。複数の言語が必要な場合は組み合わせを提案してください。同じ役割である言語はどちらか1つだけ選択するようにしてください"},
