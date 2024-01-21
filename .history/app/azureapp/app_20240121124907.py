@@ -376,7 +376,7 @@ def create_project():
     
     if (language == "English"):
         response = client.chat.completions.create(
-            model="GPT4", # model = "deployment_name".
+            model="GPT35TURBO", # model = "deployment_name".
             messages=[
                 {"role": "system", "content": "You provide support in planning based on the user's goals."},
                 {"role": "user", "content": f"・制作したいもの： I want to create a project named {systemName}. It will have specific functionalities: {functions_str}. The development will take {makeDay} days, considering a week as 7 days. I will be using programming languages: {languages_str}, and tools: {tools_str}. I am working on this as an individual developer and need help to efficiently achieve my goals. Please create a learning plan in {language} to help me reach these goals effectively. The plan should outline daily activities. Make sure to include detailed information about the specific programming languages and tools (like APIs) that will be used. Do not include learning of languages that I have already used. As this is a personal project, I would like a plan with some flexibility. Utilize the specified development time to its fullest, breaking down tasks in detail and describing them as thoroughly as possible in {language}."},
