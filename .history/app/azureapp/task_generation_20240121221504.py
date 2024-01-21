@@ -3,9 +3,7 @@ import re
 def make_task(text_data):
     print(text_data)
     # 正規表現パターンの更新
-    date_pattern = r"\d+日目-\d+日目|Day \d+-+\d+" # 日付範囲のパターン
-    task_pattern = r" ：(.*?) - "
-    detail_pattern = r"- (.*?)[。]"
+    date_pattern = r"\d+日目-\d+日目|Day \d+-\d+" # 日付範囲のパターン
     flag = 0
     # 辞書に格納
     tasks = {}
@@ -18,7 +16,10 @@ def make_task(text_data):
             for match in task_matches:
                 # 空でないタスク名を取得
                 task = next((t for t in match if t), None)
-                detail_pattern = rf"{date}：{task} - (.*?)(?=[\d+日目]|[以上]|$)|{date}:{task} - (.*?)(?=[\d+日目]|[以上]|$)"
+                if "Day" in date: # Day パターンの場合、行末の数字を除外
+                    detail_pattern = rf"{date}:{task} - (.*?)(?=\.|$)"
+                else:
+                    detail_pattern = rf"{date}：{task} - (.*?)(?=[\d+日目]|[以上]|$)|{date}:{task} - (.*?)(?=[\d+日目]|[以上]|$)"
                 detail_matches = re.findall(detail_pattern, line)
                 # 空でない詳細を抽出
                 details = []
@@ -27,7 +28,7 @@ def make_task(text_data):
                     if detail:
                         details.extend([d.strip() for d in detail.split('-') if d.strip()])
                         flag = 1
-                    tasks[date][task.strip()] = details
+                tasks[date][task.strip()] = details
     #指定の形式外の場合の処理
     if flag == 0:
         return False
@@ -75,40 +76,6 @@ def extract_all_languages(text):
     # 正規表現でテキスト内の言語を検出
     detected_languages = re.findall('|'.join(escaped_languages_list), text)
     return detected_languages
-
-def make_task_eng(text_data):
-    print(text_data)
-    # 正規表現パターンの更新
-    date_pattern = r"Day \d+-\d+" # 日付範囲のパターン（英語版）
-    flag = 0
-    # 辞書に格納
-    tasks = {}
-    for line in text_data.split("\n"):
-        date_match = re.findall(date_pattern, line)
-        for date in date_match:
-            # タスクと詳細を抽出する正規表現パターン
-            task_pattern = rf"{date}: (.*?) - | {date}: (.*?)$"
-            task_matches = re.findall(task_pattern, line)
-            tasks[date] = {}
-            for match in task_matches:
-                # 空でないタスク名を取得
-                task = next((t for t in match if t), None)
-                detail_pattern = rf"- (.*?)(?= - |$)"
-                detail_matches = re.findall(detail_pattern, line)
-                # 空でない詳細を抽出
-                details = []
-                for detail in detail_matches:
-                    if detail:
-                        details.append(detail.strip())
-                        flag = 1
-                tasks[date][task.strip()] = details
-    #指定の形式外の場合の処理
-    if flag == 0:
-        return False
-    return tasks
-
-
-
 """
 #テスト用
 text_data =

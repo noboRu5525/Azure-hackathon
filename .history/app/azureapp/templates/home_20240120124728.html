@@ -199,67 +199,67 @@
 <script src="../static/js/script.js"></script>
 <script>
     // 詳細ボタンのクリックイベント
-    document.querySelectorAll('.card-link[data-task-id]').forEach(button => {
-    button.addEventListener('click', function() {
-    var taskId = this.getAttribute('data-task-id');
-    var taskDetails = this.getAttribute('data-task-detail').split(',');
-    var detailTextElement = document.getElementById('card-detail-text');
-    detailTextElement.innerHTML = ''; // 以前の内容をクリア
-    var responseTextElement = document.getElementById('flask-response-text');
-    responseTextElement.innerHTML = ''; // アドバイス内容をクリア
-    // 各詳細を追加
-    taskDetails.forEach((detail, index) => {
-        var paragraph = document.createElement('p');
-        paragraph.textContent = 'detail' + (index + 1) + ': ' + detail.trim();
-        paragraph.classList.add('detail-item');
-        paragraph.dataset.index = index; // インデックスをデータ属性として追加
-        detailTextElement.appendChild(paragraph);
-    });
-    });
-    });
-    // アドバイスボタンのクリックイベント
-    document.getElementById('advice-button').addEventListener('click', function() {
-    var selectedDetail = document.querySelector('.detail-item.selected'); // 選択された詳細を取得
-    if (!selectedDetail) {
-    alert('select details');
-    return;
+document.querySelectorAll('.card-link[data-task-id]').forEach(button => {
+button.addEventListener('click', function() {
+var taskId = this.getAttribute('data-task-id');
+var taskDetails = this.getAttribute('data-task-detail').split(',');
+var detailTextElement = document.getElementById('card-detail-text');
+detailTextElement.innerHTML = ''; // 以前の内容をクリア
+var responseTextElement = document.getElementById('flask-response-text');
+responseTextElement.innerHTML = ''; // アドバイス内容をクリア
+// 各詳細を追加
+taskDetails.forEach((detail, index) => {
+    var paragraph = document.createElement('p');
+    paragraph.textContent = 'detail' + (index + 1) + ': ' + detail.trim();
+    paragraph.classList.add('detail-item');
+    paragraph.dataset.index = index; // インデックスをデータ属性として追加
+    detailTextElement.appendChild(paragraph);
+});
+});
+});
+// アドバイスボタンのクリックイベント
+document.getElementById('advice-button').addEventListener('click', function() {
+var selectedDetail = document.querySelector('.detail-item.selected'); // 選択された詳細を取得
+if (!selectedDetail) {
+alert('select details');
+return;
+}
+var cardDetailText = selectedDetail.textContent;
+fetch('/send_card_detail', {
+method: 'POST',
+body: JSON.stringify({ 'text': cardDetailText }),
+headers: {
+    'Content-Type': 'application/json'
+}
+})
+.then(response => response.json())
+.then(data => {
+var responseTextElement = document.getElementById('flask-response-text');
+responseTextElement.textContent = data.text;
+})
+.catch(error => console.error('Error:', error));
+});
+// 各詳細アイテムのクリックイベント（選択）
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('detail-item')) {
+    document.querySelectorAll('.detail-item').forEach(item => item.classList.remove('selected'));
+    event.target.classList.add('selected');
     }
-    var cardDetailText = selectedDetail.textContent;
-    fetch('/send_card_detail', {
-    method: 'POST',
-    body: JSON.stringify({ 'text': cardDetailText }),
-    headers: {
-        'Content-Type': 'application/json'
-    }
-    })
-    .then(response => response.json())
-    .then(data => {
-    var responseTextElement = document.getElementById('flask-response-text');
-    responseTextElement.textContent = data.text;
-    })
-    .catch(error => console.error('Error:', error));
     });
     // 各詳細アイテムのクリックイベント（選択）
     document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('detail-item')) {
-        document.querySelectorAll('.detail-item').forEach(item => item.classList.remove('selected'));
-        event.target.classList.add('selected');
-        }
-        });
-        // 各詳細アイテムのクリックイベント（選択）
-        document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('detail-item')) {
-        // 既に選択されているアイテムの選択を解除
-        document.querySelectorAll('.detail-item').forEach(item => {
-            item.classList.remove('selected');
-            item.style.backgroundColor = ''; // 背景色を元に戻す
-        });
-        
-        // クリックされたアイテムを選択状態にする
-        event.target.classList.add('selected');
-        event.target.style.backgroundColor = '#ddd'; // 選択された背景色
-        }
-        });
+    if (event.target.classList.contains('detail-item')) {
+    // 既に選択されているアイテムの選択を解除
+    document.querySelectorAll('.detail-item').forEach(item => {
+        item.classList.remove('selected');
+        item.style.backgroundColor = ''; // 背景色を元に戻す
+    });
+    
+    // クリックされたアイテムを選択状態にする
+    event.target.classList.add('selected');
+    event.target.style.backgroundColor = '#ddd'; // 選択された背景色
+    }
+    });
     
       </script>
     

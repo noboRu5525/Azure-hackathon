@@ -4,7 +4,7 @@ from flask import Flask,render_template, request, redirect, url_for, session, js
 import mysql.connector, random
 from datetime import timedelta, datetime
 import json
-from task_generation import make_task, make_task2, make_task3, extract_languages_from_ai_response, extract_all_languages,make_task_eng
+from task_generation import make_task, make_task2, make_task3, extract_languages_from_ai_response, extract_all_languages
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -280,6 +280,7 @@ def home():
                 'details': []
             }
         tasks[task_id]['details'].append(detail)
+    first_four_tasks = {k: tasks[k] for k in list(tasks)[:4]} # 最初の4要素を取得
 
     # get_projects 関数の呼び出し
     project_response = get_projects()
@@ -288,7 +289,7 @@ def home():
     #list_projects関数の呼び出し
     projects = list_projects()
 
-    return render_template('home.html', username=get_user(), projects=projects, tasks=tasks.values())
+    return render_template('home.html', username=get_user(), projects=projects, tasks=first_four_tasks.values())
 
 #Create Newボタンを押したときの処理
 @app.route('/goal')
@@ -359,24 +360,16 @@ def create_project():
     languages_json = str(languages)
     tools_json = str(tools)
     
-    
     print(type(features_json))
     print(languages_json)
     print(tools_json)
-    print(selectedColor)
     
-    # selectedColorをcolor_idに変換
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-    query = 'SELECT color_id FROM colors WHERE hex_value = %s'
-    cur.execute(query, (selectedColor,))
-    result = cur.fetchone()
-    color_id = result[0] if result else None
+    startdate = datetime.now()
         
     # データベースに接続してプロジェクト情報を挿入
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    cur.execute('INSERT INTO projects (user_id, startDate, systemName, makeDay, features, languages, tools, color_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (user_id, startDate, systemName, makeDay, features_json, languages_json, tools_json, color_id)) 
+    cur.execute('INSERT INTO projects (user_id, startdate, systemName, makeDay, features, languages, tools) VALUES (%s, %s, %s, %s, %s, %s, %s)', (user_id, startdate, systemName, makeDay, features_json, languages_json, tools_json)) 
     conn.commit()
     cur.close()
     conn.close()
@@ -590,33 +583,27 @@ def get_ai_response_eng():
     ai_response = response.choices[0].message.content
     return jsonify({'response': ai_response})
 
-# #プロジェクトごとに色を割り当てる
-# def id_to_color(project_id):
-#     # プロジェクトのIDを基に一貫した色を生成するロジック
-#     # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
-#     hash_value = hash(str(project_id))
-#     # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
-#     color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
-#     return color_code
+#プロジェクトごとに色を割り当てる
+def id_to_color(project_id):
+    # プロジェクトのIDを基に一貫した色を生成するロジック
+    # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
+    hash_value = hash(str(project_id))
+    # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
+    color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
+    return color_code
 
+#プロジェクト名をカレンダーに反映させる
 @app.route('/get_projects')
 def get_projects():
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
     try:
-        # LEFT JOINを使ってプロジェクトとその色の情報を取得します。
-        cursor.execute("""
-            SELECT p.id, p.startDate, p.systemName, p.makeDay, c.hex_value
-            FROM projects AS p
-            LEFT JOIN colors AS c ON p.color_id = c.color_id
-            WHERE p.user_id = %s
-        """, (session.get('user_id'),))
+        cursor.execute("SELECT id, startDate, systemName, makeDay FROM projects where user_id = %s", (session.get('user_id'),) )
         projects_data = cursor.fetchall()
         projects_list = []
-        for projectId, startDate, systemName, makeDay, hex_value in projects_data:
-            # HEX値がNULLの場合、デフォルトの色を設定するなどの処理を追加
-            color = hex_value if hex_value else "#FFE48A"  # デフォルトの色
+        for projectId, startDate, systemName, makeDay in projects_data:
+            color = id_to_color(projectId)  # IDに基づいて色を生成
             end_date = startDate + timedelta(days=makeDay)
             projects_list.append({
                 "id": projectId,
@@ -811,14 +798,13 @@ def submit_qualification_data():
     # ここでデータを処理します（データベースへの保存など）
     print(qualificationName)
     
-    """
     # Azure Open AIでタスク生成
     embedding = client.embeddings.create(
         model="ADA", # model = "deployment_name".
         input=f"・取得したい資格：{qualificationName} \n ・試験日：あと{days_until_test}日 \n ・{currentSkill} \n  ・{targetSkill}\n 目標を達成するための計画を詳細に立ててください。"
     )
     print(embedding)
-    """
+    
 
       # Azure Open AIでタスク生成
     response = client.chat.completions.create(
@@ -826,7 +812,7 @@ def submit_qualification_data():
         max_tokens=4096,
         messages=[
             {"role": "system", "content": "You provide support in planning based on the user's goals."},
-            {"role": "user", "content": f"・取得したい資格：{qualificationName} \n ・試験日：あと{days_until_test}日 \n ・{currentSkill} \n  ・{targetSkill}\n 目標を達成するための計画を立ててください。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述し試験の具体的な分野への勉強方法などを記載すること。\n以下の形式で回答してください。 \n 〇日目-〇日目：タスク -詳細1。 -詳細2。・・・  \n"},
+            {"role": "user", "content": f"・取得したい資格：{qualificationName} \n ・試験日：{testDate} \n ・{currentSkill} \n  ・{targetSkill}\n 目標を達成するための計画を立ててください。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述してください。\n以下の形式に修正してください。 \n 〇日目-〇日目：タスク -詳細1。 -詳細2。・・・  \n具体例は次のような感じです: 1日目-20日目：基礎的な文法の勉強をする - 中学生レベルの英文法の復習から、高校レベルまで学習する。 - 文法パズルをする。"},
         ]
        
     )
@@ -834,221 +820,9 @@ def submit_qualification_data():
 
     print(res)
 
-    make_task_data = make_task(res)
+    # 応答を返す
+    return jsonify({"message": f"{qualificationName}"})
 
-    if not make_task_data:
-            res = formatting(res, "Japanese")
-            make_task_data = make_task(res)
-            if not make_task_data:
-                make_task_data = make_task2(res)
-                if not make_task_data:
-                    make_task_data = make_task3(res)
-                
-        
-    # 日数、タスク、その詳細に分ける
-    print(make_task_data)
-    
-    # セッションからユーザーIDを取得（ユーザーがログインしていることが前提）
-    user_id = session.get('user_id')
-    if not user_id:
-        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
-
-    # POSTデータを取得（JSON形式のデータが送信されることを前提）
-    data = make_task_data
-    # データベースに接続
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-
-    try:
-        # データベースに学習プランを挿入
-        cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
-        plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
-
-        # 各タスクとその詳細をデータベースに挿入
-        for days_range, tasks in data.items():
-            for task_name, details in tasks.items():
-                cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
-                            (plan_id, days_range, task_name))
-                task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
-
-                for detail in details:
-                    cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
-                                (task_id, detail))
-
-        # 変更をコミット
-        conn.commit()
-    except mysql.connector.Error as err:
-        # エラーが発生した場合はロールバック
-        conn.rollback()
-        print(f"An error occurred: {err}")
-        return jsonify({'status': 'error', 'message': 'Database error'}), 500
-    finally:
-        # カーソルとコネクションを閉じる
-        cur.close()
-        conn.close()
-
-
-                
-    #タスク生成回数カウンター
-    count = 0
-    """
-    while(count <=  5):
-        #生成された文章からタスクに分割する
-        if make_task(res):
-            make_task_data = make_task(res)
-            count = 5
-        else:
-            res = formatting(res)
-            count += 1
-    """
-    if not make_task_data:
-        # タスクを生成できなかった場合のレスポンス
-        return jsonify({'status': 'error', 'message': 'タスクを生成できませんでした', 'redirect': False})
-    else:
-        # タスク生成が成功した場合のレスポンス
-        return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
-
-@app.route('/submit_qualification_data_eng', methods=['POST'])
-def submit_qualification_data_eng():
-    # セッションからユーザーIDを取得（この部分は省略しています）
-    user_id = get_user_id_from_session()
-    if not user_id:
-        current_app.logger.error('User not logged in')
-        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
-
-    # JSONデータを取得
-    data = request.get_json()
-    if not data:
-        current_app.logger.error('No JSON data sent')
-        return jsonify({'status': 'error', 'message': 'No JSON data sent'}), 400
-
-    # JSONデータから各フィールドを取得
-    qualificationName = data.get('qualificationName', '')
-    selectedColor = data.get('selectedColor', '')
-    testDate = data.get('testDate', '')
-    currentSkill = data.get('currentSkill', '')
-    currentScore = data.get('currentScore', '')
-    targetSkill = data.get('targetSkill', '')
-    targetScore = data.get('targetScore', '')
-
-    if(currentSkill=="Have taken the exam"):
-        currentSkill = f"CurrentScore：{currentScore}"
-    else:
-        currentSkill = f"CurrentSkill：{currentSkill}"
-
-    if(targetSkill=="Set a personal target"):
-        targetSkill = f"TargetScore：{targetScore}"
-    else:
-        targetSkill = f"Target：{targetSkill}"
-
-    # 試験日をdatetimeオブジェクトに変換
-    test_date_obj = datetime.strptime(testDate, '%Y-%m-%d')  # '2023-12-31'のような形式を想定
-
-    # 現在の日付を取得
-    current_date = datetime.now()
-
-    # 差分を計算
-    days_until_test = (test_date_obj - current_date).days
-
-    # ここでデータを処理します（データベースへの保存など）
-    print(qualificationName)
-    
-    """
-    # Azure Open AIでタスク生成
-    embedding = client.embeddings.create(
-        model="ADA", # model = "deployment_name".
-        input=f"・取得したい資格：{qualificationName} \n ・試験日：あと{days_until_test}日 \n ・{currentSkill} \n  ・{targetSkill}\n 目標を達成するための計画を詳細に立ててください。"
-    )
-    print(embedding)
-    """
-
-      # Azure Open AIでタスク生成
-    response = client.chat.completions.create(
-        model="GPT4", # model = "deployment_name".
-        max_tokens=4096,
-        messages=[
-            {"role": "system", "content": "You provide support in planning based on the user's goals."},
-            {"role": "user", "content": f"・Desired Qualification: {qualificationName} \n ・Days until Exam: {days_until_test} days left \n ・{currentSkill} \n ・{targetSkill}\n Please create a plan to achieve these goals. Utilize the specified number of production days to the fullest, break down tasks into detail, and include specific study methods for each area of the exam. \nPlease respond in the following format: \n 〇 day-〇 :Task name - Detail 1. - Detail 2. ... \n Day 1-3: Learning Python Basics - Learn the basic concepts of Python syntax, data types, and control structures. - Set up the Python development environment."},
-        ]
-       
-    )
-    res = response.choices[0].message.content
-
-    print(res)
-
-    make_task_data = make_task_eng(res)
-
-    if not make_task_data:
-            res = formatting(res, "英語でテキスト生成してください")
-            make_task_data = make_task_eng(res)
-            if not make_task_data:
-                make_task_data = make_task2(res)
-                if not make_task_data:
-                    make_task_data = make_task3(res)
-                
-        
-    # 日数、タスク、その詳細に分ける
-    print(make_task_data)
-    
-    # セッションからユーザーIDを取得（ユーザーがログインしていることが前提）
-    user_id = session.get('user_id')
-    if not user_id:
-        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
-
-    # POSTデータを取得（JSON形式のデータが送信されることを前提）
-    data = make_task_data
-    # データベースに接続
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-
-    try:
-        # データベースに学習プランを挿入
-        cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
-        plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
-
-        # 各タスクとその詳細をデータベースに挿入
-        for days_range, tasks in data.items():
-            for task_name, details in tasks.items():
-                cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
-                            (plan_id, days_range, task_name))
-                task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
-
-                for detail in details:
-                    cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
-                                (task_id, detail))
-
-        # 変更をコミット
-        conn.commit()
-    except mysql.connector.Error as err:
-        # エラーが発生した場合はロールバック
-        conn.rollback()
-        print(f"An error occurred: {err}")
-        return jsonify({'status': 'error', 'message': 'Database error'}), 500
-    finally:
-        # カーソルとコネクションを閉じる
-        cur.close()
-        conn.close()
-
-
-                
-    #タスク生成回数カウンター
-    count = 0
-    """
-    while(count <=  5):
-        #生成された文章からタスクに分割する
-        if make_task(res):
-            make_task_data = make_task(res)
-            count = 5
-        else:
-            res = formatting(res)
-            count += 1
-    """
-    if not make_task_data:
-        # タスクを生成できなかった場合のレスポンス
-        return jsonify({'status': 'error', 'message': 'タスクを生成できませんでした', 'redirect': False})
-    else:
-        # タスク生成が成功した場合のレスポンス
-        return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

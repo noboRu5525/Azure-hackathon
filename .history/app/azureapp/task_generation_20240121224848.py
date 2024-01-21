@@ -107,7 +107,9 @@ def make_task_eng(text_data):
         return False
     return tasks
 
-
+# テスト
+text_data = "Day 46-50: Analyze Test Results - Thoroughly check the answers of practice tests and understand why mistakes are made. - Focus on weakest areas identified in the analysis.\nDay 51-55: Endurance Practice - Continue with full-length practice tests. - Begin practicing two full tests back-to-back to build endurance.\nDay 56-60: Final Reviews - Go over all notes, flashcards, and marked questions from practice tests. - Reduce practice tests to one a day and analyze them carefully.\nDay 61: Rest and Light Review - Do a light review of study materials, focusing on relaxation techniques. - Prepare test materials and plan to get a good night's sleep."
+print(make_task_eng(text_data))
 
 """
 #テスト用

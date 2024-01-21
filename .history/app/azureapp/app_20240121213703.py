@@ -4,7 +4,7 @@ from flask import Flask,render_template, request, redirect, url_for, session, js
 import mysql.connector, random
 from datetime import timedelta, datetime
 import json
-from task_generation import make_task, make_task2, make_task3, extract_languages_from_ai_response, extract_all_languages,make_task_eng
+from task_generation import make_task, make_task2, make_task3, extract_languages_from_ai_response, extract_all_languages
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -359,24 +359,16 @@ def create_project():
     languages_json = str(languages)
     tools_json = str(tools)
     
-    
     print(type(features_json))
     print(languages_json)
     print(tools_json)
-    print(selectedColor)
     
-    # selectedColorをcolor_idに変換
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-    query = 'SELECT color_id FROM colors WHERE hex_value = %s'
-    cur.execute(query, (selectedColor,))
-    result = cur.fetchone()
-    color_id = result[0] if result else None
+    startdate = datetime.now()
         
     # データベースに接続してプロジェクト情報を挿入
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    cur.execute('INSERT INTO projects (user_id, startDate, systemName, makeDay, features, languages, tools, color_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (user_id, startDate, systemName, makeDay, features_json, languages_json, tools_json, color_id)) 
+    cur.execute('INSERT INTO projects (user_id, startdate, systemName, makeDay, features, languages, tools) VALUES (%s, %s, %s, %s, %s, %s, %s)', (user_id, startdate, systemName, makeDay, features_json, languages_json, tools_json)) 
     conn.commit()
     cur.close()
     conn.close()
@@ -590,33 +582,27 @@ def get_ai_response_eng():
     ai_response = response.choices[0].message.content
     return jsonify({'response': ai_response})
 
-# #プロジェクトごとに色を割り当てる
-# def id_to_color(project_id):
-#     # プロジェクトのIDを基に一貫した色を生成するロジック
-#     # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
-#     hash_value = hash(str(project_id))
-#     # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
-#     color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
-#     return color_code
+#プロジェクトごとに色を割り当てる
+def id_to_color(project_id):
+    # プロジェクトのIDを基に一貫した色を生成するロジック
+    # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
+    hash_value = hash(str(project_id))
+    # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
+    color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
+    return color_code
 
+#プロジェクト名をカレンダーに反映させる
 @app.route('/get_projects')
 def get_projects():
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
     try:
-        # LEFT JOINを使ってプロジェクトとその色の情報を取得します。
-        cursor.execute("""
-            SELECT p.id, p.startDate, p.systemName, p.makeDay, c.hex_value
-            FROM projects AS p
-            LEFT JOIN colors AS c ON p.color_id = c.color_id
-            WHERE p.user_id = %s
-        """, (session.get('user_id'),))
+        cursor.execute("SELECT id, startDate, systemName, makeDay FROM projects where user_id = %s", (session.get('user_id'),) )
         projects_data = cursor.fetchall()
         projects_list = []
-        for projectId, startDate, systemName, makeDay, hex_value in projects_data:
-            # HEX値がNULLの場合、デフォルトの色を設定するなどの処理を追加
-            color = hex_value if hex_value else "#FFE48A"  # デフォルトの色
+        for projectId, startDate, systemName, makeDay in projects_data:
+            color = id_to_color(projectId)  # IDに基づいて色を生成
             end_date = startDate + timedelta(days=makeDay)
             projects_list.append({
                 "id": projectId,
@@ -968,7 +954,7 @@ def submit_qualification_data_eng():
         max_tokens=4096,
         messages=[
             {"role": "system", "content": "You provide support in planning based on the user's goals."},
-            {"role": "user", "content": f"・Desired Qualification: {qualificationName} \n ・Days until Exam: {days_until_test} days left \n ・{currentSkill} \n ・{targetSkill}\n Please create a plan to achieve these goals. Utilize the specified number of production days to the fullest, break down tasks into detail, and include specific study methods for each area of the exam. \nPlease respond in the following format: \n 〇 day-〇 :Task name - Detail 1. - Detail 2. ... \n Day 1-3: Learning Python Basics - Learn the basic concepts of Python syntax, data types, and control structures. - Set up the Python development environment."},
+            {"role": "user", "content": "・Desired Qualification: {qualificationName} \n ・Days until Exam: {days_until_test} days left \n ・{currentSkill} \n ・{targetSkill}\n Please create a plan to achieve these goals. Utilize the specified number of production days to the fullest, break down tasks into detail, and include specific study methods for each area of the exam. \nPlease respond in the following format: \n Day X to Day Y: Task - Detail 1. - Detail 2. ... \n"},
         ]
        
     )
@@ -976,11 +962,11 @@ def submit_qualification_data_eng():
 
     print(res)
 
-    make_task_data = make_task_eng(res)
+    make_task_data = make_task(res)
 
     if not make_task_data:
-            res = formatting(res, "英語でテキスト生成してください")
-            make_task_data = make_task_eng(res)
+            res = formatting(res, "Japanese")
+            make_task_data = make_task(res)
             if not make_task_data:
                 make_task_data = make_task2(res)
                 if not make_task_data:
