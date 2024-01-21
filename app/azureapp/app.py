@@ -360,16 +360,24 @@ def create_project():
     languages_json = str(languages)
     tools_json = str(tools)
     
+    
     print(type(features_json))
     print(languages_json)
     print(tools_json)
+    print(selectedColor)
     
-    startdate = datetime.now()
+    # selectedColorをcolor_idに変換
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    query = 'SELECT color_id FROM colors WHERE hex_value = %s'
+    cur.execute(query, (selectedColor,))
+    result = cur.fetchone()
+    color_id = result[0] if result else None
         
     # データベースに接続してプロジェクト情報を挿入
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    cur.execute('INSERT INTO projects (user_id, startdate, systemName, makeDay, features, languages, tools) VALUES (%s, %s, %s, %s, %s, %s, %s)', (user_id, startdate, systemName, makeDay, features_json, languages_json, tools_json)) 
+    cur.execute('INSERT INTO projects (user_id, startDate, systemName, makeDay, features, languages, tools, color_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (user_id, startDate, systemName, makeDay, features_json, languages_json, tools_json, color_id)) 
     conn.commit()
     cur.close()
     conn.close()
@@ -583,27 +591,33 @@ def get_ai_response_eng():
     ai_response = response.choices[0].message.content
     return jsonify({'response': ai_response})
 
-#プロジェクトごとに色を割り当てる
-def id_to_color(project_id):
-    # プロジェクトのIDを基に一貫した色を生成するロジック
-    # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
-    hash_value = hash(str(project_id))
-    # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
-    color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
-    return color_code
+# #プロジェクトごとに色を割り当てる
+# def id_to_color(project_id):
+#     # プロジェクトのIDを基に一貫した色を生成するロジック
+#     # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
+#     hash_value = hash(str(project_id))
+#     # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
+#     color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
+#     return color_code
 
-#プロジェクト名をカレンダーに反映させる
 @app.route('/get_projects')
 def get_projects():
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
     try:
-        cursor.execute("SELECT id, startDate, systemName, makeDay FROM projects where user_id = %s", (session.get('user_id'),) )
+        # LEFT JOINを使ってプロジェクトとその色の情報を取得します。
+        cursor.execute("""
+            SELECT p.id, p.startDate, p.systemName, p.makeDay, c.hex_value
+            FROM projects AS p
+            LEFT JOIN colors AS c ON p.color_id = c.color_id
+            WHERE p.user_id = %s
+        """, (session.get('user_id'),))
         projects_data = cursor.fetchall()
         projects_list = []
-        for projectId, startDate, systemName, makeDay in projects_data:
-            color = id_to_color(projectId)  # IDに基づいて色を生成
+        for projectId, startDate, systemName, makeDay, hex_value in projects_data:
+            # HEX値がNULLの場合、デフォルトの色を設定するなどの処理を追加
+            color = hex_value if hex_value else "#FFE48A"  # デフォルトの色
             end_date = startDate + timedelta(days=makeDay)
             projects_list.append({
                 "id": projectId,
