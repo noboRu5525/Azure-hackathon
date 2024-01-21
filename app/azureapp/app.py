@@ -285,6 +285,9 @@ def home():
     # get_projects 関数の呼び出し
     project_response = get_projects()
     projects = json.loads(project_response.data)
+    
+    #list_projects関数の呼び出し
+    projects = list_projects()
 
     return render_template('home.html', username=get_user(), projects=projects, tasks=first_four_tasks.values())
 
@@ -528,7 +531,7 @@ def create_plan():
 
     
 # 目標のリスト生成
-def projects():
+def list_projects():
     try:
         conn = mysql.connector.connect(**config)
         cur = conn.cursor()
