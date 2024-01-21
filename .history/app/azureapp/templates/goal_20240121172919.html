@@ -453,7 +453,7 @@
   document.querySelectorAll('.current_situation input[type="radio"]').forEach(function(radio) {
     radio.addEventListener('change', function() {
       // 'option3'が選択された場合に入力欄を表示
-      if (this.value === '試験を受けたことがある') {
+      if (this.value === 'option3') {
         document.getElementById('scoreInput').style.display = '';
       } else {
         document.getElementById('scoreInput').style.display = 'none';
@@ -1179,7 +1179,7 @@ chatArea.appendChild(userDiv);
           testDate: document.getElementById('test_date').value,
           currentSkill: document.querySelector('input[name="options_2"]:checked')?.value,
           currentScore: document.getElementById('currentScore').value,
-          targetSkill: document.querySelector('input[name="options_3"]:checked')?.value,
+          currentSkill: document.querySelector('input[name="options_2"]:checked')?.value,
           targetScore: document.getElementById('targetScore').value
       };
 

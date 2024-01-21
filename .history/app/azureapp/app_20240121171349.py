@@ -764,9 +764,11 @@ def submit_qualification_data():
     language = data.get('language', '')
     category = data.get('category', '')
     exam_name = data.get('exam_Name', '')
-    startDay = data.get('startDay', '')
-    features = data.get('functions', '')
-
+    makeDay = data.get('makeDay', '')
+    features = data.get('functions', [])
+    languages = data.get('languages', [])
+    tools = data.get('tools', [])
+    data = request.json
     # ここでデータを処理します
     print(data)
 
