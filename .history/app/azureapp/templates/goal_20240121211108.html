@@ -1198,17 +1198,8 @@ chatArea.appendChild(userDiv);
       .then(response => response.json())
       .then(data => {
           console.log('Success:', data);
-          // ローディング画面を非表示
           loadingDiv.style.display = 'none';
-  
-          // レスポンスの処理
-          console.log('Response:', data);
-          if (data.redirect) {
-              window.location.href = data.redirect_url;
-          } else {
-              alert('プロジェクトを作成できませんでした。もう一度作成して見てください');
-          }
-              })
+      })
       .catch((error) => {
           console.error('Error:', error);
           loadingDiv.style.display = 'none';
