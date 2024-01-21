@@ -4,7 +4,7 @@ from flask import Flask,render_template, request, redirect, url_for, session, js
 import mysql.connector, random
 from datetime import timedelta, datetime
 import json
-from task_generation import make_task, make_task2, make_task3, extract_languages_from_ai_response, extract_all_languages,make_task_eng
+from task_generation import make_task, make_task2, make_task3, extract_languages_from_ai_response, extract_all_languages
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -918,14 +918,14 @@ def submit_qualification_data_eng():
     targetScore = data.get('targetScore', '')
 
     if(currentSkill=="Have taken the exam"):
-        currentSkill = f"CurrentScore：{currentScore}"
+        currentSkill = f"現状：{currentScore}点"
     else:
-        currentSkill = f"CurrentSkill：{currentSkill}"
+        currentSkill = f"現状：{currentSkill}"
 
     if(targetSkill=="Set a personal target"):
-        targetSkill = f"TargetScore：{targetScore}"
+        targetSkill = f"目標：{targetScore}点"
     else:
-        targetSkill = f"Target：{targetSkill}"
+        targetSkill = f"目標：{targetSkill}"
 
     # 試験日をdatetimeオブジェクトに変換
     test_date_obj = datetime.strptime(testDate, '%Y-%m-%d')  # '2023-12-31'のような形式を想定
@@ -954,7 +954,7 @@ def submit_qualification_data_eng():
         max_tokens=4096,
         messages=[
             {"role": "system", "content": "You provide support in planning based on the user's goals."},
-            {"role": "user", "content": f"・Desired Qualification: {qualificationName} \n ・Days until Exam: {days_until_test} days left \n ・{currentSkill} \n ・{targetSkill}\n Please create a plan to achieve these goals. Utilize the specified number of production days to the fullest, break down tasks into detail, and include specific study methods for each area of the exam. \nPlease respond in the following format: \n 〇 day-〇 :Task name - Detail 1. - Detail 2. ... \n Day 1-3: Learning Python Basics - Learn the basic concepts of Python syntax, data types, and control structures. - Set up the Python development environment."},
+            {"role": "user", "content": f"・取得したい資格：{qualificationName} \n ・試験日：あと{days_until_test}日 \n ・{currentSkill} \n  ・{targetSkill}\n 目標を達成するための計画を立ててください。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述し試験の具体的な分野への勉強方法などを記載すること。\n以下の形式で回答してください。 \n 〇日目-〇日目：タスク -詳細1。 -詳細2。・・・  \n"},
         ]
        
     )
@@ -962,11 +962,11 @@ def submit_qualification_data_eng():
 
     print(res)
 
-    make_task_data = make_task_eng(res)
+    make_task_data = make_task(res)
 
     if not make_task_data:
-            res = formatting(res, "英語でテキスト生成してください")
-            make_task_data = make_task_eng(res)
+            res = formatting(res, "Japanese")
+            make_task_data = make_task(res)
             if not make_task_data:
                 make_task_data = make_task2(res)
                 if not make_task_data:

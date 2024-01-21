@@ -962,11 +962,11 @@ def submit_qualification_data_eng():
 
     print(res)
 
-    make_task_data = make_task_eng(res)
+    make_task_data = make_task(res)
 
     if not make_task_data:
             res = formatting(res, "英語でテキスト生成してください")
-            make_task_data = make_task_eng(res)
+            make_task_data = make_task(res)
             if not make_task_data:
                 make_task_data = make_task2(res)
                 if not make_task_data:

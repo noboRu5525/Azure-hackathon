@@ -272,17 +272,16 @@
     <div class="task" id="category1">
     </div>
     <!--資格・試験用項目-->
-    <!-- Qualification/Examination Section for English -->
-    <div class="qualification" id="qualification-eng" style="display: none;">
-      <form class="qualification-name-eng">
-        <h3 class="title">＜Qualification Name＞</h3>
-        <div class="input-space">
-          <input type="text" id="qualification-name-eng" name="qualification_name_eng" class="text-input2_1"><br>
-        </div>
+    <div class="qualification" id="category2" style="display: none;">
+      <form class="qualification_name">
+        <h3 class="title">＜資格名＞</h3>
+            <div class="input_space">
+              <input type="text" id="qualificat_name" name="qualificat_name" class="text-input2_1"><br>
+            </div>
       </form>
       <form>
-        <h3 class="title">＜Color＞</h3>
-        <div id="colorPicker-eng">
+        <h3 class="title">＜カラー＞</h3>
+        <div id="colorPicker2">
           <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
           <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
           <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
@@ -293,44 +292,41 @@
           <div class="color-choice" style="background-color: #61A5FF;" onclick="selectColor(this)"></div>
         </div>
       </form>
-      <form class="test-day-eng">
-        <h3 class="title">＜Test Date＞</h3>
-        <input type="date" id="test-date-eng" name="test_date_eng">
+      <form class="test_day">
+        <h3 class="title">＜試験日＞</h3>
+        <input type="date" id="test_date" name="test_date">
       </form>
-      <form class="current-situation-eng">
-        <h3 class="title">＜Current Skill Level＞</h3>
-        <!-- Update value and label texts to English -->
+      <form class="current_situation">
+        <h3 class="title" data-lang-key="title">＜現状スキル＞</h3>
         <label>
-          <input type="radio" name="options_current_eng" value="Never taken the exam"> Never taken the exam
+            <input type="radio" name="options_2" value="一度も試験を受けたことがない"> <span data-lang-key="option1">一度も試験を受けたことがない</span>
         </label><br>
         <label>
-          <input type="radio" name="options_current_eng" value="No exam experience but some knowledge"> No exam experience but some knowledge
+          <input type="radio" name="options_2" value="試験を受けたことはないが、ある程度知識がある">試験を受けたことはないが、ある程度知識がある
         </label><br>
         <label>
-          <input type="radio" name="options_current_eng" value="Have taken the exam"> Have taken the exam
+          <input type="radio" name="options_2" value="試験を受けたことがある">試験を受けたことがある
         </label><br>
-        <div id="current-score-input-eng" style="display: none;">
-          <label for="current-score-eng">Current Score:</label>
-          <input type="text" id="current-score-eng" name="current_score_eng">
+        <div id="scoreInput" style="display: none;">
+          <label for="currentScore">現状スコア:</label>
+          <input type="text" id="currentScore" name="currentScore">
         </div>
-      </form>
-      <form class="target-score-eng">
-        <h3 class="title">＜Target Score＞</h3>
-        <!-- Update value and label texts to English -->
-        <label>
-          <input type="radio" id="option-target-4-eng" name="options_target_eng" value="Aim for passing score"> Aim for passing score
-        </label><br>
-        <label>
-          <input type="radio" id="option-target-5-eng" name="options_target_eng" value="Set a personal target"> Set a personal target
-        </label><br>
-        <div id="target-score-input-eng" style="display: none;">
-          <label for="target-score-eng">Target Score:</label>
-          <input type="text" id="target-score-eng" name="target_score_eng">
-        </div>
-      </form>
-      <button class="create-button-eng">Create Project</button>
+    </form>
+    <form class="target_score">
+      <h3 class="title">＜目標スコア＞</h3>
+      <label>
+        <input type="radio" id="option4" name="options_3" value="合格点以上を目指す">合格点以上を目指す
+      </label><br>
+      <label>
+        <input type="radio" id="option5" name="options_3" value="自己目標を立てる">自己目標を立てる
+      </label><br>
+      <div id="targetscoreInput" style="display: none;">
+        <label for="targetScore">目標スコア:</label>
+        <input type="text" id="targetScore" name="targetScore">
+      </div>
+    </form>
+    <button class="create_button3">プロジェクトを作成</button>
     </div>
-
 
 
 
@@ -523,23 +519,6 @@
 });
 </script>
 
-<!--現状スコアの自己記入欄を表示（英語版）-->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Monitor the selection state of the radio buttons
-    document.querySelectorAll('.current-situation-eng input[type="radio"]').forEach(function(radio) {
-      radio.addEventListener('change', function() {
-        // Display the input field when 'Have taken the exam' is selected
-        if (this.value === 'Have taken the exam') {
-          document.getElementById('current-score-input-eng').style.display = '';
-        } else {
-          document.getElementById('current-score-input-eng').style.display = 'none';
-        }
-      });
-    });
-  });
-</script>
-
 <!--目標スコアの自己記入欄を表示（日本語版）-->
 <script>
   window.onload = function() {
@@ -569,36 +548,6 @@
     toggleInput();
   };
   </script>
-
-<!--目標スコアの自己記入欄を表示（英語版）-->
-<script>
-  window.onload = function() {
-    // Get the radio button elements
-    var optionTarget4Eng = document.getElementById('option-target-4-eng');
-    var optionTarget5Eng = document.getElementById('option-target-5-eng');
-  
-    // Get the target score input element
-    var targetScoreInputEng = document.getElementById('target-score-input-eng');
-  
-    // Function to toggle the display of the text box based on the radio button state
-    var toggleInputEng = function() {
-      if (optionTarget5Eng.checked) {
-        // Display the text box when 'Set a personal target' is selected
-        targetScoreInputEng.style.display = 'block';
-      } else {
-        // Hide the text box otherwise
-        targetScoreInputEng.style.display = 'none';
-      }
-    };
-  
-    // Execute the function when the radio button state changes
-    optionTarget4Eng.addEventListener('change', toggleInputEng);
-    optionTarget5Eng.addEventListener('change', toggleInputEng);
-  
-    // Initial state on page load
-    toggleInputEng();
-  };
-</script>
 
 <!--日本語版のローディング画面のテキスト-->
 <script>
@@ -1330,60 +1279,6 @@ chatArea.appendChild(userDiv);
       element.classList.add('selected');
   }
   </script>
-
-<!--資格試験の入力内容を取得する（英語版）-->
-<script>
-  document.querySelector('.create-button-eng').addEventListener('click', function() {
-      var qualificationDataEng = {
-          qualificationName: document.getElementById('qualification-name-eng').value,
-          selectedColor: document.querySelector('#colorPicker-eng .color-choice.selected')?.style.backgroundColor,
-          testDate: document.getElementById('test-date-eng').value,
-          currentSkill: document.querySelector('input[name="options_current_eng"]:checked')?.value,
-          currentScore: document.getElementById('current-score-eng').value,
-          targetSkill: document.querySelector('input[name="options_target_eng"]:checked')?.value,
-          targetScore: document.getElementById('target-score-eng').value
-      };
-
-      // Output to console
-      console.log("Qualification Input (English):", qualificationDataEng);
-      const loadingDivEng = document.querySelector('.loading_container_eng');
-      loadingDivEng.style.display = 'flex';
-  
-      fetch('/submit_qualification_data_eng', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(qualificationDataEng)
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log('Success:', data);
-          loadingDivEng.style.display = 'none';
-  
-          // Response handling
-          console.log('Response:', data);
-          if (data.redirect) {
-              window.location.href = data.redirect_url;
-          } else {
-              alert('Could not create project. Please try again');
-          }
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-          loadingDivEng.style.display = 'none';
-      });
-  });
-  
-  function selectColorEng(element) {
-      document.querySelectorAll('#colorPicker-eng .color-choice').forEach(function(choice) {
-          choice.classList.remove('selected');
-      });
-  
-      element.classList.add('selected');
-  }
-</script>
-
   
 </body>
 </html>

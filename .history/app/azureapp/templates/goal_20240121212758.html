@@ -570,36 +570,6 @@
   };
   </script>
 
-<!--目標スコアの自己記入欄を表示（英語版）-->
-<script>
-  window.onload = function() {
-    // Get the radio button elements
-    var optionTarget4Eng = document.getElementById('option-target-4-eng');
-    var optionTarget5Eng = document.getElementById('option-target-5-eng');
-  
-    // Get the target score input element
-    var targetScoreInputEng = document.getElementById('target-score-input-eng');
-  
-    // Function to toggle the display of the text box based on the radio button state
-    var toggleInputEng = function() {
-      if (optionTarget5Eng.checked) {
-        // Display the text box when 'Set a personal target' is selected
-        targetScoreInputEng.style.display = 'block';
-      } else {
-        // Hide the text box otherwise
-        targetScoreInputEng.style.display = 'none';
-      }
-    };
-  
-    // Execute the function when the radio button state changes
-    optionTarget4Eng.addEventListener('change', toggleInputEng);
-    optionTarget5Eng.addEventListener('change', toggleInputEng);
-  
-    // Initial state on page load
-    toggleInputEng();
-  };
-</script>
-
 <!--日本語版のローディング画面のテキスト-->
 <script>
   const tips = [
@@ -1330,60 +1300,6 @@ chatArea.appendChild(userDiv);
       element.classList.add('selected');
   }
   </script>
-
-<!--資格試験の入力内容を取得する（英語版）-->
-<script>
-  document.querySelector('.create-button-eng').addEventListener('click', function() {
-      var qualificationDataEng = {
-          qualificationName: document.getElementById('qualification-name-eng').value,
-          selectedColor: document.querySelector('#colorPicker-eng .color-choice.selected')?.style.backgroundColor,
-          testDate: document.getElementById('test-date-eng').value,
-          currentSkill: document.querySelector('input[name="options_current_eng"]:checked')?.value,
-          currentScore: document.getElementById('current-score-eng').value,
-          targetSkill: document.querySelector('input[name="options_target_eng"]:checked')?.value,
-          targetScore: document.getElementById('target-score-eng').value
-      };
-
-      // Output to console
-      console.log("Qualification Input (English):", qualificationDataEng);
-      const loadingDivEng = document.querySelector('.loading_container_eng');
-      loadingDivEng.style.display = 'flex';
-  
-      fetch('/submit_qualification_data_eng', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(qualificationDataEng)
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log('Success:', data);
-          loadingDivEng.style.display = 'none';
-  
-          // Response handling
-          console.log('Response:', data);
-          if (data.redirect) {
-              window.location.href = data.redirect_url;
-          } else {
-              alert('Could not create project. Please try again');
-          }
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-          loadingDivEng.style.display = 'none';
-      });
-  });
-  
-  function selectColorEng(element) {
-      document.querySelectorAll('#colorPicker-eng .color-choice').forEach(function(choice) {
-          choice.classList.remove('selected');
-      });
-  
-      element.classList.add('selected');
-  }
-</script>
-
   
 </body>
 </html>
