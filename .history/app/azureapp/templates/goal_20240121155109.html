@@ -86,17 +86,17 @@
     <form class="target_score">
       <h3 class="title">＜目標スコア＞</h3>
       <label>
-        <input type="radio" id="option4" name="options" value="option4">合格点以上を目指す
+        <input type="radio" name="options" value="option2">合格点以上を目指す
       </label><br>
       <label>
-        <input type="radio" id="option5" name="options" value="option5">自己目標を立てる
+        <input type="radio" name="options" value="option1">自己目標を立てる
       </label><br>
-      <div id="targetscoreInput" style="display: none;">
-        <label for="targetScore">目標スコア:</label>
-        <input type="text" id="targetScore" name="targetScore">
+      <div id="scoreInput" style="display: none;">
+        <label for="currentScore">目標スコア:</label>
+        <input type="text" id="currentScore" name="currentScore">
       </div>
     </form>
-    <button class="create_button3">プロジェクトを作成</button>
+    <button class="create_button2">プロジェクトを作成</button>
     </div>
 
 
@@ -446,7 +446,6 @@
   </div>
 </div>
 
-<!--現状スコアの自己記入欄を表示（日本語版）-->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
   // ラジオボタンの選択状態を監視
@@ -463,37 +462,6 @@
 });
 </script>
 
-<!--目標スコアの自己記入欄を表示（日本語版）-->
-<script>
-  window.onload = function() {
-    // ラジオボタンの要素を取得
-    var option4 = document.getElementById('option4');
-    var option5 = document.getElementById('option5');
-  
-    // テキストボックスの要素を取得
-    var targetScoreInput = document.getElementById('targetscoreInput');
-  
-    // ラジオボタンの状態に応じてテキストボックスの表示を切り替える関数
-    var toggleInput = function() {
-      if (option5.checked) {
-        // '自己目標を立てる' が選択された場合、テキストボックスを表示
-        targetScoreInput.style.display = 'block';
-      } else {
-        // それ以外の場合、テキストボックスを非表示
-        targetScoreInput.style.display = 'none';
-      }
-    };
-  
-    // ラジオボタンの状態が変更されたときに関数を実行
-    option4.addEventListener('change', toggleInput);
-    option5.addEventListener('change', toggleInput);
-  
-    // ページ読み込み時の初期状態
-    toggleInput();
-  };
-  </script>
-
-<!--日本語版のローディング画面のテキスト-->
 <script>
   const tips = [
   "深呼吸をすることで、集中力が高まり、ストレスが減少します。",
@@ -546,7 +514,6 @@ showRandomTip();
 setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
 </script>
 
-<!--英語版のローディング画面のテキスト-->
 <script>
   const tips_eng = [
   "Deep breathing can increase concentration and reduce stress.",
@@ -599,7 +566,6 @@ showRandomTip();
 setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
 </script>
 
-<!--日本語版のラジオボタンの監視-->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       // ラジオボタンの選択を監視する
@@ -629,7 +595,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
       });
   });
 </script>
-
 <!--英語版のラジオボタンの監視-->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -680,7 +645,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         });
     </script>
 
-    <!--プログラム開発の入力内容を取得する（日本語版）-->
     <script>
       // 選択されたカラーを保存する変数
       let selectedColor = null;
@@ -786,8 +750,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
       });
   });
   </script>
-
-  <!--プログラム開発の内容を取得（英語版）-->
   <script>
     // 英語版の選択されたカラーを保存する変数
     let selectedColorEng = null;
@@ -893,7 +855,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
     });
   </script>
 
-  <!--入力内容の不備チェッカー（日本語版）-->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         const createButton = document.querySelector('.create_button');
@@ -955,8 +916,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         });
     });
   </script>
-
-<!--言語切り替え用のボタン-->
+  
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     const switchLangButtons = document.querySelectorAll('.language-switch button');
@@ -975,8 +935,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
     });
 });
 </script>
-
-<!--AIとチャットスペース機能（日本語版）-->
   <script>
     document.getElementById('send-button').addEventListener('click', function() {
       var userInput = document.getElementById('user-input').value;
@@ -1009,8 +967,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
   }
 });
     </script>
-
-    <!--AIとのチャットスペース（英語版）-->
     <script>
       document.getElementById('send-button-eng').addEventListener('click', function() {
     var userInput
@@ -1044,8 +1000,6 @@ chatArea.appendChild(userDiv);
 }
 });
   </script>
-
-  <!--プログラム言語を自動選択する（日本語版）-->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
     // "自動選択する"ボタンのクリックイベントを監視
@@ -1090,9 +1044,8 @@ chatArea.appendChild(userDiv);
         .catch(error => console.error('Error:', error));
     });
 });
-</script>
 
-<!--プログラム言語を自動で選択する（英語版）-->
+</script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // 英語版の "自動選択する" ボタンのクリックイベントを監視
@@ -1139,7 +1092,6 @@ chatArea.appendChild(userDiv);
 });
 </script>
 
-<!--合格点数を取得する（日本語版）-->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('passScoreButton').addEventListener('click', function() {
@@ -1169,43 +1121,5 @@ chatArea.appendChild(userDiv);
 });
 
 </script>
-
-<!--資格試験の入力内容を取得する（日本語版）-->
-<script>
-  document.querySelector('.create_button3').addEventListener('click', function() {
-      var qualificationData = {
-          qualificationName: document.getElementById('qualificat_name').value,
-          selectedColor: document.querySelector('#colorPicker2 .color-choice.selected')?.style.backgroundColor,
-          testDate: document.getElementById('test_date').value,
-          currentSkill: document.querySelector('input[name="options"]:checked')?.value,
-          currentScore: document.getElementById('currentScore').value,
-          targetScore: document.getElementById('targetScore').value
-      };
-  
-      fetch('/submit_qualification_data', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(qualificationData)
-      })
-      .then(response => response.json())
-      .then(data => {
-          console.log('Success:', data);
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-      });
-  });
-  
-  function selectColor(element) {
-      document.querySelectorAll('#colorPicker2 .color-choice').forEach(function(choice) {
-          choice.classList.remove('selected');
-      });
-  
-      element.classList.add('selected');
-  }
-  </script>
-  
 </body>
 </html>
