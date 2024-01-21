@@ -280,6 +280,7 @@ def home():
                 'details': []
             }
         tasks[task_id]['details'].append(detail)
+    first_four_tasks = {k: tasks[k] for k in list(tasks)[:4]} # 最初の4要素を取得
 
     # get_projects 関数の呼び出し
     project_response = get_projects()
@@ -288,7 +289,7 @@ def home():
     #list_projects関数の呼び出し
     projects = list_projects()
 
-    return render_template('home.html', username=get_user(), projects=projects, tasks=tasks.values())
+    return render_template('home.html', username=get_user(), projects=projects, tasks=first_four_tasks.values())
 
 #Create Newボタンを押したときの処理
 @app.route('/goal')
@@ -823,7 +824,7 @@ def submit_qualification_data():
     make_task_data = make_task(res)
 
     if not make_task_data:
-            res = formatting(res, "Japanese")
+            res = formatting(res)
             make_task_data = make_task(res)
             if not make_task_data:
                 make_task_data = make_task2(res)

@@ -280,6 +280,7 @@ def home():
                 'details': []
             }
         tasks[task_id]['details'].append(detail)
+    first_four_tasks = {k: tasks[k] for k in list(tasks)[:4]} # 最初の4要素を取得
 
     # get_projects 関数の呼び出し
     project_response = get_projects()
@@ -288,7 +289,7 @@ def home():
     #list_projects関数の呼び出し
     projects = list_projects()
 
-    return render_template('home.html', username=get_user(), projects=projects, tasks=tasks.values())
+    return render_template('home.html', username=get_user(), projects=projects, tasks=first_four_tasks.values())
 
 #Create Newボタンを押したときの処理
 @app.route('/goal')
@@ -797,14 +798,13 @@ def submit_qualification_data():
     # ここでデータを処理します（データベースへの保存など）
     print(qualificationName)
     
-    """
     # Azure Open AIでタスク生成
     embedding = client.embeddings.create(
         model="ADA", # model = "deployment_name".
         input=f"・取得したい資格：{qualificationName} \n ・試験日：あと{days_until_test}日 \n ・{currentSkill} \n  ・{targetSkill}\n 目標を達成するための計画を詳細に立ててください。"
     )
     print(embedding)
-    """
+    
 
       # Azure Open AIでタスク生成
     response = client.chat.completions.create(
@@ -812,7 +812,7 @@ def submit_qualification_data():
         max_tokens=4096,
         messages=[
             {"role": "system", "content": "You provide support in planning based on the user's goals."},
-            {"role": "user", "content": f"・取得したい資格：{qualificationName} \n ・試験日：あと{days_until_test}日 \n ・{currentSkill} \n  ・{targetSkill}\n 目標を達成するための計画を立ててください。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述し試験の具体的な分野への勉強方法などを記載すること。\n以下の形式で回答してください。 \n 〇日目-〇日目：タスク -詳細1。 -詳細2。・・・  \n"},
+            {"role": "user", "content": f"・取得したい資格：{qualificationName} \n ・試験日：{testDate} \n ・{currentSkill} \n  ・{targetSkill}\n 目標を達成するための計画を立ててください。また、指定された制作日数を最大限に使用し細かくタスクを分け、できるだけ詳細に記述してください。\n以下の形式に修正してください。 \n 〇日目-〇日目：タスク -詳細1。 -詳細2。・・・  \n具体例は次のような感じです: 1日目-20日目：基礎的な文法の勉強をする - 中学生レベルの英文法の復習から、高校レベルまで学習する。 - 文法パズルをする。"},
         ]
        
     )
@@ -820,80 +820,8 @@ def submit_qualification_data():
 
     print(res)
 
-    make_task_data = make_task(res)
-
-    if not make_task_data:
-            res = formatting(res, "Japanese")
-            make_task_data = make_task(res)
-            if not make_task_data:
-                make_task_data = make_task2(res)
-                if not make_task_data:
-                    make_task_data = make_task3(res)
-                
-        
-    # 日数、タスク、その詳細に分ける
-    print(make_task_data)
-    
-    # セッションからユーザーIDを取得（ユーザーがログインしていることが前提）
-    user_id = session.get('user_id')
-    if not user_id:
-        return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
-
-    # POSTデータを取得（JSON形式のデータが送信されることを前提）
-    data = make_task_data
-    # データベースに接続
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-
-    try:
-        # データベースに学習プランを挿入
-        cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
-        plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
-
-        # 各タスクとその詳細をデータベースに挿入
-        for days_range, tasks in data.items():
-            for task_name, details in tasks.items():
-                cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
-                            (plan_id, days_range, task_name))
-                task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
-
-                for detail in details:
-                    cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
-                                (task_id, detail))
-
-        # 変更をコミット
-        conn.commit()
-    except mysql.connector.Error as err:
-        # エラーが発生した場合はロールバック
-        conn.rollback()
-        print(f"An error occurred: {err}")
-        return jsonify({'status': 'error', 'message': 'Database error'}), 500
-    finally:
-        # カーソルとコネクションを閉じる
-        cur.close()
-        conn.close()
-
-
-                
-    #タスク生成回数カウンター
-    count = 0
-    """
-    while(count <=  5):
-        #生成された文章からタスクに分割する
-        if make_task(res):
-            make_task_data = make_task(res)
-            count = 5
-        else:
-            res = formatting(res)
-            count += 1
-    """
-    if not make_task_data:
-        # タスクを生成できなかった場合のレスポンス
-        return jsonify({'status': 'error', 'message': 'タスクを生成できませんでした', 'redirect': False})
-    else:
-        # タスク生成が成功した場合のレスポンス
-        return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
-
+    # 応答を返す
+    return jsonify({"message": f"{qualificationName}"})
 
 
 if __name__ == '__main__':
