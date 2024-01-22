@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+    <!--Bootstrap Icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <title>Modern Sliding Sidebar</title>
+    <style>
+        /* CSS goes here */
+    </style>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <button type="button" id="sidebarCollapse" class="btn btn-light">
+            <i class="bi bi-list"></i>
+        </button>
+        <a class="navbar-brand justify-content-center" href="">Taskman</a>
+        <button type="button" class="btn btn-primary" onclick="location.href='/goal'">Create new</button>
+        <button class="btn btn-primary ml-auto" onclick=location.href='/logout'>Log out</button>
+        <!-- Other navbar content can go here -->
+    </div>
+</nav>
+<div class="wrapper d-flex">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="bg-light">
+        <div class="sidebar-header">
+        </div>
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="/home" data-toggle="" aria-expanded="false"><i class="fas fa-home"></i> Home</a>
+            </li>
+            <li>
+                <a href="/task"><i class="fas fa-briefcase"></i> Task</a>
+            </li>
+            <li>
+                <a href="/projects"><i class="fas fa-image"></i> Project</a>
+            </li>
+            <li>
+                <a href="/faq"><i class="fas fa-question"></i> FAQ</a>
+            </li>
+            <li>
+                <a href="/contact"><i class="fas fa-paper-plane"></i> Contact</a>
+            </li>
+        </nav>
+    <!-- Page Content -->
+<body>
+<div class="container-fluid">
+    <!-- ドロップダウン -->
+    <div class="dropdown">
+        <!-- 切り替えボタン -->
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ドロップダウン
+        </button>
+        <!-- ドロップダウンメニュー -->
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="#">プロジェクト1</a></li>
+            <li><a class="dropdown-item" href="#">プロジェクト2</a></li>
+            <li><a class="dropdown-item" href="#">プロジェクト3</a></li>
+        </ul>
+    </div>
+    </label>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="py-5">
+                <div class="row hidden-md-up d-flex">
+                    {% for task in tasks %}
+                        <div class="col-md-4">
+                            <div class="card w-75">
+                                <div class="card-block">
+                                    <h4 class="card-title">{{ task.task_name }}</h4>
+                                    <h6 class="card-subtitle text-muted">{{ task.days_range }}</h6>
+                                    <a href="#" class="card-link" data-toggle="modal" data-target="#detailModal" data-task-id="{{ task.task_id }}" data-task-detail="{{ task.details | join(', ') }}">Detail</a>
+                                    <a href="#" class="card-link" data-toggle="modal" data-target="#changeDeadlineModal">Change</a>
+                                    <a href="#" class="btn btn-light complete-task" role="button" data-task-id="{{ task.task_id }}">Complete</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+         <div class="row ms-auto">
+                    <div class="table">
+                        <table class="table col-md-4">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Project name</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for project in projects[-3:] %}
+                                <tr>
+                                  <th scope="row">{{ loop.index }}</th>
+                                  <td>{{ project[1] }}</td>
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+                        </table>
+                    </div>
+                    <!-- 特定のカラム（ここではカレンダー）に最大幅を与える場合 -->
+                    <div class="col-md-8" id="calendar">
+                </div>
+            </div>
+    </div>
+    </main>
+        <!-- モーダル -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">モーダル完了</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ここにコンテンツを追加します。
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+                <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+<!--カードのモーダル(detail)-->
+<!-- モーダル -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">Card Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- ここにカードの詳細内容を入れる -->
+                <p id="card-detail-text">Some quick example text to build on the Task name.</p>
+                <div class="advice-text" style="display: none;">
+                  <h2 >Advice</h2>
+                </div>
+                <div id="flask-response-text"></div>
+            </div>
+            <div class="modal-footer">
+                <!-- Adviceボタンの追加 -->
+                <button type="button" class="btn btn-light" id="advice-button" data-bs-toggle="modal">One Point Advice</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+  <!-- 期限変更用モーダル -->
+<div class="modal fade" id="changeDeadlineModal" tabindex="-1" role="dialog" aria-labelledby="changeDeadlineModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="changeDeadlineModalLabel">Change Deadline</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- 日付選択フィールド -->
+          <form>
+            <div class="form-group">
+              <label for="new-deadline">New Deadline</label>
+              <input type="date" class="form-control" id="new-deadline">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <button type="button" class="btn btn-primary" id="save-changes">変更する</button>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+<script src="../static/js/script.js"></script>
+<script>
+    // 詳細ボタンのクリックイベント
+    document.querySelectorAll('.card-link[data-task-id]').forEach(button => {
+    button.addEventListener('click', function() {
+    var taskId = this.getAttribute('data-task-id');
+    var taskDetails = this.getAttribute('data-task-detail').split(',');
+    var detailTextElement = document.getElementById('card-detail-text');
+    detailTextElement.innerHTML = ''; // 以前の内容をクリア
+    var responseTextElement = document.getElementById('flask-response-text');
+    responseTextElement.innerHTML = ''; // アドバイス内容をクリア
+    // 各詳細を追加
+    taskDetails.forEach((detail, index) => {
+        var paragraph = document.createElement('p');
+        paragraph.textContent = 'detail' + (index + 1) + ': ' + detail.trim();
+        paragraph.classList.add('detail-item');
+        paragraph.dataset.index = index; // インデックスをデータ属性として追加
+        detailTextElement.appendChild(paragraph);
+    });
+    });
+    });
+    // アドバイスボタンのクリックイベント
+    document.getElementById('advice-button').addEventListener('click', function() {
+    var selectedDetail = document.querySelector('.detail-item.selected'); // 選択された詳細を取得
+    if (!selectedDetail) {
+    alert('select details');
+    return;
+    }
+    var cardDetailText = selectedDetail.textContent;
+    fetch('/send_card_detail', {
+    method: 'POST',
+    body: JSON.stringify({ 'text': cardDetailText }),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+    })
+    .then(response => response.json())
+    .then(data => {
+    var responseTextElement = document.getElementById('flask-response-text');
+    responseTextElement.textContent = data.text;
+    })
+    .catch(error => console.error('Error:', error));
+    });
+    // 各詳細アイテムのクリックイベント（選択）
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('detail-item')) {
+        document.querySelectorAll('.detail-item').forEach(item => item.classList.remove('selected'));
+        event.target.classList.add('selected');
+        }
+        });
+        // 各詳細アイテムのクリックイベント（選択）
+        document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('detail-item')) {
+        // 既に選択されているアイテムの選択を解除
+        document.querySelectorAll('.detail-item').forEach(item => {
+            item.classList.remove('selected');
+            item.style.backgroundColor = ''; // 背景色を元に戻す
+        });
+        
+        // クリックされたアイテムを選択状態にする
+        event.target.classList.add('selected');
+        event.target.style.backgroundColor = '#ddd'; // 選択された背景色
+        }
+        });
+    
+      </script>
+    
+        <script>
+            document.querySelectorAll('.complete-task').forEach(button => {
+    button.addEventListener('click', function(e) {
+    e.preventDefault();
+    const taskId = this.getAttribute('data-task-id');
+    
+    if (confirm('Really!？')) {
+        fetch(`/delete_task/${taskId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'X-CSRFToken': csrfToken を削除
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                this.closest('.col-md-4').remove();
+            } else {
+                alert('Error!');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    });
+    });
+    
+        </script>
+    </body>
+    
+      
+    
+    </html>
