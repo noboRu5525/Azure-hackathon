@@ -867,134 +867,196 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
 
     <!--プログラム開発の入力内容を取得する（日本語版）-->
     <script>
+      // selectColor 関数（または selectColorEng）の定義（グローバル変数を使用）
+let selectedColor = null;
+
+function selectColor(element) {
+    document.querySelectorAll('#colorPicker .color-choice').forEach(function(choice) {
+        choice.classList.remove('selected');
+    });
+
+    element.classList.add('selected');
+    selectedColor = window.getComputedStyle(element).backgroundColor;
+}
        document.addEventListener('DOMContentLoaded', function() {
-    const createButton = document.querySelector('.create_button');
-    const loadingDiv = document.querySelector('.loading_container');
-    let selectedColor = null; // グローバル変数としてselectedColorを定義
+        const createButton = document.querySelector('.create_button');
+        const loadingDiv = document.querySelector('.loading_container');
+  
+          createButton.addEventListener('click', function() {
+              // カテゴリーの値を取得
+              const category = document.querySelector('form.Category input[type="radio"]:checked')?.value;
+  
+              // システム名を取得
+              const systemName = document.querySelector('.system-name .text-input')?.value;
+  
+              // 作成日数を取得
+              const makeDay = document.querySelector('.make-day .text-input')?.value;
+  
+              // 具体的な機能を取得
+              const functions = [];
+              document.querySelectorAll('.custom .text-input2').forEach(function(input) {
+                  functions.push(input.value);
+              });
+  
+              // 使用する言語を取得
+              const languages = [];
+              document.querySelectorAll('.use_lang_space .lang:checked').forEach(function(checkbox) {
+                  languages.push(checkbox.value);
+              });
+  
+              // 使用するツール・プラットフォームを取得
+              const tools = [];
+              document.querySelectorAll('.use_lang .lang:checked').forEach(function(checkbox) {
+                  tools.push(checkbox.value);
+              });
 
-    // カラー選択時の処理
-    function selectColorDevelopment(element) {
-        document.querySelectorAll('#category3 .color-choice').forEach(function(choice) {
-            choice.classList.remove('selected');
-        });
+              // 計算されたスタイルから背景色を取得してグローバル変数に保存
+              selectedColor = window.getComputedStyle(element).backgroundColor;
 
-        element.classList.add('selected');
-        selectedColor = window.getComputedStyle(element).backgroundColor;
-        console.log('Selected color:', selectedColor);
-    }
+          // グローバル変数を隠し入力フィールドなどに保存する
+          selectedColor: document.querySelector('#colorPicker2 .color-choice.selected')?.style.backgroundColor,
 
-    // カラーピッカーの要素にイベントリスナーを設定
-    document.querySelectorAll('#category3 .color-choice').forEach(function(choice) {
-        choice.addEventListener('click', function() {
-            selectColorDevelopment(this);
-        });
-    });
-
-    // プロジェクト作成ボタンのクリックイベントリスナー
-    createButton.addEventListener('click', function() {
-        // 入力値を取得
-        const category = document.querySelector('form.Category input[type="radio"]:checked')?.value;
-        const systemName = document.querySelector('.system-name .text-input')?.value;
-        const makeDay = document.querySelector('.make-day .text-input')?.value;
-
-        // 具体的な機能、使用する言語、ツール・プラットフォームを取得
-        const functions = Array.from(document.querySelectorAll('.custom .text-input2')).map(input => input.value);
-        const languages = Array.from(document.querySelectorAll('.use_lang_space .lang:checked')).map(checkbox => checkbox.value);
-        const tools = Array.from(document.querySelectorAll('.use_lang .lang:checked')).map(checkbox => checkbox.value);
-        const startDate = document.querySelector('#start_date').value;
-
-        // 送信するデータを準備
-        const data = {
-            'language': "Japanese",
-            'category': category,
-            'systemName': systemName,
-            'makeDay': makeDay,
-            'functions': functions,
-            'languages': languages,
-            'tools': tools,
-            'selectedColor': selectedColor,
-            'startDate': startDate
-        };
-
-        console.log('送信するデータ:', data); // デバッグ用
-
-        // ローディング画面の表示
-        loadingDiv.style.display = 'flex';
-
-        // AJAXを使ってサーバーにデータを送信
-        fetch('/create_project', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(data => {
+              const startDate = document.querySelector('#start_date').value;
+  
+              // コンソールに出力（デバッグ用）
+              console.log('カテゴリー:', category);
+              console.log('システム名:', systemName);
+              console.log('作成日数:', makeDay);
+              console.log('具体的な機能:', functions);
+              console.log('使用する言語:', languages);
+              console.log('使用するツール・プラットフォーム:', tools);
+              console.log('選択されたカラー:', selectedColor);
+              console.log('開始日:', startDate);
+              // 送信するデータを準備
+              const data = {
+                  'language':"Japanese",
+                  'category': category,
+                  'systemName': systemName,
+                  'makeDay': makeDay,
+                  'functions': functions,
+                  'languages': languages,
+                  'tools': tools,
+                  'selectedColor': selectedColor, // 追加
+                  'startDate': startDate, // 追加
+              };
+  
+              loadingDiv.style.display = 'flex';
+  
+              // AJAXを使ってサーバーにデータを送信
+              fetch('/create_project', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+              // ローディング画面を非表示
+              loadingDiv.style.display = 'none';
+  
+              // レスポンスの処理
+              console.log('Response:', data);
+              if (data.redirect) {
+                  window.location.href = data.redirect_url;
+              } else {
+                  alert('プロジェクトを作成できませんでした。もう一度作成して見てください');
+              }
+          })
+          .catch((error) => {
             loadingDiv.style.display = 'none';
-            console.log('Response:', data);
-            if (data.redirect) {
-                window.location.href = data.redirect_url;
-            } else {
-                alert('プロジェクトを作成できませんでした。もう一度作成して見てください');
-            }
-        })
-        .catch((error) => {
-            loadingDiv.style.display = 'none';
-            console.error('Error:', error);
+          console.error('Error:', error);
         });
-    });
-});
+      });
+  });
+
+  function selectColorEng(element) {
+      document.querySelectorAll('#colorPicker .color-choice').forEach(function(choice) {
+          choice.classList.remove('selected');
+      });
+  
+      element.classList.add('selected');
+  }
   </script>
 
   <!--プログラム開発の内容を取得（英語版）-->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const createButtonEng = document.querySelector('#English .create_button');
-    const loadingDivEng = document.querySelector('.loading_container_eng');
-    let selectedColorEng = null; // 英語版の選択されたカラーを保存する変数
+    // 英語版の選択されたカラーを保存する変数
+    let selectedColorEng = null;
 
+    // 英語版のカラー選択時の処理
     function selectColorEng(element) {
-        document.querySelectorAll('#English .color-choice').forEach(function(choice) {
-            choice.classList.remove('selected');
-        });
+      // すべての色選択肢から 'selected' クラスを削除
+      document.querySelectorAll('#English .color-choice').forEach(function(choice) {
+        choice.classList.remove('selected');
+      });
       
-        element.classList.add('selected');
-        selectedColorEng = window.getComputedStyle(element).backgroundColor;
+      // クリックされた要素に 'selected' クラスを追加
+      element.classList.add('selected');
+
+      // 計算されたスタイルから背景色を取得して変数に保存
+      selectedColorEng = window.getComputedStyle(element).backgroundColor;
     }
 
+    // 英語版のカラーピッカーのdivにクリックイベントをバインド
     document.querySelectorAll('#English .color-choice').forEach(function(choice) {
-        choice.addEventListener('click', function() {
-            selectColorEng(this);
-        });
+      choice.addEventListener('click', function() {
+        selectColorEng(this);
+      });
     });
-
-    createButtonEng.addEventListener('click', function() {
-        const categoryEng = document.querySelector('#English .CategoryEng input[type="radio"]:checked')?.value;
-        const systemNameEng = document.querySelector('#English .system-name .text-input')?.value;
-        const makeDayEng = document.querySelector('#English .make-day .text-input')?.value;
-        
-        const functionsEng = Array.from(document.querySelectorAll('#English .custom .text-input2')).map(input => input.value);
-        const languagesEng = Array.from(document.querySelectorAll('#English .use_lang_space .lang:checked')).map(checkbox => checkbox.value);
-        const toolsEng = Array.from(document.querySelectorAll('#English .use_lang .lang:checked')).map(checkbox => checkbox.value);
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadingDiv = document.querySelector('.loading_container_eng');
+        const createButtonEng = document.querySelector('#English .create_button');
+        createButtonEng.addEventListener('click', function() {
+            // 英語版のカテゴリーの値を取得
+            const categoryEng = document.querySelector('#English .CategoryEng input[type="radio"]:checked')?.value;
+            // 英語版のシステム名を取得
+            const systemNameEng = document.querySelector('#English .system-name .text-input')?.value;
+            // 英語版の作成日数を取得
+            const makeDayEng = document.querySelector('#English .make-day .text-input')?.value;
+            // 英語版の具体的な機能を取得
+            const functionsEng = [];
+            document.querySelectorAll('#English .custom .text-input2').forEach(function(input) {
+                functionsEng.push(input.value);
+            });
+            // 英語版で使用する言語を取得
+            const languagesEng = [];
+            document
+    .querySelectorAll('#English .use_lang_space .lang:checked').forEach(function(checkbox) {
+    languagesEng.push(checkbox.value);
+    });
+        // 英語版で使用するツール・プラットフォームを取得
+        const toolsEng = [];
+        document.querySelectorAll('#English .use_lang .lang:checked').forEach(function(checkbox) {
+            toolsEng.push(checkbox.value);
+        });
         const startDateEng = document.querySelector('#English #start_date').value;
-
+        // コンソールに出力（デバッグ用）
+        console.log('Category:', categoryEng);
+        console.log('System Name:', systemNameEng);
+        console.log('Creation Days:', makeDayEng);
+        console.log('Specific Functions:', functionsEng);
+        console.log('Languages Used:', languagesEng);
+        console.log('Tools/Platforms Used:', toolsEng);
+        console.log('Selected Color (English):', selectedColorEng);
+        console.log('Start Date (English):', startDateEng);
+        // 送信するデータを準備
         const dataEng = {
-            'language': "English",
+            'language':"English",
             'category': categoryEng,
             'systemName': systemNameEng,
             'makeDay': makeDayEng,
             'functions': functionsEng,
             'languages': languagesEng,
             'tools': toolsEng,
-            'selectedColor': selectedColorEng, // 選択されたカラー
-            'startDate': startDateEng
+            'selectedColor': selectedColorEng, // 追加
+            'startDate': startDateEng, // 追加
         };
-
-        loadingDivEng.style.display = 'flex';
-
-        console.log('送信するデータ:', dataEng); // デバッグ用
-
+  
+        loadingDiv.style.display = 'flex';
+        
+        // AJAXを使ってサーバーにデータを送信
         fetch('/create_project', {
             method: 'POST',
             headers: {
@@ -1004,20 +1066,23 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         })
         .then(response => response.json())
         .then(data => {
-            loadingDivEng.style.display = 'none';
-            if (data.redirect) {
-                window.location.href = data.redirect_url;
-            } else {
-                alert('Could not create project. Please try creating it again');
-            }
+          // ローディング画面を非表示
+          loadingDiv.style.display = 'none';
+            console.log('Response:', data);
+            if (data.redirect
+          ) {
+          // リダイレクトが必要な場合、指定されたURLにリダイレクト
+          window.location.href = data.redirect_url;
+        } else {
+                alert('Could not create project. Please try creating it again' );
+              }
         })
         .catch((error) => {
-            loadingDivEng.style.display = 'none';
+          loadingDiv.style.display = 'none';
             console.error('Error:', error);
         });
     });
-});
-
+    });
   </script>
 
   <!--入力内容の不備チェッカー（日本語版）-->

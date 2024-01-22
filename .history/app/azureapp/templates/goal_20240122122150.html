@@ -945,6 +945,8 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         });
     });
 });
+
+  
   </script>
 
   <!--プログラム開発の内容を取得（英語版）-->
@@ -964,8 +966,56 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
     }
 
     document.querySelectorAll('#English .color-choice').forEach(function(choice) {
+<<<<<<< HEAD
         choice.addEventListener('click', function() {
             selectColorEng(this);
+=======
+      choice.addEventListener('click', function() {
+        selectColorEng(this);
+      });
+    });
+
+    function rgbToHex(rgb) {
+      // RGB値を抽出するために正規表現を使用
+      let rgbValues = rgb.match(/\d+/g);
+  
+      // RGBの各値を16進数に変換
+      let hexValues = rgbValues.map(val => {
+          // 数値に変換し、16進数に変換
+          let hex = parseInt(val).toString(16);
+          // 1桁の場合は0を前に追加
+          return hex.length == 1 ? '0' + hex : hex;
+      });
+  
+      // 16進数の値を結合して返す
+      return '#' + hexValues.join('');
+  }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadingDiv = document.querySelector('.loading_container_eng');
+        const createButtonEng = document.querySelector('#English .create_button');
+        createButtonEng.addEventListener('click', function() {
+            // 英語版のカテゴリーの値を取得
+            const categoryEng = document.querySelector('#English .CategoryEng input[type="radio"]:checked')?.value;
+            // 英語版のシステム名を取得
+            const systemNameEng = document.querySelector('#English .system-name .text-input')?.value;
+            // 英語版の作成日数を取得
+            const makeDayEng = document.querySelector('#English .make-day .text-input')?.value;
+            // 英語版の具体的な機能を取得
+            const functionsEng = [];
+            document.querySelectorAll('#English .custom .text-input2').forEach(function(input) {
+                functionsEng.push(input.value);
+            });
+            // 英語版で使用する言語を取得
+            const languagesEng = [];
+            document
+    .querySelectorAll('#English .use_lang_space .lang:checked').forEach(function(checkbox) {
+    languagesEng.push(checkbox.value);
+    });
+        // 英語版で使用するツール・プラットフォームを取得
+        const toolsEng = [];
+        document.querySelectorAll('#English .use_lang .lang:checked').forEach(function(checkbox) {
+            toolsEng.push(checkbox.value);
         });
     });
 
@@ -979,6 +1029,21 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         const toolsEng = Array.from(document.querySelectorAll('#English .use_lang .lang:checked')).map(checkbox => checkbox.value);
         const startDateEng = document.querySelector('#English #start_date').value;
 
+<<<<<<< HEAD
+=======
+        const hexColorEng = rgbToHex(selectedColorEng);
+
+        // コンソールに出力（デバッグ用）
+        console.log('Category:', categoryEng);
+        console.log('System Name:', systemNameEng);
+        console.log('Creation Days:', makeDayEng);
+        console.log('Specific Functions:', functionsEng);
+        console.log('Languages Used:', languagesEng);
+        console.log('Tools/Platforms Used:', toolsEng);
+        console.log('Selected Color (English):', selectedColorEng);
+        console.log('Start Date (English):', startDateEng);
+        // 送信するデータを準備
+>>>>>>> b1b1db932b8c5630f43afd970a7285ef64a582ea
         const dataEng = {
             'language': "English",
             'category': categoryEng,
@@ -987,13 +1052,18 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
             'functions': functionsEng,
             'languages': languagesEng,
             'tools': toolsEng,
+<<<<<<< HEAD
             'selectedColor': selectedColorEng, // 選択されたカラー
             'startDate': startDateEng
+=======
+            'selectedColor': hexColorEng, // 追加
+            'startDate': startDateEng, // 追加
+>>>>>>> b1b1db932b8c5630f43afd970a7285ef64a582ea
         };
 
-        loadingDivEng.style.display = 'flex';
-
         console.log('送信するデータ:', dataEng); // デバッグ用
+
+        loadingDivEng.style.display = 'flex';
 
         fetch('/create_project', {
             method: 'POST',
@@ -1017,7 +1087,6 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         });
     });
 });
-
   </script>
 
   <!--入力内容の不備チェッカー（日本語版）-->

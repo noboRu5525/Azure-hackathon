@@ -1,0 +1,317 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* サイズ計算をより予測しやすくするためのプロパティ */
+}
+h1 a:hover {
+    color: black;
+}
+ul {
+      list-style: none;
+  }
+@media(max-width: 992px){
+    html {
+        font-size: 2.0rem;
+    }
+}
+.model_window_space{
+    width: 90%;
+    height: 90%;
+    /*display: flex;
+    flex-wrap: wrap;*/
+    position: fixed;
+    background-color: #F7F5F5;
+    top: 5%;
+    left: 5%;
+    padding: 20px;
+    border-radius: 20px 20px 20px 20px;
+    max-height: 90%; /* ここは必要に応じて調整してください */
+    overflow-y: auto;
+}
+.ai_chat_space{
+    position: absolute;
+    left: 45%;
+    width: 50%;
+    height: 90%;
+    background-color: #FFFFFF;
+    border-radius: 20px 20px 20px 20px;
+    border: 1px solid rgba(52, 52, 52, 0.381);
+}
+.input_text_space{
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 88%;
+    height: 40px;
+    bottom: 3%;
+    border-radius: 20px 20px 20px 20px;
+    left: 6%;
+    border: 1px solid rgba(52, 52, 52, 0.381);
+}
+.model_window_space h3{
+    font-size: 18px;
+}
+.title{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.text-input {
+    width: 300px; /* 入力フィールドの長さを300ピクセルに設定 */
+    height: 35px;
+}
+
+.input_space .text-input {
+    width: 120px; /* 入力フィールドの長さを300ピクセルに設定 */
+    height: 28px;
+    margin-left: 30px;
+}
+
+#make_day{
+    margin-left: 30px;
+}
+
+.text-input2 {
+    width: 42%; /* 入力フィールドの長さを300ピクセルに設定 */
+    height: 70px;
+}
+.tipe{
+    width: 100%;
+}
+.input_space{
+    display: flex;
+    flex-wrap: wrap;
+}
+.add-button {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #326BDB;
+    color: #F7F5F5;
+}
+.confirm{
+    width: 50px;
+    height: 30px;
+    margin-left: 10px;
+}
+.text-input{
+    margin-bottom: 10px;
+}
+.text-input2{
+    margin-bottom: 14px;
+}
+.use_lang{
+    display: flex;
+    flex-wrap: wrap;
+}
+.lang{
+    margin: 15px;
+}
+.text{
+    display: flex;
+}
+.text p{
+    margin: 14px;
+}
+.ai_chat_space .input_text_space, .ai_chat_space form {
+    overflow-y: auto; /* 内容が高さを超える場合にスクロールバーを表示 */
+  }
+.title{
+    margin-top: 15px;
+}
+.use_lang_space{
+    margin-top: 30px;
+}
+.text_push{
+    color: black;
+    background-color: black;
+    width: 27px;
+    height: 27px;
+    position: absolute;
+    right: 10px;
+    z-index: 2;
+    top: 6px;
+    border-radius: 20px 20px 20px 20px;
+}
+.text_push h1{
+    color: #F7F5F5;
+    font-size: 20px;
+}
+.create_button{
+    width: auto;
+    height: 50px;
+    margin-top: 40px;
+    margin-left: 70%;
+    background-color: #326BDB;
+    color: #F0F4FA;
+}
+
+.create_button3{
+    width: auto;
+    height: 50px;
+    margin-top: 40px;
+    margin-left: 30%;
+    background-color: #326BDB;
+    color: #F0F4FA;
+}
+
+.create-button-eng{
+    width: auto;
+    height: 50px;
+    margin-top: 40px;
+    margin-left: 30%;
+    background-color: #326BDB;
+    color: #F0F4FA;
+}
+
+.no-border-input {
+    background-color: transparent; /* 背景色を透明にする */
+    /* その他のスタイル */
+    font-size: 16px;        /* フォントサイズ */
+    color: #333;            /* テキストカラー */
+    padding: 5px 10px;
+    border: 1px solid rgba(52, 52, 52, 0.381);
+    border-radius: 20px 20px 20px 20px;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    padding-right: 8%;
+    padding-left: 3%;
+}
+.ai_chat_space{
+    padding: 25px;
+    padding-top: 20px;
+    padding-bottom: 80px;
+}
+.user-message {
+    /* ユーザーのメッセージに適用されるスタイル */
+    background-color: #F0F4FA; /* 好きな色を選択してください */
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+  }
+.ai-message {
+    background-color: #FFFFFF;
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+  }
+  #chat-area {
+    max-height: 100%; /* ここで最大の高さを指定 */
+    overflow-y: auto; /* 縦方向のスクロールを有効にする */
+    margin-bottom: 10px; /* 入力エリアとの間に余白を持たせる */
+  }
+.use_lang_space{
+    position: relative;
+}
+.create_button2{
+    position: absolute;
+    width: auto;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 20%;
+    background-color: #202421;
+    border-radius: 20px 20px 20px 20px;
+    color: #F0F4FA;
+}
+.po{
+    display: flex;
+    width: 100%;
+  }
+
+  #loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#chat-area-eng {
+    max-height: 100%; /* ここで最大の高さを指定 */
+    overflow-y: auto; /* 縦方向のスクロールを有効にする */
+    margin-bottom: 10px; /* 入力エリアとの間に余白を持たせる */
+}
+
+.color-choice {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.color-choice {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 5px;
+    position: relative; /* チェックマークのための相対位置指定 */
+    border: 2px solid transparent; /* 選択されていない時のボーダー */
+  }
+  
+  /* 選択されたときのチェックマークスタイル */
+  .color-choice.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 24px; /* チェックマークの大きさ */
+  }
+  
+  /* 選択されたときのボーダースタイル */
+  .color-choice.selected {
+    border: 2px solid #000; /* 選択された時のボーダー */
+  }
+
+.day_block{
+    display: flex;
+}
+
+.topic_area{
+    margin-top: 15px;
+    position: absolute;
+    width: 90%;
+    height: 32%;
+    background-color: #F7F5F5;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.topic_area2{
+    margin-top: 255px;
+    position: absolute;
+    width: 90%;
+    height: 32%;
+    background-color: #F7F5F5;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.select_topic{
+    width: auto;
+    height: 50px;
+    background-color: aliceblue;
+}
