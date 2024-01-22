@@ -19,7 +19,7 @@
     <div class="container align-center">
         <div class="row" > <h1>Current Projects</h1></div>
         <div class = "row">
-            <div class="col-md-12 style="display: flex; flex-direction: column"> <table class="table">
+            <div class="col-md-12" style="display: flex; flex-direction: column"> <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Project Name</th>
@@ -29,41 +29,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Python</td>
-                        <td>comolete</td>
-                        <td>2024/02/01</td>
-                        
+                        {% for project in projects[-3:] %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ project[1] }}</td>
+                        </tr>
+                        {% endfor %}
                     </tr>
-                    <tr>
-                        <td>Create a web app</td>
-                        <td>In progress</td>
-                        <td>2024/02/15</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Machine learning</td>
-                        <td>not started</td>
-                        <td>2024/03/01</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Studying database</td>
-                        <td>In progress</td>
-                        <td>2024/03/15</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>NA</td>
-                        <td>NA</td>
-                        <td>2024/04/01</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>NA</td>
-                        <td>In progress</td>
-                        <td>2024/04/15</td>
-                    
-                    <!-- 他のタスクの行を追加 -->
+
                 </tbody>
             </table>
         </div>

@@ -8,7 +8,7 @@ services:
     tty: true
     links:
       - db
-    command: uwsgi --ini /app/app.ini
+    command: uwsgi --ini /app/app.ini --buffer-size=8192
     env_file:
       - .env
     environment:

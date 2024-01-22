@@ -3,7 +3,7 @@ use records;
 
 CREATE TABLE account(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+    name VARCHAR(40) COLLATE utf8mb4_unicode_ci NOT NULL,
     password VARCHAR(20) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
