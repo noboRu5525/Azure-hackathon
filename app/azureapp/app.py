@@ -343,7 +343,7 @@ def create_project():
         text_lang = ""
 
     # 必須フィールドの存在を確認
-    if not all([category, systemName, makeDay, features, languages, tools]):
+    if not all([category, systemName, makeDay, features, languages, tools, selectedColor, startDate]):
         current_app.logger.error('Missing data for required fields')
         return jsonify({'status': 'error', 'message': 'Missing data for required fields'}), 400
         
@@ -362,13 +362,11 @@ def create_project():
     print(type(features_json))
     print(languages_json)
     print(tools_json)
-    
-    startdate = datetime.now()
         
     # データベースに接続してプロジェクト情報を挿入
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    cur.execute('INSERT INTO projects (user_id, startdate, systemName, makeDay, features, languages, tools) VALUES (%s, %s, %s, %s, %s, %s, %s)', (user_id, startdate, systemName, makeDay, features_json, languages_json, tools_json)) 
+    cur.execute('INSERT INTO projects (user_id, startDate, systemName, makeDay, features, languages, tools, color) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (user_id, startDate, systemName, makeDay, features_json, languages_json, tools_json, selectedColor)) 
     conn.commit()
     cur.close()
     conn.close()
@@ -690,34 +688,49 @@ def auto_select_language():
     # 使用言語のリストをJSONで返す
     return jsonify({'languages': use_lang})
 
-#タスクの取得
-    @app.route('/get_tasks')
-    def get_tasks():
-        conn = mysql.connector.connect(**config)
-        cursor = conn.cursor()
+#タスク名をカレンダーに反映させる
+@app.route('/get_tasks')
+def get_tasks():
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
 
-        try:
-            cursor.execute("SELECT id, days_range, task_name FROM tasks")
-            tasks_data = cursor.fetchall()
-            tasks_list = []
-            for taskId, daysRange, taskName in tasks_data:
-                start_date, end_date = daysRange.split(' to ')
-                tasks_list.append({
-                    "id": taskId,
-                    "title": taskName,
-                    "start": start_date,
-                    "end": end_date,
-                    "allDay": True
-                })
-            print(tasks_list)
-            print(type(tasks_list))
-            return jsonify(tasks_list)
-        except Exception as e:
-            print(e)
-            return str(e)
-        finally:
-            cursor.close()
-            conn.close()
+    try:
+        # ユーザーIDをセッションから取得
+        user_id = session.get('user_id')
+        if user_id is None:
+            return jsonify({"error": "User not logged in"}), 401
+
+        # learning_plansのIDを取得
+        cursor.execute("SELECT id FROM learning_plans WHERE user_id = %s", (user_id,))
+        plan_ids = cursor.fetchall()
+        if not plan_ids:
+            return jsonify([])  # 該当するlearning_plansがない場合
+
+        # 複数のplan_idsに対応するtasksを取得
+        plan_ids_tuple = tuple([id[0] for id in plan_ids])  # タプルに変換
+        query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN %s"
+        cursor.execute(query, (plan_ids_tuple,))
+
+        tasks_data = cursor.fetchall()
+        tasks_list = []
+        for taskId, daysRange, taskName in tasks_data:
+            start_date, end_date = daysRange.split(' to ')
+            tasks_list.append({
+                "id": taskId,
+                "title": taskName,
+                "start": start_date,
+                "end": end_date,
+                "allDay": True
+            })
+        print(tasks_list)
+        print(type(tasks_list))
+        return jsonify(tasks_list)
+    except Exception as e:
+        print(e)
+        return str(e)
+    finally:
+        cursor.close()
+        conn.close()
 
 
 @app.route('/test')

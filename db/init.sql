@@ -11,12 +11,13 @@ CREATE TABLE account(
 CREATE TABLE projects (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    startdate DATE,
+    startDate DATE,
     systemName VARCHAR(255) NOT NULL,
     makeDay INT NOT NULL,
     features TEXT NOT NULL,
     languages VARCHAR(255) NOT NULL,
     tools VARCHAR(255) NOT NULL,
+    color VARCHAR(16),
     FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
