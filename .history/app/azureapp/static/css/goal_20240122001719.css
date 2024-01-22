@@ -321,7 +321,6 @@ ul {
     cursor: pointer; /* カーソルスタイル */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影のスタイル */
     transition: background-color 0.3s; /* 背景色の変化を滑らかに */
-    margin-left: 30px;
   }
   
   .select_topic:hover {
@@ -331,10 +330,5 @@ ul {
 
 .topic_area h3{
     margin-top: 10px;
-    margin-left: 26px;
-}
-
-.topic_area2 h3{
-    margin-top: 10px;
-    margin-left: 26px;
+    margin-left: 36px;
 }

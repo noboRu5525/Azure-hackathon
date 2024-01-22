@@ -359,6 +359,7 @@ def create_project():
     languages_json = str(languages)
     tools_json = str(tools)
     
+    
     print(type(features_json))
     print(languages_json)
     print(tools_json)
@@ -580,27 +581,32 @@ def get_ai_response_eng():
     ai_response = response.choices[0].message.content
     return jsonify({'response': ai_response})
 
-#プロジェクトごとに色を割り当てる
-def id_to_color(project_id):
-    # プロジェクトのIDを基に一貫した色を生成するロジック
-    # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
-    hash_value = hash(str(project_id))
-    # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
-    color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
-    return color_code
+# #プロジェクトごとに色を割り当てる
+# def id_to_color(project_id):
+#     # プロジェクトのIDを基に一貫した色を生成するロジック
+#     # 例として、IDをハッシュ化し、ハッシュ値を色コードに変換します
+#     hash_value = hash(str(project_id))
+#     # ハッシュ値を0から0xFFFFFF（16進数でFFFFFF）の範囲に収まるようにします
+#     color_code = '#{:06x}'.format(hash_value % 0xFFFFFF)
+#     return color_code
 
-#プロジェクト名をカレンダーに反映させる
 @app.route('/get_projects')
 def get_projects():
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
     try:
-        cursor.execute("SELECT id, startDate, systemName, makeDay FROM projects where user_id = %s", (session.get('user_id'),) )
+        # プロジェクトの情報とRGB形式の色情報を取得します。
+        cursor.execute("""
+            SELECT id, startDate, systemName, makeDay, color
+            FROM projects
+            WHERE user_id = %s
+        """, (session.get('user_id'),))
         projects_data = cursor.fetchall()
         projects_list = []
-        for projectId, startDate, systemName, makeDay in projects_data:
-            color = id_to_color(projectId)  # IDに基づいて色を生成
+        for projectId, startDate, systemName, makeDay, color in projects_data:
+            # 色情報がNULLの場合、デフォルトの色を設定
+            color = color if color else "rgb(255, 228, 138)"  # デフォルトの色（RGB形式）
             end_date = startDate + timedelta(days=makeDay)
             projects_list.append({
                 "id": projectId,
@@ -617,6 +623,7 @@ def get_projects():
     finally:
         cursor.close()
         conn.close()
+
         
 @app.route('/delete_task/<int:task_id>', methods=['POST'])
 def delete_task(task_id):

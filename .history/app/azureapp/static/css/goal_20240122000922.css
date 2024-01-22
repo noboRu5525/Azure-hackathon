@@ -310,31 +310,8 @@ ul {
     border-radius: 20px 20px 20px 20px;
 }
 
-.select_topic {
-    display: inline-block; /* インライン要素をブロックのように扱う */
-    padding: 10px 20px; /* 上下10px、左右20pxの余白 */
-    margin: 5px; /* 余白 */
-    background-color: #f0f0f0; /* 背景色 */
-    border-radius: 15px; /* 角の丸み */
-    text-decoration: none; /* 下線を消す */
-    color: #333; /* テキスト色 */
-    cursor: pointer; /* カーソルスタイル */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影のスタイル */
-    transition: background-color 0.3s; /* 背景色の変化を滑らかに */
-    margin-left: 30px;
-  }
-  
-  .select_topic:hover {
-    background-color: #e8e8e8; /* ホバー時の背景色 */
-  }
-
-
-.topic_area h3{
-    margin-top: 10px;
-    margin-left: 26px;
-}
-
-.topic_area2 h3{
-    margin-top: 10px;
-    margin-left: 26px;
+.select_topic{
+    width: auto;
+    height: 30px;
+    background-color: aliceblue;
 }

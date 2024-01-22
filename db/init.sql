@@ -17,7 +17,7 @@ CREATE TABLE projects (
     features TEXT NOT NULL,
     languages VARCHAR(255) NOT NULL,
     tools VARCHAR(255) NOT NULL,
-    color VARCHAR(16),
+    color VARCHAR(30),
     FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -47,3 +47,35 @@ INSERT INTO account
 	(name, password)
 VALUES
 	('azure','azure');
+
+CREATE TABLE colors (
+    color_id INT AUTO_INCREMENT PRIMARY KEY,
+    hex_value CHAR(7) NOT NULL,
+    description VARCHAR(255)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO colors (hex_value, description) VALUES
+('#F7928C', 'Light Red'),
+('#F9C76F', 'Mustard Yellow'),
+('#FFE48A', 'Pale Yellow'),
+('#E8E87D', 'Light Green'),
+('#9FE897', 'Mint Green'),
+('#48E6E3', 'Aqua'),
+('#16C0F1', 'Sky Blue'),
+('#61A5FF', 'Cornflower Blue');
+
+-- プロジェクトテーブルへのcolor_idカラムの追加
+ALTER TABLE projects ADD COLUMN color_id INT, ADD FOREIGN KEY (color_id) REFERENCES colors(color_id);
+
+INSERT INTO projects (
+    user_id,
+    startDate,
+    systemName,
+    makeDay,
+    features,
+    languages,
+    tools,
+    color_id
+) VALUES (
+    %s, %s, %s, %s, %s, %s, %s, (SELECT color_id FROM colors WHERE hex_value = '%s')
+)

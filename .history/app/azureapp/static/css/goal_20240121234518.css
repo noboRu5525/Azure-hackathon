@@ -181,6 +181,7 @@ ul {
     padding: 25px;
     padding-top: 20px;
     padding-bottom: 80px;
+    position: relative;
 }
 .user-message {
     /* ユーザーのメッセージに適用されるスタイル */
@@ -293,48 +294,8 @@ ul {
 }
 
 .topic_area{
-    margin-top: 15px;
     position: absolute;
-    width: 90%;
-    height: 32%;
+    width: 80%;
+    height: 30%;
     background-color: #F7F5F5;
-    border-radius: 20px 20px 20px 20px;
-}
-
-.topic_area2{
-    margin-top: 255px;
-    position: absolute;
-    width: 90%;
-    height: 32%;
-    background-color: #F7F5F5;
-    border-radius: 20px 20px 20px 20px;
-}
-
-.select_topic {
-    display: inline-block; /* インライン要素をブロックのように扱う */
-    padding: 10px 20px; /* 上下10px、左右20pxの余白 */
-    margin: 5px; /* 余白 */
-    background-color: #f0f0f0; /* 背景色 */
-    border-radius: 15px; /* 角の丸み */
-    text-decoration: none; /* 下線を消す */
-    color: #333; /* テキスト色 */
-    cursor: pointer; /* カーソルスタイル */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 影のスタイル */
-    transition: background-color 0.3s; /* 背景色の変化を滑らかに */
-    margin-left: 30px;
-  }
-  
-  .select_topic:hover {
-    background-color: #e8e8e8; /* ホバー時の背景色 */
-  }
-
-
-.topic_area h3{
-    margin-top: 10px;
-    margin-left: 26px;
-}
-
-.topic_area2 h3{
-    margin-top: 10px;
-    margin-left: 26px;
 }
