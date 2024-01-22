@@ -79,13 +79,13 @@ def hello_world():
         events = events_result.get('items', [])
 
         # イベントをHTMLリストで表示
-        events_html = '<ul>'
-        for event in events:
-            start = event.get('start', {}).get('dateTime', event.get('start', {}).get('date'))
-            events_html += f'<li>{event.get("summary", "No Title")} at {start}</li>'
-        events_html += '</ul>'
+        # events_html = '<ul>'
+        # for event in events:
+        #     start = event.get('start', {}).get('dateTime', event.get('start', {}).get('date'))
+        #     events_html += f'<li>{event.get("summary", "No Title")} at {start}</li>'
+        # events_html += '</ul>'
 
-        return f'Hello, {email}! <br> Upcoming Events: {events_html}'
+        return f'Hello, {email}! <br> Upcoming Events: {events}'
     else:
         return '<a href="/login">Googleでログイン</a>'
 
