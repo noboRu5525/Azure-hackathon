@@ -54,10 +54,12 @@ function startTimer() {
 
   if (flag) {
     btnElm.innerHTML = "START";
+    btnElm.style = "";
     return;
   }
 
   btnElm.innerHTML = "STOP";
+  btnElm.style = "color: red"
 
   interval = setInterval(() => {
     if (time <= 0) {
