@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="utf-8">
-	<title>toDo</title>
+	<title>ToDo</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script type="text/javascript" src="/static/js/script.js"></script>
 	<link rel="stylesheet" href="../static/css/goal.css">
@@ -14,68 +14,41 @@
 		     crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="model_window_space" id="Japanese" style="display: block;">
+  <div class="model_window_space flex-column" id="Japanese" style="display: flex;">
     <div class="language-switch">
         <button id="switch-lang">English / 日本語</button>
     </div>
-    <div class="ai_chat_space" id="chat-ai" style="display: none;">
-      <div id="chat-area">
-        <!-- チャットが表示される領域 -->
-      </div>
-      <!--ワンタッチトーク機能-->
-      <div class="preset_phrases" id="preset_phrases" style="display: none;">
-        <!-- プログラム開発モード（スタート） -->
-        <div class="development" id="development" style="display: none;">
-          <h1>こんにちわ</h1>
-          <div class="topic_area">
-            <h3>・新しいトレンドに挑戦する</h3>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">生成AI</a><br>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">ブロックチェーン</a><br>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">ハイブリッドIoT</a>
-          </div>
-          <div class="topic_area2">
-            <h3>・デバイスから選択する</h3>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">IOS</a><br>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Webアプリケーション</a><br>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Andoroid</a>
-          </div>
-        </div>
-        <!-- 他のボタンも同様に追加 -->
-      </div>
-        <div class="input_text_space">
-            <input type="text" id="user-input" class="no-border-input" placeholder="テキストを入力">
-            <button id="send-button" class="text_push"><h1>↑</h1></button>
-        </div>
-    </div>
     <form class="Category">
-        <h3 class="title" data-lang-key="title">＜カテゴリー＞</h3>
-        <label>
-            <input type="radio" name="options" value="option1"> <span data-lang-key="option1">一般タスク</span>
-        </label><br>
-        <label>
-          <input type="radio" name="options" value="option2">資格・試験:
-        </label><br>
-        <label>
-          <input type="radio" name="options" value="option3">プログラム開発:
-        </label><br>
+      <h3 class="title" data-lang-key="title">&lt;カテゴリー&gt;</h3>
+      <label>
+          <input type="radio" name="options" value="option1"> <span data-lang-key="option1">一般タスク</span>
+      </label><br>
+      <label>
+        <input type="radio" name="options" value="option2">資格・試験:
+      </label><br>
+      <label>
+        <input type="radio" name="options" value="option3">プログラム開発:
+      </label><br>
     </form>
+    <div class="d-flex flex-lg-row flex-column">
+    
     <!--一般タスク用項目-->
-    <div class="task" id="category1">
+    <div class="task col-lg-6 col-12" id="category1">
     </div>
     <!--資格・試験用項目-->
-    <div class="qualification" id="category2" style="display: none;">
+    <div class="qualification col-lg-6 col-12" id="category2" style="display: none;">
       <form class="qualification_name">
-        <h3 class="title">＜資格名＞</h3>
-            <div class="input_space">
+        <h3 class="title">&lt;資格名&gt;</h3>
+        <div class="input_space">
               <input type="text" id="qualificat_name" name="qualificat_name" class="text-input2_1"><br>
             </div>
-      </form>
-      <form>
-        <h3 class="title">＜カラー＞</h3>
-        <div id="colorPicker2">
-          <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
+          </form>
+          <form>
+            <h3 class="title">&lt;カラー&gt;</h3>
+            <div id="colorPicker2">
+              <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
+              <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
+              <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
           <div class="color-choice" style="background-color: #E8E87D;" onclick="selectColor(this)"></div>
           <div class="color-choice" style="background-color: #9FE897;" onclick="selectColor(this)"></div>
           <div class="color-choice" style="background-color: #48E6E3;" onclick="selectColor(this)"></div>
@@ -84,13 +57,13 @@
         </div>
       </form>
       <form class="test_day">
-        <h3 class="title">＜試験日＞</h3>
+        <h3 class="title">&lt;試験日&gt;</h3>
         <input type="date" id="test_date" name="test_date">
       </form>
       <form class="current_situation">
-        <h3 class="title" data-lang-key="title">＜現状スキル＞</h3>
+        <h3 class="title" data-lang-key="title">&lt;現状スキル&gt;</h3>
         <label>
-            <input type="radio" name="options_2" value="一度も試験を受けたことがない"> <span data-lang-key="option1">一度も試験を受けたことがない</span>
+          <input type="radio" name="options_2" value="一度も試験を受けたことがない"> <span data-lang-key="option1">一度も試験を受けたことがない</span>
         </label><br>
         <label>
           <input type="radio" name="options_2" value="試験を受けたことはないが、ある程度知識がある">試験を受けたことはないが、ある程度知識がある
@@ -102,9 +75,9 @@
           <label for="currentScore">現状スコア:</label>
           <input type="text" id="currentScore" name="currentScore">
         </div>
-    </form>
+      </form>
     <form class="target_score">
-      <h3 class="title">＜目標スコア＞</h3>
+      <h3 class="title">&lt;目標スコア&gt;</h3>
       <label>
         <input type="radio" id="option4" name="options_3" value="合格点以上を目指す">合格点以上を目指す
       </label><br>
@@ -117,189 +90,193 @@
       </div>
     </form>
     <button class="create_button3">プロジェクトを作成</button>
-    </div>
+  </div>
+  
 
-
-    <!--プログラム開発用項目-->
-    <div class="development" id="category3" style="display: none;">
-        <form class="system-name">
-            <h3 class="title">＜作成したいシステム名＞</h3>
-            <div class="input_space">
-                <input type="text" id="customText" name="customText" class="text-input"><br>
-            </div>
+  <!--プログラム開発用項目-->
+  <div class="development" id="category3" style="display: none;">
+    <form class="system-name">
+      <h3 class="title">&lt;作成したいシステム名&gt;</h3>
+      <div class="input_space">
+        <input type="text" id="customText" name="customText" class="input_group"><br>
+      </div>
+    </form>
+    <!--プロジェクトカラーの選択-->
+    <form>
+      <h3 class="title">&lt;カラー&gt;</h3>
+      <div id="colorPicker">
+        <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
+        <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
+        <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
+        <div class="color-choice" style="background-color: #E8E87D;" onclick="selectColor(this)"></div>
+        <div class="color-choice" style="background-color: #9FE897;" onclick="selectColor(this)"></div>
+        <div class="color-choice" style="background-color: #48E6E3;" onclick="selectColor(this)"></div>
+        <div class="color-choice" style="background-color: #16C0F1;" onclick="selectColor(this)"></div>
+        <div class="color-choice" style="background-color: #61A5FF;" onclick="selectColor(this)"></div>
+        
+      </div>
+    </form>
+      <div class="day_block">
+        <!--プロジェクトの開始日を選択-->
+        <form class="start_day">
+          <h3 class="title">&lt;開始日&gt;</h3>
+          <input type="date" id="start_date" name="start_date">
         </form>
-        <!--プロジェクトカラーの選択-->
-        <form>
-          <h3 class="title">＜カラー＞</h3>
-          <div id="colorPicker">
-            <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #E8E87D;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #9FE897;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #48E6E3;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #16C0F1;" onclick="selectColor(this)"></div>
-            <div class="color-choice" style="background-color: #61A5FF;" onclick="selectColor(this)"></div>
-            
+        <form class="make-day">
+          <h3 class="title" id="make_day">&lt;作成日数&gt;</h3>
+          <div class="input_space">
+            <input type="text" id="customText" name="customText" class="text-input"><br>
+            </div>
+          </form>
+      </div>
+      <form class="custom">
+          <div class="text">
+            <h3 class="title">&lt;具体的な機能&gt;</h3><p>※最低3つ以上必要です</p>
           </div>
-        </form>
-        <div class="day_block">
-          <!--プロジェクトの開始日を選択-->
-          <form class="start_day">
-            <h3 class="title">＜開始日＞</h3>
-            <input type="date" id="start_date" name="start_date">
-          </form>
-          <form class="make-day">
-              <h3 class="title" id="make_day">＜作成日数＞</h3>
-              <div class="input_space">
-                  <input type="text" id="customText" name="customText" class="text-input"><br>
-              </div>
-          </form>
-        </div>
-        <form class="custom">
-            <div class="text">
-                <h3 class="title">＜具体的な機能＞</h3><p>※最低3つ以上必要です</p>
+          <div class="input_space" id="inputSpace">
+            <div class="tipe" id="functionFields">
+              <input type="text" id="functionText1" name="customText" class="text-input2"><br>
+              <input type="text" id="functionText2" name="customText" class="text-input2"><br>
+              <input type="text" id="functionText3" name="customText" class="text-input2"><br>
             </div>
-            <div class="input_space" id="inputSpace">
-                <div class="tipe" id="functionFields">
-                    <input type="text" id="functionText1" name="customText" class="text-input2"><br>
-                    <input type="text" id="functionText2" name="customText" class="text-input2"><br>
-                    <input type="text" id="functionText3" name="customText" class="text-input2"><br>
-                </div>
-                <button type="button" id="addButton" class="add-button">+</button>
-            </div>
+            <button type="button" id="addButton" class="add-button">+</button>
+          </div>
         </form>
         <form class="use_lang_space">
-            <div class="po">
-              <h3 class="title">＜使用する言語＞</h3>
-              <button class="create_button2">自動選択する</button>
+          <div class="po">
+            <h3 class="title">&lt;使用する言語&gt;</h3>
+            <button class="create_button2"><span>自動選択する</span></button>
+          </div>
+          <div class="use_lang">
+            <label>
+              <input type="checkbox" name="option1" value="Python" class="lang">Python
+            </label><br>
+            <label>
+              <input type="checkbox" name="option2" value="Java" class="lang">Java
+            </label><br>
+            <label>
+              <input type="checkbox" name="option3" value="C/C++" class="lang">C / C++
+            </label><br>
+            <label>
+              <input type="checkbox" name="option4" value="C#" class="lang">C#
+            </label><br>
+            <label>
+              <input type="checkbox" name="option5" value="Swift" class="lang">Swift
+            </label><br>
+            <label>
+              <input type="checkbox" name="option6" value="PHP" class="lang">PHP
+            </label><br>
+            <label>
+              <input type="checkbox" name="option1" value="Ruby" class="lang">Ruby
+            </label><br>
+            <label>
+              <input type="checkbox" name="option2" value="HTMI/CSS" class="lang">HTML / CSS
+            </label><br>
+            <label>
+              <input type="checkbox" name="option3" value="javascript" class="lang">javascript
+            </label><br>
+            <label>
+              <input type="checkbox" name="option4" value="Kotlin" class="lang">Kotlin
+            </label><br>
+            <label>
+             <input type="checkbox" name="option5" value="GO" class="lang">GO言語
+            </label><br>
+            <label>
+              <input type="checkbox" name="option6" value="R" class="lang">R言語
+            </label><br>
+            <label>
+              <input type="checkbox" name="option6" value="SQL" class="lang">SQL言語
+           </label><br>
+          </div>
+        </form>
+        <form>
+          <h3 class="title">&lt;使用するツール・プラットフォーム&gt;</h3>
+          <div class="use_lang">
+            <label>
+              <input type="checkbox" name="option1" value="Azure" class="lang">Azure
+            </label><br>
+            <label>
+              <input type="checkbox" name="option2" value="GCP" class="lang">GCP
+            </label><br>
+            <label>
+              <input type="checkbox" name="option3" value="AWS" class="lang">AWS
+            </label><br>
+            <label>
+              <input type="checkbox" name="option4" value="Firebase" class="lang">Firebase
+            </label><br>
+            <label>
+              <input type="checkbox" name="option5" value="GitHub" class="lang">GitHub
+            </label><br>
+            <label>
+              <input type="checkbox" name="option6" value="Docker" class="lang">Docker
+            </label><br>
+            <label>
+              <input type="checkbox" name="option1" value="GitLab" class="lang">GitLab
+            </label><br>
+            <label>
+              <input type="checkbox" name="option2" value="Postman" class="lang">Postman
+            </label><br>
+            <label>
+              <input type="checkbox" name="option3" value="Swagger" class="lang">Swagger
+            </label><br>
+            <label>
+              <input type="checkbox" name="option4" value="DigitalOcean" class="lang">DigitalOcean
+            </label><br>
+            <label>
+              <input type="checkbox" name="option5" value="Heroku" class="lang">Heroku
+            </label><br>
+            <label>
+              <input type="checkbox" name="option6" value="Oracle Cloud" class="lang">Oracle Cloud
+            </label><br>
+            <label>
+              <input type="checkbox" name="option6" value="MySQL" class="lang">MySQL
+            </label><br>
+          </div>
+        </form>
+        <button class="create_button">プロジェクトを作成</button>
+      </div>
+      <div class="ai_chat_space col-lg-6 col-12" id="chat-ai" style="display: none;">
+        <span>
+          <div id="chat-area">
+            <!-- チャットが表示される領域 -->
+          </div>
+          <!--ワンタッチトーク機能-->
+          <div class="preset_phrases" id="preset_phrases" style="display: none;">
+            <!-- プログラム開発モード（スタート） -->
+            <div class="development" id="development" style="display: none;">
+              <h1>こんにちわ</h1>
+              <div class="topic_area">
+                <h3>・新しいトレンドに挑戦する</h3>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">生成AI</a><br>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">ブロックチェーン</a><br>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">ハイブリッドIoT</a>
+              </div>
+              <div class="topic_area2">
+                <h3>・デバイスから選択する</h3>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">IOS</a><br>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Webアプリケーション</a><br>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Andoroid</a>
+              </div>
             </div>
-            <div class="use_lang">
-                <label>
-                    <input type="checkbox" name="option1" value="Python" class="lang">Python
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option2" value="Java" class="lang">Java
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option3" value="C/C++" class="lang">C / C++
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option4" value="C#" class="lang">C#
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option5" value="Swift" class="lang">Swift
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option6" value="PHP" class="lang">PHP
-                  </label><br>
-                  <label>
-                      <input type="checkbox" name="option1" value="Ruby" class="lang">Ruby
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option2" value="HTMI/CSS" class="lang">HTML / CSS
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option3" value="javascript" class="lang">javascript
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option4" value="Kotlin" class="lang">Kotlin
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option5" value="GO" class="lang">GO言語
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option6" value="R" class="lang">R言語
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="option6" value="SQL" class="lang">SQL言語
-                      </label><br>
-            </div>
-          </form>
-          <form>
-            <h3 class="title">＜使用するツール・プラットフォーム＞</h3>
-            <div class="use_lang">
-                <label>
-                    <input type="checkbox" name="option1" value="Azure" class="lang">Azure
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option2" value="GCP" class="lang">GCP
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option3" value="AWS" class="lang">AWS
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option4" value="Firebase" class="lang">Firebase
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option5" value="GitHub" class="lang">GitHub
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option6" value="Docker" class="lang">Docker
-                  </label><br>
-                  <label>
-                      <input type="checkbox" name="option1" value="GitLab" class="lang">GitLab
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option2" value="Postman" class="lang">Postman
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option3" value="Swagger" class="lang">Swagger
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option4" value="DigitalOcean" class="lang">DigitalOcean
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option5" value="Heroku" class="lang">Heroku
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option6" value="Oracle Cloud" class="lang">Oracle Cloud
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="option6" value="MySQL" class="lang">MySQL
-                      </label><br>
-            </div>
-          </form>
-          <button class="create_button">プロジェクトを作成</button>
+            <!-- 他のボタンも同様に追加 -->
+          </div>
+        </span>
+        <div class="input_text_space">
+        <input type="text" id="user-input" class="no-border-input" placeholder="テキストを入力">
+          <button id="send-button" class="text_push"><h1>&uarr;</h1></button>
+        </div>
+      </div>
     </div>
     <!--英語用に切り替える-->
-  <div class="model_window_space" id="English">
-    <div class="language-switch">
-        <button id="switch-lang">English / 日本語</button>
-    </div>
-    <div class="ai_chat_space" id="chat-ai-eng" style="display: none;">
-      <div id="chat-area-eng">
-        <!-- チャットが表示される領域 -->
+    <div class="model_window_space flex-column" id="English">
+      <span>  
+        <div class="language-switch">
+          <button id="switch-lang">English / 日本語</button>
       </div>
-      <!--ワンタッチトーク機能-->
-      <div class="preset_phrases2" id="preset_phrases2" style="display: none;">
-        <!-- プログラム開発モード（スタート） -->
-        <div class="development2" id="development2" style="display: none;">
-          <h1>Hello</h1>
-          <div class="topic_area">
-            <h3>・Explore New Trends</h3>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Generative AI</a><br>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Blockchain</a><br>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Hybrid IoT</a>
-          </div>
-          <div class="topic_area2">
-            <h3>・Select from Devices</h3>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">IOS</a><br>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Web Applications</a><br>
-            <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Andoroid</a>
-          </div>
-        </div>
-        <!-- 他のボタンも同様に追加 -->
-      </div>
-        <div class="input_text_space">
-            <input type="text" id="user-input-eng" class="no-border-input" placeholder="Send a message">
-            <button class="text_push" id="send-button-eng"><h1>↑</h1></button>
-        </div>
-    </div>
-    <form class="CategoryEng">
-        <h3 class="title" data-lang-key="title">＜Category＞</h3>
+      <form class="CategoryEng">
+        <h3 class="title" data-lang-key="title">&lt;Category&gt;</h3>
         <label>
-            <input type="radio" name="options" value="option1"> <span data-lang-key="option1">General tasks</span>>
+          <input type="radio" name="options" value="option1"><span data-lang-key="option1">General tasks</span>
         </label><br>
         <label>
           <input type="radio" name="options" value="option2">Qualification/Examination:
@@ -307,83 +284,83 @@
         <label>
           <input type="radio" name="options" value="option3">Program development:
         </label><br>
-    </form>
-    <!--一般タスク用項目-->
-    <div class="task" id="category1">
-    </div>
-    <!--資格・試験用項目-->
-    <!-- Qualification/Examination Section for English -->
-    <div class="qualification" id="qualification-eng" style="display: none;">
-      <form class="qualification-name-eng">
-        <h3 class="title">＜Qualification Name＞</h3>
-        <div class="input-space">
-          <input type="text" id="qualification-name-eng" name="qualification_name_eng" class="text-input2_1"><br>
-        </div>
       </form>
-      <form>
-        <h3 class="title">＜Color＞</h3>
-        <div id="colorPicker-eng">
-          <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #E8E87D;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #9FE897;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #48E6E3;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #16C0F1;" onclick="selectColor(this)"></div>
-          <div class="color-choice" style="background-color: #61A5FF;" onclick="selectColor(this)"></div>
-        </div>
-      </form>
-      <form class="test-day-eng">
-        <h3 class="title">＜Test Date＞</h3>
-        <input type="date" id="test-date-eng" name="test_date_eng">
-      </form>
-      <form class="current-situation-eng">
-        <h3 class="title">＜Current Skill Level＞</h3>
-        <!-- Update value and label texts to English -->
-        <label>
-          <input type="radio" name="options_current_eng" value="Never taken the exam"> Never taken the exam
-        </label><br>
-        <label>
-          <input type="radio" name="options_current_eng" value="No exam experience but some knowledge"> No exam experience but some knowledge
-        </label><br>
-        <label>
-          <input type="radio" name="options_current_eng" value="Have taken the exam"> Have taken the exam
-        </label><br>
-        <div id="current-score-input-eng" style="display: none;">
-          <label for="current-score-eng">Current Score:</label>
-          <input type="text" id="current-score-eng" name="current_score_eng">
-        </div>
-      </form>
-      <form class="target-score-eng">
-        <h3 class="title">＜Target Score＞</h3>
-        <!-- Update value and label texts to English -->
-        <label>
-          <input type="radio" id="option-target-4-eng" name="options_target_eng" value="Aim for passing score"> Aim for passing score
-        </label><br>
-        <label>
-          <input type="radio" id="option-target-5-eng" name="options_target_eng" value="Set a personal target"> Set a personal target
-        </label><br>
-        <div id="target-score-input-eng" style="display: none;">
-          <label for="target-score-eng">Target Score:</label>
-          <input type="text" id="target-score-eng" name="target_score_eng">
-        </div>
-      </form>
-      <button class="create-button-eng">Create Project</button>
-    </div>
-
-
-
-
-    <!--プログラム開発用項目-->
-    <div class="development" id="category3" style="display: none;">
-        <form class="system-name">
-            <h3 class="title">＜Name of the system you want to create＞</h3>
-            <div class="input_space">
-                <input type="text" id="customText" name="customText" class="text-input"><br>
-            </div>
+    </span>
+    <div class="d-flex flex-lg-row flex-column">
+      
+      <!--一般タスク用項目-->
+      <div class="task col-lg-6 col-12" id="category1">
+      </div>
+      <!--資格・試験用項目-->
+      <!-- Qualification/Examination Section for English -->
+      <div class="qualification col-lg-6 col-12" id="qualification-eng" style="display: none;">
+        <form class="qualification-name-eng">
+          <h3 class="title">&lt;Qualification Name&gt;</h3>
+          <div class="input-space">
+            <input type="text" id="qualification-name-eng" name="qualification_name_eng" class="text-input2_1"><br>
+          </div>
         </form>
         <form>
-          <h3 class="title">＜Color＞</h3>
+          <h3 class="title">&lt;Color&gt;</h3>
+          <div id="colorPicker-eng">
+            <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
+            <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
+            <div class="color-choice" style="background-color: #FFE48A;" onclick="selectColor(this)"></div>
+            <div class="color-choice" style="background-color: #E8E87D;" onclick="selectColor(this)"></div>
+            <div class="color-choice" style="background-color: #9FE897;" onclick="selectColor(this)"></div>
+            <div class="color-choice" style="background-color: #48E6E3;" onclick="selectColor(this)"></div>
+            <div class="color-choice" style="background-color: #16C0F1;" onclick="selectColor(this)"></div>
+            <div class="color-choice" style="background-color: #61A5FF;" onclick="selectColor(this)"></div>
+          </div>
+        </form>
+        <form class="test-day-eng">
+          <h3 class="title">&lt;Test Date&gt;</h3>
+          <input type="date" id="test-date-eng" name="test_date_eng">
+        </form>
+        <form class="current-situation-eng">
+          <h3 class="title">&lt;Current Skill Level&gt;</h3>
+          <!-- Update value and label texts to English -->
+          <label>
+            <input type="radio" name="options_current_eng" value="Never taken the exam"> Never taken the exam
+          </label><br>
+          <label>
+            <input type="radio" name="options_current_eng" value="No exam experience but some knowledge"> No exam experience but some knowledge
+          </label><br>
+          <label>
+            <input type="radio" name="options_current_eng" value="Have taken the exam"> Have taken the exam
+          </label><br>
+          <div id="current-score-input-eng" style="display: none;">
+            <label for="current-score-eng">Current Score:</label>
+            <input type="text" id="current-score-eng" name="current_score_eng">
+          </div>
+        </form>
+        <form class="target-score-eng">
+          <h3 class="title">&lt;Target Score&gt;</h3>
+          <!-- Update value and label texts to English -->
+          <label>
+            <input type="radio" id="option-target-4-eng" name="options_target_eng" value="Aim for passing score"> Aim for passing score
+          </label><br>
+          <label>
+            <input type="radio" id="option-target-5-eng" name="options_target_eng" value="Set a personal target"> Set a personal target
+          </label><br>
+          <div id="target-score-input-eng" style="display: none;">
+            <label for="target-score-eng">Target Score:</label>
+            <input type="text" id="target-score-eng" name="target_score_eng">
+          </div>
+        </form>
+        <button class="create-button-eng">Create Project</button>
+      </div>
+      
+      <!--プログラム開発用項目-->
+      <div class="development col-lg-6 col-12" id="category3" style="display: none;">
+        <form class="system-name">
+          <h3 class="title">&lt;Name of the system you want to create&gt;</h3>
+          <div class="">
+            <input type="text" id="customText" name="customText" class="text-input"><br>
+          </div>
+        </form>
+        <form>
+          <h3 class="title">&lt;Color&gt;</h3>
           <div id="colorPicker">
             <div class="color-choice" style="background-color: #F7928C;" onclick="selectColor(this)"></div>
             <div class="color-choice" style="background-color: #F9C76F;" onclick="selectColor(this)"></div>
@@ -393,129 +370,160 @@
             <div class="color-choice" style="background-color: #48E6E3;" onclick="selectColor(this)"></div>
             <div class="color-choice" style="background-color: #16C0F1;" onclick="selectColor(this)"></div>
             <div class="color-choice" style="background-color: #61A5FF;" onclick="selectColor(this)"></div>
-            
           </div>
         </form>
         <div class="day_block">
           <!--プロジェクトの開始日を選択-->
           <form class="start_day">
-            <h3 class="title">＜Start Day＞</h3>
+            <h3 class="title">&lt;Start Day&gt;</h3>
             <input type="date" id="start_date" name="start_date">
           </form>
           <form class="make-day">
-              <h3 class="title" id="make_day">＜Create Day＞</h3>
-              <div class="input_space">
-                  <input type="text" id="customText" name="customText" class="text-input"><br>
-              </div>
+            <h3 class="title" id="make_day">&lt;Create Day&gt;</h3>
+            <div class="input_space">
+              <input type="text" id="customText" name="customText" class="text-input"><br>
+            </div>
           </form>
         </div>
-        <form class="custom">
+          <form class="custom">
             <div class="text">
-                <h3 class="title">＜Specific functions＞</h3><p>※At least 3 required</p>
-            </div>
+                <h3 class="title">&lt;Specific functions&gt;</h3><p>※At least 3 required</p>
+              </div>
             <div class="input_space" id="inputSpace">
-                <div class="tipe" id="functionFields">
-                    <input type="text" id="functionText1" name="customText" class="text-input2"><br>
-                    <input type="text" id="functionText2" name="customText" class="text-input2"><br>
-                    <input type="text" id="functionText3" name="customText" class="text-input2"><br>
-                </div>
-                <button type="button" id="addButton" class="add-button">+</button>
+              <div class="tipe pe-4" id="functionFields">
+                <input type="text" id="functionText1" name="customText" class="input-group"><br>
+                <input type="text" id="functionText2" name="customText" class="input-group"><br>
+                <input type="text" id="functionText3" name="customText" class="input-group"><br>
+              </div>
+              <button type="button" id="addButton" class="add-button">+</button>
             </div>
-        </form>
-        <form class="use_lang_space">
+          </form>
+          <form class="use_lang_space">
             <div class="po">
-              <h3 class="title">＜Language used＞</h3>
+              <h3 class="title">&lt;Language used&gt;</h3>
               <button class="create_button2">Automatically select</button>
             </div>
             <div class="use_lang">
-                <label>
-                    <input type="checkbox" name="option1" value="Python" class="lang">Python
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option2" value="Java" class="lang">Java
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option3" value="C/C++" class="lang">C / C++
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option4" value="C#" class="lang">C#
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option5" value="Swift" class="lang">Swift
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option6" value="PHP" class="lang">PHP
-                  </label><br>
-                  <label>
-                      <input type="checkbox" name="option1" value="Ruby" class="lang">Ruby
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option2" value="HTMI/CSS" class="lang">HTML / CSS
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option3" value="javascript" class="lang">javascript
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option4" value="Kotlin" class="lang">Kotlin
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option5" value="GO" class="lang">GO
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option6" value="R" class="lang">R
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="option6" value="SQL" class="lang">SQL
-                      </label><br>
+              <label>
+                <input type="checkbox" name="option1" value="Python" class="lang">Python
+              </label><br>
+              <label>
+                <input type="checkbox" name="option2" value="Java" class="lang">Java
+              </label><br>
+              <label>
+                <input type="checkbox" name="option3" value="C/C++" class="lang">C / C++
+              </label><br>
+              <label>
+                <input type="checkbox" name="option4" value="C#" class="lang">C#
+              </label><br>
+              <label>
+                <input type="checkbox" name="option5" value="Swift" class="lang">Swift
+              </label><br>
+              <label>
+              <input type="checkbox" name="option6" value="PHP" class="lang">PHP
+                </label><br>
+              <label>
+              <input type="checkbox" name="option1" value="Ruby" class="lang">Ruby
+              </label><br>
+              <label>
+                <input type="checkbox" name="option2" value="HTMI/CSS" class="lang">HTML / CSS
+              </label><br>
+              <label>
+                <input type="checkbox" name="option3" value="javascript" class="lang">javascript
+              </label><br>
+              <label>
+                <input type="checkbox" name="option4" value="Kotlin" class="lang">Kotlin
+              </label><br>
+              <label>
+                <input type="checkbox" name="option5" value="GO" class="lang">GO
+              </label><br>
+              <label>
+                <input type="checkbox" name="option6" value="R" class="lang">R
+              </label><br>
+              <label>
+                <input type="checkbox" name="option6" value="SQL" class="lang">SQL
+              </label><br>
             </div>
           </form>
           <form>
-            <h3 class="title">＜Tool platform used＞</h3>
+            <h3 class="title">&lt;Tool platform used&gt;</h3>
             <div class="use_lang">
-                <label>
-                    <input type="checkbox" name="option1" value="Azure" class="lang">Azure
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option2" value="GCP" class="lang">GCP
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option3" value="AWS" class="lang">AWS
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option4" value="Firebase" class="lang">Firebase
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option5" value="GitHub" class="lang">GitHub
-                  </label><br>
-                  <label>
-                    <input type="checkbox" name="option6" value="Docker" class="lang">Docker
-                  </label><br>
-                  <label>
-                      <input type="checkbox" name="option1" value="GitLab" class="lang">GitLab
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option2" value="Postman" class="lang">Postman
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option3" value="Swagger" class="lang">Swagger
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option4" value="DigitalOcean" class="lang">DigitalOcean
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option5" value="Heroku" class="lang">Heroku
-                    </label><br>
-                    <label>
-                      <input type="checkbox" name="option6" value="Oracle Cloud" class="lang">Oracle Cloud
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="option6" value="MySQL" class="lang">MySQL
-                      </label><br>
+              <label>
+                <input type="checkbox" name="option1" value="Azure" class="lang">Azure
+              </label><br>
+              <label>
+                <input type="checkbox" name="option2" value="GCP" class="lang">GCP
+              </label><br>
+              <label>
+                <input type="checkbox" name="option3" value="AWS" class="lang">AWS
+              </label><br>
+              <label>
+                <input type="checkbox" name="option4" value="Firebase" class="lang">Firebase
+              </label><br>
+              <label>
+                <input type="checkbox" name="option5" value="GitHub" class="lang">GitHub
+              </label><br>
+              <label>
+                <input type="checkbox" name="option6" value="Docker" class="lang">Docker
+              </label><br>
+              <label>
+                <input type="checkbox" name="option1" value="GitLab" class="lang">GitLab
+              </label><br>
+              <label>
+                <input type="checkbox" name="option2" value="Postman" class="lang">Postman
+              </label><br>
+              <label>
+                <input type="checkbox" name="option3" value="Swagger" class="lang">Swagger
+              </label><br>
+              <label>
+                <input type="checkbox" name="option4" value="DigitalOcean" class="lang">DigitalOcean
+              </label><br>
+              <label>
+                <input type="checkbox" name="option5" value="Heroku" class="lang">Heroku
+              </label><br>
+              <label>
+                <input type="checkbox" name="option6" value="Oracle Cloud" class="lang">Oracle Cloud
+              </label><br>
+              <label>
+                <input type="checkbox" name="option6" value="MySQL" class="lang">MySQL
+              </label><br>
             </div>
           </form>
           <button class="create_button">Create Project</button>
+        </div>
+        <div class="ai_chat_space col-lg-6 col-12" id="chat-ai-eng" style="display: none;">
+          <span>
+            <div id="chat-area-eng">
+              <!-- チャットが表示される領域 -->
+            </div>
+            <!--ワンタッチトーク機能-->
+            <div class="preset_phrases2" id="preset_phrases2" style="display: none;">
+              <!-- プログラム開発モード（スタート） -->
+            <div class="development2" id="development2" style="display: none;">
+              <h1>Hello</h1>
+              <div class="topic_area">
+                <h3>・Explore New Trends</h3>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Generative AI</a><br>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Blockchain</a><br>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Hybrid IoT</a>
+              </div>
+              <div class="topic_area2">
+                <h3>・Select from Devices</h3>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">IOS</a><br>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Web Applications</a><br>
+                <a class="select_topic"style="text-decoration: none; color: inherit; cursor: default;">Andoroid</a>
+              </div>
+            </div>
+            <!-- 他のボタンも同様に追加 -->
+          </div>
+        </span>
+        <div class="input_text_space">
+          <input type="text" id="user-input-eng" class="no-border-input" placeholder="Send a message">
+          <button class="text_push" id="send-button-eng">&uarr;</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 </div>
 <div class="loading_container" style="display: none;">
   <div class='loading'>
@@ -551,15 +559,15 @@
   document.addEventListener('DOMContentLoaded', function() {
     const topics = document.querySelectorAll('.select_topic');
     const inputField = document.getElementById('user-input');
-
+    
     topics.forEach(topic => {
-        topic.addEventListener('click', function() {
-            // すべてのトピックの背景色をリセット
-            topics.forEach(t => t.style.backgroundColor = '');
+      topic.addEventListener('click', function() {
+        // すべてのトピックの背景色をリセット
+        topics.forEach(t => t.style.backgroundColor = '');
 
             // 選択されたトピックの背景色を変更
             this.style.backgroundColor = '#ADD8E6'; // 例としてライトブルーを選択
-
+            
             // テキスト入力欄に文章を挿入
             inputField.value = this.textContent + " を用いたプロジェクトを考えて。";
         });
@@ -1092,11 +1100,11 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
             const japaneseContent = document.getElementById('Japanese');
             const englishContent = document.getElementById('English');
             if (englishContent.style.display === 'none') {
-                englishContent.style.display = 'block';
-                japaneseContent.style.display = 'block';
+                englishContent.style.display = 'flex';
+                japaneseContent.style.display = 'flex';
             } else {
                 englishContent.style.display = 'none';
-                japaneseContent.style.display = 'block';
+                japaneseContent.style.display = 'flex';
             }
         });
     });
