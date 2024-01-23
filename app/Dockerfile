@@ -11,4 +11,8 @@ COPY requirements.txt .
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
+RUN pip install Authlib
+RUN pip install google-api-python-client
+RUN pip install google-auth 
+RUN pip install google-auth-oauthlib 
+RUN pip install google-auth-httplib2

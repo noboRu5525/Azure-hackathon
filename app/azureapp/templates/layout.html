@@ -1,17 +1,24 @@
+
 <!doctype html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
+<html lang="en">
+    <!--layout.html-->
+  <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Taskman
+    </title>
+    <head>
+  <!-- 他のメタタグやリンク -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+</head>
 
-    <!-- Bootstrap CSS (Bootstrap 5を使用) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <!--ブートストラップCDN-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!--フルカレンダ-->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.10/index.global.min.js'></script>
+    <!--フルカレンダ-->
     <script>
-
+    
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -19,159 +26,278 @@
         });
         calendar.render();
       });
-
+    
     </script>
-   
-    <title></title>
-</head>
-<style>
-/* 本文に関連のないスタイル */
-body {
-  padding-top: 2rem;
-}
-.container {
-  margin-bottom: 2rem;
-}
-.offcanvas {
-    width: 300px; /* オフキャンバスの幅を設定 */
-    background-color: #343a40; /* 背景色を変更 */
-}
-
-
-.nav-link {
-    font-family: 'Monaco', monospace; /* Monacoフォントを適用 */
-    font-weight: bold; /* 太文字を指定 */
-    color: #fefeff; /* 文字色を変更 */
-    margin-left: 10px; /* アイコンとテキストの間隔を設定 */
-    font-size: 1.7rem
-    
-}
-
-.nav-link:hover {
-    background-color: #4c4e50; /* ホバー時の背景色を変更 */
-    color: #ffffff; /* ホバー時の文字色を変更 */
-}
-
-.nav-link i {
-    width: 20px; /* アイコンの幅を指定 */
-}
-footer {
-    position: fixed;
-    height: 100px;
-    bottom: 0;
-    width: 100%;
-}
-</style>
-
-<body>
-  <!-- ナビゲーションバー -->
-<nav class="navbar  navbar-dark bg-dark sticky-top">
-    <div class="container-fluid">
-      <!-- サブコンポーネント -->
-      <!-- ブランド -->
-      <!-- サブコンポーネント -->
-      <!-- ブランド -->
-      <!-- 切り替えボタン -->
-      <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#exampleOffcanvas">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    
-      <!-- 切り替えボタン -->
-      </button>
-        <!-- ナビゲーションメニュー -->
-        <!-- 左側メニュー：トップページの各コンテンツへのリンク -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/">
-                    <img src="../static/img/taskman_circle.png" alt="" width="100" height="100">
-                </a>
-            </li>
-        </ul>
-        
-    
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="/logout" class="nav-link btn btn-primary text-dark ">Log out</a>
-          </li>
-        </ul>
-        <!-- /ナビゲーションメニュー -->
-      </div>
-      <!-- /サブコンポーネント -->
+  </head>
+  <body>
+    <!--ナビゲーションバー-->
+    <nav class="navbar bg-light sticky-top rounded-bottom-3 border border">
+        <div class="container-fluid d-flex justify-content-between">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand position-absolute top-50 start-50 translate-middle" href="/home">
+                <!---->
+                <img src="../static/img/taskman_circle.png" width="35" height="35" class="d-inline-block align-text-middle">
+                Taskman
+            </a>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-outline-secondary me-md-2" type="button" onclick="location.href='/logout'">Log out</button>
+            </div>
+        </div>
+        <div class="offcanvas offcanvas-start rounded-end-3" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h2 class="offcanvas-title" id="offcanvasNavbarLabel">Taskman</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="fs-2 text-center nav-item py-2">
+		  <button type="button" class="btn btn-primary" onclick="location.href='/goal'">Create new</button>
+                  <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                </li>
+                <li class="fs-2 text-center nav-item py-2">
+                  <a class="nav-link active" href="/tasks">Tasks</a>
+                </li>
+                <li class="fs-2 text-center nav-item py-2 ">
+                    <a class="nav-link active" href="/projects">Projects</a>
+                </li>
+                <li class="fs-2 text-center nav-item py-2">
+                    <a class="nav-link active" href="/faq">FAQ</a>
+                </li>
+                <li class="fs-2 text-center nav-item py-2">
+                    <a class="nav-link active" href="/contact">Contact Us</a>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </nav>
+    </nav>
+    <!--メインコンテンツの始まり-->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+<!--カードのモーダル(detail)-->
+<!-- モーダル -->
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailModalLabel">Card Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- ここにカードの詳細内容を入れる -->
+                <p id="card-detail-text">Some quick example text to build on the Task name.</p>
+                <div class="advice-text" style="display: none;">
+                  <h2 >Advice</h2>
+                </div>
+                <div id="flask-response-text"></div>
+            </div>
+            <div class="modal-footer">
+                <!-- Adviceボタンの追加 -->
+                <button type="button" class="btn btn-light" id="advice-button" data-bs-toggle="modal">Get Advice</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-</nav>
-  <div class="container-fluid">
-    <!-- 切り替えボタン -->
-    <!-- オフキャンバス -->
-    <div class="offcanvas offcanvas-start" tabindex="-2" id="exampleOffcanvas" aria-labelledby="exampleOffcanvasLabel">
-      <div class="offcanvas-header">
-        <h2 class="offcanvas-title" id="exampleOffcanvasLabel" style="font-family: 'Monaco', monospace; color: white;">Task Man</h2>
-
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="nav flex-column">
-            <li class="nav-item"><a href="/home" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-            <li class="nav-item"><a href="/projects" class="nav-link"><i class="fas fa-project-diagram"></i> Projects</a></li>
-            <li class="nav-item"><a href="/tasks" class="nav-link"><i class="fas fa-tasks"></i> Tasks</a></li>
-            <li class="nav-item"><a href="/faq" class="nav-link"><i class="fas fa-question-circle"></i> FAQ</a>
-            <li class="nav-item"><a href="/contact" class="nav-link"><i class="fas fa-address-book"></i> CONTACT</a>    
+    </div>
+  <!-- 期限変更用モーダル -->
+<div class="modal fade" id="changeDeadlineModal" tabindex="-1" role="dialog" aria-labelledby="changeDeadlineModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="changeDeadlineModalLabel">Change Deadline</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- 日付選択フィールド -->
+          <form>
+            <div class="form-group">
+              <label for="new-deadline">New Deadline</label>
+              <input type="date" class="form-control" id="new-deadline">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <button type="button" class="btn btn-primary" id="save-changes">変更する</button>
         </div>
       </div>
     </div>
 </div>
-<main>
-    {%block content %}{% endblock %}
-</main>
-
-
-
-<!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-    <footer class="bg-dark text-white mt-4">
-        <div class="container-fluid py-3">
-            <!-- Footer Contents -->
-            <div class="row">
-                <div class="col-md-6">
-                    <p class="mb-md-0">© 2024 DataDremers@KIT. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-md-right">
-                    <!-- Facebook -->
-      <a
-      class="btn btn-link btn-floating btn-lg text-light m-1"
-      href="https://github.com/noboRu5525/Azure-hackathon"
-      role="button"
-      data-mdb-ripple-color="dark"
-      ><i class="fab fa-github"></i
-    ></a>
-
-    <!-- Twitter -->
-    <a
-      class="btn btn-link btn-floating btn-lg text-light m-1"
-      href="#!"
-      role="button"
-      data-mdb-ripple-color="dark"
-      ><i class="fab fa-twitter"></i
-    ></a>
-
-    <!-- Google -->
-    <a
-      class="btn btn-link btn-floating btn-lg text-light m-1"
-      href="http://www.kanazawa-it.ac.jp"
-      role="button"
-      data-mdb-ripple-color="dark"
-      ><i class="fab fa-google"></i
-    ></a>
-                </div>
-            </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+<script src="../static/js/script.js"></script>
+<script>
+    // 詳細ボタンのクリックイベント
+document.querySelectorAll('.card-link[data-task-id]').forEach(button => {
+button.addEventListener('click', function() {
+var taskId = this.getAttribute('data-task-id');
+var taskDetails = this.getAttribute('data-task-detail').split(',');
+var detailTextElement = document.getElementById('card-detail-text');
+detailTextElement.innerHTML = ''; // 以前の内容をクリア
+var responseTextElement = document.getElementById('flask-response-text');
+responseTextElement.innerHTML = ''; // アドバイス内容をクリア
+// 各詳細を追加
+taskDetails.forEach((detail, index) => {
+    var paragraph = document.createElement('p');
+    paragraph.textContent = 'detail' + (index + 1) + ': ' + detail.trim();
+    paragraph.classList.add('detail-item');
+    paragraph.dataset.index = index; // インデックスをデータ属性として追加
+    detailTextElement.appendChild(paragraph);
+});
+});
+});
+// アドバイスボタンのクリックイベント
+document.getElementById('advice-button').addEventListener('click', function() {
+var selectedDetail = document.querySelector('.detail-item.selected'); // 選択された詳細を取得
+if (!selectedDetail) {
+alert('select details');
+return;
+}
+var cardDetailText = selectedDetail.textContent;
+fetch('/send_card_detail', {
+method: 'POST',
+body: JSON.stringify({ 'text': cardDetailText }),
+headers: {
+    'Content-Type': 'application/json'
+}
+})
+.then(response => response.json())
+.then(data => {
+var responseTextElement = document.getElementById('flask-response-text');
+responseTextElement.textContent = data.text;
+})
+.catch(error => console.error('Error:', error));
+});
+// 各詳細アイテムのクリックイベント（選択）
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('detail-item')) {
+    document.querySelectorAll('.detail-item').forEach(item => item.classList.remove('selected'));
+    event.target.classList.add('selected');
+    }
+    });
+    // 各詳細アイテムのクリックイベント（選択）
+    document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('detail-item')) {
+    // 既に選択されているアイテムの選択を解除
+    document.querySelectorAll('.detail-item').forEach(item => {
+        item.classList.remove('selected');
+        item.style.backgroundColor = ''; // 背景色を元に戻す
+    });
+    
+    // クリックされたアイテムを選択状態にする
+    event.target.classList.add('selected');
+    event.target.style.backgroundColor = '#ddd'; // 選択された背景色
+    }
+    });
+    
+      </script>
+    
+        <script>
+            document.querySelectorAll('.complete-task').forEach(button => {
+    button.addEventListener('click', function(e) {
+    e.preventDefault();
+    const taskId = this.getAttribute('data-task-id');
+    
+    if (confirm('Really!？')) {
+        fetch(`/delete_task/${taskId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'X-CSRFToken': csrfToken を削除
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                this.closest('.col-md-4').remove();
+            } else {
+                alert('Error!');
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+    });
+    });
+    
+        </script>
+    <!--Bootstrap JS CDN-->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!--フッター-->
+    <div class="container">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+          </a>
+          <span class="text-muted">&copy; 2024 Data Dreamers@KIT All-Rights-Reserved</span>
         </div>
-    </footer>  
-</body>
+    
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <!-- GitHub -->
+          <li>
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://github.com/noboRu5525/Azure-hackathon" role="button" data-mdb-ripple-color="dark">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+    
+          <!-- Twitter -->
+          <li>
+            <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+    
+          <!-- Google -->
+          <li>
+            <a class="btn btn-link btn-floating btn-lg text-dark  m-1" href="http://www.kanazawa-it.ac.jp" role="button" data-mdb-ripple-color="dark">
+              <i class="fab fa-google"></i>
+            </a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+    
+    </div>
+
+    <!-- projectNameが選択されるとカレンダーの内容が変わる -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.project-link').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const projectName = this.getAttribute('dataname');
+          sendProjectToBackend(projectName);
+        });
+      });
+    });
+    
+    function sendProjectToBackend(projectName) {
+      // Ajaxを使用してプロジェクト名をFlaskバックエンドに送信
+      fetch('/project-select', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ projectName: projectName })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+  </body>
 </html>

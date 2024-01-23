@@ -5,6 +5,12 @@ import mysql.connector, random
 from datetime import timedelta, datetime
 import json
 from task_generation import make_task, make_task2, make_task3, extract_languages_from_ai_response, extract_all_languages,make_task_eng
+from authlib.integrations.flask_client import OAuth #Google認証
+import secrets #Google認証
+from google_auth_oauthlib.flow import Flow #Google Calendar
+from googleapiclient.discovery import build #Google Calendar
+from google.oauth2.credentials import Credentials #Google Calendar
+from googleapiclient.discovery import build #Google Calendar
 
 app = Flask(__name__)
 app.secret_key="fjkjfgkdkjkd"
@@ -35,6 +41,86 @@ config = {
         'port': '3306',
         'database': 'records',
         }
+
+#Googleログイン認証
+###########################################################################################################################
+oauth = OAuth(app)
+
+# Google OAuth設定
+google = oauth.register(
+    name='Azure',
+    client_id='1007338565716-n2pd8nuusdc3b7n3lprd0k8anlfe3a80.apps.googleusercontent.com',
+    client_secret='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',
+    access_token_url='https://accounts.google.com/o/oauth2/token',
+    authorize_url='https://accounts.google.com/o/oauth2/auth',
+    api_base_url='https://www.googleapis.com/oauth2/v1/',
+    jwks_uri='https://www.googleapis.com/oauth2/v3/certs',
+    userinfo_endpoint='https://openidconnect.googleapis.com/v1/userinfo',
+    client_kwargs={'scope': 'openid email profile https://www.googleapis.com/auth/calendar.readonly'},
+)
+
+@app.route('/')
+def hello_world():
+    email = dict(session).get('email', None)
+    creds_info = session.get('credentials', {})
+
+    if email and creds_info.get('token'):
+        credentials = Credentials(
+            token=creds_info['token'],
+            refresh_token=creds_info.get('refresh_token'),
+            token_uri=creds_info.get('token_uri'),
+            client_id=creds_info.get('client_id'),
+            client_secret=creds_info.get('client_secret'),
+            scopes=creds_info.get('scope')
+        )
+
+        service = build('calendar', 'v3', credentials=credentials)
+        events_result = service.events().list(calendarId='primary', maxResults=10).execute()
+        events = events_result.get('items', [])
+
+        # イベントをHTMLリストで表示
+        # events_html = '<ul>'
+        # for event in events:
+        #     start = event.get('start', {}).get('dateTime', event.get('start', {}).get('date'))
+        #     events_html += f'<li>{event.get("summary", "No Title")} at {start}</li>'
+        # events_html += '</ul>'
+
+        return f'Hello, {email}! <br> Upcoming Events: {events}'
+    else:
+        return '<a href="/login">Googleでログイン</a>'
+
+
+@app.route('/login')
+def login():
+    session['nonce'] = secrets.token_urlsafe()  # nonceを生成してセッションに保存
+    redirect_uri = url_for('authorize', _external=True)
+    return google.authorize_redirect(redirect_uri, nonce=session['nonce'])
+
+@app.route('/logout')
+def logout():
+    session.pop('email', None)
+    session.pop('token', None)
+    return redirect('/')
+
+@app.route('/authorize')
+def authorize():
+    token = google.authorize_access_token()
+    nonce = session.pop('nonce', None)
+    user_info = google.parse_id_token(token, nonce=nonce)
+    session['email'] = user_info.get('email')
+
+    # トークン情報をセッションに保存
+    session['credentials'] = {
+        'token': token.get('access_token'),
+        'refresh_token': token.get('refresh_token'),
+        'token_uri': token.get('token_uri'),
+        'client_id': token.get('client_id'),
+        'client_secret': token.get('client_secret'),
+        'scope': token.get('scope')
+    }
+    return redirect('/check_login')
+
+###########################################################################################################################
 
 def convert_days_range_to_dates(days_range, start_date):
     start_day, end_day = [int(day) for day in days_range.replace('日目', '').split('-')]
@@ -89,115 +175,185 @@ def get_account():
 def admin():
     return render_template("admin.html", accounts=get_account())
 
-#ログイン機能
-@app.route("/")
-def welcome():
-    return render_template("welcome.html")
+###########################################################################################################################
+# #旧ログイン機能
+# @app.route("/")
+# def welcome():
+#     return render_template("welcome.html")
 
-@app.route("/login")
-def login_page():
-    return render_template("login.html")
+# @app.route("/login")
+# def login_page():
+#     return render_template("login.html")
 
-@app.route("/check_login", methods=['POST'])
+# @app.route("/check_login", methods=['POST'])
+# def check_login():
+#     user, pw = (None, None)
+#     if 'user' in request.form:
+#         user = request.form['user']
+#     if 'pw' in request.form:
+#         pw = request.form['pw']
+#     if (user is None) or (pw is None):
+#         return redirect('/')
+#     if try_login(user, pw) == False:
+#         return """
+#         <h1>Wrong username or password</h1>
+#         <p><a href="/">→Return</a></p>
+#         """
+#     return redirect("/home")
+
+# @app.route("/signup")
+# def signup_page():
+#     return render_template("signup.html")
+
+# @app.route("/check_signup", methods=['POST'])
+# def check_signup():
+#     user, pw= (None, None)
+#     if 'user' in request.form:
+#         user = request.form['user']
+#     if 'pw' in request.form:
+#         pw = request.form['pw']
+#     if (user is None) or (pw is None):
+#         return redirect('/')
+#     if user_checker(user) == False:
+#         return """
+#         <h1>Same username exists. Please use a different username.</h1>
+#         <p><a href="/">→Reruen</a></p>
+#         """
+#     if try_signup(user, pw) == False:
+#         return """
+#         <h1>Invalid username, password, or email address</h1>
+#         <p><a href="/login">→Return</a></p>
+#         """
+#     return redirect('/login')
+
+# @app.route('/logout')
+# def logout_page():
+#     try_logout()
+#     return """
+#     <!DOCTYPE html>
+#     <html>
+#     <head>
+#         <title>ログアウト</title>
+#         <style>
+#             body {
+#                 font-family: 'Arial', sans-serif;
+#                 background-color: #f0f0f0;
+#                 text-align: center;
+#                 padding-top: 50px;
+#             }
+
+#             h1 {
+#                 color: #333;
+#                 font-size: 24px;
+#             }
+
+#             p {
+#                 margin-top: 20px;
+#                 font-size: 18px;
+#             }
+
+#             a {
+#                 text-decoration: none;
+#                 color: #007bff;
+#                 font-weight: bold;
+#             }
+
+#             a:hover {
+#                 color: #0056b3;
+#                 text-decoration: underline;
+#             }
+#         </style>
+#     </head>
+#     <body>
+#         <h1>Logged out</h1>
+#         <p><a href="/login">→return</a></p>
+#     </body>
+#     </html>
+#     """
+
+# def is_login():
+#     if 'user_id'  in session:
+#         return True
+#     return False
+
+# def try_login(username, password):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     cur.execute('SELECT id, password FROM account WHERE name = %s', (username,))
+#     account = cur.fetchone()
+#     cur.close()
+#     conn.close()
+#     if account and account[1] == password:
+#         session['user_id'] = account[0]  # ユーザーIDをセッションに保存
+#         return True
+#     return False
+
+# # セッションからユーザーIDを取得
+# def get_user_id_from_session():
+#     return session.get('user_id')
+
+# def try_signup(username, password):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     # ユーザー名が既に存在するかどうかをチェック
+#     cur.execute('SELECT id FROM account WHERE name = %s', (username,))
+#     if cur.fetchone():
+#         cur.close()
+#         conn.close()
+#         return False  # 既に存在するユーザー名
+#     # 新しいアカウントを作成
+#     cur.execute('INSERT INTO account (name, password) VALUES (%s, %s)', (username, password))
+#     user_id = cur.lastrowid  # 新しいユーザーIDを取得
+#     conn.commit()
+#     cur.close()
+#     conn.close()
+#     session['user_id'] = user_id  # ユーザーIDをセッションに保存
+#     return True
+
+# def try_logout():
+#     session.pop('user_id', None)
+#     return True
+
+# def get_user():
+#     if is_login():
+#         return session['user_id']
+#     return 'not login'
+
+# def user_checker(user):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     cur.execute('select * from account')
+#     results = cur.fetchall()
+#     cur.close()
+#     conn.close()
+#     for result in results:
+#         if user in result:
+#             return False
+#     return True
+###########################################################################################################################
+#Google認証に合わせたログイン
+@app.route("/check_login", methods=['GET','POST'])
 def check_login():
-    user, pw = (None, None)
-    if 'user' in request.form:
-        user = request.form['user']
-    if 'pw' in request.form:
-        pw = request.form['pw']
-    if (user is None) or (pw is None):
-        return redirect('/')
+    user = session.get('email', None)
+    pw = '099878362'
+    if 'user' is None:
+        return redirect('/admin')
     if try_login(user, pw) == False:
-        return """
-        <h1>Wrong username or password</h1>
-        <p><a href="/">→Return</a></p>
-        """
+        try_signup(user, pw)
+    if try_login(user, pw) == False:
+        return redirect('/admin')
     return redirect("/home")
-
-@app.route("/signup")
-def signup_page():
-    return render_template("signup.html")
-
-@app.route("/check_signup", methods=['POST'])
-def check_signup():
-    user, pw= (None, None)
-    if 'user' in request.form:
-        user = request.form['user']
-    if 'pw' in request.form:
-        pw = request.form['pw']
-    if (user is None) or (pw is None):
-        return redirect('/')
-    if user_checker(user) == False:
-        return """
-        <h1>Same username exists. Please use a different username.</h1>
-        <p><a href="/">→Reruen</a></p>
-        """
-    if try_signup(user, pw) == False:
-        return """
-        <h1>Invalid username, password, or email address</h1>
-        <p><a href="/login">→Return</a></p>
-        """
-    return redirect('/login')
-
-@app.route('/logout')
-def logout_page():
-    try_logout()
-    return """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>ログアウト</title>
-        <style>
-            body {
-                font-family: 'Arial', sans-serif;
-                background-color: #f0f0f0;
-                text-align: center;
-                padding-top: 50px;
-            }
-
-            h1 {
-                color: #333;
-                font-size: 24px;
-            }
-
-            p {
-                margin-top: 20px;
-                font-size: 18px;
-            }
-
-            a {
-                text-decoration: none;
-                color: #007bff;
-                font-weight: bold;
-            }
-
-            a:hover {
-                color: #0056b3;
-                text-decoration: underline;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Logged out</h1>
-        <p><a href="/login">→return</a></p>
-    </body>
-    </html>
-    """
-
-def is_login():
-    if 'user_id'  in session:
-        return True
-    return False
 
 def try_login(username, password):
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    cur.execute('SELECT id, password FROM account WHERE name = %s', (username,))
+    cur.execute('SELECT id, name, password FROM account WHERE name = %s', (username,))
     account = cur.fetchone()
     cur.close()
     conn.close()
-    if account and account[1] == password:
-        session['user_id'] = account[0]  # ユーザーIDをセッションに保存
+    if account and account[2] == password:
+        session['user_id'] = account[0]
+        print(session['user_id'])
         return True
     return False
 
@@ -205,32 +361,31 @@ def try_login(username, password):
 def get_user_id_from_session():
     return session.get('user_id')
 
+
 def try_signup(username, password):
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
     # ユーザー名が既に存在するかどうかをチェック
-    cur.execute('SELECT id FROM account WHERE name = %s', (username,))
+    cur.execute('SELECT name FROM account WHERE name = %s', (username,))
     if cur.fetchone():
         cur.close()
         conn.close()
         return False  # 既に存在するユーザー名
     # 新しいアカウントを作成
     cur.execute('INSERT INTO account (name, password) VALUES (%s, %s)', (username, password))
-    user_id = cur.lastrowid  # 新しいユーザーIDを取得
     conn.commit()
     cur.close()
     conn.close()
-    session['user_id'] = user_id  # ユーザーIDをセッションに保存
     return True
 
-def try_logout():
-    session.pop('user_id', None)
-    return True
-
-def get_user():
-    if is_login():
-        return session['user_id']
-    return 'not login'
+def check_signup():
+    user = session.get('email', None)
+    pw = '099878362'
+    if (user is None):
+        return redirect('/admin')
+    if user_checker(user) == False:
+        return redirect('/home')
+    return redirect('/home')
 
 def user_checker(user):
     conn = mysql.connector.connect(**config)
@@ -244,16 +399,17 @@ def user_checker(user):
             return False
     return True
 
+###########################################################################################################################
+
 #ホーム画面
 @app.route("/home")
 def home():
-    if not is_login():
-        return """
-        <h1>Please login</h1>
-        <p><a href="/">→Log in</a></p>
-        """
-
-    user_id = session.get('user_id')
+    user = session.get('email', None)
+    user_id = session.get('user_id', None)
+    if user is None:
+        return redirect('/')
+    if user_id is None:
+        return redirect('/')
 
     # データベースに接続して、ユーザーに関連するタスクとその詳細を取得
     conn = mysql.connector.connect(**config)
@@ -288,7 +444,54 @@ def home():
     #list_projects関数の呼び出し
     projects = list_projects()
 
-    return render_template('home.html', username=get_user(), projects=projects, tasks=tasks.values())
+    return render_template('home.html', username=user, projects=projects, tasks=tasks.values())
+
+#Projectページ
+@app.route('/tasks')
+def tasks_page():
+    user = session.get('email', None)
+    user_id = session.get('user_id', None)
+    if user is None:
+        return redirect('/')
+    if user_id is None:
+        return redirect('/')
+
+    # データベースに接続して、ユーザーに関連するタスクとその詳細を取得
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT t.id, t.days_range, t.task_name, td.detail
+        FROM tasks t
+        JOIN task_details td ON t.id = td.task_id
+        JOIN learning_plans lp ON t.plan_id = lp.id
+        WHERE lp.user_id = %s
+    ''', (user_id,))
+    raw_tasks = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    # タスクデータを整理
+    tasks = {}
+    for task_id, days_range, task_name, detail in raw_tasks:
+        if task_id not in tasks:
+            tasks[task_id] = {
+                'task_id': task_id,
+                'days_range': days_range,
+                'task_name': task_name,
+                'details': []
+            }
+        tasks[task_id]['details'].append(detail)
+    return render_template('tasks.html', tasks=tasks.values())
+
+#Projectページ
+@app.route('/projects')
+def projects_page():
+    # get_projects 関数の呼び出し
+    project_response = get_projects()
+    projects = json.loads(project_response.data)
+    #list_projects関数の呼び出し
+    projects = list_projects()
+    return render_template('projects.html',projects=projects)
 
 #Create Newボタンを押したときの処理
 @app.route('/goal')
