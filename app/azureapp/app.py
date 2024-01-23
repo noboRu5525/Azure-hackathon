@@ -513,6 +513,11 @@ def faq():
 def contact():
     return render_template('contact.html')
 
+# Timer
+@app.route('/timer')
+def timer():
+    return render_template('timer.html')
+
 #目標設定
 @app.route('/create_project', methods=['POST'])
 def create_project():
