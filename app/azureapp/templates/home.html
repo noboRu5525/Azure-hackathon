@@ -99,13 +99,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                                {% for project in projects[-3:] %}
+                                {% for project in projects[-3:][::-1] %}
                                 <tr>
-                                  <th scope="row">{{ loop.index }}</th>
-                                  <td>{{ project[1] }}</td>
+                                    <th scope="row">{{ loop.index }}</th>
+                                    <td>{{ project[1] }}</td>
                                 </tr>
                                 {% endfor %}
-                              </tbody>
+                            </tbody>
                         </table>
                     </div>
                     <!-- 特定のカラム（ここではカレンダー）に最大幅を与える場合 -->
@@ -291,6 +291,38 @@
     });
     
         </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              var tableRows = document.querySelectorAll('tbody tr');
+          
+              tableRows.forEach(function(row) {
+                row.addEventListener('click', function() {
+                  var isActive = this.classList.contains('active');
+                  // すべての行から.activeクラスを削除
+                  tableRows.forEach(function(otherRow) {
+                    otherRow.classList.remove('active');
+                  });
+          
+                  // /get_tasksエンドポイントを呼び出す
+                  fetch('/get_tasks')
+                  .then(response => response.json())
+                  .then(data => {
+                    console.log(data); // サーバーからのレスポンスをコンソールに表示
+                    // 応答に基づいて何かをする、例えば取得したタスクを表示するなど
+                  })
+                  .catch(error => console.error('Error:', error));
+          
+                  // この行が既にアクティブでなかった場合にのみ.activeクラスを追加
+                  if (!isActive) {
+                    this.classList.add('active');
+                  }
+                });
+              });
+            });
+        </script>
+          
+          
     </body>
     
       

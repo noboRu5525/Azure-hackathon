@@ -698,6 +698,7 @@ def auto_select_language():
 #タスク名をカレンダーに反映させる
 @app.route('/get_tasks')
 def get_tasks():
+    print("get_tasks関数が呼び出されました")
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
