@@ -271,33 +271,49 @@ document.addEventListener('click', function(event) {
 
     <!-- projectNameが選択されるとカレンダーの内容が変わる -->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.project-link').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const projectName = this.getAttribute('dataname');
-          sendProjectToBackend(projectName);
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.project-link').forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const projectID = this.getAttribute('dataname');
+      
+            // get_tasksがすでに実行されたかどうかを追跡する属性を設定
+            if (this.getAttribute('data-get-tasks-executed') === 'true') {
+              // 2回目のクリックでリセットする処理
+              resetGetTasks();
+              this.setAttribute('data-get-tasks-executed', 'false');
+            } else {
+              sendProjectToBackend(projectID);
+              this.setAttribute('data-get-tasks-executed', 'true');
+            }
+          });
         });
       });
-    });
-    
-    function sendProjectToBackend(projectName) {
-      // Ajaxを使用してプロジェクト名をFlaskバックエンドに送信
-      fetch('/project-select', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ projectName: projectName })
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    }
+      
+      function sendProjectToBackend(projectID) {
+        // Ajaxを使用してプロジェクト名をFlaskバックエンドに送信
+        fetch('/get_tasks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ projectID: projectID })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      }
+      
+      function resetGetTasks() {
+        // get_tasksをリセットする処理
+        console.log('Resetting get_tasks');
+        // 必要に応じてサーバーへのリクエストをここに追加
+      }
+      
   </script>
   </body>
 </html>

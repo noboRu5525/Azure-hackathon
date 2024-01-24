@@ -41,79 +41,37 @@ document.addEventListener('DOMContentLoaded', function() {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         events: function(fetchInfo, successCallback, failureCallback) {
-            fetch('/get_projects')
-                .then(response => response.json())
-                .then(data => {
-                    var events = data.map(project => {
-                        return {
-                            id: project.id,
-                            title: project.title,
-                            start: project.start,
-                            end: project.end,
-                            allDay: project.allDay,
-                            backgroundColor: project.color, // 背景色を設定
-                            borderColor: project.color // 枠線の色も同様に設定
-                        };
-                    });
-                    successCallback(events);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    failureCallback(error);
-                });
-        }
-    });
-    calendar.render();
-});
+            Promise.all([
+                fetch('/get_projects').then(response => response.json()),
+                fetch('/get_google_calendar_events').then(response => response.json())
+            ])
+            .then(([projectsData, googleEventsData]) => {
+                var projectEvents = projectsData.map(project => ({
+                    id: project.id,
+                    title: project.title,
+                    start: project.start,
+                    end: project.end,
+                    allDay: project.allDay,
+                    backgroundColor: project.color,
+                    borderColor: project.color
+                }));
 
+                var googleCalendarEvents = googleEventsData.map(event => ({
+                    id: event.id,
+                    title: event.summary,
+                    start: event.start.date || event.start.dateTime,
+                    end: event.end.date || event.end.dateTime,
+                    allDay: !event.start.dateTime,
+                    backgroundColor: '#ff9f89', // Googleカレンダーイベントの背景色
+                    borderColor: '#ff9f89' // Googleカレンダーイベントの枠線色
+                }));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//タスクをカレンダーに表示
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        events: function(fetchInfo, successCallback, failureCallback) {
-            fetch('/get_tasks')
-                .then(response => response.json())
-                .then(tasks => {
-                    var events = tasks.map(task => {
-                        return {
-                            id: task.id,
-                            title: task.title,
-                            start: task.start,
-                            end: task.end,
-                            allDay: task.allDay
-                        };
-                    });
-                    successCallback(events);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    failureCallback(error);
-                });
+                successCallback([...projectEvents, ...googleCalendarEvents]);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                failureCallback(error);
+            });
         }
     });
     calendar.render();
