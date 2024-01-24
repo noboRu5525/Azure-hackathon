@@ -60,7 +60,7 @@ google = oauth.register(
 )
 
 @app.route('/')
-def hello_world():
+def get_google_calendar_events():
     email = dict(session).get('email', None)
     creds_info = session.get('credentials', {})
 
@@ -85,7 +85,7 @@ def hello_world():
         #     events_html += f'<li>{event.get("summary", "No Title")} at {start}</li>'
         # events_html += '</ul>'
 
-        return f'Hello, {email}! <br> Upcoming Events: {events}'
+        return events
     else:
         return '<a href="/login">Googleでログイン</a>'
 
@@ -443,8 +443,22 @@ def home():
     
     #list_projects関数の呼び出し
     projects = list_projects()
+    
+    #goofleカレンダーAPIからのイベントデータ
+    google_calendar_events = get_google_calendar_events()
+    
+    events = []
+    for event in google_calendar_events:
+        formatted_event = {
+            'title': event['summary'],
+            'start': event['start']['date'],
+            'end': event['end']['date'],
+        }
+        events.append(formatted_event)
 
-    return render_template('home.html', username=user, projects=projects, tasks=tasks.values())
+    return render_template('home.html', username=user, projects=projects, tasks=tasks.values(), events=events)
+
+
 
 #Projectページ
 @app.route('/tasks')
@@ -899,8 +913,9 @@ def auto_select_language():
     return jsonify({'languages': use_lang})
 
 #タスク名をカレンダーに反映させる
-@app.route('/get_tasks')
+@app.route('/get_tasks', methods=['POST'])
 def get_tasks():
+    print("get_tasks関数が呼び出されました")
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
@@ -910,20 +925,26 @@ def get_tasks():
         if user_id is None:
             return jsonify({"error": "User not logged in"}), 401
 
-        # learning_plansのIDを取得
+        # ユーザーIDに対応するlearning_plansのIDを取得
         cursor.execute("SELECT id FROM learning_plans WHERE user_id = %s", (user_id,))
         plan_ids = cursor.fetchall()
+        print(plan_ids)
         if not plan_ids:
             return jsonify([])  # 該当するlearning_plansがない場合
 
         # 複数のplan_idsに対応するtasksを取得
-        plan_ids_tuple = tuple([id[0] for id in plan_ids])  # タプルに変換
-        query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN %s"
-        cursor.execute(query, (plan_ids_tuple,))
+        plan_ids_tuple = tuple([id[0] for id in plan_ids])
+        print(plan_ids_tuple)
+        
+        # IN 節のためのプレースホルダーを生成
+        placeholders = ', '.join(['%s'] * len(plan_ids_tuple))
+        query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN ({})".format(placeholders)
+        cursor.execute(query, plan_ids_tuple)
 
         tasks_data = cursor.fetchall()
         tasks_list = []
-        for taskId, daysRange, taskName in tasks_data:
+        for task in tasks_data:
+            taskId, daysRange, taskName = task
             start_date, end_date = daysRange.split(' to ')
             tasks_list.append({
                 "id": taskId,
@@ -932,8 +953,7 @@ def get_tasks():
                 "end": end_date,
                 "allDay": True
             })
-        print(tasks_list)
-        print(type(tasks_list))
+            print(tasks_list)
         return jsonify(tasks_list)
     except Exception as e:
         print(e)
@@ -941,6 +961,7 @@ def get_tasks():
     finally:
         cursor.close()
         conn.close()
+
 
 
 @app.route('/test')

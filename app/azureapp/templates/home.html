@@ -57,10 +57,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                            {% for project in projects[-3:] %}
+                            {% for project in projects %}
                             <tr>
-                                <th scope="row">{{ loop.index }}</th>
-                                <td>{{ project[1] }}</td>
+                                <td>{{ project[0] }}</td>
+                                <td><a class="project-link" dataname="{{ project[0] }}" style="text-decoration:none;">{{ project[1] }}</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>
