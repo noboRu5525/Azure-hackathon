@@ -59,35 +59,40 @@ google = oauth.register(
     client_kwargs={'scope': 'openid email profile https://www.googleapis.com/auth/calendar.readonly'},
 )
 
-@app.route('/')
-def hello_world():
+def get_events_data():
     email = dict(session).get('email', None)
     creds_info = session.get('credentials', {})
 
-    if email and creds_info.get('token'):
-        credentials = Credentials(
-            token=creds_info['token'],
-            refresh_token=creds_info.get('refresh_token'),
-            token_uri=creds_info.get('token_uri'),
-            client_id=creds_info.get('client_id'),
-            client_secret=creds_info.get('client_secret'),
-            scopes=creds_info.get('scope')
-        )
+    if not (email and creds_info.get('token')):
+        return []  # イベントがない場合は空のリストを返す
 
-        service = build('calendar', 'v3', credentials=credentials)
-        events_result = service.events().list(calendarId='primary', maxResults=10).execute()
-        events = events_result.get('items', [])
+    # GoogleカレンダーAPIの認証情報を設定
+    credentials = Credentials(
+        token=creds_info['token'],
+        refresh_token=creds_info.get('refresh_token'),
+        token_uri=creds_info.get('token_uri'),
+        client_id=creds_info.get('client_id'),
+        client_secret=creds_info.get('client_secret'),
+        scopes=creds_info.get('scope')
+    )
 
-        # イベントをHTMLリストで表示
-        # events_html = '<ul>'
-        # for event in events:
-        #     start = event.get('start', {}).get('dateTime', event.get('start', {}).get('date'))
-        #     events_html += f'<li>{event.get("summary", "No Title")} at {start}</li>'
-        # events_html += '</ul>'
+    # Googleカレンダーサービスの初期化
+    service = build('calendar', 'v3', credentials=credentials)
 
-        return f'Hello, {email}! <br> Upcoming Events: {events}'
-    else:
-        return '<a href="/login">Googleでログイン</a>'
+    # カレンダーからイベントを取得
+    events_result = service.events().list(calendarId='primary', maxResults=10).execute()
+    events = events_result.get('items', [])
+
+    # イベントデータを整形
+    formatted_events = []
+    for event in events:
+        formatted_events.append({
+            'title': event.get('summary', 'No Title'),
+            'start': event['start'].get('dateTime', event['start'].get('date')),
+            'end': event['end'].get('dateTime', event['end'].get('date'))
+        })
+
+    return formatted_events
 
 
 @app.route('/login')
@@ -444,7 +449,21 @@ def home():
     #list_projects関数の呼び出し
     projects = list_projects()
 
-    return render_template('home.html', username=user, projects=projects, tasks=tasks.values())
+    #Googleカレンダーのイベントを取得
+    calendar_events = get_events_data()
+    
+    #JSON形式に変換
+    calendar_events_json = json.dumps(calendar_events)
+    
+    return render_template('home.html', username=user, projects=projects, tasks=tasks.values(), events_json=calendar_events_json)
+
+@app.route('/get-calendar-events')
+def get_calendar_events():
+    # Googleカレンダーのイベントデータを取得
+    calendar_events = get_events_data()
+
+    # JSON形式でイベントデータを返す
+    return jsonify(calendar_events)
 
 #Projectページ
 @app.route('/tasks')
