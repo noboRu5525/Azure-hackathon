@@ -448,7 +448,7 @@ def home():
     
     #list_projects関数の呼び出し
     projects = list_projects()
-    
+
     #Googleカレンダーのイベントを取得
     calendar_events = get_events_data()
     
@@ -464,9 +464,6 @@ def get_calendar_events():
 
     # JSON形式でイベントデータを返す
     return jsonify(calendar_events)
-
-
-
 
 #Projectページ
 @app.route('/tasks')
@@ -921,9 +918,8 @@ def auto_select_language():
     return jsonify({'languages': use_lang})
 
 #タスク名をカレンダーに反映させる
-@app.route('/get_tasks', methods=['POST'])
+@app.route('/get_tasks')
 def get_tasks():
-    print("get_tasks関数が呼び出されました")
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
@@ -933,26 +929,20 @@ def get_tasks():
         if user_id is None:
             return jsonify({"error": "User not logged in"}), 401
 
-        # ユーザーIDに対応するlearning_plansのIDを取得
+        # learning_plansのIDを取得
         cursor.execute("SELECT id FROM learning_plans WHERE user_id = %s", (user_id,))
         plan_ids = cursor.fetchall()
-        print(plan_ids)
         if not plan_ids:
             return jsonify([])  # 該当するlearning_plansがない場合
 
         # 複数のplan_idsに対応するtasksを取得
-        plan_ids_tuple = tuple([id[0] for id in plan_ids])
-        print(plan_ids_tuple)
-        
-        # IN 節のためのプレースホルダーを生成
-        placeholders = ', '.join(['%s'] * len(plan_ids_tuple))
-        query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN ({})".format(placeholders)
-        cursor.execute(query, plan_ids_tuple)
+        plan_ids_tuple = tuple([id[0] for id in plan_ids])  # タプルに変換
+        query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN %s"
+        cursor.execute(query, (plan_ids_tuple,))
 
         tasks_data = cursor.fetchall()
         tasks_list = []
-        for task in tasks_data:
-            taskId, daysRange, taskName = task
+        for taskId, daysRange, taskName in tasks_data:
             start_date, end_date = daysRange.split(' to ')
             tasks_list.append({
                 "id": taskId,
@@ -961,7 +951,8 @@ def get_tasks():
                 "end": end_date,
                 "allDay": True
             })
-            print(tasks_list)
+        print(tasks_list)
+        print(type(tasks_list))
         return jsonify(tasks_list)
     except Exception as e:
         print(e)
@@ -969,7 +960,6 @@ def get_tasks():
     finally:
         cursor.close()
         conn.close()
-
 
 
 @app.route('/test')
@@ -1287,6 +1277,84 @@ def submit_qualification_data_eng():
     else:
         # タスク生成が成功した場合のレスポンス
         return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
+
+#試験用のタイマーページ 
+@app.route('/timer')
+def timer():
+    return render_template('timer_test.html')
+
+def time_str_to_seconds(time_str):
+    hours, minutes, seconds = map(int, time_str.split(':'))
+    total_seconds = hours * 3600 + minutes * 60 + seconds
+    return total_seconds
+
+# タスク実行のデータを受け取る
+@app.route('/save_data', methods=['POST'])
+def save_data():
+    try:
+        # POSTリクエストからデータを受け取る
+        data = request.get_json()
+
+        # セッションからユーザーIDを取得（ユーザーがログインしていることが前提）
+        user_id = session.get('user_id')
+        if not user_id:
+            return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
+        
+        seconds = time_str_to_seconds(data['formattedTime'])
+
+        current_time = datetime.now()
+        new_time = current_time + timedelta(hours=9)
+
+        # データベースに接続
+        conn = mysql.connector.connect(**config)
+        cursor = conn.cursor()
+
+        # タスク実行情報を挿入
+        insert_query = """
+        INSERT INTO task_executions (task_id, execution_date, execution_time, user_memo)
+        VALUES (%s, %s, %s, %s)
+        """
+        task_id = 1  # タスクIDを適切に設定
+        execution_date = new_time
+        execution_time = seconds
+        #task_progress = float(data['progressValue'])
+        user_memo = data['user_memo']
+
+        cursor.execute(insert_query, (task_id, execution_date, execution_time, user_memo))
+
+        # データベースへの変更をコミット
+        conn.commit()
+
+        # タスクの進捗値を更新するSQL文
+        update_query = """
+        UPDATE tasks
+        SET task_progress = %s
+        WHERE id = %s
+        """
+
+        task_id = 1  # タスクIDを適切に設定
+        new_task_progress = int(data['progressValue']) 
+
+        cursor.execute(update_query, (new_task_progress, task_id))
+
+        # データベースへの変更をコミット
+        conn.commit()
+
+
+        # レスポンスを返す（任意のレスポンスを設定することができます）
+        response_data = {'message': 'データを受け取りました。'}
+        return jsonify(response_data), 200
+
+    except Exception as e:
+        # エラーが発生した場合の処理
+        conn.rollback()
+        error_message = {'error': str(e)}
+        return jsonify(error_message), 500
+
+    finally:
+        # データベース接続をクローズ
+        cursor.close()
+        conn.close()
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
