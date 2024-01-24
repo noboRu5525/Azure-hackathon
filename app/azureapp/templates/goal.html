@@ -356,7 +356,7 @@
         <form class="system-name">
           <h3 class="title">&lt;Name of the system you want to create&gt;</h3>
           <div class="">
-            <input type="text" id="customText" name="customText" class="text-input"><br>
+            <input type="text" id="customText" name="customText" class="text-input system-name-eng"><br>
           </div>
         </form>
         <form>
@@ -385,15 +385,15 @@
             </div>
           </form>
         </div>
-          <form class="custom">
+          <form class="customText">
             <div class="text">
                 <h3 class="title">&lt;Specific functions&gt;</h3><p>※At least 3 required</p>
               </div>
             <div class="input_space" id="inputSpace">
               <div class="tipe pe-4" id="functionFields">
-                <input type="text" id="functionText1" name="customText" class="input-group"><br>
-                <input type="text" id="functionText2" name="customText" class="input-group"><br>
-                <input type="text" id="functionText3" name="customText" class="input-group"><br>
+                <input type="text" id="functionText1" name="customText" class="input-group text-input2"><br>
+                <input type="text" id="functionText2" name="customText" class="input-group text-input2"><br>
+                <input type="text" id="functionText3" name="customText" class="input-group text-input2"><br>
               </div>
               <button type="button" id="addButton" class="add-button">+</button>
             </div>
@@ -906,7 +906,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         const makeDay = document.querySelector('.make-day .text-input')?.value;
 
         // 具体的な機能、使用する言語、ツール・プラットフォームを取得
-        const functions = Array.from(document.querySelectorAll('.custom .text-input2')).map(input => input.value);
+        const functions = Array.from(document.querySelectorAll('.customText .text-input2')).map(input => input.value);
         const languages = Array.from(document.querySelectorAll('.use_lang_space .lang:checked')).map(checkbox => checkbox.value);
         const tools = Array.from(document.querySelectorAll('.use_lang .lang:checked')).map(checkbox => checkbox.value);
         const startDate = document.querySelector('#start_date').value;
@@ -982,7 +982,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
         const systemNameEng = document.querySelector('#English .system-name .text-input')?.value;
         const makeDayEng = document.querySelector('#English .make-day .text-input')?.value;
         
-        const functionsEng = Array.from(document.querySelectorAll('#English .custom .text-input2')).map(input => input.value);
+        const functionsEng = Array.from(document.querySelectorAll('#English .customText .text-input2')).map(input => input.value);
         const languagesEng = Array.from(document.querySelectorAll('#English .use_lang_space .lang:checked')).map(checkbox => checkbox.value);
         const toolsEng = Array.from(document.querySelectorAll('#English .use_lang .lang:checked')).map(checkbox => checkbox.value);
         const startDateEng = document.querySelector('#English #start_date').value;
@@ -1049,7 +1049,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
 
             // すべての入力欄の枠線をリセット
             [systemName, makeDay].forEach(resetBorderColor);
-            document.querySelectorAll('.custom .text-input2').forEach(resetBorderColor);
+            document.querySelectorAll('.customText .text-input2').forEach(resetBorderColor);
 
             // カテゴリーの確認
             if (!category) {
@@ -1071,7 +1071,7 @@ setInterval(showRandomTip, 10000); // 10秒ごとに切り替え
             }
 
             // 具体的な機能の確認
-            document.querySelectorAll('.custom .text-input2').forEach(function(input) {
+            document.querySelectorAll('.customText .text-input2').forEach(function(input) {
                 if (!input.value) {
                     input.style.borderColor = 'red';
                     isValid = false;
@@ -1223,7 +1223,7 @@ document.querySelectorAll('#Japanese form.Category input[type="radio"]').forEach
 
         // 機能の入力欄からデータを取得
         const functions = [];
-        document.querySelectorAll('.custom .text-input2').forEach(function(input) {
+        document.querySelectorAll('.customText .text-input2').forEach(function(input) {
             if(input.value.trim() !== '') {
                 functions.push(input.value.trim());
             }
@@ -1270,7 +1270,7 @@ document.querySelectorAll('#Japanese form.Category input[type="radio"]').forEach
 
         // 英語版の機能の入力欄からデータを取得
         const functionsEng = [];
-        document.querySelectorAll('#English .custom .text-input2').forEach(function(input) {
+        document.querySelectorAll('#English .customText .text-input2').forEach(function(input) {
             if(input.value.trim() !== '') {
                 functionsEng.push(input.value.trim());
             }
