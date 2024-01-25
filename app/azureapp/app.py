@@ -227,6 +227,17 @@ def home():
     # データベースに接続して、ユーザーに関連するタスクとその詳細を取得
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
+    
+    # cur.execute('select count(*) from projects where user_id = %s and status != 1', (user_id,))
+    # incomplete_projects_count = cur.fetchone()[0]
+    
+    # if incomplete_projects_count > 0:
+    #     project_response = get_projects()
+    #     projects = json.loads(project_response.data)
+    #     projects = list_projects()
+    # else:
+    #     projects = []
+    
     cur.execute('''
         SELECT t.id, t.days_range, t.task_name, td.detail
         FROM tasks t
@@ -721,8 +732,8 @@ def get_projects():
         conn.close()
 
         
-@app.route('/delete_task/<int:task_id>', methods=['POST'])
-def delete_task(task_id):
+@app.route('/update_task_status/<int:task_id>', methods=['POST'])
+def update_task_status(task_id):
     user_id = session.get('user_id')
     if not user_id:
         return jsonify({'status': 'error', 'message': 'ログインが必要です。'}), 403
@@ -732,22 +743,49 @@ def delete_task(task_id):
     cur = conn.cursor()
     
     try:
-        # ユーザーIDとタスクIDを確認してタスクが存在するかを検証
         cur.execute('''
-            SELECT t.id FROM tasks t
-            JOIN learning_plans lp ON t.plan_id = lp.id
-            WHERE t.id = %s AND lp.user_id = %s
+            UPDATE tasks
+            SET status = 1
+            WHERE id = %s AND EXISTS (
+                SELECT 1 FROM learning_plans lp
+                WHERE lp.user_id = %s AND lp.id = tasks.plan_id
+            )
         ''', (task_id, user_id))
-        task = cur.fetchone()
-
-        if not task:
+        conn.commit()
+        
+        if cur.rowcount == 0:
             return jsonify({'status': 'error', 'message': 'タスクが見つかりません。'}), 404
 
-        # タスクを削除
-        cur.execute('DELETE FROM tasks WHERE id = %s', (task_id,))
-        conn.commit()
+        return jsonify({'status': 'success', 'message': 'タスクのステータスが更新されました。'})
 
-        return jsonify({'status': 'success', 'message': 'タスクが削除されました。'})
+    except mysql.connector.Error as err:
+        conn.rollback()
+        print(f"Error: {err}")
+        return jsonify({'status': 'error', 'message': '内部エラーが発生しました。'}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+@app.route('/check_status/<int:project_id>', methods=['POST'])        
+def check_status(project_id):
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    
+    try:
+        cur.execute('''
+            #全てのタスクのstatusが1かどうかを確認
+            select count(*) from tasks t join learning_plans lp ON t.plan_id = lp.id
+            join projects p ON lp.user_id = p.user_id
+            WHERE p.id = %s AND t.status != 1
+        ''', (project_id))
+        imcomplete_task_count = cur.fetchone()[0]
+            
+        if imcomplete_task_count == 0:
+            #全てのタスクのstatusが1の場合、statusを0に変更
+            cur.execute('UPDATE projects SET status = 1 WHERE id = %s', (project_id,))
+            conn.commit()
+
+        return jsonify({'status': 'success', 'message': 'タスクのステータスが更新されました。'})
     except mysql.connector.Error as err:
         conn.rollback()
         print(f"Error: {err}")

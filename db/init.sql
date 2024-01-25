@@ -18,6 +18,7 @@ CREATE TABLE projects (
     languages VARCHAR(255) NOT NULL,
     tools VARCHAR(255) NOT NULL,
     color VARCHAR(30),
+    -- status TINYINT NOT NULL DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES account(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -33,6 +34,7 @@ CREATE TABLE tasks (
     days_range VARCHAR(50) NOT NULL,
     task_name VARCHAR(255) NOT NULL,
     task_progress INT NOT NULL DEFAULT 0, -- デフォルト値を0.0に設定
+    -- status TINYINT NOT NULL DEFAULT 0,
     FOREIGN KEY (plan_id) REFERENCES learning_plans(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
