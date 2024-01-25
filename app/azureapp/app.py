@@ -393,11 +393,6 @@ def faq():
 def contact():
     return render_template('contact.html')
 
-# Timer
-@app.route('/timer')
-def timer():
-    return render_template('timer.html')
-
 #目標設定
 @app.route('/create_project', methods=['POST'])
 def create_project():
@@ -1131,7 +1126,7 @@ def submit_qualification_data_eng():
 #試験用のタイマーページ 
 @app.route('/timer')
 def timer():
-    return render_template('timer_test.html')
+    return render_template('timer.html')
 
 def time_str_to_seconds(time_str):
     hours, minutes, seconds = map(int, time_str.split(':'))
