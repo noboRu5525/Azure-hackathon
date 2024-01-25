@@ -285,8 +285,24 @@ def get_events_data():
     # Googleカレンダーサービスの初期化
     service = build('calendar', 'v3', credentials=credentials)
 
+    #現在の日時をJSTで計算
+    now = datetime.utcnow() + timedelta(hours=9)
+    now_str = now.isoformat() + 'Z'
+
+    # 3ヶ月後の日時をJSTで計算
+    three_months_later = now + timedelta(weeks=12)
+    three_months_later_str = three_months_later.isoformat() + 'Z'
+
     # カレンダーからイベントを取得
-    events_result = service.events().list(calendarId='primary', maxResults=10).execute()
+    # events_result = service.events().list(calendarId='primary', maxResults=250).execute()
+    events_result = service.events().list(
+        calendarId='primary', 
+        timeMin=now_str, 
+        timeMax=three_months_later_str,
+        maxResults=250, 
+        singleEvents=True, 
+        orderBy='startTime'
+        ).execute()
     events = events_result.get('items', [])
 
     # イベントデータを整形
