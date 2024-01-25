@@ -20,10 +20,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ task.task_name }}</h5>
                                     <p class="card-text">{{ task.days_range }}</p>
-                                    
-                                    <a href="#" class="card-link" data-toggle="modal" data-target="#detailModal" data-task-id="{{ task.task_id }}" data-task-detail="{{ task.details | join(', ') }}">Detail</a>
-                                    <a href="#" class="card-link" data-toggle="modal" data-target="#changeDeadlineModal">Change</a>
-                                    <a href="#" class="btn btn-light complete-task" role="button" data-task-id="{{ task.task_id }}">Complete</a>
+                                    <a href="#" class="btn btn-light border-dark" data-toggle="modal" data-target="#detailModal" data-task-id="{{ task.task_id }}" data-task-detail="{{ task.details | join(', ') }}">Detail</a>
+                                    <a href="#" class="btn btn-light border-dark" data-toggle="modal" data-target="#changeDeadlineModal">Change</a>
+                                    <a href="#" class="btn btn-light complete-task border-dark" role="button" data-task-id="{{ task.task_id }}">Complete</a>
                                 </div>
                             </div>
                         </div>
