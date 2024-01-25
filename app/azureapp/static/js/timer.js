@@ -20,16 +20,15 @@ document.getElementById('toggle-memo').addEventListener('click', function() {
 });
 
 // global variables
+let startDate;
 let time = 0;
 let interval;
 let isRunning = true;
 
 function setTimer() {
   const setTimeInput = document.getElementsByName("settime")[0];
-  const timerElement = document.getElementById("timer");
+  const timerEl = document.getElementById("timer");
 
-  timerElement.innerHTML = setTimeInput.value
-  time = setTimeInput.value;
   const timeParts = setTimeInput.value.split(':');
 
   // 時間を秒に変換
@@ -39,7 +38,7 @@ function setTimer() {
   time = (hours * 3600) + (minutes * 60) + seconds;
 
   // タイマー表示を更新
-  timerElement.innerHTML = formatTime(time);
+  timerEl.innerHTML = formatTime(time);
 }
 
 function formatTime(seconds) {
@@ -49,66 +48,123 @@ function formatTime(seconds) {
   return [h, m, s].map(v => v < 10 ? "0" + v : v).join(":");
 }
 
-function resetTimer() {
-  const timerElement = document.getElementById("timer");
-  clearInterval(interval);
-  timerElement.style = "";
-  
-  timerElement.innerHTML = "00:00:00"; // タイマー表示をリセット
-  time = 0; // time変数をリセット
+function formatDate(date) {
+  var year = date.getFullYear();
+  var month = String(date.getMonth() + 1).padStart(2, '0'); // 月は0から始まるため+1する
+  var day = String(date.getDate()).padStart(2, '0');
 
-  const btnElm = document.getElementById("start-btn");
-  btnElm.innerHTML = "START";
-  btnElm.style = "";
+  var hour = String(date.getHours()).padStart(2, '0');
+  var minute = String(date.getMinutes()).padStart(2, '0');
+
+  return year + ':' + month + ':' + day + ' ' + hour + ':' + minute;
+}
+
+function fixTimer() {
+  // タイマーを確定してmemo画面に遷移
+  const setTimeInput = document.getElementsByName("settime")[0];
+  const timeParts = setTimeInput.value.split(':');
+
+  // 時間を秒に変換
+  const hours = parseInt(timeParts[0], 10);
+  const minutes = parseInt(timeParts[1], 10);
+  const seconds = parseInt(timeParts[2], 10);
+
+  // 経過時間を秒で取得
+  const execution_time = (hours * 3600) + (minutes * 60) + seconds - time;
+  console.log(execution_time);
+
+  // memoのレイアウトに反映
+  startDate ??= new Date();
+  document.getElementById('execution_date').innerHTML = formatDate(startDate);
+  document.getElementById('execution_time').innerHTML = formatTime(execution_time);
+
+  // レイアウトを切り替え
+  toggleLayout();
+}
+
+function resetTimer() {
+  const timerEl = document.getElementById("timer");
+  clearInterval(interval);
+  timerEl.style = "";
+  
+  timerEl.innerHTML = "00:00:00"; // タイマー表示をリセット
+  time = 0; // time変数をリセット
+  startDate = null; // startDate変数をリセット
+
+  const StartBtnEl = document.getElementById("start-btn");
+  StartBtnEl.innerHTML = "START";
+  StartBtnEl.style = "";
+
+  const doneBtnEl = document.getElementById("done-btn");
+  doneBtnEl.classList.remove("disabled");
 }
 
 function stopTimer() {
-  const timerElement = document.getElementById("timer");
+  const StartBtnEl = document.getElementById("start-btn");
+
+  StartBtnEl.innerHTML = "START";
+  StartBtnEl.style = "";
+
+  const timerEl = document.getElementById("timer");
   clearInterval(interval);
-  timerElement.style = "";
+  timerEl.style = "";
+
+  const doneBtnEl = document.getElementById("done-btn");
+  doneBtnEl.classList.remove("disabled");
 }
 
-function startTimer() {
+function startDater() {
+  startDate ??= new Date(); // 1度だけ
   isRunning = !isRunning
   
-  const timerElement = document.getElementById("timer"); // タイマー表示用の要素を取得
+  const timerEl = document.getElementById("timer"); // タイマー表示用の要素を取得
   clearInterval(interval);
-  timerElement.style = "";
+  timerEl.style = "";
 
-  const btnElm = document.getElementById("start-btn");
-
+  const StartBtnEl = document.getElementById("start-btn");
+  const doneBtnEl = document.getElementById("done-btn");
+  
   if (isRunning) {
-    btnElm.innerHTML = "START";
-    btnElm.style = "";
+    stopTimer();
     return;
   }
-
-  btnElm.innerHTML = "STOP";
-  btnElm.style = "color: red"
+  
+  doneBtnEl.classList.add("disabled");
+  StartBtnEl.innerHTML = "STOP";
+  StartBtnEl.style = "color: red"
 
   interval = setInterval(() => {
     if (time <= 0) {
       clearInterval(interval);
-      timerElement.style = "color: red";
+      timerEl.style = "color: red";
+      fixTimer();
     } else {
       time--;
-      timerElement.innerHTML = formatTime(time)
+      timerEl.innerHTML = formatTime(time)
     }
   }, 1000);
 }
 
-document.getElementById('start-btn').addEventListener('click', startTimer);
+document.getElementById('progressSlider').addEventListener('input', function() {
+  var value = this.value;
+  document.getElementById('progressSliderLabel').innerText = value + '%';
+});
+
+document.getElementById('start-btn').addEventListener('click', startDater);
 document.getElementById('reset-btn').addEventListener('click', resetTimer);
-document.getElementById('stop-btn').addEventListener('click', () => {
+document.getElementById('done-btn').addEventListener('click', fixTimer);
+
+document.getElementById('submit-btn').addEventListener('click', () => {
+  const StartBtnEl = document.getElementById("start-btn");
   // タイマーが実行中であれば一時停止して終了
   if (isRunning) {
-    btnElm.innerHTML = "START";
-    btnElm.style = "";
+    StartBtnEl.innerHTML = "START";
+    StartBtnEl.style = "";
     return;
   }
 
   // 計測されたデータを取得
-  const elapsedTime = Date.now() - startTime;
+  const elapsedTime = Date.now() - startDate;
   const formattedTime = formatTime(elapsedTime);
 
   // プログレスバーの値を取得
@@ -144,4 +200,17 @@ document.getElementById('stop-btn').addEventListener('click', () => {
 
   // タイマーをリセット
   resetTimer();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  // URLからクエリパラメータを取得
+  const params = new URLSearchParams(window.location.search);
+
+  // 'query'という名前のクエリパラメータの値を取得
+  const queryValue = params.get('task_name');
+
+  // input要素に値を設定
+  if (queryValue) {
+    document.getElementById('task_name').value = queryValue;
+  }
 });
