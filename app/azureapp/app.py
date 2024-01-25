@@ -262,8 +262,8 @@ def home():
         tasks[task_id]['details'].append(detail)
 
     # get_projects 関数の呼び出し
-    project_response = get_projects()
-    projects = json.loads(project_response.data)
+    # project_response = get_projects()
+    # projects = json.loads(project_response.data)
     
     #list_projects関数の呼び出し
     projects = list_projects()
@@ -984,58 +984,60 @@ def submit_qualification_data():
 
     # POSTデータを取得（JSON形式のデータが送信されることを前提）
     data = make_task_data
-    # データベースに接続
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
 
-    try:
-        # データベースに学習プランを挿入
-        cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
-        plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
-
-        # 各タスクとその詳細をデータベースに挿入
-        for days_range, tasks in data.items():
-            for task_name, details in tasks.items():
-                cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
-                            (plan_id, days_range, task_name))
-                task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
-
-                for detail in details:
-                    cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
-                                (task_id, detail))
-
-        # 変更をコミット
-        conn.commit()
-    except mysql.connector.Error as err:
-        # エラーが発生した場合はロールバック
-        conn.rollback()
-        print(f"An error occurred: {err}")
-        return jsonify({'status': 'error', 'message': 'Database error'}), 500
-    finally:
-        # カーソルとコネクションを閉じる
-        cur.close()
-        conn.close()
-
-
-                
-    #タスク生成回数カウンター
-    count = 0
-    """
-    while(count <=  5):
-        #生成された文章からタスクに分割する
-        if make_task(res):
-            make_task_data = make_task(res)
-            count = 5
-        else:
-            res = formatting(res)
-            count += 1
-    """
     if not make_task_data:
         # タスクを生成できなかった場合のレスポンス
         return jsonify({'status': 'error', 'message': 'タスクを生成できませんでした', 'redirect': False})
     else:
+        # データベースに接続
+        conn = mysql.connector.connect(**config)
+        cur = conn.cursor()
+
+        try:
+            # データベースに学習プランを挿入
+            cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
+            plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
+
+            # 各タスクとその詳細をデータベースに挿入
+            for days_range, tasks in data.items():
+                for task_name, details in tasks.items():
+                    cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
+                                (plan_id, days_range, task_name))
+                    task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
+
+                    for detail in details:
+                        cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
+                                    (task_id, detail))
+
+            # 変更をコミット
+            conn.commit()
+        except mysql.connector.Error as err:
+            # エラーが発生した場合はロールバック
+            conn.rollback()
+            print(f"An error occurred: {err}")
+            return jsonify({'status': 'error', 'message': 'Database error'}), 500
+        finally:
+            # カーソルとコネクションを閉じる
+            cur.close()
+            conn.close()
+
+
+                    
+        #タスク生成回数カウンター
+        count = 0
+        """
+        while(count <=  5):
+            #生成された文章からタスクに分割する
+            if make_task(res):
+                make_task_data = make_task(res)
+                count = 5
+            else:
+                res = formatting(res)
+                count += 1
+        """
         # タスク生成が成功した場合のレスポンス
         return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
+
 
 @app.route('/submit_qualification_data_eng', methods=['POST'])
 def submit_qualification_data_eng():
