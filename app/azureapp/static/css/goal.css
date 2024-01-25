@@ -49,10 +49,9 @@ ul {
 }
 .input_text_space {
   display: flex;
+  position: relative;
   background-color: #ffffff;
   height: 40px;
-  border-radius: 20px;
-  /* border: 1px solid rgba(52, 52, 52, 0.381); */
 }
 .model_window_space h3 {
   font-size: 18px;
@@ -124,6 +123,9 @@ ul {
   margin-top: 30px;
 }
 .text_push {
+  position: absolute;
+  right: 0;
+  top: 0;
   aspect-ratio: 1 / 1;
   font-size: 0.75rem;
   color: white;

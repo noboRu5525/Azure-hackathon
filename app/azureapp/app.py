@@ -1123,7 +1123,7 @@ def submit_qualification_data_eng():
         # タスク生成が成功した場合のレスポンス
         return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
 
-#試験用のタイマーページ 
+# タイマーページ 
 @app.route('/timer')
 def timer():
     return render_template('timer.html')
