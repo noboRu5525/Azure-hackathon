@@ -60,35 +60,8 @@ google = oauth.register(
 )
 
 @app.route('/')
-def get_google_calendar_events():
-    email = dict(session).get('email', None)
-    creds_info = session.get('credentials', {})
-
-    if email and creds_info.get('token'):
-        credentials = Credentials(
-            token=creds_info['token'],
-            refresh_token=creds_info.get('refresh_token'),
-            token_uri=creds_info.get('token_uri'),
-            client_id=creds_info.get('client_id'),
-            client_secret=creds_info.get('client_secret'),
-            scopes=creds_info.get('scope')
-        )
-
-        service = build('calendar', 'v3', credentials=credentials)
-        events_result = service.events().list(calendarId='primary', maxResults=10).execute()
-        events = events_result.get('items', [])
-
-        # イベントをHTMLリストで表示
-        # events_html = '<ul>'
-        # for event in events:
-        #     start = event.get('start', {}).get('dateTime', event.get('start', {}).get('date'))
-        #     events_html += f'<li>{event.get("summary", "No Title")} at {start}</li>'
-        # events_html += '</ul>'
-
-        return events
-    else:
-        return '<a href="/login">Googleでログイン</a>'
-
+def welcome():
+    return '<a href="/login">Sign in with Google</a>'
 
 @app.route('/login')
 def login():
@@ -170,166 +143,6 @@ def get_account():
     conn.close()
     return rows
 
-#アカウント管理(要変更)
-@app.route("/admin")
-def admin():
-    return render_template("admin.html", accounts=get_account())
-
-###########################################################################################################################
-# #旧ログイン機能
-# @app.route("/")
-# def welcome():
-#     return render_template("welcome.html")
-
-# @app.route("/login")
-# def login_page():
-#     return render_template("login.html")
-
-# @app.route("/check_login", methods=['POST'])
-# def check_login():
-#     user, pw = (None, None)
-#     if 'user' in request.form:
-#         user = request.form['user']
-#     if 'pw' in request.form:
-#         pw = request.form['pw']
-#     if (user is None) or (pw is None):
-#         return redirect('/')
-#     if try_login(user, pw) == False:
-#         return """
-#         <h1>Wrong username or password</h1>
-#         <p><a href="/">→Return</a></p>
-#         """
-#     return redirect("/home")
-
-# @app.route("/signup")
-# def signup_page():
-#     return render_template("signup.html")
-
-# @app.route("/check_signup", methods=['POST'])
-# def check_signup():
-#     user, pw= (None, None)
-#     if 'user' in request.form:
-#         user = request.form['user']
-#     if 'pw' in request.form:
-#         pw = request.form['pw']
-#     if (user is None) or (pw is None):
-#         return redirect('/')
-#     if user_checker(user) == False:
-#         return """
-#         <h1>Same username exists. Please use a different username.</h1>
-#         <p><a href="/">→Reruen</a></p>
-#         """
-#     if try_signup(user, pw) == False:
-#         return """
-#         <h1>Invalid username, password, or email address</h1>
-#         <p><a href="/login">→Return</a></p>
-#         """
-#     return redirect('/login')
-
-# @app.route('/logout')
-# def logout_page():
-#     try_logout()
-#     return """
-#     <!DOCTYPE html>
-#     <html>
-#     <head>
-#         <title>ログアウト</title>
-#         <style>
-#             body {
-#                 font-family: 'Arial', sans-serif;
-#                 background-color: #f0f0f0;
-#                 text-align: center;
-#                 padding-top: 50px;
-#             }
-
-#             h1 {
-#                 color: #333;
-#                 font-size: 24px;
-#             }
-
-#             p {
-#                 margin-top: 20px;
-#                 font-size: 18px;
-#             }
-
-#             a {
-#                 text-decoration: none;
-#                 color: #007bff;
-#                 font-weight: bold;
-#             }
-
-#             a:hover {
-#                 color: #0056b3;
-#                 text-decoration: underline;
-#             }
-#         </style>
-#     </head>
-#     <body>
-#         <h1>Logged out</h1>
-#         <p><a href="/login">→return</a></p>
-#     </body>
-#     </html>
-#     """
-
-# def is_login():
-#     if 'user_id'  in session:
-#         return True
-#     return False
-
-# def try_login(username, password):
-#     conn = mysql.connector.connect(**config)
-#     cur = conn.cursor()
-#     cur.execute('SELECT id, password FROM account WHERE name = %s', (username,))
-#     account = cur.fetchone()
-#     cur.close()
-#     conn.close()
-#     if account and account[1] == password:
-#         session['user_id'] = account[0]  # ユーザーIDをセッションに保存
-#         return True
-#     return False
-
-# # セッションからユーザーIDを取得
-# def get_user_id_from_session():
-#     return session.get('user_id')
-
-# def try_signup(username, password):
-#     conn = mysql.connector.connect(**config)
-#     cur = conn.cursor()
-#     # ユーザー名が既に存在するかどうかをチェック
-#     cur.execute('SELECT id FROM account WHERE name = %s', (username,))
-#     if cur.fetchone():
-#         cur.close()
-#         conn.close()
-#         return False  # 既に存在するユーザー名
-#     # 新しいアカウントを作成
-#     cur.execute('INSERT INTO account (name, password) VALUES (%s, %s)', (username, password))
-#     user_id = cur.lastrowid  # 新しいユーザーIDを取得
-#     conn.commit()
-#     cur.close()
-#     conn.close()
-#     session['user_id'] = user_id  # ユーザーIDをセッションに保存
-#     return True
-
-# def try_logout():
-#     session.pop('user_id', None)
-#     return True
-
-# def get_user():
-#     if is_login():
-#         return session['user_id']
-#     return 'not login'
-
-# def user_checker(user):
-#     conn = mysql.connector.connect(**config)
-#     cur = conn.cursor()
-#     cur.execute('select * from account')
-#     results = cur.fetchall()
-#     cur.close()
-#     conn.close()
-#     for result in results:
-#         if user in result:
-#             return False
-#     return True
 ###########################################################################################################################
 #Google認証に合わせたログイン
 @app.route("/check_login", methods=['GET','POST'])
@@ -414,6 +227,17 @@ def home():
     # データベースに接続して、ユーザーに関連するタスクとその詳細を取得
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
+    
+    # cur.execute('select count(*) from projects where user_id = %s and status != 1', (user_id,))
+    # incomplete_projects_count = cur.fetchone()[0]
+    
+    # if incomplete_projects_count > 0:
+    #     project_response = get_projects()
+    #     projects = json.loads(project_response.data)
+    #     projects = list_projects()
+    # else:
+    #     projects = []
+    
     cur.execute('''
         SELECT t.id, t.days_range, t.task_name, td.detail
         FROM tasks t
@@ -443,22 +267,75 @@ def home():
     
     #list_projects関数の呼び出し
     projects = list_projects()
+
+    #Googleカレンダーのイベントを取得
+    calendar_events = get_events_data()
     
-    #goofleカレンダーAPIからのイベントデータ
-    google_calendar_events = get_google_calendar_events()
+    #JSON形式に変換
+    calendar_events_json = json.dumps(calendar_events)
     
-    events = []
-    for event in google_calendar_events:
-        formatted_event = {
-            'title': event['summary'],
-            'start': event['start']['date'],
-            'end': event['end']['date'],
-        }
-        events.append(formatted_event)
+    return render_template('home.html', username=user, projects=projects, tasks=tasks.values(), events_json=calendar_events_json)
 
-    return render_template('home.html', username=user, projects=projects, tasks=tasks.values(), events=events)
+def get_events_data():
+    email = dict(session).get('email', None)
+    creds_info = session.get('credentials', {})
 
+    if not (email and creds_info.get('token')):
+        return []  # イベントがない場合は空のリストを返す
 
+    # GoogleカレンダーAPIの認証情報を設定
+    credentials = Credentials(
+        token=creds_info['token'],
+        refresh_token=creds_info.get('refresh_token'),
+        token_uri=creds_info.get('token_uri'),
+        client_id=creds_info.get('client_id'),
+        client_secret=creds_info.get('client_secret'),
+        scopes=creds_info.get('scope')
+    )
+
+    # Googleカレンダーサービスの初期化
+    service = build('calendar', 'v3', credentials=credentials)
+
+    # 現在の日時をJSTで取得
+    now = datetime.utcnow() + timedelta(hours=9)
+
+    # 過去3ヶ月前の日時をJSTで計算
+    three_months_ago = now - timedelta(weeks=12)
+    three_months_ago_str = three_months_ago.isoformat() + 'Z'
+
+    # 将来3ヶ月後の日時をJSTで計算
+    three_months_later = now + timedelta(weeks=12)
+    three_months_later_str = three_months_later.isoformat() + 'Z'
+
+    # カレンダーからイベントを取得
+    events_result = service.events().list(
+        calendarId='primary', 
+        timeMin=three_months_ago_str, 
+        timeMax=three_months_later_str,
+        maxResults=250, 
+        singleEvents=True, 
+        orderBy='startTime'
+        ).execute()
+    events = events_result.get('items', [])
+
+    # イベントデータを整形
+    formatted_events = []
+    for event in events:
+        formatted_events.append({
+            'title': event.get('summary', 'No Title'),
+            'start': event['start'].get('dateTime', event['start'].get('date')),
+            'end': event['end'].get('dateTime', event['end'].get('date'))
+        })
+
+    return formatted_events
+
+@app.route('/get-calendar-events')
+def get_calendar_events():
+    # Googleカレンダーのイベントデータを取得
+    calendar_events = get_events_data()
+
+    # JSON形式でイベントデータを返す
+    return jsonify(calendar_events)
 
 #Projectページ
 @app.route('/tasks')
@@ -522,6 +399,11 @@ def projects():
 def faq():
     return render_template('faq.html')
 
+#statsを押したときの処理
+@app.route('/stats')
+def stats():
+    return render_template('stats.html')
+
 #Contactを押したときの処理
 @app.route('/contact')
 def contact():
@@ -581,14 +463,6 @@ def create_project():
     print(languages_json)
     print(tools_json)
         
-    # データベースに接続してプロジェクト情報を挿入
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-    cur.execute('INSERT INTO projects (user_id, startDate, systemName, makeDay, features, languages, tools, color) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (user_id, startDate, systemName, makeDay, features_json, languages_json, tools_json, selectedColor)) 
-    conn.commit()
-    cur.close()
-    conn.close()
-        
     # 各機能を「」で区切って結合
     functions_str = ' \n・'.join(features)
     languages_str = '、'.join(languages)
@@ -616,15 +490,28 @@ def create_project():
         )
         res = response.choices[0].message.content
 
-    make_task_data = make_task(res)
+    if (language == "English"):
+        make_task_data = make_task_eng(res)
+    else:
+        make_task_data = make_task(res)
 
     if not make_task_data:
-            res = formatting(res, text_lang)
-            make_task_data = make_task(res)
-            if not make_task_data:
-                make_task_data = make_task2(res)
+            if (language == "English"):
+                res = formatting(res, text_lang)
+                make_task_data = make_task_eng(res)
+                """
                 if not make_task_data:
-                    make_task_data = make_task3(res)
+                    make_task_data = make_task2(res)
+                    if not make_task_data:
+                        make_task_data = make_task3(res)
+                """
+            else:
+                res = formatting(res, text_lang)
+                make_task_data = make_task(res)
+                if not make_task_data:
+                    make_task_data = make_task2(res)
+                    if not make_task_data:
+                        make_task_data = make_task3(res)
                 
         
     # 日数、タスク、その詳細に分ける
@@ -634,60 +521,68 @@ def create_project():
     user_id = session.get('user_id')
     if not user_id:
         return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
-
-    # POSTデータを取得（JSON形式のデータが送信されることを前提）
-    data = make_task_data
-    # データベースに接続
-    conn = mysql.connector.connect(**config)
-    cur = conn.cursor()
-
-    try:
-        # データベースに学習プランを挿入
-        cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
-        plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
-
-        # 各タスクとその詳細をデータベースに挿入
-        for days_range, tasks in data.items():
-            for task_name, details in tasks.items():
-                cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
-                            (plan_id, days_range, task_name))
-                task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
-
-                for detail in details:
-                    cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
-                                (task_id, detail))
-
-        # 変更をコミット
-        conn.commit()
-    except mysql.connector.Error as err:
-        # エラーが発生した場合はロールバック
-        conn.rollback()
-        print(f"An error occurred: {err}")
-        return jsonify({'status': 'error', 'message': 'Database error'}), 500
-    finally:
-        # カーソルとコネクションを閉じる
-        cur.close()
-        conn.close()
-
-
-                
-    #タスク生成回数カウンター
-    count = 0
-    """
-    while(count <=  5):
-        #生成された文章からタスクに分割する
-        if make_task(res):
-            make_task_data = make_task(res)
-            count = 5
-        else:
-            res = formatting(res)
-            count += 1
-    """
+    
     if not make_task_data:
         # タスクを生成できなかった場合のレスポンス
         return jsonify({'status': 'error', 'message': 'タスクを生成できませんでした', 'redirect': False})
-    else:
-        # タスク生成が成功した場合のレスポンス
+    else: 
+    # データベースに接続してプロジェクト情報を挿入
+        conn = mysql.connector.connect(**config)
+        cur = conn.cursor()
+        cur.execute('INSERT INTO projects (user_id, startDate, systemName, makeDay, features, languages, tools, color) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (user_id, startDate, systemName, makeDay, features_json, languages_json, tools_json, selectedColor)) 
+        conn.commit()
+        cur.close()
+        conn.close()
+        
+        # POSTデータを取得（JSON形式のデータが送信されることを前提）
+        data = make_task_data
+        # データベースに接続
+        conn = mysql.connector.connect(**config)
+        cur = conn.cursor()
+
+        try:
+            # データベースに学習プランを挿入
+            cur.execute('INSERT INTO learning_plans (user_id) VALUES (%s)', (user_id,))
+            plan_id = cur.lastrowid  # 新しく挿入された学習プランのIDを取得
+
+            # 各タスクとその詳細をデータベースに挿入
+            for days_range, tasks in data.items():
+                for task_name, details in tasks.items():
+                    cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
+                                (plan_id, days_range, task_name))
+                    task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
+
+                    for detail in details:
+                        cur.execute('INSERT INTO task_details (task_id, detail) VALUES (%s, %s)',
+                                    (task_id, detail))
+
+            # 変更をコミット
+            conn.commit()
+        except mysql.connector.Error as err:
+            # エラーが発生した場合はロールバック
+            conn.rollback()
+            print(f"An error occurred: {err}")
+            return jsonify({'status': 'error', 'message': 'Database error'}), 500
+        finally:
+            # カーソルとコネクションを閉じる
+            cur.close()
+            conn.close()
+
+
+                    
+        #タスク生成回数カウンター
+        count = 0
+        """
+        while(count <=  5):
+            #生成された文章からタスクに分割する
+            if make_task(res):
+                make_task_data = make_task(res)
+                count = 5
+            else:
+                res = formatting(res)
+                count += 1
+        """
+    # タスク生成が成功した場合のレスポンス
         return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
     
     
@@ -842,8 +737,8 @@ def get_projects():
         conn.close()
 
         
-@app.route('/delete_task/<int:task_id>', methods=['POST'])
-def delete_task(task_id):
+@app.route('/update_task_status/<int:task_id>', methods=['POST'])
+def update_task_status(task_id):
     user_id = session.get('user_id')
     if not user_id:
         return jsonify({'status': 'error', 'message': 'ログインが必要です。'}), 403
@@ -853,22 +748,49 @@ def delete_task(task_id):
     cur = conn.cursor()
     
     try:
-        # ユーザーIDとタスクIDを確認してタスクが存在するかを検証
         cur.execute('''
-            SELECT t.id FROM tasks t
-            JOIN learning_plans lp ON t.plan_id = lp.id
-            WHERE t.id = %s AND lp.user_id = %s
+            UPDATE tasks
+            SET status = 1
+            WHERE id = %s AND EXISTS (
+                SELECT 1 FROM learning_plans lp
+                WHERE lp.user_id = %s AND lp.id = tasks.plan_id
+            )
         ''', (task_id, user_id))
-        task = cur.fetchone()
-
-        if not task:
+        conn.commit()
+        
+        if cur.rowcount == 0:
             return jsonify({'status': 'error', 'message': 'タスクが見つかりません。'}), 404
 
-        # タスクを削除
-        cur.execute('DELETE FROM tasks WHERE id = %s', (task_id,))
-        conn.commit()
+        return jsonify({'status': 'success', 'message': 'タスクのステータスが更新されました。'})
 
-        return jsonify({'status': 'success', 'message': 'タスクが削除されました。'})
+    except mysql.connector.Error as err:
+        conn.rollback()
+        print(f"Error: {err}")
+        return jsonify({'status': 'error', 'message': '内部エラーが発生しました。'}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+@app.route('/check_status/<int:project_id>', methods=['POST'])        
+def check_status(project_id):
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    
+    try:
+        cur.execute('''
+            #全てのタスクのstatusが1かどうかを確認
+            select count(*) from tasks t join learning_plans lp ON t.plan_id = lp.id
+            join projects p ON lp.user_id = p.user_id
+            WHERE p.id = %s AND t.status != 1
+        ''', (project_id))
+        imcomplete_task_count = cur.fetchone()[0]
+            
+        if imcomplete_task_count == 0:
+            #全てのタスクのstatusが1の場合、statusを0に変更
+            cur.execute('UPDATE projects SET status = 1 WHERE id = %s', (project_id,))
+            conn.commit()
+
+        return jsonify({'status': 'success', 'message': 'タスクのステータスが更新されました。'})
     except mysql.connector.Error as err:
         conn.rollback()
         print(f"Error: {err}")
@@ -913,9 +835,8 @@ def auto_select_language():
     return jsonify({'languages': use_lang})
 
 #タスク名をカレンダーに反映させる
-@app.route('/get_tasks', methods=['POST'])
+@app.route('/get_tasks')
 def get_tasks():
-    print("get_tasks関数が呼び出されました")
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
@@ -925,26 +846,20 @@ def get_tasks():
         if user_id is None:
             return jsonify({"error": "User not logged in"}), 401
 
-        # ユーザーIDに対応するlearning_plansのIDを取得
+        # learning_plansのIDを取得
         cursor.execute("SELECT id FROM learning_plans WHERE user_id = %s", (user_id,))
         plan_ids = cursor.fetchall()
-        print(plan_ids)
         if not plan_ids:
             return jsonify([])  # 該当するlearning_plansがない場合
 
         # 複数のplan_idsに対応するtasksを取得
-        plan_ids_tuple = tuple([id[0] for id in plan_ids])
-        print(plan_ids_tuple)
-        
-        # IN 節のためのプレースホルダーを生成
-        placeholders = ', '.join(['%s'] * len(plan_ids_tuple))
-        query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN ({})".format(placeholders)
-        cursor.execute(query, plan_ids_tuple)
+        plan_ids_tuple = tuple([id[0] for id in plan_ids])  # タプルに変換
+        query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN %s"
+        cursor.execute(query, (plan_ids_tuple,))
 
         tasks_data = cursor.fetchall()
         tasks_list = []
-        for task in tasks_data:
-            taskId, daysRange, taskName = task
+        for taskId, daysRange, taskName in tasks_data:
             start_date, end_date = daysRange.split(' to ')
             tasks_list.append({
                 "id": taskId,
@@ -953,7 +868,8 @@ def get_tasks():
                 "end": end_date,
                 "allDay": True
             })
-            print(tasks_list)
+        print(tasks_list)
+        print(type(tasks_list))
         return jsonify(tasks_list)
     except Exception as e:
         print(e)
@@ -961,23 +877,6 @@ def get_tasks():
     finally:
         cursor.close()
         conn.close()
-
-
-
-@app.route('/test')
-def test():
-    response = client.chat.completions.create(
-    model="GPT35TURBO", # model = "deployment_name".
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-        {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
-    ]
-    )
-    res = response.choices[0].message.content
-    return res
-
 
 @app.route('/get_pass_score', methods=['POST'])
 def get_pass_score():
@@ -1280,5 +1179,261 @@ def submit_qualification_data_eng():
         # タスク生成が成功した場合のレスポンス
         return jsonify({'status': 'success', 'data': make_task_data, 'redirect': True, 'redirect_url': '/home'})
 
+#試験用のタイマーページ 
+@app.route('/timer')
+def timer():
+    return render_template('timer_test.html')
+
+def time_str_to_seconds(time_str):
+    hours, minutes, seconds = map(int, time_str.split(':'))
+    total_seconds = hours * 3600 + minutes * 60 + seconds
+    return total_seconds
+
+# タスク実行のデータを受け取る
+@app.route('/save_data', methods=['POST'])
+def save_data():
+    try:
+        # POSTリクエストからデータを受け取る
+        data = request.get_json()
+
+        # セッションからユーザーIDを取得（ユーザーがログインしていることが前提）
+        user_id = session.get('user_id')
+        if not user_id:
+            return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
+        
+        seconds = time_str_to_seconds(data['formattedTime'])
+
+        current_time = datetime.now()
+        new_time = current_time + timedelta(hours=9)
+
+        # データベースに接続
+        conn = mysql.connector.connect(**config)
+        cursor = conn.cursor()
+
+        # タスク実行情報を挿入
+        insert_query = """
+        INSERT INTO task_executions (task_id, execution_date, execution_time, user_memo)
+        VALUES (%s, %s, %s, %s)
+        """
+        task_id = 1  # タスクIDを適切に設定
+        execution_date = new_time
+        execution_time = seconds
+        #task_progress = float(data['progressValue'])
+        user_memo = data['user_memo']
+
+        cursor.execute(insert_query, (task_id, execution_date, execution_time, user_memo))
+
+        # データベースへの変更をコミット
+        conn.commit()
+
+        # タスクの進捗値を更新するSQL文
+        update_query = """
+        UPDATE tasks
+        SET task_progress = %s
+        WHERE id = %s
+        """
+
+        task_id = 1  # タスクIDを適切に設定
+        new_task_progress = int(data['progressValue']) 
+
+        cursor.execute(update_query, (new_task_progress, task_id))
+
+        # データベースへの変更をコミット
+        conn.commit()
+
+
+        # レスポンスを返す（任意のレスポンスを設定することができます）
+        response_data = {'message': 'データを受け取りました。'}
+        return jsonify(response_data), 200
+
+    except Exception as e:
+        # エラーが発生した場合の処理
+        conn.rollback()
+        error_message = {'error': str(e)}
+        return jsonify(error_message), 500
+
+    finally:
+        # データベース接続をクローズ
+        cursor.close()
+        conn.close()
+
+###########################################################################################################################
+# #旧ログイン機能
+# @app.route("/")
+# def welcome():
+#     return render_template("welcome.html")
+
+# @app.route("/login")
+# def login_page():
+#     return render_template("login.html")
+
+# @app.route("/check_login", methods=['POST'])
+# def check_login():
+#     user, pw = (None, None)
+#     if 'user' in request.form:
+#         user = request.form['user']
+#     if 'pw' in request.form:
+#         pw = request.form['pw']
+#     if (user is None) or (pw is None):
+#         return redirect('/')
+#     if try_login(user, pw) == False:
+#         return """
+#         <h1>Wrong username or password</h1>
+#         <p><a href="/">→Return</a></p>
+#         """
+#     return redirect("/home")
+
+# @app.route("/signup")
+# def signup_page():
+#     return render_template("signup.html")
+
+# @app.route("/check_signup", methods=['POST'])
+# def check_signup():
+#     user, pw= (None, None)
+#     if 'user' in request.form:
+#         user = request.form['user']
+#     if 'pw' in request.form:
+#         pw = request.form['pw']
+#     if (user is None) or (pw is None):
+#         return redirect('/')
+#     if user_checker(user) == False:
+#         return """
+#         <h1>Same username exists. Please use a different username.</h1>
+#         <p><a href="/">→Reruen</a></p>
+#         """
+#     if try_signup(user, pw) == False:
+#         return """
+#         <h1>Invalid username, password, or email address</h1>
+#         <p><a href="/login">→Return</a></p>
+#         """
+#     return redirect('/login')
+
+# @app.route('/logout')
+# def logout_page():
+#     try_logout()
+#     return """
+#     <!DOCTYPE html>
+#     <html>
+#     <head>
+#         <title>ログアウト</title>
+#         <style>
+#             body {
+#                 font-family: 'Arial', sans-serif;
+#                 background-color: #f0f0f0;
+#                 text-align: center;
+#                 padding-top: 50px;
+#             }
+
+#             h1 {
+#                 color: #333;
+#                 font-size: 24px;
+#             }
+
+#             p {
+#                 margin-top: 20px;
+#                 font-size: 18px;
+#             }
+
+#             a {
+#                 text-decoration: none;
+#                 color: #007bff;
+#                 font-weight: bold;
+#             }
+
+#             a:hover {
+#                 color: #0056b3;
+#                 text-decoration: underline;
+#             }
+#         </style>
+#     </head>
+#     <body>
+#         <h1>Logged out</h1>
+#         <p><a href="/login">→return</a></p>
+#     </body>
+#     </html>
+#     """
+
+# def is_login():
+#     if 'user_id'  in session:
+#         return True
+#     return False
+
+# def try_login(username, password):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     cur.execute('SELECT id, password FROM account WHERE name = %s', (username,))
+#     account = cur.fetchone()
+#     cur.close()
+#     conn.close()
+#     if account and account[1] == password:
+#         session['user_id'] = account[0]  # ユーザーIDをセッションに保存
+#         return True
+#     return False
+
+# # セッションからユーザーIDを取得
+# def get_user_id_from_session():
+#     return session.get('user_id')
+
+# def try_signup(username, password):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     # ユーザー名が既に存在するかどうかをチェック
+#     cur.execute('SELECT id FROM account WHERE name = %s', (username,))
+#     if cur.fetchone():
+#         cur.close()
+#         conn.close()
+#         return False  # 既に存在するユーザー名
+#     # 新しいアカウントを作成
+#     cur.execute('INSERT INTO account (name, password) VALUES (%s, %s)', (username, password))
+#     user_id = cur.lastrowid  # 新しいユーザーIDを取得
+#     conn.commit()
+#     cur.close()
+#     conn.close()
+#     session['user_id'] = user_id  # ユーザーIDをセッションに保存
+#     return True
+
+# def try_logout():
+#     session.pop('user_id', None)
+#     return True
+
+# def get_user():
+#     if is_login():
+#         return session['user_id']
+#     return 'not login'
+
+# def user_checker(user):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     cur.execute('select * from account')
+#     results = cur.fetchall()
+#     cur.close()
+#     conn.close()
+#     for result in results:
+#         if user in result:
+#             return False
+#     return True
+        
+###########################################################################################################################
+#APIの接続確認
+# @app.route('/test')
+# def test():
+#     response = client.chat.completions.create(
+#     model="GPT35TURBO", # model = "deployment_name".
+#     messages=[
+#         {"role": "system", "content": "You are a helpful assistant."},
+#         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
+#         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
+#         {"role": "user", "content": "Do other Azure AI services support this too?"}
+#     ]
+#     )
+#     res = response.choices[0].message.content
+#     return res
+###########################################################################################################################
+#アカウント管理(要変更)
+# @app.route("/admin")
+# def admin():
+#     return render_template("admin.html", accounts=get_account())
+
+###########################################################################################################################
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

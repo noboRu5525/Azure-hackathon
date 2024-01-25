@@ -19,41 +19,46 @@ $(document).ready(function () {
 //プロジェクトをカレンダーに表示
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+
+        // プロジェクトとGoogleカレンダーのイベントを取得
         events: function(fetchInfo, successCallback, failureCallback) {
-            Promise.all([
-                fetch('/get_projects').then(response => response.json()),
-                fetch('/get_google_calendar_events').then(response => response.json())
-            ])
-            .then(([projectsData, googleEventsData]) => {
-                var projectEvents = projectsData.map(project => ({
-                    id: project.id,
-                    title: project.title,
-                    start: project.start,
-                    end: project.end,
-                    allDay: project.allDay,
-                    backgroundColor: project.color,
-                    borderColor: project.color
-                }));
+            // プロジェクトのイベントを取得
+            fetch('/get_projects')
+                .then(response => response.json())
+                .then(projectData => {
+                    var projectEvents = projectData.map(project => {
+                        return {
+                            id: project.id,
+                            title: project.title,
+                            start: project.start,
+                            end: project.end,
+                            allDay: project.allDay,
+                            backgroundColor: project.color, // 背景色を設定
+                            borderColor: project.color // 枠線の色も同様に設定
+                        };
+                    });
 
-                var googleCalendarEvents = googleEventsData.map(event => ({
-                    id: event.id,
-                    title: event.summary,
-                    start: event.start.date || event.start.dateTime,
-                    end: event.end.date || event.end.dateTime,
-                    allDay: !event.start.dateTime,
-                    backgroundColor: '#ff9f89', // Googleカレンダーイベントの背景色
-                    borderColor: '#ff9f89' // Googleカレンダーイベントの枠線色
-                }));
-
-                successCallback([...projectEvents, ...googleCalendarEvents]);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                failureCallback(error);
-            });
+                    // Googleカレンダーのイベントを取得
+                    fetch('/get-calendar-events')
+                        .then(response => response.json())
+                        .then(calendarData => {
+                            // プロジェクトのイベントとGoogleカレンダーのイベントを統合
+                            var events = projectEvents.concat(calendarData);
+                            successCallback(events);
+                        });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    failureCallback(error);
+                });
         }
     });
+
     calendar.render();
 });
+
+// jifejieajiwdjiweo
+//jiijojiiojijoj
