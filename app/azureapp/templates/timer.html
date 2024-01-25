@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="../static/css/timer.css">
-  <script type="text/javascript" src="/static/js/timer.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
 
   <title>Timer</title>
@@ -14,9 +13,13 @@
     <!-- Side bar -->
     <div class="h-100 side-bar">
       <!-- contents -->
-      <div class="d-flex flex-column gap-2">
-        <div class="side-item bg-orange bg-warning bg-gradient"><span>n</span></div>
-        <div class="side-item bg-secondary"><span>memo</span></div>
+      <div class="d-flex flex-column gap-4">
+        <button id="toggle-timer" class="side-item bg-secondary bg-warning bg-gradient p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M176 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h16V98.4C92.3 113.8 16 200 16 304c0 114.9 93.1 208 208 208s208-93.1 208-208c0-41.8-12.3-80.7-33.5-113.2l24.1-24.1c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L355.7 143c-28.1-23-62.2-38.8-99.7-44.6V64h16c17.7 0 32-14.3 32-32s-14.3-32-32-32H224 176zm72 192V320c0 13.3-10.7 24-24 24s-24-10.7-24-24V192c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></svg></svg>
+        </button>
+        <button id="toggle-memo" class="side-item bg-secondary p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V299.6l-94.7 94.7c-8.2 8.2-14 18.5-16.8 29.7l-15 60.1c-2.3 9.4-1.8 19 1.4 27.8H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM549.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM311.9 417L441.1 287.8l71 71L382.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z"/></svg>
+        </button>
       </div>
       <!-- ? -->
       <div>
@@ -24,7 +27,7 @@
       </div>
     </div>
     <!-- Timer -->
-      <div class="d-flex flex-column justify-content-center align-items-center flex-shrink-1 align-self-stretch container-lg w-100 h-100vh">
+      <div id="timer-container" class="d-flex flex-column justify-content-center align-items-center flex-shrink-1 align-self-stretch container-lg w-100 h-100vh">
         <h1 class="mb-5">Setting target time</h1>
         <button type="button" class="btn d-flex justify-content-center align-items-center circle timer-circle" data-bs-toggle="modal" data-bs-target="#exampleModal">
           <span class="timer-num" id="timer">00:00:00</span>
@@ -34,7 +37,7 @@
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Timer</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -42,23 +45,27 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="setTimer()">Set Timer</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="setTimer()">Set</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="d-flex justify-content-evenly align-items-end flex-shrink-0 align-self-stretch">
+        <div class="d-flex justify-content-evenly align-items-end flex-shrink-0 align-self-stretch mt-4">
           <!-- Reset Button -->
-          <button type="button" class="btn circle" onclick="resetTimer()">Reset</button>
-          <button type="button" class="btn start-btn" onclick="startTimer()" id="start-btn"><span class="p-2">START</span></button>
+          <button type="button" id="reset-btn" class="btn circle">Reset</button>
+          <button type="button" id="start-btn" class="btn start-btn"><span class="p-2">START</span></button>
           <!-- ページ遷移 -->
-          <!-- TODO: 経過した時間を記録する -->
-          <a type="button" href="./review_task" class="btn circle">Done</a>
+          <button type="button" id="stop-btn" class="btn circle">Done</button>
         </div>
+      </div>
+      <!-- memo -->
+      <div id="memo-container" class="d-flex d-none flex-column justify-content-center align-items-center flex-shrink-1 align-self-stretch container-lg w-100 h-100vh">
+        
       </div>
   </div>
   <!-- Bootstrap v5 -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/static/js/timer.js"></script>
 </body>
 </html>

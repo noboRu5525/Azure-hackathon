@@ -1,7 +1,28 @@
+let isTimer = true;
+
+function toggleLayout() {
+  document.getElementById('timer-container').classList.toggle("d-none");
+  document.getElementById('memo-container').classList.toggle("d-none");
+  document.getElementById('toggle-timer').classList.toggle("bg-warning");
+  document.getElementById('toggle-memo').classList.toggle("bg-warning");
+  isTimer = !isTimer;
+}
+
+document.getElementById('toggle-timer').addEventListener('click', function() {
+  if (!isTimer) {
+    toggleLayout();
+  }
+});
+document.getElementById('toggle-memo').addEventListener('click', function() {
+  if (isTimer) {
+    toggleLayout();
+  }
+});
+
 // global variables
 let time = 0;
 let interval;
-let flag = true;
+let isRunning = true;
 
 function setTimer() {
   const setTimeInput = document.getElementsByName("settime")[0];
@@ -48,7 +69,7 @@ function stopTimer() {
 }
 
 function startTimer() {
-  flag = !flag
+  isRunning = !isRunning
   
   const timerElement = document.getElementById("timer"); // タイマー表示用の要素を取得
   clearInterval(interval);
@@ -56,7 +77,7 @@ function startTimer() {
 
   const btnElm = document.getElementById("start-btn");
 
-  if (flag) {
+  if (isRunning) {
     btnElm.innerHTML = "START";
     btnElm.style = "";
     return;
@@ -76,3 +97,51 @@ function startTimer() {
   }, 1000);
 }
 
+document.getElementById('start-btn').addEventListener('click', startTimer);
+document.getElementById('reset-btn').addEventListener('click', resetTimer);
+document.getElementById('stop-btn').addEventListener('click', () => {
+  // タイマーが実行中であれば一時停止して終了
+  if (isRunning) {
+    btnElm.innerHTML = "START";
+    btnElm.style = "";
+    return;
+  }
+
+  // 計測されたデータを取得
+  const elapsedTime = Date.now() - startTime;
+  const formattedTime = formatTime(elapsedTime);
+
+  // プログレスバーの値を取得
+  const progressValue = parseInt(document.getElementById('progressSlider').value);
+
+  // コンソールに表示
+  console.log('経過時間:', formattedTime);
+  console.log('進捗バーの値:', progressValue);
+
+  // データをオブジェクトにまとめる
+  const dataToSend = {
+      formattedTime: formattedTime,
+      progressValue: progressValue,
+      user_memo: "Hello. I'm happy.",
+  };
+
+  // Flask側にデータを送信するPOSTリクエストを行う
+  fetch('/save_data', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dataToSend)
+  })
+  .then(response => response.json())
+  .then(data => {
+      // レスポンスを処理する（必要に応じて）
+      console.log(data);
+  })
+  .catch(error => {
+      console.error('データの送信エラー:', error);
+  });
+
+  // タイマーをリセット
+  resetTimer();
+});
