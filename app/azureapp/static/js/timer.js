@@ -35,6 +35,10 @@ function resetTimer() {
   
   timerElement.innerHTML = "00:00:00"; // タイマー表示をリセット
   time = 0; // time変数をリセット
+
+  const btnElm = document.getElementById("start-btn");
+  btnElm.innerHTML = "START";
+  btnElm.style = "";
 }
 
 function stopTimer() {
