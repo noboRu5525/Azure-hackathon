@@ -1258,6 +1258,42 @@ def save_data():
         # データベース接続をクローズ
         cursor.close()
         conn.close()
+    
+
+@app.route('/delete_task/<int:task_id>', methods=['POST'])
+def delete_task(task_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'status': 'error', 'message': 'ログインが必要です。'}), 403
+
+    # データベースに接続
+    conn = mysql.connector.connect(**config)
+    cur = conn.cursor()
+    
+    try:
+        # ユーザーIDとタスクIDを確認してタスクが存在するかを検証
+        cur.execute('''
+            SELECT t.id FROM tasks t
+            JOIN learning_plans lp ON t.plan_id = lp.id
+            WHERE t.id = %s AND lp.user_id = %s
+        ''', (task_id, user_id))
+        task = cur.fetchone()
+
+        if not task:
+            return jsonify({'status': 'error', 'message': 'タスクが見つかりません。'}), 404
+
+        # タスクを削除
+        cur.execute('DELETE FROM tasks WHERE id = %s', (task_id,))
+        conn.commit()
+
+        return jsonify({'status': 'success', 'message': 'タスクが削除されました。'})
+    except mysql.connector.Error as err:
+        conn.rollback()
+        print(f"Error: {err}")
+        return jsonify({'status': 'error', 'message': '内部エラーが発生しました。'}), 500
+    finally:
+        cur.close()
+        conn.close()
 
 ###########################################################################################################################
 # #旧ログイン機能
