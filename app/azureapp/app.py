@@ -228,15 +228,15 @@ def home():
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
     
-    # cur.execute('select count(*) from projects where user_id = %s and status != 1', (user_id,))
-    # incomplete_projects_count = cur.fetchone()[0]
+    cur.execute('select count(*) from projects where user_id = %s and status != 1', (user_id,))
+    incomplete_projects_count = cur.fetchone()[0]
     
-    # if incomplete_projects_count > 0:
-    #     project_response = get_projects()
-    #     projects = json.loads(project_response.data)
-    #     projects = list_projects()
-    # else:
-    #     projects = []
+    if incomplete_projects_count > 0:
+        project_response = get_projects()
+        projects = json.loads(project_response.data)
+        projects = list_projects()
+    else:
+        projects = []
     
     cur.execute('''
         SELECT t.id, t.days_range, t.task_name, td.detail
@@ -441,10 +441,11 @@ def create_project():
         current_app.logger.error('Missing data for required fields')
         return jsonify({'status': 'error', 'message': 'Missing data for required fields'}), 400
         
-    # リストデータをJSON文字列に変換してデータベースに保存
-    #features_json = json.dumps(data.get('features'))
-    #languages_json = json.dumps(languages)
-    #tools_json = json.dumps(tools)
+    #リストデータをJSON文字列に変換してデータベースに保存
+    features_json = json.dumps(data.get('features'))
+    languages_json = json.dumps(languages)
+    tools_json = json.dumps(tools)
+    
     print(type(features))
     print(languages)
     print(tools)
