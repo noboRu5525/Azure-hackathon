@@ -1379,8 +1379,6 @@ def stats():
     cursor.close()
     conn.close()
 
-    print(project_task_data)
-
     return render_template('stats.html', project_task_data=project_task_data)
 
 

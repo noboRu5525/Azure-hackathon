@@ -1361,28 +1361,20 @@ def stats():
         FROM tasks
         GROUP BY plan_id;
     ''')
-    task_data = cursor.fetchall()
 
-    project_task_data = {}
+    data = cursor.fetchall()
 
-    # 各プランIDに対応するプロジェクト名を取得
-    for plan_id, total_execution_time in task_data:
-        cursor.execute('''
-            SELECT systemName
-            FROM projects
-            WHERE id = %s;
-        ''', (plan_id,))
-        project_name = cursor.fetchone()[0]
-        project_task_data[project_name] = total_execution_time or 0
+    plan_totals = {}  # プランIDごとの合計活動時間を格納する辞書を初期化
+
+    # data を処理する
+    for plan_id, total_execution_time in data:
+        plan_totals[plan_id] = total_execution_time or 0
 
     # データベース接続を閉じる
     cursor.close()
     conn.close()
 
-    print(project_task_data)
-
-    return render_template('stats.html', project_task_data=project_task_data)
-
+    return render_template('stats.html', project_task_data=plan_totals)
 
 
 if __name__ == '__main__':

@@ -1313,7 +1313,7 @@ def save_data():
             user_memo = %s
         WHERE id = %s AND plan_id = %s
         """
-        plan_id = 2  # プランIDを適切に設定
+        plan_id = 1  # プランIDを適切に設定
         task_id = 1  # タスクIDを適切に設定
         new_task_progress = int(data['progressValue'])  # 進捗値を設定
         execution_date = new_time  # 実行日時を設定
@@ -1344,46 +1344,49 @@ def save_data():
         cursor.close()
         conn.close()
 
+# タスク実行のデータを受け取る
 @app.route('/stats')
 def stats():
     user = session.get('email', None)
     user_id = session.get('user_id', None)
-    if user is None or user_id is None:
+    if user is None:
         return redirect('/')
+    if user_id is None:
+        return redirect('/')
+    
     
     # データベースに接続
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
-    # 各プランIDごとにタスクの活動時間を合計するSQLクエリを実行
+    # 各プロジェクト名ごとにタスクの活動時間を合計するSQLクエリを実行
     cursor.execute('''
-        SELECT plan_id, SUM(execution_time) AS total_execution_time
-        FROM tasks
-        GROUP BY plan_id;
-    ''')
-    task_data = cursor.fetchall()
+        SELECT p.systemName AS project_name,
+        SUM(t.execution_time) AS total_execution_time
+    FROM projects p
+    LEFT JOIN learning_plans lp ON p.user_id = lp.user_id
+    LEFT JOIN tasks t ON lp.id = t.plan_id
+    WHERE p.user_id = %s
+    GROUP BY p.systemName
+    ''', (user_id,))
 
-    project_task_data = {}
+    data = cursor.fetchall()
 
-    # 各プランIDに対応するプロジェクト名を取得
-    for plan_id, total_execution_time in task_data:
-        cursor.execute('''
-            SELECT systemName
-            FROM projects
-            WHERE id = %s;
-        ''', (plan_id,))
-        project_name = cursor.fetchone()[0]
-        project_task_data[project_name] = total_execution_time or 0
+    project_totals = {}  # プロジェクト名ごとの合計活動時間を格納する辞書を初期化
+
+    # data を処理する
+    for project_name, total_execution_time in data:
+        project_totals[project_name] = total_execution_time or 0
+
+    print(project_totals)
 
     # データベース接続を閉じる
     cursor.close()
     conn.close()
 
-    print(project_task_data)
-
-    return render_template('stats.html', project_task_data=project_task_data)
 
 
+    return render_template('stats.html', project_task_data=project_totals)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
