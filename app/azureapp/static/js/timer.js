@@ -21,9 +21,9 @@ document.getElementById('toggle-memo').addEventListener('click', function() {
 
 // global variables
 let startDate;
-let time = 0;
+let time = 1800;
 let interval;
-let isRunning = true;
+let isRunning = false;
 
 function setTimer() {
   const setTimeInput = document.getElementsByName("settime")[0];
@@ -113,7 +113,7 @@ function stopTimer() {
   doneBtnEl.classList.remove("disabled");
 }
 
-function startDater() {
+function startTimer() {
   startDate ??= new Date(); // 1度だけ
   isRunning = !isRunning
   
@@ -124,7 +124,7 @@ function startDater() {
   const StartBtnEl = document.getElementById("start-btn");
   const doneBtnEl = document.getElementById("done-btn");
   
-  if (isRunning) {
+  if (!isRunning) {
     stopTimer();
     return;
   }
@@ -150,56 +150,60 @@ document.getElementById('progressSlider').addEventListener('input', function() {
   document.getElementById('progressSliderLabel').innerText = value + '%';
 });
 
-document.getElementById('start-btn').addEventListener('click', startDater);
+document.getElementById('start-btn').addEventListener('click', startTimer);
 document.getElementById('reset-btn').addEventListener('click', resetTimer);
 document.getElementById('done-btn').addEventListener('click', fixTimer);
 
-document.getElementById('submit-btn').addEventListener('click', () => {
-  const StartBtnEl = document.getElementById("start-btn");
-  // タイマーが実行中であれば一時停止して終了
-  if (isRunning) {
-    StartBtnEl.innerHTML = "START";
-    StartBtnEl.style = "";
-    return;
-  }
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('review_task').addEventListener('submit', function(event) {
+    event.preventDefault(); // デフォルトの送信動作を防止
+    // タイマーが実行中であれば一時停止
+    if (isRunning) {
+      isRunning = !isRunning;
+      stopTimer();
+    }
+    // タイマーを確定
+    const setTimeInput = document.getElementsByName("settime")[0];
+    const timeParts = setTimeInput.value.split(':');
 
-  // 計測されたデータを取得
-  const elapsedTime = Date.now() - startDate;
-  const formattedTime = formatTime(elapsedTime);
+    // 時間を秒に変換
+    const hours = parseInt(timeParts[0], 10);
+    const minutes = parseInt(timeParts[1], 10);
+    const seconds = parseInt(timeParts[2], 10);
 
-  // プログレスバーの値を取得
-  const progressValue = parseInt(document.getElementById('progressSlider').value);
+    // 経過時間を秒で取得
+    const execution_time = (hours * 3600) + (minutes * 60) + seconds - time;
 
-  // コンソールに表示
-  console.log('経過時間:', formattedTime);
-  console.log('進捗バーの値:', progressValue);
+    // memoのレイアウトに反映
+    startDate ??= new Date();
+    document.getElementById('execution_date').innerHTML = formatDate(startDate);
+    document.getElementById('execution_time').innerHTML = formatTime(execution_time);
 
-  // データをオブジェクトにまとめる
-  const dataToSend = {
-      formattedTime: formattedTime,
-      progressValue: progressValue,
-      user_memo: "Hello. I'm happy.",
-  };
+    const formData = new FormData(this); // フォームのデータを収集
+    formData.append('task_id', 1);
+    formData.append('execution_date', startDate.toISOString());
+    formData.append('execution_time', execution_time);
 
-  // Flask側にデータを送信するPOSTリクエストを行う
-  fetch('/save_data', {
+    const formDataObj = Object.fromEntries(formData.entries());
+    // Flask側にデータを送信するPOSTリクエストを行う
+    fetch('/task_execution', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify(dataToSend)
-  })
-  .then(response => response.json())
-  .then(data => {
+      body: JSON.stringify(formDataObj),
+    })
+    .then(response => response.json())
+    .then(data => {
       // レスポンスを処理する（必要に応じて）
       console.log(data);
-  })
-  .catch(error => {
+    })
+    .catch(error => {
       console.error('データの送信エラー:', error);
-  });
+    });
 
-  // タイマーをリセット
-  resetTimer();
+    resetTimer();
+  });
 });
 
 document.addEventListener("DOMContentLoaded", function() {

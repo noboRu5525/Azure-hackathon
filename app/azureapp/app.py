@@ -1126,29 +1126,52 @@ def submit_qualification_data_eng():
 # タイマーページ 
 @app.route('/timer')
 def timer():
-    return render_template('timer.html')
+    try:
+        # data = int(request.args.get('id'))
+        # # データベースから情報を取得
+        # conn = mysql.connector.connect(**config)
+        # cursor = conn.cursor()
+        # cursor.execute("SELECT * FROM tasks WHERE id=%s", (data,))
+        # result = cursor.fetchone()
+        # cursor.close()
+        # conn.close()
+
+        # TODO: task_idとtask_nameを渡す
+        return render_template('timer.html', task=None)
+    except Exception as e:
+        # エラーが発生した場合は、エラーメッセージを表示
+        return jsonify({'error': str(e)})
 
 def time_str_to_seconds(time_str):
     hours, minutes, seconds = map(int, time_str.split(':'))
     total_seconds = hours * 3600 + minutes * 60 + seconds
     return total_seconds
 
-# タスク実行のデータを受け取る
-@app.route('/save_data', methods=['POST'])
-def save_data():
+@app.route('/task_execution', methods=['POST'])
+def task_execution():
     try:
-        # POSTリクエストからデータを受け取る
         data = request.get_json()
 
         # セッションからユーザーIDを取得（ユーザーがログインしていることが前提）
         user_id = session.get('user_id')
         if not user_id:
             return jsonify({'status': 'error', 'message': 'User not logged in'}), 401
-        
-        seconds = time_str_to_seconds(data['formattedTime'])
 
-        current_time = datetime.now()
-        new_time = current_time + timedelta(hours=9)
+        if not data:
+            return jsonify({'status': 'error', 'message': 'No JSON data sent'}), 400
+        
+        execution_date = data.get('execution_date', '')
+        execution_time = data.get('execution_time', '')
+        task_progress = data.get('progress', '')
+        user_memo = data.get('user_memo', '')
+        task_id = data.get('task_id', '')
+
+        if execution_date:
+            # ISO 8601形式をdatetimeオブジェクトに変換
+            execution_date = datetime.fromisoformat(execution_date.rstrip("Z"))
+
+            # MySQLのTIMESTAMP形式に変換
+            execution_date = execution_date.strftime('%Y-%m-%d %H:%M:%S')
 
         # データベースに接続
         conn = mysql.connector.connect(**config)
@@ -1159,12 +1182,6 @@ def save_data():
         INSERT INTO task_executions (task_id, execution_date, execution_time, user_memo)
         VALUES (%s, %s, %s, %s)
         """
-        task_id = 1  # タスクIDを適切に設定
-        execution_date = new_time
-        execution_time = seconds
-        #task_progress = float(data['progressValue'])
-        user_memo = data['user_memo']
-
         cursor.execute(insert_query, (task_id, execution_date, execution_time, user_memo))
 
         # データベースへの変更をコミット
@@ -1177,17 +1194,13 @@ def save_data():
         WHERE id = %s
         """
 
-        task_id = 1  # タスクIDを適切に設定
-        new_task_progress = int(data['progressValue']) 
-
-        cursor.execute(update_query, (new_task_progress, task_id))
+        cursor.execute(update_query, (task_progress, task_id))
 
         # データベースへの変更をコミット
         conn.commit()
 
-
-        # レスポンスを返す（任意のレスポンスを設定することができます）
-        response_data = {'message': 'データを受け取りました。'}
+        # レスポンスを返す
+        response_data = {'message': 'OK'}
         return jsonify(response_data), 200
 
     except Exception as e:
