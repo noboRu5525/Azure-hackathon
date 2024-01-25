@@ -85,3 +85,9 @@ body {
 .end {
   color: red;
 }
+
+.icon {
+  height: 20px;
+  width: 20px;
+  font-size: 2rem;
+}
