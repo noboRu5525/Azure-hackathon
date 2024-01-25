@@ -59,41 +59,9 @@ google = oauth.register(
     client_kwargs={'scope': 'openid email profile https://www.googleapis.com/auth/calendar.readonly'},
 )
 
-def get_events_data():
-    email = dict(session).get('email', None)
-    creds_info = session.get('credentials', {})
-
-    if not (email and creds_info.get('token')):
-        return []  # イベントがない場合は空のリストを返す
-
-    # GoogleカレンダーAPIの認証情報を設定
-    credentials = Credentials(
-        token=creds_info['token'],
-        refresh_token=creds_info.get('refresh_token'),
-        token_uri=creds_info.get('token_uri'),
-        client_id=creds_info.get('client_id'),
-        client_secret=creds_info.get('client_secret'),
-        scopes=creds_info.get('scope')
-    )
-
-    # Googleカレンダーサービスの初期化
-    service = build('calendar', 'v3', credentials=credentials)
-
-    # カレンダーからイベントを取得
-    events_result = service.events().list(calendarId='primary', maxResults=10).execute()
-    events = events_result.get('items', [])
-
-    # イベントデータを整形
-    formatted_events = []
-    for event in events:
-        formatted_events.append({
-            'title': event.get('summary', 'No Title'),
-            'start': event['start'].get('dateTime', event['start'].get('date')),
-            'end': event['end'].get('dateTime', event['end'].get('date'))
-        })
-
-    return formatted_events
-
+@app.route('/')
+def welcome():
+    return '<a href="/login">Sign in with Google</a>'
 
 @app.route('/login')
 def login():
@@ -175,166 +143,6 @@ def get_account():
     conn.close()
     return rows
 
-#アカウント管理(要変更)
-@app.route("/admin")
-def admin():
-    return render_template("admin.html", accounts=get_account())
-
-###########################################################################################################################
-# #旧ログイン機能
-# @app.route("/")
-# def welcome():
-#     return render_template("welcome.html")
-
-# @app.route("/login")
-# def login_page():
-#     return render_template("login.html")
-
-# @app.route("/check_login", methods=['POST'])
-# def check_login():
-#     user, pw = (None, None)
-#     if 'user' in request.form:
-#         user = request.form['user']
-#     if 'pw' in request.form:
-#         pw = request.form['pw']
-#     if (user is None) or (pw is None):
-#         return redirect('/')
-#     if try_login(user, pw) == False:
-#         return """
-#         <h1>Wrong username or password</h1>
-#         <p><a href="/">→Return</a></p>
-#         """
-#     return redirect("/home")
-
-# @app.route("/signup")
-# def signup_page():
-#     return render_template("signup.html")
-
-# @app.route("/check_signup", methods=['POST'])
-# def check_signup():
-#     user, pw= (None, None)
-#     if 'user' in request.form:
-#         user = request.form['user']
-#     if 'pw' in request.form:
-#         pw = request.form['pw']
-#     if (user is None) or (pw is None):
-#         return redirect('/')
-#     if user_checker(user) == False:
-#         return """
-#         <h1>Same username exists. Please use a different username.</h1>
-#         <p><a href="/">→Reruen</a></p>
-#         """
-#     if try_signup(user, pw) == False:
-#         return """
-#         <h1>Invalid username, password, or email address</h1>
-#         <p><a href="/login">→Return</a></p>
-#         """
-#     return redirect('/login')
-
-# @app.route('/logout')
-# def logout_page():
-#     try_logout()
-#     return """
-#     <!DOCTYPE html>
-#     <html>
-#     <head>
-#         <title>ログアウト</title>
-#         <style>
-#             body {
-#                 font-family: 'Arial', sans-serif;
-#                 background-color: #f0f0f0;
-#                 text-align: center;
-#                 padding-top: 50px;
-#             }
-
-#             h1 {
-#                 color: #333;
-#                 font-size: 24px;
-#             }
-
-#             p {
-#                 margin-top: 20px;
-#                 font-size: 18px;
-#             }
-
-#             a {
-#                 text-decoration: none;
-#                 color: #007bff;
-#                 font-weight: bold;
-#             }
-
-#             a:hover {
-#                 color: #0056b3;
-#                 text-decoration: underline;
-#             }
-#         </style>
-#     </head>
-#     <body>
-#         <h1>Logged out</h1>
-#         <p><a href="/login">→return</a></p>
-#     </body>
-#     </html>
-#     """
-
-# def is_login():
-#     if 'user_id'  in session:
-#         return True
-#     return False
-
-# def try_login(username, password):
-#     conn = mysql.connector.connect(**config)
-#     cur = conn.cursor()
-#     cur.execute('SELECT id, password FROM account WHERE name = %s', (username,))
-#     account = cur.fetchone()
-#     cur.close()
-#     conn.close()
-#     if account and account[1] == password:
-#         session['user_id'] = account[0]  # ユーザーIDをセッションに保存
-#         return True
-#     return False
-
-# # セッションからユーザーIDを取得
-# def get_user_id_from_session():
-#     return session.get('user_id')
-
-# def try_signup(username, password):
-#     conn = mysql.connector.connect(**config)
-#     cur = conn.cursor()
-#     # ユーザー名が既に存在するかどうかをチェック
-#     cur.execute('SELECT id FROM account WHERE name = %s', (username,))
-#     if cur.fetchone():
-#         cur.close()
-#         conn.close()
-#         return False  # 既に存在するユーザー名
-#     # 新しいアカウントを作成
-#     cur.execute('INSERT INTO account (name, password) VALUES (%s, %s)', (username, password))
-#     user_id = cur.lastrowid  # 新しいユーザーIDを取得
-#     conn.commit()
-#     cur.close()
-#     conn.close()
-#     session['user_id'] = user_id  # ユーザーIDをセッションに保存
-#     return True
-
-# def try_logout():
-#     session.pop('user_id', None)
-#     return True
-
-# def get_user():
-#     if is_login():
-#         return session['user_id']
-#     return 'not login'
-
-# def user_checker(user):
-#     conn = mysql.connector.connect(**config)
-#     cur = conn.cursor()
-#     cur.execute('select * from account')
-#     results = cur.fetchall()
-#     cur.close()
-#     conn.close()
-#     for result in results:
-#         if user in result:
-#             return False
-#     return True
 ###########################################################################################################################
 #Google認証に合わせたログイン
 @app.route("/check_login", methods=['GET','POST'])
@@ -456,6 +264,41 @@ def home():
     calendar_events_json = json.dumps(calendar_events)
     
     return render_template('home.html', username=user, projects=projects, tasks=tasks.values(), events_json=calendar_events_json)
+
+def get_events_data():
+    email = dict(session).get('email', None)
+    creds_info = session.get('credentials', {})
+
+    if not (email and creds_info.get('token')):
+        return []  # イベントがない場合は空のリストを返す
+
+    # GoogleカレンダーAPIの認証情報を設定
+    credentials = Credentials(
+        token=creds_info['token'],
+        refresh_token=creds_info.get('refresh_token'),
+        token_uri=creds_info.get('token_uri'),
+        client_id=creds_info.get('client_id'),
+        client_secret=creds_info.get('client_secret'),
+        scopes=creds_info.get('scope')
+    )
+
+    # Googleカレンダーサービスの初期化
+    service = build('calendar', 'v3', credentials=credentials)
+
+    # カレンダーからイベントを取得
+    events_result = service.events().list(calendarId='primary', maxResults=10).execute()
+    events = events_result.get('items', [])
+
+    # イベントデータを整形
+    formatted_events = []
+    for event in events:
+        formatted_events.append({
+            'title': event.get('summary', 'No Title'),
+            'start': event['start'].get('dateTime', event['start'].get('date')),
+            'end': event['end'].get('dateTime', event['end'].get('date'))
+        })
+
+    return formatted_events
 
 @app.route('/get-calendar-events')
 def get_calendar_events():
@@ -961,22 +804,6 @@ def get_tasks():
         cursor.close()
         conn.close()
 
-
-@app.route('/test')
-def test():
-    response = client.chat.completions.create(
-    model="GPT35TURBO", # model = "deployment_name".
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-        {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure AI services support this too?"}
-    ]
-    )
-    res = response.choices[0].message.content
-    return res
-
-
 @app.route('/get_pass_score', methods=['POST'])
 def get_pass_score():
     data = request.get_json()
@@ -1356,5 +1183,183 @@ def save_data():
         cursor.close()
         conn.close()
 
+###########################################################################################################################
+# #旧ログイン機能
+# @app.route("/")
+# def welcome():
+#     return render_template("welcome.html")
+
+# @app.route("/login")
+# def login_page():
+#     return render_template("login.html")
+
+# @app.route("/check_login", methods=['POST'])
+# def check_login():
+#     user, pw = (None, None)
+#     if 'user' in request.form:
+#         user = request.form['user']
+#     if 'pw' in request.form:
+#         pw = request.form['pw']
+#     if (user is None) or (pw is None):
+#         return redirect('/')
+#     if try_login(user, pw) == False:
+#         return """
+#         <h1>Wrong username or password</h1>
+#         <p><a href="/">→Return</a></p>
+#         """
+#     return redirect("/home")
+
+# @app.route("/signup")
+# def signup_page():
+#     return render_template("signup.html")
+
+# @app.route("/check_signup", methods=['POST'])
+# def check_signup():
+#     user, pw= (None, None)
+#     if 'user' in request.form:
+#         user = request.form['user']
+#     if 'pw' in request.form:
+#         pw = request.form['pw']
+#     if (user is None) or (pw is None):
+#         return redirect('/')
+#     if user_checker(user) == False:
+#         return """
+#         <h1>Same username exists. Please use a different username.</h1>
+#         <p><a href="/">→Reruen</a></p>
+#         """
+#     if try_signup(user, pw) == False:
+#         return """
+#         <h1>Invalid username, password, or email address</h1>
+#         <p><a href="/login">→Return</a></p>
+#         """
+#     return redirect('/login')
+
+# @app.route('/logout')
+# def logout_page():
+#     try_logout()
+#     return """
+#     <!DOCTYPE html>
+#     <html>
+#     <head>
+#         <title>ログアウト</title>
+#         <style>
+#             body {
+#                 font-family: 'Arial', sans-serif;
+#                 background-color: #f0f0f0;
+#                 text-align: center;
+#                 padding-top: 50px;
+#             }
+
+#             h1 {
+#                 color: #333;
+#                 font-size: 24px;
+#             }
+
+#             p {
+#                 margin-top: 20px;
+#                 font-size: 18px;
+#             }
+
+#             a {
+#                 text-decoration: none;
+#                 color: #007bff;
+#                 font-weight: bold;
+#             }
+
+#             a:hover {
+#                 color: #0056b3;
+#                 text-decoration: underline;
+#             }
+#         </style>
+#     </head>
+#     <body>
+#         <h1>Logged out</h1>
+#         <p><a href="/login">→return</a></p>
+#     </body>
+#     </html>
+#     """
+
+# def is_login():
+#     if 'user_id'  in session:
+#         return True
+#     return False
+
+# def try_login(username, password):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     cur.execute('SELECT id, password FROM account WHERE name = %s', (username,))
+#     account = cur.fetchone()
+#     cur.close()
+#     conn.close()
+#     if account and account[1] == password:
+#         session['user_id'] = account[0]  # ユーザーIDをセッションに保存
+#         return True
+#     return False
+
+# # セッションからユーザーIDを取得
+# def get_user_id_from_session():
+#     return session.get('user_id')
+
+# def try_signup(username, password):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     # ユーザー名が既に存在するかどうかをチェック
+#     cur.execute('SELECT id FROM account WHERE name = %s', (username,))
+#     if cur.fetchone():
+#         cur.close()
+#         conn.close()
+#         return False  # 既に存在するユーザー名
+#     # 新しいアカウントを作成
+#     cur.execute('INSERT INTO account (name, password) VALUES (%s, %s)', (username, password))
+#     user_id = cur.lastrowid  # 新しいユーザーIDを取得
+#     conn.commit()
+#     cur.close()
+#     conn.close()
+#     session['user_id'] = user_id  # ユーザーIDをセッションに保存
+#     return True
+
+# def try_logout():
+#     session.pop('user_id', None)
+#     return True
+
+# def get_user():
+#     if is_login():
+#         return session['user_id']
+#     return 'not login'
+
+# def user_checker(user):
+#     conn = mysql.connector.connect(**config)
+#     cur = conn.cursor()
+#     cur.execute('select * from account')
+#     results = cur.fetchall()
+#     cur.close()
+#     conn.close()
+#     for result in results:
+#         if user in result:
+#             return False
+#     return True
+        
+###########################################################################################################################
+#APIの接続確認
+# @app.route('/test')
+# def test():
+#     response = client.chat.completions.create(
+#     model="GPT35TURBO", # model = "deployment_name".
+#     messages=[
+#         {"role": "system", "content": "You are a helpful assistant."},
+#         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
+#         {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
+#         {"role": "user", "content": "Do other Azure AI services support this too?"}
+#     ]
+#     )
+#     res = response.choices[0].message.content
+#     return res
+###########################################################################################################################
+#アカウント管理(要変更)
+# @app.route("/admin")
+# def admin():
+#     return render_template("admin.html", accounts=get_account())
+
+###########################################################################################################################
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)
