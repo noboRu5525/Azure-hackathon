@@ -32,6 +32,7 @@ CREATE TABLE tasks (
     plan_id INT NOT NULL,
     days_range VARCHAR(50) NOT NULL,
     task_name VARCHAR(255) NOT NULL,
+    task_progress INT NOT NULL DEFAULT 0, -- デフォルト値を0.0に設定
     FOREIGN KEY (plan_id) REFERENCES learning_plans(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -39,6 +40,15 @@ CREATE TABLE task_details (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_id INT NOT NULL,
     detail TEXT NOT NULL,
+    FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE task_executions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    task_id INT NOT NULL,
+    execution_date TIMESTAMP NULL DEFAULT NULL, -- NULLを許容し、デフォルト値をNULLに設定
+    execution_time INT NOT NULL DEFAULT 0, -- デフォルト値を0に設定
+    user_memo TEXT NULL DEFAULT NULL, -- NULLを許容し、デフォルト値をNULLに設定
     FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 

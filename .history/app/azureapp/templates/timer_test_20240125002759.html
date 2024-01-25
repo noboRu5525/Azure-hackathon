@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>シンプルなタイマー</title>
+</head>
+<body>
+    <div id="timer">00:00:00</div>
+    <div id="keypressCount">キー押下回数: 0</div>
+    <div id="progressBarContainer">
+        <div id="progressBar"></div>
+        <input type="range" id="progressSlider" min="0" max="100" step="1" value="0">
+    </div>
+    <button id="startButton">開始</button>
+    <button id="pauseButton">一時停止</button>
+    <button id="stopButton">終了</button>
+
+    <script>
+        let timerInterval; // タイマーのインターバルID
+        let timerRunning = false; // タイマーが実行中かどうかを示すフラグ
+        let startTime = 0; // タイマー開始時刻
+
+        // タイマーの表示を更新する関数
+        const updateTimerDisplay = () => {
+            const currentTime = Date.now();
+            const elapsedTime = currentTime - startTime;
+            const formattedTime = formatTime(elapsedTime);
+            document.getElementById('timer').textContent = formattedTime;
+        };
+
+        // 時間をHH:MM:SS形式にフォーマットする関数
+        const formatTime = (time) => {
+            const hours = Math.floor(time / 3600000);
+            const minutes = Math.floor((time % 3600000) / 60000);
+            const seconds = Math.floor((time % 60000) / 1000);
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        };
+
+        // タイマーを開始する関数
+        const startTimer = () => {
+            if (!timerRunning) {
+                startTime = Date.now();
+                timerInterval = setInterval(updateTimerDisplay, 1000); // 1秒ごとに更新
+                timerRunning = true;
+            }
+        };
+
+        // タイマーを一時停止する関数
+        const pauseTimer = () => {
+            if (timerRunning) {
+                clearInterval(timerInterval);
+                timerRunning = false;
+            }
+        };
+
+        // タイマーをリセットする関数
+        const resetTimer = () => {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            startTime = 0;
+            document.getElementById('timer').textContent = '00:00:00';
+        };
+
+        // 「開始」ボタンをクリックしたときの処理
+        document.getElementById('startButton').addEventListener('click', startTimer);
+
+        // 「一時停止」ボタンをクリックしたときの処理
+        document.getElementById('pauseButton').addEventListener('click', pauseTimer);
+
+        // 「終了」ボタンをクリックしたときの処理
+        document.getElementById('stopButton').addEventListener('click', () => {
+            // タイマーが実行中であれば一時停止して終了
+            if (timerRunning) {
+                pauseTimer();
+            }
+
+            // 計測されたデータを取得
+            const elapsedTime = Date.now() - startTime;
+            const formattedTime = formatTime(elapsedTime);
+
+            // プログレスバーの値を取得
+            const progressValue = parseInt(document.getElementById('progressSlider').value);
+
+            // コンソールに表示
+            console.log('経過時間:', formattedTime);
+            console.log('進捗バーの値:', progressValue);
+
+            // データをオブジェクトにまとめる
+            const dataToSend = {
+                formattedTime: formattedTime,
+                progressValue: progressValue,
+                user_memo: "Hello. I'm happy.",
+            };
+
+            // Flask側にデータを送信するPOSTリクエストを行う
+            fetch('/save_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataToSend)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // レスポンスを処理する（必要に応じて）
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('データの送信エラー:', error);
+            });
+
+            // キープレスデータをリセット
+            localStorage.removeItem('keypressCount');
+
+            // タイマーをリセット
+            resetTimer();
+        });
+
+        // キープレスカウンターの初期値をlocalStorageから取得するか、設定する
+        const updateKeypressDisplay = () => {
+            const count = localStorage.getItem('keypressCount') || 0;
+            document.getElementById('keypressCount').textContent = `キー押下回数: ${count}`;
+        };
+
+        // キーボードが押されたらカウンターを増やすイベントリスナーを追加
+        window.addEventListener('keydown', () => {
+            let count = localStorage.getItem('keypressCount') || 0;
+            count = parseInt(count) + 1;
+            localStorage.setItem('keypressCount', count);
+            updateKeypressDisplay();
+        });
+
+        // ページ読み込み時にキープレスカウントを表示
+        document.addEventListener('DOMContentLoaded', updateKeypressDisplay);
+
+        // タスクの進捗バーの要素を取得
+        const progressBar = document.getElementById('progressBar');
+        const progressSlider = document.getElementById('progressSlider');
+
+        // プログレスバーの初期値を設定（0%）
+        progressBar.style.width = '0%';
+
+        // プログレスバーの値が変更されたときの処理
+        progressSlider.addEventListener('input', () => {
+            const progressValue = progressSlider.value;
+            progressBar.style.width = progressValue + '%';
+        });
+
+        // タスクの進捗をリセットする関数
+        const resetProgress = () => {
+            progressSlider.value = 0;
+            progressBar.style.width = '0%';
+        };
+    </script>
+</body>
+</html>
