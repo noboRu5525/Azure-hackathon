@@ -204,17 +204,18 @@ document.addEventListener('click', function(event) {
     
       </script>
     
-         <script>
+        <script>
             document.querySelectorAll('.complete-task').forEach(button => {
     button.addEventListener('click', function(e) {
     e.preventDefault();
     const taskId = this.getAttribute('data-task-id');
     
     if (confirm('Really!？')) {
-        fetch(`/update_task_status/${taskId}`, {
+        fetch(`/delete_task/${taskId}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
+                // 'X-CSRFToken': csrfToken を削除
             }
         })
         .then(response => response.json())
@@ -227,8 +228,8 @@ document.addEventListener('click', function(event) {
         })
         .catch(error => console.error('Error:', error));
     }
-  });
-});
+    });
+    });
     
         </script>
     <!--Bootstrap JS CDN-->

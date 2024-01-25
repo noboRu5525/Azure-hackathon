@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>活動時間</title>
+</head>
+<body>
+    <h1>活動時間</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>プロジェクトID</th>
+                <th>タスクID</th>
+                <th>活動時間</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in project_task_data %}
+            <tr>
+                <td>{{ row.project_id }}</td>
+                <td>{{ row.task_id }}</td>
+                <td>{{ row.total_execution_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
