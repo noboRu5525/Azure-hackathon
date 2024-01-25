@@ -1,285 +1,237 @@
-<!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-    <!--Bootstrap Icon-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>
-        Taskman
-    </title>
-    <style>
-        /*sticky header*/
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href= "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  </head>
+  <style>
+    .gsi-material-button {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-appearance: none;
+  background-color: WHITE;
+  background-image: none;
+  border: 1px solid #747775;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 14px;
+  height: 40px;
+  letter-spacing: 0.25px;
+  outline: none;
+  overflow: hidden;
+  padding: 0 12px;
+  position: relative;
+  text-align: center;
+  -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+  transition: background-color .218s, border-color .218s, box-shadow .218s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  max-width: 400px;
+  min-width: min-content;
+  
+}
 
-        html, body {
-            height: 100%;
-        }
-        footer {
-            position: sticky;
-            top: 100vh;
-            top: 100dvh;
-        }
-        /* CSS goes here */
-    </style>
-    <title>
-        Title
-    </title>
-    </head>
-    <body>
-        
-        <!--ヘッダー-->
-        <header class="py-1 align-item-center">
-            <div class ="container text-center">
-                <h1><a href="/"><img class="mw-50" src="../static/img/taskman_circle.png" alt="Taskman" style="max-width: 90px;"></a></h1>
-            </div>
-        </header>
-        <!--／ヘッダー--><!--ナビゲーションバー-->
-<!-- ナビゲーションバー -->
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <!-- サブコンポーネント -->
-      <!-- ブランド -->
-      <a class="navbar-brand" onclick="location.href='/'" style="font-family: monaco;">Taskman</a>
-      <!-- 切り替えボタン -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- ナビゲーション -->
-      <div class="collapse navbar-collapse" id="navbar-content">
-        <!-- ナビゲーションメニュー -->
-        <!-- 左側メニュー：トップページの各コンテンツへのリンク -->
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item active">
-            <a class="nav-link" onclick="location.href='/'">Home<span class="visually-hidden">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" onclick="location.href='/'">Description</a>
-        </ul>
-    
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <button type="button" class="nav-link btn btn-info text-dark" onclick="location.href='/login'">Log in</button>
-          </li>
-          <li>
-            <button type="button" class="nav-link btn btn-info text-dark" onclick="location.href='/signup'">Sign Up</button>
-          </li>
-        </ul>
-        <!-- /ナビゲーションメニュー -->
-      </div>
-      <!-- /サブコンポーネント -->
-    </div>
-  </nav>
-  <!-- /ナビゲーションバー --><!--/ナビゲーションバー-->
-        <!--メイン-->
-        <main>
-            <!--メインビジュアル-->
-            <div class="py-1 bg-dark">
-                <div class="card bg-dark ">
-                    <img class ="card-img" src="../static/img/insert.png" alt="" class="img-fluid">
-    
-                </div>
-            </div>
-            <!--／メインビジュアル-->
-            <!--コンテンツ1-->
-            <div class="py-4 bg-light">
-                <section id="about">
-                  <div class="container">
-                    <!-- 上段 -->
-                    <div class="row mb-4">
-                      <div class="col-md-8 mb-3">
-                        <h3 class="mb-3" style="font-family: monaco;">Revolutionize task management, elevate your projects to the next level.</h3>
-                        <p style="font-family: monaco;">Redefine productivity. Our app, powered by the GPT API, intuitively translates your project visions into actionable plans. Experience seamless scheduling and task organization, tailored for the ambitious minds of students and professionals. It's more than time management—it's a pathway to success, simplified.</p>
-                        <button type="button" class="btn btn-info" onclick="location.href='/signup'">Sign Up</button>
-                        <button type="button" class="btn btn-info" onclick="location.href='/login'">Log in</button>
-                      </div>
-                      <div class="col-md-4">
-                        <img src="../static/img/Revolutionize_task.png" alt="Our Logo" class="img-fluid"> </div>
+.gsi-material-button .gsi-material-button-icon {
+  height: 20px;
+  margin-right: 12px;
+  min-width: 20px;
+  width: 20px;
+}
+
+.gsi-material-button-contents {
+    color: black;         /* リンクの色を黒に設定 */
+    text-decoration: none; /* アンダーラインを削除 */
+}
+
+.gsi-material-button .gsi-material-button-content-wrapper {
+  -webkit-align-items: center;
+  align-items: center;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.gsi-material-button .gsi-material-button-contents {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  font-family: 'Roboto', arial, sans-serif;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+}
+
+.gsi-material-button .gsi-material-button-state {
+  -webkit-transition: opacity .218s;
+  transition: opacity .218s;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.gsi-material-button:disabled {
+  cursor: default;
+  background-color: #ffffff61;
+  border-color: #1f1f1f1f;
+}
+
+.gsi-material-button:disabled .gsi-material-button-contents {
+  opacity: 38%;
+}
+
+.gsi-material-button:disabled .gsi-material-button-icon {
+  opacity: 38%;
+}
+
+.gsi-material-button:not(:disabled):active .gsi-material-button-state, 
+.gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+  background-color: #303030;
+  opacity: 12%;
+}
+
+.gsi-material-button:not(:disabled):hover {
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+  background-color: #303030;
+  opacity: 8%;
+}
+
+
+  
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  </style>
+  <body>
+    <!--ナビバー挿入-->
+    <nav class="navbar bg-body-tertiary rounded rounded-bottom-3 border border-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <img src="../static/img/taskman_circle.png" alt="" width="40" height="40">
+          </a>
+          
+            <div class="navbar-brand position-align-middle">
+                <a href="">
+                    <i class="bi bi-question-circle" style="font-size: 30px;"></i>
+                </a>
+                
+                <!--google icon-->
+                <button class="gsi-material-button">
+                  <div class="gsi-material-button-state"></div>
+                  <div class="gsi-material-button-content-wrapper">
+                    <a href="https://petalite-dryer-45a.notion.site/User-guide-3ec91fbe7d5e49d383eb56f997dc3ee8?pvs=4" target="_blank">
+                    <div class="gsi-material-button-icon">
+                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: block;">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                        <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                        <path fill="none" d="M0 0h48v48H0z"></path>
+                      </svg>
                     </div>
-                    <!-- /上段 -->
-                    <!-- 下段 -->
-                    <div class="row">
-                      <div class="col-md-4">
-                        <!-- カード01 -->
-                        <div class="card mb-3">
-                            <img src="../static/img/Requirement_Anallysis.png"alt="" class="img-fluid">
-                          <!-- カードの本文エリア -->
-                          <div class="card-body d-flex justify-content-between">
-                            <h4 class="card-title">Requirement Analysis</h4>
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal01">
-                              Show more
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <!-- カード02 -->
-                        <div class="card mb-3">
-                            <img src="../static/img/Schedule_Optimization.png" alt="" class="img-fluid">
-                          <!-- カードの本文エリア -->
-                          <div class="card-body d-flex justify-content-between">
-                            <h4 class="card-title">Schedule Optimization</h4>
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal02">
-                              Show more
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <!-- カード03 -->
-                        <div class="card mb-3">
-                          <img src="../static/img/Task_Management.png" alt="" class="img-fluid">
-                          <!-- カードの本文エリア -->
-                          <div class="card-body d-flex justify-content-between">
-                            <h4 class="card-title">Task Management</h4>
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal03">
-                              Show more
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- /下段 -->
-                    <!-- モーダル -->
-                    <!-- モーダル01 -->
-                    <div class="modal fade" id="modal01" tabindex="-1" role="dialog" aria-labelledby="modal01-label" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="modal01-label"></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <p class="text-center">
-                              <img alt="Requirement Analysis" src="https://placehold.jp/300x200.png" class="img-fluid">
-                            </p>
-                            <p>Utilizes the GPT API to precisely analyze users' project requests (such as app development, website creation, etc.). Presents the best plan according to the complexity and demands of the project.</p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- モーダル02 -->
-                    <div class="modal fade" id="modal02" tabindex="-1" role="dialog" aria-labelledby="modal01-label" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="modal02-label"></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <p class="text-center">
-                              <img alt="Schedule Optimization" src="https://placehold.jp/300x200.png" class="img-fluid">
-                            </p>
-                            <p>Automatically creates efficient schedules based on short-term and long-term goals. Optimizes time allocation for progressing projects within deadlines and provides achievable timelines.</p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- モーダル03 -->
-                    <div class="modal fade" id="modal03" tabindex="-1" role="dialog" aria-labelledby="modal01-label" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="modal03-label">Task Management</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <p class="text-center">
-                              <img alt="Task management" src="https://placehold.jp/300x200.png" class="img-fluid">
-                            </p>
-                            <p>Identifies necessary tasks for each project and sets deadlines and priorities. Designed with an interface that makes tracking and updating progress easy, it efficiently supports the completion of tasks.</p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- / モーダル -->
+                    </a>
+                    <a class="gsi-material-button-contents" href="/login">Sign in</a>
+                    <span style="display: none;">Sign in with Google</span>
                   </div>
-                </section>
-              </div>
-            </div>
-            <!--／コンテンツ01-->
-            <!--コンテンツ02-->
-            <div class="py-4">
-            </div>
-            <!--／コンテンツ02-->
-            <!--コンテンツ03-->
-            <div class="py-4">
-            </div>
-            <!--／コンテンツ03-->
-            <!--コンテンツ04-->
-            <div class="py-4">
-            </div>
-            <!--/コンテンツ04-->
-            <!--コンテンツ05-->
-            <div class="py-4">
-
-            </div>
-            <!--/コンテンツ05-->
-        
-        </main>
-        <!--/メイン-->
-        <!--フッター-->
-        <footer class="py-4">
-            <footer class="bg-dark text-white mt-4">
-                <div class="container-fluid py-3">
-                    <!-- Footer Contents -->
+                </button>
+              
+          </div>
+      </div>
+  </nav>
+    <main>
+        <div class="wrapper ">
+            <div class="py-2">
+                <div class="container "style="height:100vh;">
                     <div class="row">
-                        <div class="col-md-6">
-                            <p class="mb-md-0">© 2024 DataDremers@KIT. All Rights Reserved.</p>
+                        <div class="col-md-6  rounded rounded-3">
+                            <div class="row">
+                                <div class="col alin-item-end">
+                                    <img src="../static/img/welcome.png"  class= "img-fluid rounded "alt="Your Image">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col alin-item-end"></div>
+                            </div>
                         </div>
-                        <div class="col-md-6 text-md-right">
-                            <!-- Facebook -->
-              <a
-                class="btn btn-link btn-floating btn-lg text-light m-1"
-                href="https://github.com/noboRu5525/Azure-hackathon"
-                role="button"
-                data-mdb-ripple-color="dark"
-                ><i class="fab fa-github"></i
-              ></a>
-            <!-- Twitter -->
-            <a
-              class="btn btn-link btn-floating btn-lg text-light m-1"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-twitter"></i
-            ></a>
-        
-            <!-- Google -->
-            <a
-              class="btn btn-link btn-floating btn-lg text-light m-1"
-              href="#!"
-              role="button"
-              data-mdb-ripple-color="dark"
-              ><i class="fab fa-google"></i
-            ></a>
-                        </div>
+
+                            <div class="col-md-6 border border  border-dark bg-dark rounded rounded-3  text-center  justify-content-center">
+                                <p class=" fs-1 py-1 text-white ubuntu-font" style="font-family: 'Ubuntu',sans-serif;font-weight: 400;">Calm down, <br> Taskman <br> will help you. </p><br>
+                                <p class="fs-3 text-white" >Taskman is a task schedule management system supported by a complete AI.<br></p>
+                                <div class="py-3"></div>
+                                <button type="button" id="try-taskman-button" class="btn btn-primary btn-sm rounded-3" style="width: 350px;height: 150px;">
+                                  <h3>TRY TASKMAN FOR FREE</h3>
+                              </button>                               
+                            </div>
                     </div>
                 </div>
-            </footer>    
+            </div>
+        </div>
+    </div>
+
+    </main>
+    <div class="container-fluid">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top ">
+          <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+              <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+            </a>
+            <span class="text-muted">&copy; 2024 Data Dreamers@KIT All-Rights-Reserved</span>
+          </div>
+      
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <!-- GitHub -->
+            <li>
+              <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="https://github.com/noboRu5525/Azure-hackathon" role="button" data-mdb-ripple-color="dark">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+      
+            <!-- Twitter -->
+            <li>
+              <a class="btn btn-link btn-floating btn-lg text-dark m-1" href="#!" role="button" data-mdb-ripple-color="dark">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            
+            <!-- Google -->
+            <li>
+              <a class="btn btn-link btn-floating btn-lg text-dark  m-1" href="http://www.kanazawa-it.ac.jp" role="button" data-mdb-ripple-color="dark">
+                <i class="fab fa-google"></i>
+              </a>
+            </li>
+          </ul>
         </footer>
-
-        
-        <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+      document.getElementById('try-taskman-button').addEventListener('click', function() {
+          window.location.href = '/login';
+      });
+  </script>
+  </body>
 </html>

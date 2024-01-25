@@ -61,7 +61,7 @@ google = oauth.register(
 
 @app.route('/')
 def welcome():
-    return '<a href="/login">Sign in with Google</a>'
+    return render_template('welcome.html')
 
 @app.route('/login')
 def login():
