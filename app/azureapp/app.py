@@ -399,6 +399,11 @@ def projects():
 def faq():
     return render_template('faq.html')
 
+#statsを押したときの処理
+@app.route('/stats')
+def stats():
+    return render_template('stats.html')
+
 #Contactを押したときの処理
 @app.route('/contact')
 def contact():
