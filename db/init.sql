@@ -39,7 +39,7 @@ CREATE TABLE tasks (
 CREATE TABLE task_details (
     id INT AUTO_INCREMENT PRIMARY KEY,
     task_id INT NOT NULL,
-    detail TEXT NOT NULL,
+    detail VARCHAR(255) NOT NULL DEFAULT "nothing special",
     FOREIGN KEY (task_id) REFERENCES tasks(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
