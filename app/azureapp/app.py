@@ -739,21 +739,27 @@ def update_task_status(task_id):
     if not user_id:
         return jsonify({'status': 'error', 'message': 'ログインが必要です。'}), 403
 
+    # リクエストボディからステータスを取得
+    data = request.get_json()
+    if not data or 'status' not in data:
+        return jsonify({'status': 'error', 'message': '無効なリクエストです。'}), 400
+
+    new_status = data['status']
+
     # データベースに接続
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
     
     try:
+        # タスクのステータスを更新
         cur.execute('''
             UPDATE tasks
-            SET status = 1
-            WHERE id = %s AND EXISTS (
-                SELECT 1 FROM learning_plans lp
-                WHERE lp.user_id = %s AND lp.id = tasks.plan_id
-            )
-        ''', (task_id, user_id))
+            SET status = %s
+            WHERE id = %s
+            AND user_id = %s
+        ''', (new_status, task_id, user_id))
         conn.commit()
-        
+
         if cur.rowcount == 0:
             return jsonify({'status': 'error', 'message': 'タスクが見つかりません。'}), 404
 
@@ -761,39 +767,42 @@ def update_task_status(task_id):
 
     except mysql.connector.Error as err:
         conn.rollback()
-        print(f"Error: {err}")
-        return jsonify({'status': 'error', 'message': '内部エラーが発生しました。'}), 500
+        return jsonify({'status': 'error', 'message': f'内部エラーが発生しました。{err}'}), 500
     finally:
         cur.close()
         conn.close()
 
-@app.route('/check_status/<int:project_id>', methods=['POST'])        
+@app.route('/check_status/<int:project_id>', methods=['POST'])
 def check_status(project_id):
     conn = mysql.connector.connect(**config)
     cur = conn.cursor()
-    
+
     try:
+        # 関連する全てのタスクのstatusが0かどうかを確認
         cur.execute('''
-            #全てのタスクのstatusが1かどうかを確認
-            select count(*) from tasks t join learning_plans lp ON t.plan_id = lp.id
-            join projects p ON lp.user_id = p.user_id
-            WHERE p.id = %s AND t.status != 1
-        ''', (project_id))
-        imcomplete_task_count = cur.fetchone()[0]
-            
-        if imcomplete_task_count == 0:
-            #全てのタスクのstatusが1の場合、statusを0に変更
-            cur.execute('UPDATE projects SET status = 1 WHERE id = %s', (project_id,))
+            SELECT COUNT(*) FROM tasks t 
+            JOIN learning_plans lp ON t.plan_id = lp.id
+            JOIN projects p ON lp.user_id = p.user_id
+            WHERE p.id = %s AND t.status != 0
+        ''', (project_id,))
+        incomplete_task_count = cur.fetchone()[0]
+
+        if incomplete_task_count == 0:
+            # 全てのタスクのstatusが0の場合、projectsのstatusを0に変更
+            cur.execute('UPDATE projects SET status = 0 WHERE id = %s', (project_id,))
             conn.commit()
 
-        return jsonify({'status': 'success', 'message': 'タスクのステータスが更新されました。'})
+        return jsonify({'status': 'success', 'message': 'プロジェクトのステータスが更新されました。'})
+
     except mysql.connector.Error as err:
         conn.rollback()
         print(f"Error: {err}")
         return jsonify({'status': 'error', 'message': '内部エラーが発生しました。'}), 500
+
     finally:
         cur.close()
         conn.close()
+
 
 @app.route('/auto_select_language', methods=['POST'])
 def auto_select_language():
@@ -829,50 +838,6 @@ def auto_select_language():
     
     # 使用言語のリストをJSONで返す
     return jsonify({'languages': use_lang})
-
-#タスク名をカレンダーに反映させる
-@app.route('/get_tasks')
-def get_tasks():
-    conn = mysql.connector.connect(**config)
-    cursor = conn.cursor()
-
-    try:
-        # ユーザーIDをセッションから取得
-        user_id = session.get('user_id')
-        if user_id is None:
-            return jsonify({"error": "User not logged in"}), 401
-
-        # learning_plansのIDを取得
-        cursor.execute("SELECT id FROM learning_plans WHERE user_id = %s", (user_id,))
-        plan_ids = cursor.fetchall()
-        if not plan_ids:
-            return jsonify([])  # 該当するlearning_plansがない場合
-
-        # 複数のplan_idsに対応するtasksを取得
-        plan_ids_tuple = tuple([id[0] for id in plan_ids])  # タプルに変換
-        query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN %s"
-        cursor.execute(query, (plan_ids_tuple,))
-
-        tasks_data = cursor.fetchall()
-        tasks_list = []
-        for taskId, daysRange, taskName in tasks_data:
-            start_date, end_date = daysRange.split(' to ')
-            tasks_list.append({
-                "id": taskId,
-                "title": taskName,
-                "start": start_date,
-                "end": end_date,
-                "allDay": True
-            })
-        print(tasks_list)
-        print(type(tasks_list))
-        return jsonify(tasks_list)
-    except Exception as e:
-        print(e)
-        return str(e)
-    finally:
-        cursor.close()
-        conn.close()
 
 @app.route('/get_pass_score', methods=['POST'])
 def get_pass_score():
@@ -992,8 +957,8 @@ def submit_qualification_data():
         # 各タスクとその詳細をデータベースに挿入
         for days_range, tasks in data.items():
             for task_name, details in tasks.items():
-                cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
-                            (plan_id, days_range, task_name))
+                cur.execute('INSERT INTO tasks (user_id, plan_id, days_range, task_name) VALUES (%s, %s, %s, %s)',
+                            (user_id, plan_id, days_range, task_name))
                 task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
 
                 for detail in details:
@@ -1134,8 +1099,8 @@ def submit_qualification_data_eng():
         # 各タスクとその詳細をデータベースに挿入
         for days_range, tasks in data.items():
             for task_name, details in tasks.items():
-                cur.execute('INSERT INTO tasks (plan_id, days_range, task_name) VALUES (%s, %s, %s)',
-                            (plan_id, days_range, task_name))
+                cur.execute('INSERT INTO tasks (user_id, plan_id, days_range, task_name) VALUES (%s, %s, %s, %s)',
+                            (user_id, plan_id, days_range, task_name))
                 task_id = cur.lastrowid  # 新しく挿入されたタスクのIDを取得
 
                 for detail in details:
@@ -1431,5 +1396,51 @@ def save_data():
 #     return render_template("admin.html", accounts=get_account())
 
 ###########################################################################################################################
+#タスク名をカレンダーに反映させる
+# @app.route('/get_tasks')
+# def get_tasks():
+#     conn = mysql.connector.connect(**config)
+#     cursor = conn.cursor()
+
+#     try:
+#         # ユーザーIDをセッションから取得
+#         user_id = session.get('user_id')
+#         if user_id is None:
+#             return jsonify({"error": "User not logged in"}), 401
+
+#         # learning_plansのIDを取得
+#         cursor.execute("SELECT id FROM learning_plans WHERE user_id = %s", (user_id,))
+#         plan_ids = cursor.fetchall()
+#         if not plan_ids:
+#             return jsonify([])  # 該当するlearning_plansがない場合
+
+#         # 複数のplan_idsに対応するtasksを取得
+#         plan_ids_tuple = tuple([id[0] for id in plan_ids])  # タプルに変換
+#         query = "SELECT id, days_range, task_name FROM tasks WHERE plan_id IN %s"
+#         cursor.execute(query, (plan_ids_tuple,))
+
+#         tasks_data = cursor.fetchall()
+#         tasks_list = []
+#         for taskId, daysRange, taskName in tasks_data:
+#             start_date, end_date = daysRange.split(' to ')
+#             tasks_list.append({
+#                 "id": taskId,
+#                 "title": taskName,
+#                 "start": start_date,
+#                 "end": end_date,
+#                 "allDay": True
+#             })
+#         print(tasks_list)
+#         print(type(tasks_list))
+#         return jsonify(tasks_list)
+#     except Exception as e:
+#         print(e)
+#         return str(e)
+#     finally:
+#         cursor.close()
+#         conn.close()
+
+###########################################################################################################################
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", debug=True)

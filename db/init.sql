@@ -37,6 +37,7 @@ CREATE TABLE tasks (
     execution_date TIMESTAMP NULL DEFAULT NULL, -- NULLを許容し、デフォルト値をNULLに設定
     execution_time INT NOT NULL DEFAULT 0, -- デフォルト値を0に設定
     user_memo TEXT NULL DEFAULT NULL, -- NULLを許容し、デフォルト値をNULLに設定
+    status TINYINT NOT NULL DEFAULT 0,
     FOREIGN KEY (plan_id) REFERENCES learning_plans(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
